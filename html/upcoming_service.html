@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/upcoming_service.css" />
+  
   <title>Upcoming Service</title>
 </head>
 
@@ -120,7 +121,7 @@
                                         <tr>
                                             <td>323438</td>
                                             <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
+                                            <td><p>David Bugh</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
                                             <td>15 km</td>
                                             <td><input class="cancelbtn" type="button" value="Cancel"></td>
                                         </tr>
@@ -225,61 +226,13 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="js/upcoming_service.js"></script>
         
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
   crossorigin="anonymous"></script>
  
-<script>
-var $links = $('#sidebar-wrapper a');
-$links.click(function(){
-   $links.removeClass('active');
-   $(this).addClass('active');
-});
-$('table').on('click', 'input[type="button"]', function(e){
-   $(this).closest('tr').remove()
-   alert('data deleted sucessfully;')
-})
 
-
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  dir = "asc"; 
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;      
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
-
-      </script>
       </body>
       
       </html>
