@@ -246,11 +246,11 @@ table.dataTable thead th{
   border-bottom: unset;
   vertical-align: middle;
 }
-table tr th:nth-child(1){width: 145px;text-align: initial;}
-table tr th:nth-child(2){width: 200px;text-align: initial;}
-table tr th:nth-child(3){width: 100px;}
-table tr th:nth-child(4){width: 100px;}
-table tr th:nth-child(5){width: 100px;text-align: center;}
+table tr th:nth-child(1){/*width: 145px;*/text-align: initial;}
+table tr th:nth-child(2){/*width: 200px;*/text-align: initial;}
+/* table tr th:nth-child(3){width: 100px;} */
+/* table tr th:nth-child(4){width: 100px;} */
+table tr th:nth-child(5){/*width: 100px;*/text-align: center;}
 table tr td:nth-child(5){text-align: center;}
 .dashboard table tr th{
   background: #f9f9f9;

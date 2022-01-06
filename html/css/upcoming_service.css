@@ -244,11 +244,11 @@ width: 73px;
     /* margin-right: 50px; */
     /* width: 500px; */
 } 
-table tr th:nth-child(1){width: 100px ;text-align: initial;}
-table tr th:nth-child(2){width: 145px ;text-align: initial;}
-table tr th:nth-child(3){width: 250px !important; }
-table tr th:nth-child(4){width: 100px;}
-table tr th:nth-child(5){width: 100px;text-align: center;}
+table tr th:nth-child(1){/*width: 100px ;*/text-align: initial;}
+table tr th:nth-child(2){/*width: 145px ;*/text-align: initial;}
+/* table tr th:nth-child(3){width: 250px !important; } */
+/* table tr th:nth-child(4){width: 100px;} */
+table tr th:nth-child(5){/*width: 100px;*/text-align: center;}
 
 .dashboard table tr th{
     background: #f9f9f9;
@@ -339,7 +339,9 @@ table.dataTable thead th, table.dataTable thead td{
       background: #146371 !important; 
  
   }
-  
+  #page-content-wrapper{
+    overflow: hidden;
+  }
   #page-content-wrapper .dataTables_wrapper .dataTables_paginate a{
     background-color: unset;
     background: unset;
@@ -351,6 +353,11 @@ table.dataTable thead th, table.dataTable thead td{
     display: flex;
   align-items: center;
   justify-content: center;
+
+}
+#page-content-wrapper .dataTables_wrapper .dataTables_paginate a img{
+  height: 45px;
+  width: 45px;
 }
 #page-content-wrapper .dataTables_wrapper .dataTables_paginate span{
   display: flex;
