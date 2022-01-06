@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
   <link rel="stylesheet" href="css/upcoming_service.css" />
   
   <title>Upcoming Service</title>
@@ -19,18 +23,16 @@
             <a href="#" class="navbar-brand">
               <img src="image/home/logo.png" height="28" alt="CoolBrand" />
             </a>
-             <button class="navbar-toggler ddmenu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              Menu
-              </button>
+           
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <div class="navbar-nav text-light">   
                 <a href="price.html" class="nav-item nav-link menu">Prices & services</a>
                 <a href="#" class="nav-item nav-link menu">Warranty</a>
                 <a href="#" class="nav-item nav-link menu">Blog</a>
                 <a href="contact.html" class="nav-item nav-link menu">Contact</a>
-                <div class="vr"></div>
-                <a href="#" class="nav-item nav-link"><img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span></a>
-                <div class="vr" style="margin-left: 7px;"></div>
+                <a href="#" class="nav-item nav-link notification_item">
+                    <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                  </a>
                 <div class="btn-group user_setting">
                   <button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                     <img src="image/upcoming_service/user.svg" alt="flag">
@@ -51,6 +53,56 @@
             </div>
             
         </nav>
+        <section class="mobileNav">
+          <div class="mobileNavSpaccing">
+  
+              <img class="mobileLogo" src="image/home/logo.png" alt="">
+  
+              <div class="mobileNotification">
+                <a href="#" class="nav-item nav-link notification_item">
+                  <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                </a>
+                
+              </div>
+              <div class="menubtn">
+                <button class="navbar-toggler">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button> 
+              </div>
+          </div>
+  
+          <div class="sideNav">
+            <div class="openSidenav">
+                  <div class="closebtn">
+                      <img src="image/service_history/close.png">
+                  </div>
+                  <p class="mobileNavMenu">Welcome<br><strong>Sandip Patel</strong></p>
+                  <hr>
+                  <a href="#" class="mobileNavMenu">Dashbord</a>
+                  <a href="#" class="mobileNavMenu current">Service History</a>
+                  <a href="#" class="mobileNavMenu">Service Schedule</a>
+                  <a href="#" class="mobileNavMenu">Favourite Pros</a>
+                  <a href="#" class="mobileNavMenu">Invoices</a>
+                  <a href="#" class="mobileNavMenu">Notification</a>
+                  <a href="#" class="mobileNavMenu">My Setting</a>
+                  <a href="#" class="mobileNavMenu">Logout</a>
+                  <hr>          
+                  <a href="#" class="mobileNavMenu">Book Now</a>
+                  <a href="#" class="mobileNavMenu">Prices & Services</a>
+                  <a href="#" class="mobileNavMenu">Warrenty</a>
+                  <a href="#" class="mobileNavMenu">Blog</a>
+                  <a href="#" class="mobileNavMenu">Contact</a>
+                  <hr>
+                  <div class="m-auto">
+                    <img class="px-3" src="image/price/facebook.png" />
+                    <img class="px-3" src="image/price/insta.png" />
+                  </div>
+
+              </div>
+          </div>
+      </section>
 
         <!-- /*//////////////////////////// NAVBAR END/////////////////////////////////// */ -->
 
@@ -91,13 +143,13 @@
                         <div class="row">
                            
                             <div class="col">
-                                <table id="myTable" class="table table-hover">
+                                <table id="upcomingService" class="table">
                                     <thead>
                                         <tr>
-                                            <th onclick="sortTable(0)">Service ID <img src="image/upcoming_service/arrow.svg"></th>
-                                            <th style="width: 165px;" onclick="sortTable(1)">Service date <img src="image/upcoming_service/arrow.svg"></th>
-                                            <th style="width: 270px;" onclick="sortTable(2)">Customer details <img src="image/upcoming_service/arrow.svg"></th>
-                                            <th onclick="sortTable(3)">Distance <img src="image/upcoming_service/arrow.svg"></th>
+                                            <th onclick="sortTable(0)">Service ID</th>
+                                            <th style="width: 165px;" onclick="sortTable(1)">Service date</th>
+                                            <th style="width: 270px;" onclick="sortTable(2)">Customer detail</th>
+                                            <th onclick="sortTable(3)">Distance </th>
                                             <th>Actions</th>
                                             
                                         </tr>
@@ -231,6 +283,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
   crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+  
  
 
       </body>

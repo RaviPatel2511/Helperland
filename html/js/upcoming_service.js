@@ -3,45 +3,49 @@ $links.click(function(){
    $links.removeClass('active');
    $(this).addClass('active');
 });
+var $links2 = $('.sideNav a');
+$links2.click(function(){
+   $links2.removeClass('current');
+   $(this).addClass('current');
+});
 $('table').on('click', 'input[type="button"]', function(e){
    $(this).closest('tr').remove()
    alert('data deleted sucessfully;')
 })
 
 
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  dir = "asc"; 
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
+
+
+$(document).ready( function () {
+  $('#upcomingService').DataTable({
+      "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
+      "pagingType": "full_numbers",
+      "searching":false,
+      'columnDefs': [ {
+          'targets': [4], 
+          'orderable': false, 
+       }],
+      "language": {
+          "paginate": {
+              "first": '<i class="fas fa-step-backward"></i>',
+              "next": '<i class="fas fa-angle-right"></i>',
+            "previous": '<i class="fas fa-angle-left"></i>',
+            "last":'<i class="fas fa-step-forward"></i>'
+          },
+          'info': "Total Record: _MAX_",
+          
       }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;      
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
+  });
+} );
+
+
+const menubtn=document.querySelector('.menubtn');
+const Sidenav=document.querySelector('.sideNav');
+const closebtn=document.querySelector('.closebtn');
+
+menubtn.addEventListener('click',()=>{
+    Sidenav.classList.add('open');
+})
+closebtn.addEventListener('click',()=>{
+    Sidenav.classList.remove('open')
+})

@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
   <link rel="stylesheet" href="css/service_history.css" />
   <title>Service History</title>
 </head>
@@ -18,9 +22,12 @@
             <a href="#" class="navbar-brand">
               <img src="image/home/logo.png" height="28" alt="CoolBrand" />
             </a>
-             <button class="navbar-toggler ddmenu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              Menu
-              </button>
+            
+             <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <div class="navbar-nav text-light">   
                 <a href="price.html" class="nav-item nav-link menu1">Book now</a>
@@ -28,11 +35,11 @@
                 <a href="#" class="nav-item nav-link menu">Warranty</a>
                 <a href="#" class="nav-item nav-link menu">Blog</a>
                 <a href="contact.html" class="nav-item nav-link menu">Contact</a>
-                <div class="vr"></div>
-                <a href="#" class="nav-item nav-link">
+                
+                <a href="#" class="nav-item nav-link notification_item">
                   <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
                 </a>
-                <div style="margin-left: 8px;" class="vr"></div>
+                
                 <div class="btn-group user_setting">
                   <button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                     <img src="image/upcoming_service/user.svg" alt="flag">
@@ -53,7 +60,57 @@
             </div>
             
         </nav>
+        <section class="mobileNav">
+          <div class="mobileNavSpaccing">
+  
+              <img class="mobileLogo" src="image/home/logo.png" alt="">
+  
+              <div class="mobileNotification">
+                <a href="#" class="nav-item nav-link notification_item">
+                  <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                </a>
+                
+              </div>
+              <div class="menubtn">
+                <button class="navbar-toggler">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button> 
+              </div>
+          </div>
+  
+          <div class="sideNav">
+            <div class="openSidenav">
+                  <div class="closebtn">
+                      <img src="image/service_history/close.png">
+                  </div>
+                  <p class="mobileNavMenu">Welcome<br><strong>Gaurang Patel</strong></p>
+                  <hr>
+                  <a href="#" class="mobileNavMenu">Dashbord</a>
+                  <a href="#" class="mobileNavMenu current">Service History</a>
+                  <a href="#" class="mobileNavMenu">Service Schedule</a>
+                  <a href="#" class="mobileNavMenu">Favourite Pros</a>
+                  <a href="#" class="mobileNavMenu">Invoices</a>
+                  <a href="#" class="mobileNavMenu">Notification</a>
+                  <a href="#" class="mobileNavMenu">My Setting</a>
+                  <a href="#" class="mobileNavMenu">Logout</a>
+                  <hr>          
+                  <a href="#" class="mobileNavMenu">Book Now</a>
+                  <a href="#" class="mobileNavMenu">Prices & Services</a>
+                  <a href="#" class="mobileNavMenu">Warrenty</a>
+                  <a href="#" class="mobileNavMenu">Blog</a>
+                  <a href="#" class="mobileNavMenu">Contact</a>
+                  <hr>
+                  <div class="m-auto">
+                    <img class="px-3" src="image/price/facebook.png" />
+                    <img class="px-3" src="image/price/insta.png" />
+                  </div>
 
+              </div>
+          </div>
+      </section>
+  
         <!-- /*//////////////////////////// NAVBAR END/////////////////////////////////// */ -->
 
         <section class="welcome_msg">
@@ -95,10 +152,10 @@
                             <table class="table" id="service_history_table">
                                 <thead>
                                     <tr>
-                                        <th>Service Details <img src="image/upcoming_service/arrow.svg"></th>
-                                        <th>Service Provider <img src="image/upcoming_service/arrow.svg"></th>
-                                        <th>Payment <img src="image/upcoming_service/arrow.svg"></th>
-                                        <th>Status <img src="image/upcoming_service/arrow.svg"></th>
+                                        <th>Service Details </th>
+                                        <th>Service Provider </th>
+                                        <th>Payment </th>
+                                        <th>Status </th>
                                         <th>Rate SP</th>
                                         
                                     </tr>
@@ -118,7 +175,7 @@
                                           </div>
                                           <div class="col">
                                             <p>Lyum Watson</p>
-                                            <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                            <p><div class="Stars" style="--rating: 4;"></div>&nbsp;4</p>
                                           </div>
                                         </div>
                                        </td>
@@ -129,7 +186,7 @@
                                         <p class="status_complete">Completed</p>
                                        </td>
                                        <td>
-                                       <p> <button  class="rate"">Rate SP</button></p>
+                                       <p> <button  class="rate" onclick="rating()" id="rate_btn">Rate SP</button></p>
                                        </td>
                                     </tr>
                                     <tr>
@@ -146,7 +203,7 @@
                                           </div>
                                           <div class="col">
                                             <p>Lyum Watson</p>
-                                            <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                            <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                           </div>
                                         </div>
                                        </td>
@@ -174,7 +231,7 @@
                                           </div>
                                           <div class="col">
                                             <p>Lyum Watson</p>
-                                            <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                            <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                           </div>
                                         </div>
                                        </td>
@@ -202,7 +259,7 @@
                                           </div>
                                           <div class="col">
                                             <p>Lyum Watson</p>
-                                            <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                            <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                           </div>
                                         </div>
                                        </td>
@@ -230,7 +287,7 @@
                                          </div>
                                          <div class="col">
                                            <p>Lyum Watson</p>
-                                           <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                           <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                          </div>
                                        </div>
                                       </td>
@@ -258,7 +315,7 @@
                                        </div>
                                        <div class="col">
                                          <p>Lyum Watson</p>
-                                         <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                         <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                        </div>
                                      </div>
                                     </td>
@@ -286,7 +343,7 @@
                                      </div>
                                      <div class="col">
                                        <p>Lyum Watson</p>
-                                       <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                       <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                      </div>
                                    </div>
                                   </td>
@@ -313,7 +370,7 @@
                                    </div>
                                    <div class="col">
                                      <p>Lyum Watson</p>
-                                     <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                     <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                    </div>
                                  </div>
                                 </td>
@@ -341,7 +398,7 @@
                                  </div>
                                  <div class="col">
                                    <p>Lyum Watson</p>
-                                   <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                   <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                  </div>
                                </div>
                               </td>
@@ -369,7 +426,63 @@
                                </div>
                                <div class="col">
                                  <p>Lyum Watson</p>
-                                 <p><div class="Stars" id="rate1" style="--rating: 4;">4</div></p>
+                                 <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
+                               </div>
+                             </div>
+                            </td>
+                            <td>
+                             <p class="payment">€63</p>
+                            </td>
+                            <td>
+                             <p class="status_cancelled">Cancelled</p>
+                            </td>
+                            <td>
+                            <p> <button  class="rate"">Rate SP</button></p>
+                            </td>
+                         </tr>
+                           <tr>
+                            <td>
+                           <p><span><img src="image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
+                           <p>12:00 - 18:00</p>
+                           </td>
+                            <td>
+                             <div class="row">
+                               <div class="col sp_icon">
+                                 <Span class="img_circle">
+                                 <img src="image/service_history/cap.png" alt="cap">
+                                 </Span>
+                               </div>
+                               <div class="col">
+                                 <p>Lyum Watson</p>
+                                 <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
+                               </div>
+                             </div>
+                            </td>
+                            <td>
+                             <p class="payment">€63</p>
+                            </td>
+                            <td>
+                             <p class="status_cancelled">Cancelled</p>
+                            </td>
+                            <td>
+                            <p> <button  class="rate"">Rate SP</button></p>
+                            </td>
+                         </tr>
+                           <tr>
+                            <td>
+                           <p><span><img src="image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
+                           <p>12:00 - 18:00</p>
+                           </td>
+                            <td>
+                             <div class="row">
+                               <div class="col sp_icon">
+                                 <Span class="img_circle">
+                                 <img src="image/service_history/cap.png" alt="cap">
+                                 </Span>
+                               </div>
+                               <div class="col">
+                                 <p>Lyum Watson</p>
+                                 <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
                                </div>
                              </div>
                             </td>
@@ -389,7 +502,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="d-flex">
+                    <!-- <div class="d-flex">
                       <div class="py-2">
                         <span>Show
                           <select name="EntriesPerPage" id="EntriesPerPage">
@@ -408,7 +521,7 @@
                       <div class="ml-auto py-2">
                         
                       </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -459,25 +572,16 @@
        
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+      
         
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
   crossorigin="anonymous"></script>
- 
-<script>
-var $links = $('#sidebar-wrapper a');
-$links.click(function(){
-   $links.removeClass('active');
-   $(this).addClass('active');
-});
-// function display_rate(a){
-//   var x = prompt("Enter a Value", "0");
-//  var num1 = parseInt(x);
-//  document.getElementById(a).style.'--rating' = num1;
-// }
-
-      </script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+  <script src="js/service_history.js"></script>
+        <
       </body>
       
       </html>
