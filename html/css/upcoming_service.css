@@ -502,6 +502,9 @@ footer{
     #upcomingService {
       border: unset;
     }
+    .date{
+      margin: 0px 5px;
+    }
     #upcomingService  tr{
       display: flex;
       flex-wrap: wrap;
@@ -534,9 +537,7 @@ footer{
       display: none;
 
     }
-    .date{
-      margin: 0px 15px;
-    }
+    
     #sidebar-wrapper,.notification_item{
       display: none;
     }
