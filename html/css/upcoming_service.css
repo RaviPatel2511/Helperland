@@ -356,8 +356,8 @@ table.dataTable thead th, table.dataTable thead td{
 
 }
 #page-content-wrapper .dataTables_wrapper .dataTables_paginate a img{
-  height: 45px;
-  width: 45px;
+  height: 20px;
+  width: 40px;
 }
 #page-content-wrapper .dataTables_wrapper .dataTables_paginate span{
   display: flex;
