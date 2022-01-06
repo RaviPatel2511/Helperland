@@ -387,7 +387,7 @@ table.dataTable thead th, table.dataTable thead td{
     background-position:right;
   }
   table.dataTable thead .sorting_asc {
-    background-image: url(../image/service_history/decendingSort.png) !important;
+    background-image: url( ../image/service_history/decendingSort.png) !important;
     background-repeat: no-repeat;
     background-position:right;
   }
