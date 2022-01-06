@@ -402,7 +402,7 @@ tbody tr td p{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: black;
 }
 #page-content-wrapper .dataTables_wrapper .dataTables_paginate span{
   display: flex;
