@@ -399,6 +399,14 @@ tbody tr td p{
   height: 45px;
   width: 45px;
   margin-left: 5px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#page-content-wrapper .dataTables_wrapper .dataTables_paginate span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #page-content-wrapper .dataTables_wrapper .dataTables_paginate a.current,
 #page-content-wrapper .dataTables_wrapper .dataTables_paginate a:hover,
@@ -446,6 +454,12 @@ table.dataTable thead .sorting_desc {
 background-image: url(../image/service_history/acendingSort.png) !important;
 background-repeat: no-repeat;
   background-position: right;
+}
+#page-content-wrapper .dataTables_paginate{
+  display: flex;
+  justify-content: center;
+  
+  align-items: center;
 }
 /* <!--////////////////////////////// DASHBOARD END////////////////////////// --> */
 
@@ -604,6 +618,7 @@ background-repeat: no-repeat;
       }
       #page-content-wrapper .dataTables_paginate {
         width: 100%;
+       
       }
       
       .mobileNav{

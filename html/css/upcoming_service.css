@@ -348,7 +348,17 @@ table.dataTable thead th, table.dataTable thead td{
     height: 45px;
     width: 45px;
     margin-left: 5px ;
-  }
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#page-content-wrapper .dataTables_wrapper .dataTables_paginate span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
   #page-content-wrapper .dataTables_wrapper .dataTables_paginate a.current,
   #page-content-wrapper .dataTables_wrapper .dataTables_paginate a:hover,
   #page-content-wrapper .dataTables_wrapper .dataTables_paginate a:hover i
@@ -396,7 +406,12 @@ table.dataTable thead th, table.dataTable thead td{
   background-repeat: no-repeat;
   background-position:right;
   }
-  
+  #page-content-wrapper .dataTables_paginate{
+    display: flex;
+    justify-content: center;
+    
+    align-items: center;
+  }
 
 /* <!--////////////////////////////// DASHBOARD END ////////////////////////// --> */
 
