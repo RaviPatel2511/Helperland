@@ -13,6 +13,10 @@ $(document).ready( function () {
         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
         "pagingType": "full_numbers",
         "searching":false,
+        'buttons': [{
+            extend:'excel',
+            text:'Export'
+        }],
         'columnDefs': [ {
             'targets': [4], 
             'orderable': false, 
