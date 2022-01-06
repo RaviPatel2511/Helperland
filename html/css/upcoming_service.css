@@ -271,6 +271,9 @@ table tr th:nth-child(5){width: 100px;text-align: center;}
     color: #646464;
     background: #f9f9f9;
 }
+table.dataTable thead th, table.dataTable thead td{
+  border-bottom: none ;
+}
 .dashboard table tr td p{
     margin-bottom: 8px !important;
 }
