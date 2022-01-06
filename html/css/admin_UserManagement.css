@@ -204,6 +204,9 @@ table.dataTable thead .sorting{
 table{
     border: 1px solid #E1E1E1;
 }
+tbody{
+    background-color: white ;
+}
 
 .active p{
     padding: 4px 8px;
