@@ -308,7 +308,7 @@ table.dataTable thead th, table.dataTable thead td{
     background-clip: padding-box;
   }
   .dashboard{
-    max-width: 1100px;
+    
     height: 100%;
     overflow: auto;
 
@@ -383,12 +383,18 @@ table.dataTable thead th, table.dataTable thead td{
 
   table.dataTable thead .sorting{
     background-image: url(../image/upcoming_service/arrow.svg);
+    background-repeat: no-repeat;
+    background-position:right;
   }
   table.dataTable thead .sorting_asc {
     background-image: url(../image/service_history/decendingSort.png) !important;
+    background-repeat: no-repeat;
+    background-position:right;
   }
   table.dataTable thead .sorting_desc {
   background-image: url(../image/service_history/acendingSort.png) !important;
+  background-repeat: no-repeat;
+  background-position:right;
   }
   
 
