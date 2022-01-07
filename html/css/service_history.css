@@ -245,6 +245,7 @@ width: 73px;
 table.dataTable thead th{
   border-bottom: unset;
   vertical-align: middle;
+  cursor: pointer;
 }
 table tr th:nth-child(1){text-align: initial;}
 table tr th:nth-child(2){text-align: initial;}

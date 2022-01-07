@@ -156,6 +156,9 @@
 .dt-buttons{
     display: none;
 }
+table th{
+    cursor: pointer;
+}
 
 table tr td:nth-child(5),table tr th:nth-child(5){text-align: -webkit-center;}
 table tr td:nth-child(6),table tr th:nth-child(6){text-align: -webkit-center;}
