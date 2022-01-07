@@ -122,6 +122,24 @@
     width: 35px;
     float: right;
 }
+@media screen and (min-width:650px) and (max-width:837px) {
+    td .threeDotsubMenu{
+        position: absolute;
+        right:15px;
+        top:86px;
+    }
+      
+  }
+ 
+
+
+  #from-date,#to-date,  #to-date { 
+    background-image: url(../image/admin_ServiceRequest/calendar.svg);
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-position-y:center ;
+    background-position-x:5px ;
+}
 
 
   
@@ -310,6 +328,52 @@ table tbody tr td p {
 .action span:nth-child(2){
     margin: 3px 0;
 }
+.actionbutton {
+  
+  position: relative;
+}
+.threeDotsubMenu ul {
+  padding: 15px 13px;
+  margin: 0;
+}
+
+.threeDotsubMenu li {
+  text-align: left;
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.threeDotsubMenu a {
+  color: #646464;
+  font-size: 16px;
+  text-decoration: none;
+}
+.threeDotsubMenu::before {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  top: -6px;
+  right: 25px;
+  transform: rotate(45deg);
+  background-color: white;
+  box-shadow: -5px -5px 6px #00000040;
+
+}
+
+.threeDotsubMenu {
+  display: none;
+  position: absolute;
+  right: 32px;
+  top: 57px;
+  width: 160px;
+  /* height: 113px; */
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #D6D6D6;
+  box-shadow: 0px 0px 6px #00000040;
+  z-index: 10;
+}
 
 
 
@@ -379,66 +443,9 @@ table tbody tr td p {
     }
       
   }
-  @media screen and (min-width:650px) and (max-width:837px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:15px;
-        top:86px;
-    }
-      
-  }
- 
+  
 
 
 
 
 
-
-
-
-  .actionbutton {
-    
-    position: relative;
-}
-.threeDotsubMenu ul {
-    padding: 15px 13px;
-    margin: 0;
-}
-
-.threeDotsubMenu li {
-    text-align: left;
-    list-style: none;
-    margin-bottom: 5px;
-}
-
-.threeDotsubMenu a {
-    color: #646464;
-    font-size: 16px;
-    text-decoration: none;
-}
-.threeDotsubMenu::before {
-    content: "";
-    position: absolute;
-    height: 10px;
-    width: 10px;
-    top: -6px;
-    right: 25px;
-    transform: rotate(45deg);
-    background-color: white;
-    box-shadow: -5px -5px 6px #00000040;
-
-}
-
-.threeDotsubMenu {
-    display: none;
-    position: absolute;
-    right: 32px;
-    top: 57px;
-    width: 160px;
-    /* height: 113px; */
-    background-color: white;
-    border-radius: 4px;
-    border: 1px solid #D6D6D6;
-    box-shadow: 0px 0px 6px #00000040;
-    z-index: 10;
-}

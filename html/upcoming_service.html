@@ -2,292 +2,265 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-  <link rel="stylesheet" href="css/upcoming_service.css" />
-  
-  <title>Upcoming Service</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+	<link rel="stylesheet" href="css/upcoming_service.css" />
+	<title>Upcoming Service</title>
 </head>
 
 <body>
+	<nav class="navbar navbar-expand-lg">
+		<div class="container-fluid">
+			<a href="#" class="navbar-brand"> <img src="image/home/logo.png" height="28" alt="CoolBrand" /> </a>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<div class="navbar-nav text-light"> <a href="price.html" class="nav-item nav-link menu">Prices & services</a> <a href="#" class="nav-item nav-link menu">Warranty</a> <a href="#" class="nav-item nav-link menu">Blog</a> <a href="contact.html" class="nav-item nav-link menu">Contact</a>
+					<a href="#" class="nav-item nav-link notification_item"> <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span> </a>
+					<div class="btn-group user_setting">
+						<button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"> <img src="image/upcoming_service/user.svg" alt="flag">
+							<svg style="margin-left: 7px;" xmlns="http://www.w3.org/2000/svg" width="11" height="6">
+								<path fill-rule="evenodd" fill="#FFF" d="M.113.674C.37.597 0 .5 0 .394 0 .287.37.191.113.113c.152.297.399.297.55 0L5.499 5.43 10.336.113c.151.297.398.297.55 0 .484.155.484.406 0 .561l-5.112 5.21c-.151.506-.398.506-.55 0L.113.674z" /> </svg>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+							<li><a class="dropdown-item" href="#">Profile</a></li>
+							<li><a class="dropdown-item" href="#">Settings</a></li>
+							<li><a class="dropdown-item" href="#">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+	</nav>
+	<section class="mobileNav">
+		<div class="mobileNavSpaccing"> <img class="mobileLogo" src="image/home/logo.png" alt="">
+			<div class="mobileNotification">
+				<a href="#" class="nav-item nav-link notification_item"> <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span> </a>
+			</div>
+			<div class="menubtn">
+				<button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
+			</div>
+		</div>
+		<div class="sideNav">
+			<div class="openSidenav">
+				<div class="closebtn"> <img src="image/service_history/close.png"> </div>
+				<p class="mobileNavMenu">Welcome
+					<br><strong>Sandip Patel</strong></p>
+				<hr> <a href="#" class="mobileNavMenu">Dashbord</a> <a href="#" class="mobileNavMenu">New Service Request</a> <a href="#" class="mobileNavMenu current">Upcoming Service</a> <a href="#" class="mobileNavMenu">Service Schedule</a> <a href="#" class="mobileNavMenu">Service History</a> <a href="#" class="mobileNavMenu">My Rating</a> <a href="#" class="mobileNavMenu">Block Customer</a> <a href="#" class="mobileNavMenu">My Setting</a> <a href="#" class="mobileNavMenu">Logout</a>
+				<hr> <a href="#" class="mobileNavMenu">Book Now</a> <a href="#" class="mobileNavMenu">Prices & Services</a> <a href="#" class="mobileNavMenu">Warrenty</a> <a href="#" class="mobileNavMenu">Blog</a> <a href="#" class="mobileNavMenu">Contact</a>
+				<hr>
+				<div class="m-auto"> <img class="px-3" src="image/price/facebook.png" /> <img class="px-3" src="image/price/insta.png" /> </div>
+			</div>
+		</div>
+	</section>
+	<!-- /*//////////////////////////// NAVBAR END/////////////////////////////////// */ -->
+	<section class="welcome_msg">
+		<div class="container">
+			<h2 class="text-center">Welcome, <strong>Sandip!</strong></h2> </div>
+	</section>
+	<!--////////////////////////////// DASHBOARD START////////////////////////// -->
+	<section>
+		<div class="container dashboard">
+			<div class="d-flex" id="wrapper">
+				<!-- Sidebar -->
+				<div id="sidebar-wrapper"> <a href="#" class="list-group-item list-group-item-action">Dashboard</a> <a href="#" class="list-group-item list-group-item-action">New Service Request</a> <a href="#" class="list-group-item list-group-item-action active">Upcoming Service</a> <a href="#" class="list-group-item list-group-item-action">Service Schedule</a> <a href="#" class="list-group-item list-group-item-action">Service History</a> <a href="#" class="list-group-item list-group-item-action">My Rating</a> <a href="#" class="list-group-item list-group-item-action">Block Customer</a> </div>
+				<!-- /#sidebar-wrapper -->
+				<!-- Page Content -->
+				<div class="w-100 ml-2" id="page-content-wrapper">
+					<div class="row">
+						<div class="col">
+							<table id="upcomingService" class="table">
+								<thead>
+									<tr>
+										<th>Service ID</th>
+										<th style="width: 165px;">Service date</th>
+										<th style="width: 270px;">Customer detail</th>
+										<th>Distance </th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>323436</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>15 km</td>
+										<!-- <td><button>Cancel</button></td> -->
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323437</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 03/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>10 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323438</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bugh</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>15 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323439</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 02/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>15 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323440</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>Gavid Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>10 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323441</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>25 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323442</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>15 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323443</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>05 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323444</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>15 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+									<tr>
+										<td>323445</td>
+										<td>
+											<p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
+											<p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+										</td>
+										<td>
+											<p>David Bough</p>
+											<p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+										</td>
+										<td>05 km</td>
+										<td>
+											<input class="cancelbtn" type="button" value="Cancel">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+		</div>
+	</section>
+	<!--////////////////////////////// DASHBOARD End////////////////////////// -->
+	<footer>
+		<div class="container d-flex justify-content-between align-items-center fmenu"> <img class="flogo" width="100px" src="image/price/logo.png" alt="" />
+			<div class="d-flex flex-wrap text-center justify-content-center fmenulink"> <a class="px-3" href="home.html">HOME</a> <a class="px-3" href="about.html">ABOUT</a> <a class="px-3" href="#">TESTIMONIALS</a> <a class="px-3" href="faq.html">FAQS</a> <a class="px-3" href="#">INSURRANCE POLICY</a> <a class="px-3" href="#">IMPRESSUM</a> </div>
+			<div> <img class="img-fluid fimg1" src="image/price/facebook.png" /> <img class="img-fluid fimg2" src="image/price/insta.png" /> </div>
+		</div>
+		<div class="d-flex justify-content-center align-items-center text-center" style="margin-top:10px">
+			<hr style="border-bottom: 1px solid grey; width: 84%" /> </div>
+		<p class="text-center right">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy </p>
+	</footer>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="js/upcoming_service.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+</body>
 
-      <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid">
-
-            <a href="#" class="navbar-brand">
-              <img src="image/home/logo.png" height="28" alt="CoolBrand" />
-            </a>
-           
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <div class="navbar-nav text-light">   
-                <a href="price.html" class="nav-item nav-link menu">Prices & services</a>
-                <a href="#" class="nav-item nav-link menu">Warranty</a>
-                <a href="#" class="nav-item nav-link menu">Blog</a>
-                <a href="contact.html" class="nav-item nav-link menu">Contact</a>
-                <a href="#" class="nav-item nav-link notification_item">
-                    <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
-                  </a>
-                <div class="btn-group user_setting">
-                  <button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
-                    <img src="image/upcoming_service/user.svg" alt="flag">
-                    
-                    <svg style="margin-left: 7px;" xmlns="http://www.w3.org/2000/svg" width="11" height="6">
-                        <path fill-rule="evenodd" fill="#FFF" d="M.113.674C.37.597 0 .5 0 .394 0 .287.37.191.113.113c.152.297.399.297.55 0L5.499 5.43 10.336.113c.151.297.398.297.55 0 .484.155.484.406 0 .561l-5.112 5.21c-.151.506-.398.506-.55 0L.113.674z"/>
-                    </svg>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-
-                    <li><a class="dropdown-item"  href="#">Profile</a></li>
-                    <li><a class="dropdown-item"  href="#">Settings</a></li>
-                    <li><a class="dropdown-item"  href="#">Logout</a></li>
-                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-        </nav>
-        <section class="mobileNav">
-          <div class="mobileNavSpaccing">
-  
-              <img class="mobileLogo" src="image/home/logo.png" alt="">
-  
-              <div class="mobileNotification">
-                <a href="#" class="nav-item nav-link notification_item">
-                  <img class="notification" src="image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
-                </a>
-                
-              </div>
-              <div class="menubtn">
-                <button class="navbar-toggler">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-              </button> 
-              </div>
-          </div>
-  
-          <div class="sideNav">
-            <div class="openSidenav">
-                  <div class="closebtn">
-                      <img src="image/service_history/close.png">
-                  </div>
-                  <p class="mobileNavMenu">Welcome<br><strong>Sandip Patel</strong></p>
-                  <hr>
-                  <a href="#" class="mobileNavMenu">Dashbord</a>
-                  <a href="#" class="mobileNavMenu">New Service Request</a>
-                  <a href="#" class="mobileNavMenu current">Upcoming Service</a>
-                  <a href="#" class="mobileNavMenu">Service Schedule</a>
-                  <a href="#" class="mobileNavMenu">Service History</a>
-                  <a href="#" class="mobileNavMenu">My Rating</a>
-                  <a href="#" class="mobileNavMenu">Block Customer</a>
-                  <a href="#" class="mobileNavMenu">My Setting</a>
-                  <a href="#" class="mobileNavMenu">Logout</a>
-                  <hr>          
-                  <a href="#" class="mobileNavMenu">Book Now</a>
-                  <a href="#" class="mobileNavMenu">Prices & Services</a>
-                  <a href="#" class="mobileNavMenu">Warrenty</a>
-                  <a href="#" class="mobileNavMenu">Blog</a>
-                  <a href="#" class="mobileNavMenu">Contact</a>
-                  <hr>
-                  <div class="m-auto">
-                    <img class="px-3" src="image/price/facebook.png" />
-                    <img class="px-3" src="image/price/insta.png" />
-                  </div>
-
-              </div>
-          </div>
-      </section>
-
-        <!-- /*//////////////////////////// NAVBAR END/////////////////////////////////// */ -->
-
-        <section class="welcome_msg">
-            <div class="container">
-                <h2 class="text-center">Welcome, <strong>Sandip!</strong></h2>
-            </div>
-        </section>
-
-
-
-        <!--////////////////////////////// DASHBOARD START////////////////////////// -->
-
-        <section>
-            <div class="container dashboard">
-
-            
-            <div class="d-flex" id="wrapper">
-                <!-- Sidebar -->
-                <div id="sidebar-wrapper">
-                    <a href="#" class="list-group-item list-group-item-action">Dashboard</a>
-                            <a href="#" class="list-group-item list-group-item-action">New Service Request</a>
-                            <a href="#" class="list-group-item list-group-item-action active">Upcoming Service</a>
-                            <a href="#" class="list-group-item list-group-item-action">Service Schedule</a>
-                            <a href="#" class="list-group-item list-group-item-action">Service History</a>
-                            <a href="#" class="list-group-item list-group-item-action">My Rating</a>
-                            <a href="#" class="list-group-item list-group-item-action">Block Customer</a>
-                </div>
-                <!-- /#sidebar-wrapper -->
-        
-                <!-- Page Content -->
-                <div class="w-100 ml-2" id="page-content-wrapper">
-                   
-        
-                        
-        
-                        <div class="row">
-                           
-                            <div class="col">
-                                <table id="upcomingService" class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Service ID</th>
-                                            <th style="width: 165px;">Service date</th>
-                                            <th style="width: 270px;">Customer detail</th>
-                                            <th>Distance </th>
-                                            <th>Actions</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>323436</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00-18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>15 km</td>
-                                            <!-- <td><button>Cancel</button></td> -->
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323437</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 03/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>10 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323438</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bugh</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>15 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323439</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 02/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>15 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323440</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>Gavid Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>10 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>323441</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>25 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323442</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>15 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323443</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>05 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323444</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>15 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>323445</td>
-                                            <td><p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p><p><img src="image/upcoming_service/layer-14.png"> 12:00 - 18:00</p></td>
-                                            <td><p>David Bough</p><p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p></td>
-                                            <td>05 km</td>
-                                            <td><input class="cancelbtn" type="button" value="Cancel"></td>
-                                        </tr>
-                                       
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-        
-                  
-                </div>
-            </div>
-            </div>
-            <!-- /#page-content-wrapper -->
-            </div>
-        
-        </section>
-
-
-        <!--////////////////////////////// DASHBOARD End////////////////////////// -->
-
-
-
-
-
-
-        <footer>
-            <div class="container d-flex justify-content-between align-items-center fmenu">
-              <img class="flogo" width="100px" src="image/price/logo.png" alt="" />
-              <div class="d-flex flex-wrap text-center justify-content-center fmenulink">
-                <a class="px-3" href="home.html">HOME</a>
-                <a class="px-3" href="about.html">ABOUT</a>
-                <a class="px-3" href="#">TESTIMONIALS</a>
-                <a class="px-3" href="faq.html">FAQS</a>
-                <a class="px-3" href="#">INSURRANCE POLICY</a>
-                <a class="px-3" href="#">IMPRESSUM</a>
-              </div>
-              <div>
-                <img class="img-fluid fimg1" src="image/price/facebook.png" />
-                <img class="img-fluid fimg2" src="image/price/insta.png" />
-              </div>
-            </div>
-            <div class="d-flex justify-content-center align-items-center text-center" style="margin-top:10px">
-              <hr style="border-bottom: 1px solid grey; width: 84%" />
-            </div>
-        
-            <p class="text-center right">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy
-            </p>
-        </footer>
-       
-       
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-        <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="js/upcoming_service.js"></script>
-        
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-  crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-  
- 
-
-      </body>
-      
-      </html>
+</html>
