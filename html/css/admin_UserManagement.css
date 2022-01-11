@@ -9,12 +9,16 @@
     scroll-behavior: smooth;
   }
 
-
-  
   /*///////////////////// Navbar start///////////////// */
   nav{
       background-color: #1FB6FF;
   }
+  .navbar{
+      padding: 0;
+  }
+  .navbar h1{
+    font-weight: 300;
+}
   h1 a{
       font-size: 2.5rem;
   }
@@ -39,17 +43,12 @@
     margin-right: 15px;
 }
 
-
-
-
   /*///////////////////// NAvbar End///////////////// */
-
-
 
   /*/////////////////////Side menu start///////////////// */
   
     #sidebar-wrapper.open,#sidebar-wrapper{
-        width: 25%;
+        width: 18%;
         background-color: white;
         /* display: block; */
     }
@@ -79,6 +78,7 @@
     }
     .mobileNavIcon{
         display: none;
+        margin-left: 20px;
     }
     .submenu.close{
         height: 0;
@@ -110,9 +110,7 @@
     padding: 12px 10px ;
     border-radius: 5px;
 }
-.closebtn{
-    display: none;
-}
+
 .closebtn.show{
     display: none;
 }
@@ -121,16 +119,6 @@
     width: 35px;
     float: right;
 }
-
-
-  
-
-
-
-
-
-
-
 
 
   /*///////////////////// right side///////////////// */
@@ -286,44 +274,8 @@ tbody{
 .action span:nth-child(2){
     margin: 3px 0;
 }
-@media screen and (min-width:859px) and (max-width:1434px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:25px;
-    }
-      
-  }
-  @media screen and (min-width:837px) and (max-width:859px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:15px;
-        top: 59px;
-    }
-      
-  }
-  @media screen and (min-width:650px) and (max-width:837px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:15px;
-        top:59px;
-    }
-}
-  @media screen and  (max-width:650px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:15px;
-    }
-      
-  }
+
  
-
-
-
-
-
-
-
-
   .actionbutton {
     
     position: relative;
@@ -370,7 +322,35 @@ tbody{
     z-index: 10;
 }
 
-
+@media screen and (min-width:859px) and (max-width:1434px) {
+    td .threeDotsubMenu{
+        position: absolute;
+        right:25px;
+    }
+      
+  }
+  @media screen and (min-width:837px) and (max-width:859px) {
+    td .threeDotsubMenu{
+        position: absolute;
+        right:15px;
+        top: 59px;
+    }
+      
+  }
+  @media screen and (min-width:650px) and (max-width:837px) {
+    td .threeDotsubMenu{
+        position: absolute;
+        right:15px;
+        top:59px;
+    }
+}
+  @media screen and  (max-width:650px) {
+    td .threeDotsubMenu{
+        position: absolute;
+        right:15px;
+    }
+      
+  }
   @media screen and (max-width:650px) {
       table{
           display: block;
@@ -407,7 +387,7 @@ tbody{
         overflow:scroll ;
       }
       .closebtn,.closebtn.show{
-          display: block;
+          display: block!important;
       }
   }
   @media screen and (max-width: 1200px) {

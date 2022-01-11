@@ -9,14 +9,23 @@
     scroll-behavior: smooth;
   }
   /* 1st section */
+  .navbar{
+    padding: 0;
+  }
   .user_setting .dropdown-menu{
     min-width: 0px !important;
+}
+.user_setting a{
+  padding: 0 !important;
 }
 .user_setting button{
     background: none;
 }
 .user_setting {
   display: inline;
+}
+.user_setting .btn {
+    padding: 0.1rem 0.75rem;
 }
 .user_setting .btn-group {
 margin:30px;
@@ -38,19 +47,22 @@ background: none !important;
     width: 73px;
     height: 55px;
   }
-  .menu1{
+  .menu:nth-child(1){
       background: #29626D;
       color: white;
       border: 1px solid white;
       border-radius: 30px;
 }
-.menu1:hover{
+.menu:nth-child(1):hover{
     color: #29626D;
     background: white;
 }
+.navbar-nav{
+  height: 40px;
+}
 
   .navbar-nav a{
-    padding: 10px 20px !important;
+    padding: 5px 20px !important;
     font-size: 17px;
     font-weight: normal;
   }
@@ -106,6 +118,10 @@ background: none !important;
   .dropdown-menu{
       background: white !important;
       color:black;
+      left: -10px;
+  }
+  .dropdown-menu a, .dropdown-menu span{
+    padding: 5px 2px !important;
   }
   .dropdown-item:hover{
       background: black;
@@ -222,7 +238,7 @@ width: 73px;
   color: #00c4e6;
 }
 .menubtn{
-  margin: auto 0px;
+  margin: auto 10px;
 }
 /*//////////////////////////// NAVBAR END/////////////////////////////////// */
 
@@ -543,9 +559,14 @@ background-repeat: no-repeat;
         flex-direction: column;
 
       }
+      .fmenulink{
+        margin: 13px 0px;
+      }
+      .fmenulink a{
+        margin: 3px 0px;
+      }
       .flogo{
-        margin-left: 0px;
-        margin-bottom: 5px;
+        margin:10px 0px 0px 0px;
       }
       .fimg2{
         margin-right: 0px;
@@ -559,7 +580,7 @@ background-repeat: no-repeat;
     @media screen and (max-width: 523px) {
       footer{
         height: auto;
-        width: fit-content;
+        /* width: fit-content; */
       }
     }
     @media screen and (max-width: 576px) {
@@ -606,7 +627,7 @@ background-repeat: no-repeat;
         display: none;
 
       }
-      #sidebar-wrapper,.notification_item{
+      #sidebar-wrapper{
         display: none;
       }
       .table-bottom{

@@ -1,3 +1,9 @@
+
+const menubtn=document.querySelector('.menubtn');
+const openSidenav=document.querySelector('.sideNav');
+const closebtn=document.querySelector('.closebtn');
+const nav = document.querySelector("nav");
+
 var $links = $('#sidebar-wrapper a');
 $links.click(function(){
    $links.removeClass('active');
@@ -13,6 +19,7 @@ $(document).ready( function () {
         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
         "pagingType": "full_numbers",
         "searching":false,
+        "order":[],
         'buttons': [{
             extend:'excel',
             text:'Export'
@@ -36,13 +43,23 @@ $(document).ready( function () {
 
 
 
-const menubtn=document.querySelector('.menubtn');
-const openSidenav=document.querySelector('.sideNav');
-const closebtn=document.querySelector('.closebtn');
-
 menubtn.addEventListener('click',()=>{
     openSidenav.classList.add('open');
 })
 closebtn.addEventListener('click',()=>{
     openSidenav.classList.remove('open')
 })
+window.onclick = function(event) {
+	if (event.target == openSidenav) {
+		openSidenav.classList.remove('open')
+  }
+}
+
+window.addEventListener("scroll", () => {
+	if (window.scrollY > 130) {
+	    nav.classList.add("fixed-top");
+	} else {
+    	nav.classList.remove("fixed-top");
+	}
+
+});

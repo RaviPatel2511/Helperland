@@ -15,6 +15,12 @@
   nav{
       background-color: #1FB6FF;
   }
+  .navbar{
+    padding: 0;
+  }
+  .navbar h1{
+      font-weight: 300;
+  }
   h1 a{
       font-size: 2.5rem;
   }
@@ -39,17 +45,12 @@
     margin-right: 15px;
 }
 
-
-
-
-  /*///////////////////// NAvbar End///////////////// */
-
-
+ /*///////////////////// NAvbar End///////////////// */
 
   /*/////////////////////Side menu start///////////////// */
   
     #sidebar-wrapper.open,#sidebar-wrapper{
-        width: 25%;
+        width: 18%;
         background-color: white;
         /* display: block; */
     }
@@ -80,6 +81,7 @@
     }
     .mobileNavIcon{
         display: none;
+        margin-left: 20px;
     }
     .submenu.close{
         height: 0;
@@ -111,10 +113,8 @@
     padding: 12px 10px ;
     border-radius: 5px;
 }
-.closebtn{
-    display: none;
-}
-.closebtn.show{
+
+.closebtn.show,.closebtn{
     display: none;
 }
 .closebtn img{
@@ -131,8 +131,6 @@
       
   }
  
-
-
   #from-date,#to-date,  #to-date { 
     background-image: url(../image/admin_ServiceRequest/calendar.svg);
     background-repeat: no-repeat;
@@ -140,17 +138,6 @@
     background-position-y:center ;
     background-position-x:5px ;
 }
-
-
-  
-
-
-
-
-
-
-
-
 
   /*///////////////////// right side///////////////// */
 .dt-buttons{
@@ -420,7 +407,7 @@ table tbody tr td p {
         overflow:scroll ;
       }
       .closebtn,.closebtn.show{
-          display: block;
+          display: block !important;
       }
   }
   @media screen and (max-width: 1200px) {

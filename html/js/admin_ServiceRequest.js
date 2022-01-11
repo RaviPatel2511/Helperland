@@ -26,7 +26,7 @@ $(document).ready( function () {
 } );
 
 $(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
+    var date_input=$('input[name="date"]'); 
     var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
     date_input.datepicker({
         format: 'mm/dd/yyyy',
@@ -48,6 +48,13 @@ closebtn.addEventListener('click',()=>{
     sidebar_wrapper.classList.remove('open');
     closebtn.classList.remove('show');
 })
+window.onclick = function(event) {
+	if (event.target == sidebar_wrapper) {
+		sidebar_wrapper.classList.remove('open');
+        closebtn.classList.remove('show');
+
+  }
+}
 
 $(".action").click(function (e) { 
     $(this).closest('.actionbutton').children('.threeDotsubMenu').toggle();
