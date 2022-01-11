@@ -140,12 +140,10 @@ background: none !important;
   .modal-header button img{
     height: 40px;
   }
-  @media screen and (min-width:576px) {
-    .modal-dialog{
-      max-width: 400px;
-    }
-    
-  }
+  .fixed-top {
+    background-color: rgba(39,39,39,.7);
+}
+
 /* mobile nav start */
 
 
@@ -450,6 +448,13 @@ footer{
       color: tomato;
 }
 
+
+@media screen and (min-width:576px) {
+  .modal-dialog{
+    max-width: 400px;
+  }
+  
+}
   @media screen and (max-width: 996px) {
     .fmenu{
       height: auto;

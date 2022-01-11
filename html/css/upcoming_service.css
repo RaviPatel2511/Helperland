@@ -65,7 +65,9 @@ background: none !important;
     padding: 5px 20px;
     margin: 0px 6px;
   }
-
+  .fixed-top {
+    background-color: rgba(39,39,39,.7);
+}
   .menu:hover {
     border-radius: 35px;
     border: 1px solid white;

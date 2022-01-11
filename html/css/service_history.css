@@ -162,7 +162,9 @@ background: none !important;
     left: 0px;
     top: 0;
   }
-  
+  .fixed-top {
+    background-color: rgba(39,39,39,.7);
+}
 .mobileNav{
     display: none;
   }
