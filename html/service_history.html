@@ -9,7 +9,8 @@
    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
    <link rel="stylesheet" href="css/service_history.css" />
    <link rel="shortcut icon" href="image/home/favicon.ico" type="image/x-icon" />
    <title>Service History</title>
@@ -121,11 +122,14 @@
             <div class="w-100 ml-2" id="page-content-wrapper">
                <div class="d-flex datatable_heading">
                   <div class="py-2">Service History</div>
+                  <div class="py-2 ml-3 mobile_sorting"><img src="image/upcoming_service/arrow.svg" alt="sorting-arrow">
+                  </div>
+
                   <div class="ml-auto py-2"><button>Export</button></div>
                </div>
                <div class="row">
                   <div class="col">
-                     <table class="table" id="service_history_table">
+                     <table class="dataTable table" id="service_history_table">
                         <thead>
                            <tr>
                               <th>Service Details </th>

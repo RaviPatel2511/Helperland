@@ -368,7 +368,7 @@ tbody{
       }
       
   }
-  @media screen and (max-width:670px) {
+  @media screen and (max-width:735px) {
       table{
           border: none;
       }

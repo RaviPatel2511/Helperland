@@ -333,7 +333,9 @@ table tr td:nth-child(5){text-align: center;}
 
 }
 
-
+table.dataTable.no-footer{
+  border-bottom: 1px solid #e1e1e1;
+}
 .datatable_heading > div{
   font-size: 22px;
   color: #646464;
