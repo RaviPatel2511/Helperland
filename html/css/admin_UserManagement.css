@@ -312,7 +312,7 @@ tbody{
 .threeDotsubMenu {
     display: none;
     position: absolute;
-    right: 32px;
+    right: 55px;
     top: 57px;
     width: 160px;
     background-color: white;
@@ -325,7 +325,7 @@ tbody{
 @media screen and (min-width:859px) and (max-width:1434px) {
     td .threeDotsubMenu{
         position: absolute;
-        right:25px;
+        right:44px;
     }
       
   }
@@ -337,25 +337,48 @@ tbody{
     }
       
   }
-  @media screen and (min-width:650px) and (max-width:837px) {
+  @media screen and (min-width:670px) and (max-width:837px) {
     td .threeDotsubMenu{
         position: absolute;
         right:15px;
         top:59px;
     }
 }
-  @media screen and  (max-width:650px) {
+  @media screen and  (max-width:670px) {
     td .threeDotsubMenu{
         position: absolute;
-        right:15px;
+        right:44%;
+        top:55px;
     }
       
   }
-  @media screen and (max-width:650px) {
+  @media screen and (max-width:453px) {
+      .admin-detail{
+          margin-left: 82px;
+      }
+      
+  }
+  @media screen and (max-width:670px) {
       table{
-          display: block;
-          overflow-x: auto;
-          white-space: nowrap;
+          border: none;
+      }
+      table tbody tr {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 20px 0;
+          padding: 0 25px;
+          box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
+          -webkit-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
+          -moz-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
+      }
+      table tbody tr td{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      table thead{
+          display: none;
       }
       .table-bottom{
           display: flex;

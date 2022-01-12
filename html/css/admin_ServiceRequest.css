@@ -370,9 +370,26 @@ table tbody tr td p {
   @media screen and (max-width:650px) {
       table{
           display: block;
-          overflow-x: auto;
-          white-space: nowrap;
+          border: none;
+          background: none;
+          
       }
+      table tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        padding: 0 25px;
+        border: 1px solid grey;
+    }
+    table tbody tr td{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    table thead{
+        display: none;
+    }
       .table-bottom{
           display: flex;
           flex-direction: column;
@@ -431,8 +448,18 @@ table tbody tr td p {
         right:15px;
         top: 75px;
     }
+}
+    @media screen and (max-width:650px) {
+        td .threeDotsubMenu{
+            right: 44%;
+        }
+        .admin-detail{
+            margin-left: 80px;
+        }
+        
+    }
       
-  }
+  
   
 
 
