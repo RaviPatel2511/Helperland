@@ -68,3 +68,13 @@ var spanSorting = '<span class="arrow-hack sort">&nbsp;&nbsp;&nbsp;</span>',
 });   
 
 $("#userManagementTable th").first().click().click();
+
+$("td").each(function() {
+    var tddata = $(this).html();
+    if(tddata == ""){
+        $(this).html("No Data");
+    }
+    else{
+
+    }
+});
