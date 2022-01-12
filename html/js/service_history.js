@@ -63,3 +63,23 @@ window.addEventListener("scroll", () => {
 	}
 
 });
+
+var spanSorting = '<span class="arrow-hack sort">&nbsp;&nbsp;&nbsp;</span>',
+    spanAsc = '<span class="arrow-hack asc">&nbsp;&nbsp;&nbsp;</span>',
+    spanDesc = '<span class="arrow-hack desc">&nbsp;&nbsp;&nbsp;</span>';
+    $("#service_history_table").on('click', 'th', function() {
+        $("#service_history_table thead th").each(function(i, th) {
+            $(th).find('.arrow-hack').remove();
+            var html = $(th).html();
+            if($(th).hasClass("sorting_asc")){
+                $(th).html(html+spanAsc);
+            }else if($(th).hasClass("sorting_desc")){
+                $(th).html(html+spanDesc);
+            }else{
+                $(th).html(html+spanSorting);
+            }        
+        });     
+        
+});   
+
+$("#service_history_table th").first().click().click();

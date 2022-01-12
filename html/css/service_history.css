@@ -403,6 +403,7 @@ cursor: pointer;
 }
 thead tr {
   text-align: center;
+  background: #f9f9f9
 }
 tbody tr td p{
   margin-bottom: 0px !important;
@@ -458,20 +459,30 @@ tbody tr td p{
 
 }
 
-table.dataTable thead .sorting{
-  background-image: url(../image/upcoming_service/arrow.svg);
-  background-repeat: no-repeat;
-  background-position: right;
-}
 table.dataTable thead .sorting_asc {
-  background-image: url(../image/service_history/decendingSort.png) !important;
-  background-repeat: no-repeat;
-  background-position: right;
+  background: none !important;
 }
 table.dataTable thead .sorting_desc {
-background-image: url(../image/service_history/acendingSort.png) !important;
-background-repeat: no-repeat;
-  background-position: right;
+  background: none !important;
+}
+table.dataTable thead .sorting {
+  background: none !important;
+}
+
+span.arrow-hack {
+    margin-left: 5px;
+}
+.arrow-hack.sort {
+  background: url("../image/upcoming_service/arrow.svg") no-repeat center right;
+}
+.arrow-hack.desc {
+  background: url("../image/service_history/decendingSort.png") no-repeat center right;
+}
+.arrow-hack.asc {
+  background: url("../image/service_history/acendingSort.png") no-repeat center right;
+}
+table th:nth-child(5) > span{
+  display: none;
 }
 #page-content-wrapper .dataTables_paginate{
   display: flex;

@@ -148,21 +148,31 @@ table tr th, table tr td{
 table.dataTable thead th, table.dataTable thead td,table.dataTable.no-footer {
     border-bottom: 1px solid #E1E1E1; 
 }
-table.dataTable thead .sorting{
-    background-image: url(../image/upcoming_service/arrow.svg);
-    background-repeat: no-repeat;
-    background-position: right;
-  }
-  table.dataTable thead .sorting_asc {
-    background-image: url(../image/service_history/decendingSort.png) !important;
-    background-repeat: no-repeat;
-    background-position: right;
+table.dataTable thead .sorting_asc {
+    background: none !important;
   }
   table.dataTable thead .sorting_desc {
-  background-image: url(../image/service_history/acendingSort.png) !important;
-  background-repeat: no-repeat;
-    background-position: right;
+    background: none !important;
   }
+  table.dataTable thead .sorting {
+    background: none !important;
+  }
+  
+  span.arrow-hack {
+      margin-left: 5px;
+  }
+  .arrow-hack.sort {
+    background: url("../image/upcoming_service/arrow.svg") no-repeat center right;
+  }
+  .arrow-hack.desc {
+    background: url("../image/service_history/decendingSort.png") no-repeat center right;
+  }
+  .arrow-hack.asc {
+    background: url("../image/service_history/acendingSort.png") no-repeat center right;
+  }
+  table th:nth-child(2) span,table th:nth-child(3) span,table th:nth-child(5) span,table th:nth-child(7) span{
+    display: none;
+  } 
   .filter select, .filter .row, .filter input{
       width: 100%;
       height: 45px;

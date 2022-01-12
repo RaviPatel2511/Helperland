@@ -59,3 +59,23 @@ window.onclick = function(event) {
 $(".action").click(function (e) { 
     $(this).closest('.actionbutton').children('.threeDotsubMenu').toggle();
 });
+
+var spanSorting = '<span class="arrow-hack sort">&nbsp;&nbsp;&nbsp;</span>',
+    spanAsc = '<span class="arrow-hack asc">&nbsp;&nbsp;&nbsp;</span>',
+    spanDesc = '<span class="arrow-hack desc">&nbsp;&nbsp;&nbsp;</span>';
+    $("#serviceRequesttable").on('click', 'th', function() {
+        $("#serviceRequesttable thead th").each(function(i, th) {
+            $(th).find('.arrow-hack').remove();
+            var html = $(th).html();
+            if($(th).hasClass("sorting_asc")){
+                $(th).html(html+spanAsc);
+            }else if($(th).hasClass("sorting_desc")){
+                $(th).html(html+spanDesc);
+            }else{
+                $(th).html(html+spanSorting);
+            }        
+        });     
+        
+});   
+
+$("#serviceRequesttable th").first().click().click();
