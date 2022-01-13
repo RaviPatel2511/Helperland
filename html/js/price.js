@@ -4,6 +4,7 @@ const mobileNav = document.querySelector('.mobileNav');
 const menubtn=document.querySelector('.menubtn');
 const nav = document.querySelector("nav");
 const up_arr = document.querySelector(".up_arr");
+const loginbtn = document.querySelector('.loginbtn');
 
 
 window.addEventListener("scroll", () => {
@@ -35,4 +36,8 @@ window.onclick = function(event) {
 		Sidenav.classList.remove('open')
   }
 }
+loginbtn.addEventListener("click", ()=>{
+	document.cookie = "LoginModalOpen=true";
+	document.location.href = "index.html";
+})
 

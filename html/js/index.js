@@ -4,7 +4,9 @@ const menubtn=document.querySelector('.menubtn');
 const Sidenav=document.querySelector('.sideNav');
 const closebtn=document.querySelector('.closebtn');
 const mobileNav = document.querySelector('.mobileNav');
-const cookie = document.querySelector('.frow2');
+const cookierow = document.querySelector('.frow2');
+const userloginModal = new bootstrap.Modal(document.querySelector("#userloginModal"));
+const forgotPassLink = document.querySelector('#forgotPassLink');
 
 window.addEventListener("scroll", () => {
 	if (window.scrollY > 730) {
@@ -14,16 +16,21 @@ window.addEventListener("scroll", () => {
         up_arr.classList.remove("hidden");
         mobileNav.classList.add("bg-grey");
 		mobileNav.classList.add("fixed-top");
-		cookie.classList.remove('hidden');
+		
 
-	} else {
+	}
+	else if(window.scrollY > 300){
+		cookierow.classList.remove('hidden');
+	}
+	
+	else {
         nav.classList.remove("bg-grey");
 		up_arr.classList.add("hidden");
 		nav.classList.remove("fixed-top");
 		nav.classList.remove("smalllogo");
         mobileNav.classList.remove("bg-grey");
 		mobileNav.classList.remove("fixed-top");
-		cookie.classList.add('hidden');
+		cookierow.classList.add('hidden');
 	}
 
 });
@@ -51,5 +58,13 @@ window.onclick = function(event) {
   }
 }
 
+
+
+
+let cookies = document.cookie;
+if (cookies.includes("LoginModalOpen=true")) {
+	userloginModal.show();
+	document.cookie = "LoginModalOpen=false";
+}
 
 

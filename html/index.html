@@ -18,8 +18,8 @@
 			<a href="#" class="navbar-brand"> <img src="image/home/logo.png" height="28" alt="Brand" /> </a>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<div class="navbar-nav text-light align-items-center"> <a href="#" class="nav-item nav-link menu">Book a cleaner</a> <a href="#" class="nav-item nav-link menu">Blog</a> <a href="price.html" class="nav-item nav-link menu">Prices</a> <a href="#" class="nav-item nav-link menu">Our Guarantee</a> <a href="contact.html" class="nav-item nav-link menu">Contact us</a>
-					<button type="button" class="nvbarbtn btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
-					<button class="nvbarbtn">Become a Helper</button>
+					<a class="nav-item nav-link menu" data-toggle="modal" data-target="#userloginModal">Login</a>
+						<a href="provider.html" class="nav-item nav-link menu">Become a Helper</a>
 					<div class="btn-group countryFlag">
 						<button class="btn dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"> <img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"> </button>
 						<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
@@ -35,13 +35,13 @@
 			</div>
 		</nav>
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal fade" id="userloginModal" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title">Log in to your account</h4>
-						<button type="button" class="close" data-dismiss="modal"><img src="image/home/window-close-regular.svg" alt="closebtn"></button>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="close"><img src="image/home/window-close-regular.svg" alt="closebtn"></button>
 					</div>
 					<div class="modal-body user-login-detail">
 						<form>
@@ -53,13 +53,33 @@
 								<input type="checkbox" class="form-check-input" id="remember" />
 								<label class="form-check-label" for="remember"> Remember Me</label>
 							</div>
-							<button type="submit" id="loginbtn" name="loginbtn">Log in</button>
+							<button type="submit" id="loginbtn" name="loginbtn" disabled>Log in</button>
 						</form>
-						<div class="text-center other-link"> <a href="#">Forgot Password ?</a> <a href="#">Don't have an account yet ?</a> <a href="#">Create Account</a> </div>
+						<div class="text-center other-link"> <a href="#" id="forgotPassLink" data-toggle="modal" data-target="#forgotPass" data-dismiss="modal">Forgot Password ?</a> <a href="#">Don't have an account yet ?</a> <a href="#">Create Account</a> </div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="modal fade" id="forgotPass" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Forgot Password</h4>
+						<button type="button" class="close" data-dismiss="modal"><img src="image/home/window-close-regular.svg" alt="closebtn"></button>
+					</div>
+					<div class="modal-body forgot-password">
+						<form>
+							
+								<input type="text" class="form-control" id="passReseat-email" placeholder="E-Mail Adress" name="passReseat-email">
+							</form>
+							<button class="btn btn-lg" type="submit" id="pass-mail-button" name="pass-mail-button" disabled>Send</button>
+						<div class="text-center"><a data-toggle="modal" data-target="#userloginModal" data-dismiss="modal" id="backtologin">Log in now</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
 		<div class="mobileNav">
 			<div class="mobileNavSpaccing"> <img class="mobileLogo" src="image/home/logo.png" alt="">
@@ -79,13 +99,11 @@
 						<hr>
 						<li><a href="#" class="mobileNavMenu">Blog</a></li>
 						<hr>
-						<li><a href="#" class="mobileNavMenu">Service History</a></li>
-						<hr>
 						<li><a href="contact.html" class="mobileNavMenu">Contact us</a></li>
 						<hr>
-						<li><a href="contact.html" class="mobileNavMenu" data-toggle="modal" data-target="#myModal">Log in</a></li>
+						<li><a class="mobileNavMenu" data-toggle="modal" data-target="#userloginModal">Log in</a></li>
 						<hr>
-						<li><a href="contact.html" class="mobileNavMenu">Become Helper</a></li>
+						<li><a href="provider.html" class="mobileNavMenu">Become Helper</a></li>
 						<hr> </ul>
 				</div>
 			</div>
@@ -94,16 +112,20 @@
 		<div class="container-fluid">
 			<div class="row home_caption">
 				<div class="col-md-12">
-					<h2>Lorem , ipsum Text.</h2>
+					<h2>Do not feel like housework?</h2>
+					<p class="mb-0">Great! Book now for Helperland and enjoy the benefits</p>
 					<p class="mb-0">
 						<svg xmlns="http://www.w3.org/2000/svg" width="13" height="10">
-							<path fill-rule="evenodd" fill="#FFF" d="m11.279.1 1.719 1.662-8.041 8.234L0 4.919l1.719-1.76 3.238 3.316L11.279.1z" /> </svg> &nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing </p>
+							<path fill-rule="evenodd" fill="#FFF" d="m11.279.1 1.719 1.662-8.041 8.234L0 4.919l1.719-1.76 3.238 3.316L11.279.1z" /> </svg> &nbsp;&nbsp;&nbsp;certified & insured helper </p>
 					<p class="mb-0">
 						<svg xmlns="http://www.w3.org/2000/svg" width="13" height="10">
-							<path fill-rule="evenodd" fill="#FFF" d="m11.279.1 1.719 1.662-8.041 8.234L0 4.919l1.719-1.76 3.238 3.316L11.279.1z" /> </svg> &nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing </p>
+							<path fill-rule="evenodd" fill="#FFF" d="m11.279.1 1.719 1.662-8.041 8.234L0 4.919l1.719-1.76 3.238 3.316L11.279.1z" /> </svg> &nbsp;&nbsp;&nbsp;easy booking procedure </p>
 					<p class="mb-0">
 						<svg xmlns="http://www.w3.org/2000/svg" width="13" height="10">
-							<path fill-rule="evenodd" fill="#FFF" d="m11.279.1 1.719 1.662-8.041 8.234L0 4.919l1.719-1.76 3.238 3.316L11.279.1z" /> </svg> &nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing. </p>
+							<path fill-rule="evenodd" fill="#FFF" d="m11.279.1 1.719 1.662-8.041 8.234L0 4.919l1.719-1.76 3.238 3.316L11.279.1z" /> </svg> &nbsp;&nbsp;&nbsp;friendly customer service </p>
+					<p class="mb-0">
+						<svg xmlns="http://www.w3.org/2000/svg" width="13" height="10">
+							<path fill-rule="evenodd" fill="#FFF" d="m11.279.1 1.719 1.662-8.041 8.234L0 4.919l1.719-1.76 3.238 3.316L11.279.1z" /> </svg> &nbsp;&nbsp;&nbsp;secure online payment method</p>
 				</div>
 			</div>
 			<div class="book_btn text-center mt-1"> <a href="#">Let's Book a Cleaner</a> </div>
@@ -125,33 +147,32 @@
 	<section id="service" class="service">
 		<div class="container">
 			<h2 class="text-center servicemrgn">
-        <strong>Why Helperland</strong>
+        <strong>Convince yourself!</strong>
       </h2>
 			<div class="row justify-content-center">
 				<div class="col-sm-6 col-md-4 srcard">
 					<div class="card text-center padding-0"> <img class="circle img-fluid s3" src="image/home/s1.png" alt="" />
 						<div class="card-body">
 							<h4 class="service_caption">
-                Experience & vetted Professionals
+								Friendly & Certified Helpers
               </h4>
-							<p> dominate the industry in scale and scope with an adaptable, extensive network that consistently delivers exceptional results. </p>
+							<p> We want you to be completely satisfied with our service and feel comfortable at home. In order to guarantee this, our helpers go through a test procedure. Only when the cleaners meet our high standards, they may call themselves Helper.</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-4 srcard">
 					<div class="card text-center padding-0"> <img class="circle img-fluid s3" src="image/home/s2.png" alt="" />
 						<div class="card-body">
-							<h4 class="service_caption">Secure Online Payment Service</h4>
-							<p> Payment is processed securely online. Customers pay safely online and
-								<br>manage the booking. </p>
+							<h4 class="service_caption">Transparent and secure payment</h4>
+							<p>We have transparent prices, you do not have to scratch money or money on the sideboard Leave it: Pay your helper easily and securely via the online payment method. You will also receive an invoice for each completed cleaning. </p>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-4 srcard">
 					<div class="card text-center"> <img class="circle img-fluid s3" src="image/home/s3.png" alt="" />
 						<div class="card-body">
-							<h4 class="service_caption">Dedicated Customer Service</h4>
-							<p> to our customers and are guided in all we do by their needs. The team is always happy to support you and offer all the information. </p>
+							<h4 class="service_caption">We're here for <br> you</h4>
+							<p> You have a question or need assistance with the booking process? Our customer service is happy to help and advise you. How you can reach us you will find out when you look under "Contact". We look forward to hearing from you or reading. </p>
 						</div>
 					</div>
 				</div>
@@ -176,12 +197,10 @@
 			<div class="row">
 				<div class="col-lg-6 aboutmrgn1">
 					<h2>
-            Lorem ipsum dolor sit amet, <br />
-            consectetur.
+						We do not know what makes you happy, but ...
           </h2>
-					<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi sapien, suscipit ut accumsan vitae, pulvinar ac libero. </p>
-					<p> Aliquam erat volutpat. Nullam quis ex odio. Nam bibendum cursus purus, vel efficitur urna finibus vitae. Nullam finibus aliquet pharetra. Morbi in sem dolor. Integer pretium hendrerit ante quis vehicula. </p>
-					<p>Mauris consequat ornare enim, sed lobortis quam ultrices sed.</p>
+					<p> If it's not dusting off, our friendly helpers will free you from this burden - do not worry anymore about spending valuable time doing housework, but savor life, you're well worth your time with beautiful experiences. </p>
+					<p>Free yourself and enjoy the gained time: Go celebrate, relax, play with your children, meet friends or dare to jump on the bungee.Other leisure ideas and exclusive events can be found in our blog - guaranteed free from dust and cleaning tips!</p>
 				</div>
 				<div class="col-lg-6 aboutmrgn2"> <img class="img-fluid" src="image/home/group-36@2x.png" /> </div>
 			</div>
@@ -312,6 +331,9 @@
 			<div class="d-flex flex-wrap text-center justify-content-center fmenulink"> <a class="px-3" href="index.html">HOME</a> <a class="px-3" href="about.html">ABOUT</a> <a class="px-3" href="#">TESTIMONIALS</a> <a class="px-3" href="faq.html">FAQS</a> <a class="px-3" href="#">INSURRANCE POLICY</a> <a class="px-3" href="#">IMPRESSUM</a> </div>
 			<div> <img class="img-fluid fimg1" src="image/home/facebook.png" /> <img class="img-fluid fimg2" src="image/home/insta.png" /> </div>
 		</div>
+		<div class="d-flex justify-content-center align-items-center text-center">
+			<hr style="border-bottom: 1px solid grey; width: 84%" /> </div>
+		<p class="text-center right mb-0">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy </p>
 	</footer>
 	<div class="row w-100 m-auto frow2 hidden text-white">
 		<h5 class="text-center">

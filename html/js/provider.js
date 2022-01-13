@@ -4,6 +4,7 @@ const closebtn=document.querySelector('.closebtn');
 const mobileNav = document.querySelector('.mobileNav');
 const menubtn=document.querySelector('.menubtn');
 const nav = document.querySelector("nav");
+const loginbtn = document.querySelector('.loginbtn');
 
 jQuery('.dropdown-menu li a').click(function() {
     var _this_img = jQuery(this).attr('data-img');
@@ -13,13 +14,10 @@ jQuery('.dropdown-menu li a').click(function() {
 
 window.addEventListener("scroll", () => {
 	if (window.scrollY > 130) {
-		nav.classList.add("bg-grey");
 		nav.classList.add("smalllogo");
 		nav.classList.add("fixed-top");
-
 		mobileNav.classList.add("fixed-top");
 	} else {
-		nav.classList.remove("bg-grey");
 		nav.classList.remove("fixed-top");
 		nav.classList.remove("smalllogo");
 		mobileNav.classList.remove("fixed-top");
@@ -40,5 +38,9 @@ window.onclick = function(event) {
 		Sidenav.classList.remove('open')
   }
 }
+loginbtn.addEventListener("click", ()=>{
+	document.cookie = "LoginModalOpen=true";
+	document.location.href = "index.html";
+})
 
 

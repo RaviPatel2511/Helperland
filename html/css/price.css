@@ -25,10 +25,11 @@ nav{
       width: 73px;
       height: 54px;
     }
-    .menu:nth-child(1){
+    .menu:nth-child(1),.menu:nth-child(6),.menu:nth-child(7){
       background-color: #29626D;
       border: 1px solid white;
       border-radius: 25px;
+      cursor: pointer;
     }
     .nvbarbtn {
       border-radius: 25px;
@@ -69,65 +70,7 @@ nav{
       height: auto;
       width: 100%;
     }
-    .modal.fade.in{
-      opacity: 1;
-      background: rgba(39,39,39,.7);
-    }
-    .user-login-detail .input-group{
-      position: relative;
-    }
-    .user-login-detail .input-group img{
-      position: absolute;
-      right: 11px;
-      top: 20px;
-    }
-    .user-login-detail input {
-      border: 2px solid #aaa;
-      border-radius: 4px;
-      margin: 8px 0;
-      outline: none;
-      padding: 8px;
-      box-sizing: border-box;
-      transition: 0.3s;
-    }
-    .user-login-detail label{
-      margin: 5px 20px;
-    }
-    .user-login-detail button{
-      width: 100%;
-      color: white;
-      background: #1d7a8c;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 25px;
-      margin: 10px 0;
-    }
-    .modal-content .other-link a:nth-child(1),.modal-content .other-link a:nth-child(3){
-      color: #1d7a8c;
-      text-decoration: none;
-      display: block;
-    }
-    .modal-content .other-link a:nth-child(2){
-      color: #646464;
-      text-decoration: none;
-      display: block;
-    }
-    .modal-title{
-      color: #646464;
-      vertical-align: middle;
-    }
-    .modal-content{
-      top: 10px;
-    }
-    .modal-header button{
-      border: none;
-      height: 50px;
-      background: none;
-    }
-    .modal-header button img{
-      height: 40px;
-    }
+    
     .fixed-top {
       background-color: rgba(39,39,39,.7);
   }

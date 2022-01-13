@@ -27,7 +27,7 @@ background: none !important;
 .home {
   background-image: url("../image/home/bgimage.png");
   background-size: cover;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-size: 100% auto;
 }
 #navbarCollapse {
@@ -64,9 +64,10 @@ background: none !important;
   padding: 5px 20px;
   margin: 0px 6px;
 }
-.menu:nth-child(1){
+.menu:nth-child(1),.menu:nth-child(6),.menu:nth-child(7){
   border: 1px solid white;
   border-radius: 45px;
+  cursor: pointer;
 }
 .menu:hover {
   border-radius: 25px;
@@ -89,8 +90,11 @@ background: none !important;
 .home_caption {
   color: white;
   padding: 30px 30px;
-  margin-top: 161px;
+  margin-top: 70px;
   margin-left: 10px;
+}
+.home_caption > div{
+  max-width: 400px;
 }
 .home_caption p{
   font-size: 17px;
@@ -251,7 +255,7 @@ text-decoration: none;
 /* ////////mobile navbar end///////////////// */
 .modal.fade.in{
   opacity: 1;
-  background: rgba(39,39,39,.7);
+  /* background: rgba(39,39,39,.7); */
 }
 .user-login-detail .input-group{
   position: relative;
@@ -282,38 +286,73 @@ text-decoration: none;
   border-radius: 30px;
   font-size: 25px;
   margin: 10px 0;
+  cursor: not-allowed;
 }
-.modal-content .other-link a:nth-child(1),.modal-content .other-link a:nth-child(3){
+#userloginModal .modal-content .other-link a:nth-child(1),#userloginModal .modal-content .other-link a:nth-child(3){
   color: #1d7a8c;
   text-decoration: none;
   display: block;
 }
-.modal-content .other-link a:nth-child(2){
+#userloginModal .modal-content .other-link a:nth-child(2){
   color: #646464;
   text-decoration: none;
   display: block;
 }
-.modal-title{
+#userloginModal .modal-title,#forgotPass .modal-title{
   color: #646464;
   vertical-align: middle;
 }
-.modal-content{
-  top: 50px;
-}
-.modal-header button{
+#userloginModal .modal-header button{
   border: none;
   height: 50px;
   background: none;
 }
-.modal-header button img{
-  height: 40px;
+#userloginModal .modal-header button img{
+  height: 30px;
 }
 @media screen and (min-width:576px) {
-  .modal-dialog{
+  #userloginModal .modal-dialog{
     max-width: 400px;
   }
   
 }
+body.modal-open{
+  overflow:hidden ;
+}
+#userloginModal .modal-dialog{
+  max-width: 330px;
+}
+#forgotPass .modal-dialog{
+  max-width: 330px;
+}
+#forgotPass .modal-content{
+  padding: 5px;
+}
+#forgotPass .modal-header{
+  border-bottom: none;
+}
+#pass-mail-button{
+background-color: #146371;
+color: white;
+border: none;
+border-radius: 30px;
+width: 100%;
+height: 55px;
+cursor: not-allowed;
+margin:30px 0 ;
+}
+#backtologin{
+  color: #337ab7;
+  cursor: pointer;
+}
+#forgotPass .modal-header button{
+  border: none;
+  background: none;
+}
+#forgotPass .modal-header button img{
+  width: 18px;
+}
+
 /*/////////////////////////////////// 2nd part /////////////////////////////////////////////*/
 
 #service {
@@ -587,7 +626,7 @@ footer .container a {
   color: white;
 }
 .fmenu{
-  height: 131px;
+  height: 101px;
 }
 .fimg1 {
   width: 9px;
@@ -619,6 +658,12 @@ footer .container a {
   font-size: 16px;
   float: right;
   margin-right: 15px;
+}
+.right{
+  color: #737381;
+  font-size: 14px;
+  padding-top: 15px;
+  padding-bottom: 20px !important;
 }
 .fmenulink a:hover{
   color: tomato;
@@ -652,6 +697,9 @@ footer .container a {
   }
   .modal-content{
     top: 5px;
+  }
+  .home{
+    background-attachment: fixed;
   }
  
 }
@@ -741,6 +789,11 @@ footer .container a {
     background-size: 100% 100%;
   }
 }
+@media screen and (max-width:750px) {
+  .review .rowmrgn .card-body {
+    margin-left: 5px;
+}
+}
 @media screen and (max-width: 993px) {
   .submitbtn {
     margin-top: 10px;
@@ -765,6 +818,10 @@ footer .container a {
   }
   .fimg2{
     margin-right: 0px;
+  }
+  .home_caption{
+    margin:70px 0 0 0;
+    padding: 10px 5px;
   }
 }
 @media screen and (max-width: 1380px) {
