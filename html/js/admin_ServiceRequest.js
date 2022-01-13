@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    $('#serviceRequesttable').DataTable({
+  table =  $('#serviceRequesttable').DataTable({
         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
         
         "pagingType": "full_numbers",
@@ -87,5 +87,43 @@ $("td").each(function() {
     }
     else{
 
+    }
+});
+
+function sort(col, order) {
+	table.order([col, order]).draw();
+}
+
+
+  $('input[type=radio][name=sortOption]').change(function() {
+    if (this.value == 'ServiceId:Ascending') {
+        sort(0,"asc");
+    }
+    else if (this.value == 'ServiceId:Descending') {
+        sort(0,"desc");
+    }
+    else if (this.value == 'ServiceDate:Oldest') {
+        sort(1,"asc");
+    }
+    else if (this.value == 'ServiceDate:Latest') {
+        sort(1,"desc");
+    }
+    else if (this.value == 'Customer:AtoZ') {
+        sort(2,"asc");
+    }
+    else if (this.value == 'Customer:ZtoA') {
+        sort(2,"desc");
+    }
+    else if (this.value == 'ServiceProvider:AtoZ') {
+        sort(3,"asc");
+    }
+    else if (this.value == 'ServiceProvider:ZtoA') {
+        sort(3,"desc");
+    }
+    else if (this.value == 'Status:Ascending') {
+        sort(4,"asc");
+    }
+    else if (this.value == 'Status:Descending') {
+        sort(4,"desc");
     }
 });

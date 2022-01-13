@@ -492,6 +492,12 @@ table th:nth-child(5) > span{
   
   align-items: center;
 }
+.mobile_sorting{
+  display: none;
+}
+.close img{
+  width: 22px;
+}
 /* <!--////////////////////////////// DASHBOARD END////////////////////////// --> */
 
 
@@ -606,6 +612,9 @@ table th:nth-child(5) > span{
     @media screen and (max-width: 992px) {
       .navbar{
         display: none;
+      }
+      .mobile_sorting{
+        display: block;
       }
       #service_history_table {
         border: unset;

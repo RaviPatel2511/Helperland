@@ -15,7 +15,7 @@ $links2.click(function(){
    $(this).addClass('current');
 });
 $(document).ready( function () {
-    $('#service_history_table').DataTable({
+     table = $('#service_history_table').DataTable({
         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
         "pagingType": "full_numbers",
         "searching":false,
@@ -83,3 +83,31 @@ var spanSorting = '<span class="arrow-hack sort">&nbsp;&nbsp;&nbsp;</span>',
 });   
 
 $("#service_history_table th").first().click().click();
+
+function sort(col, order) {
+	table.order([col, order]).draw();
+}
+
+
+  $('input[type=radio][name=sortOption]').change(function() {
+    if (this.value == 'ServiceDate:Oldest') {
+        sort(0,"desc");
+    }
+    else if (this.value == 'ServiceDate:Latest') {
+        sort(0,"asc");
+    }
+    else if (this.value == 'ServiceProvider:AtoZ') {
+        sort(1,"asc");
+    }
+    else if (this.value == 'ServiceProvider:ZtoA') {
+        sort(1,"desc");
+    }
+    else if (this.value == 'PaymentLowtoHigh') {
+        sort(2,"asc");
+    }
+    else if (this.value == 'PaymentHightoLow') {
+        sort(2,"desc");
+    }else{
+        
+    }
+});

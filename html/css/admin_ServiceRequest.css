@@ -146,6 +146,12 @@
 table th{
     cursor: pointer;
 }
+.mobile_sorting{
+    display: none;
+  }
+  .close img{
+    width: 22px;
+  }
 
 table tr td:nth-child(5),table tr th:nth-child(5){text-align: -webkit-center;}
 table tr td:nth-child(6),table tr th:nth-child(6){text-align: -webkit-center;}
@@ -383,6 +389,9 @@ table tbody tr td p {
           border: none;
           background: none;
           
+      }
+      .mobile_sorting{
+          display: block;
       }
       table tbody tr {
         display: flex;

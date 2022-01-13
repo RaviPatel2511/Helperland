@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    $('#userManagementTable').DataTable({
+  table =  $('#userManagementTable').DataTable({
         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
         
         "pagingType": "full_numbers",
@@ -76,5 +76,38 @@ $("td").each(function() {
     }
     else{
 
+    }
+});
+
+
+function sort(col, order) {
+	table.order([col, order]).draw();
+}
+
+
+  $('input[type=radio][name=sortOption]').change(function() {
+    if (this.value == 'UserNameAtoZ') {
+        sort(0,"asc");
+    }
+    else if (this.value == 'UserNameZtoA') {
+        sort(0,"desc");
+    }
+    else if (this.value == 'PostalCode:Ascending') {
+        sort(3,"asc");
+    }
+    else if (this.value == 'PostalCode:Descending') {
+        sort(3,"desc");
+    }
+    else if (this.value == 'DistanceLowtoHigh') {
+        sort(5,"asc");
+    }
+    else if (this.value == 'DistanceHightoLow') {
+        sort(5,"desc");
+    }
+    else if (this.value == 'UserStatus:Ascending') {
+        sort(6,"asc");
+    }
+    else if (this.value == 'UserStatus:Descending') {
+        sort(6,"desc");
     }
 });

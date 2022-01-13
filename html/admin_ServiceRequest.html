@@ -92,6 +92,33 @@
 							</div>
 						</form>
 					</div>
+					<div class="py-2 mt-3 mobile_sorting text-center"><a  href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal">Sort Data : <img src="image/upcoming_service/arrow.svg" alt="sorting-arrow"></a></div>
+			<div class="modal fade" id="mobileSorting" role="dialog">
+				<div class="modal-dialog">
+				   <!-- Modal content-->
+				   <div class="modal-content">
+					  <div class="modal-header">
+						 <h4 class="modal-title">Choose Option</h4>
+						 <a  class="close" data-dismiss="modal"><img src="image/home/window-close-regular.svg" alt="closebtn"></a>
+					  </div>
+					  <div class="modal-body forgot-password">
+						 <form>
+							<input type="radio" name="sortOption"  id="ServiceIdAscending" value="ServiceId:Ascending">&nbsp;Service Id : Ascending<br>
+							<input type="radio" name="sortOption"  id="ServiceIdDescending" value="ServiceId:Descending">&nbsp;Service Id : Descending<br>
+							<input type="radio" name="sortOption"  id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
+							<input type="radio" name="sortOption"  id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
+							<input type="radio" name="sortOption"  id="Customer:AtoZ" value="Customer:AtoZ">&nbsp;Customer : A to Z<br>
+							<input type="radio" name="sortOption"  id="Customer:ZtoA" value="Customer:ZtoA">&nbsp;Customer : Z to A<br>
+							<input type="radio" name="sortOption"  id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
+                                 <input type="radio" name="sortOption"  id="ServiceProvider:ZtoA" value="ServiceProvider:ZtoA">&nbsp;Service Provider : Z to A<br>
+							<input type="radio" name="sortOption"  id="Status:Ascending" value="Status:Ascending">&nbsp;Status : Ascending<br>
+							<input type="radio" name="sortOption"  id="Status:Descending" value="Status:Descending">&nbsp;Status : Descending<br>
+				 
+						 </form>
+					  </div>
+				   </div>
+				</div>
+			 </div>
 					<div class="row mt-3">
 						<div class="col">
 							<table class="dataTable w-100 table" id="serviceRequesttable">
@@ -576,6 +603,7 @@
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>

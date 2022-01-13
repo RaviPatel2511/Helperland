@@ -61,6 +61,31 @@
 	<section class="welcome_msg">
 		<div class="container">
 			<h2 class="text-center">Welcome, <strong>Sandip!</strong></h2> </div>
+			<div class="py-2 mt-3 mobile_sorting text-center"><a  href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal">Sort Data : <img src="image/upcoming_service/arrow.svg" alt="sorting-arrow"></a></div>
+			<div class="modal fade" id="mobileSorting" role="dialog">
+				<div class="modal-dialog">
+				   <!-- Modal content-->
+				   <div class="modal-content">
+					  <div class="modal-header">
+						 <h4 class="modal-title">Choose Option</h4>
+						 <a  class="close" data-dismiss="modal"><img src="image/home/window-close-regular.svg" alt="closebtn"></a>
+					  </div>
+					  <div class="modal-body forgot-password">
+						 <form>
+							<input type="radio" name="sortOption"  id="ServiceIdOldest" value="ServiceId:Oldest">&nbsp;Service Id : Oldest<br>
+							<input type="radio" name="sortOption"  id="ServiceIdLatest" value="ServiceId:Latest">&nbsp;Service Id : Latest<br>
+							<input type="radio" name="sortOption"  id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
+							<input type="radio" name="sortOption"  id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
+							<input type="radio" name="sortOption"  id="Customer:AtoZ" value="Customer:AtoZ">&nbsp;Customer : A to Z<br>
+							<input type="radio" name="sortOption"  id="Customer:ZtoA" value="Customer:ZtoA">&nbsp;Customer : Z to A<br>
+							<input type="radio" name="sortOption"  id="DistanceLowtoHigh" value="DistanceLowtoHigh">&nbsp;Distance Low to High<br>
+							<input type="radio" name="sortOption"  id="DistanceHightoLow" value="DistanceHightoLow">&nbsp;Distance High to Low<br>
+				 
+						 </form>
+					  </div>
+				   </div>
+				</div>
+			 </div>
 	</section>
 	<!--////////////////////////////// DASHBOARD START////////////////////////// -->
 	<section>
@@ -287,6 +312,7 @@
 	</footer>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>

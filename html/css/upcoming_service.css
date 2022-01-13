@@ -446,7 +446,12 @@ table.dataTable thead th, table.dataTable thead td{
     
     align-items: center;
   }
-
+  .mobile_sorting{
+    display: none;
+  }
+  .close img{
+    width: 22px;
+  }
 /* <!--////////////////////////////// DASHBOARD END ////////////////////////// --> */
 
 
@@ -564,6 +569,9 @@ footer{
     }
     .date{
       margin: 0px 5px;
+    }
+    .mobile_sorting{
+      display: block;
     }
     #upcomingService  tr{
       display: flex;

@@ -85,6 +85,31 @@
 							</div>
 						</form>
 					</div>
+					<div class="py-2 mt-3 mobile_sorting text-center"><a  href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal">Sort Data : <img src="image/upcoming_service/arrow.svg" alt="sorting-arrow"></a></div>
+			<div class="modal fade" id="mobileSorting" role="dialog">
+				<div class="modal-dialog">
+				   <!-- Modal content-->
+				   <div class="modal-content">
+					  <div class="modal-header">
+						 <h4 class="modal-title">Choose Option</h4>
+						 <a  class="close" data-dismiss="modal"><img src="image/home/window-close-regular.svg" alt="closebtn"></a>
+					  </div>
+					  <div class="modal-body forgot-password">
+						 <form>
+							 <input type="radio" name="sortOption"  id="UserNameAtoZ" value="UserNameAtoZ">&nbsp;User Name : A to Z<br>
+							 <input type="radio" name="sortOption"  id="UserNameZtoA" value="UserNameZtoA">&nbsp;User Name : Z to A<br>
+							<input type="radio" name="sortOption"  id="PostalCode:Ascending" value="PostalCode:Ascending">&nbsp;Postal Code : Ascending<br>
+							<input type="radio" name="sortOption"  id="PostalCode:Descending" value="PostalCode:Descending">&nbsp;Postal Code : Descending<br>
+							<input type="radio" name="sortOption"  id="DistanceLowtoHigh" value="DistanceLowtoHigh">&nbsp;Distance Low to High<br>
+							<input type="radio" name="sortOption"  id="DistanceHightoLow" value="DistanceHightoLow">&nbsp;Distance High to Low<br>
+							<input type="radio" name="sortOption"  id="UserStatus:Ascending" value="UserStatus:Ascending">&nbsp;User Status : Ascending<br>
+							<input type="radio" name="sortOption"  id="UserStatus:Descending" value="UserStatus:Descending">&nbsp;User Status : Descending<br>
+				 
+						 </form>
+					  </div>
+				   </div>
+				</div>
+			 </div>
 					<div class="row mt-3">
 						<div class="col">
 							<table class="dataTable w-100 table" id="userManagementTable">
@@ -430,6 +455,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 	<script src="js/admin_UserManagement.js"></script>

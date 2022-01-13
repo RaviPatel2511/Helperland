@@ -5,7 +5,7 @@ const closebtn=document.querySelector('.closebtn');
 const nav = document.querySelector("nav");
 
 $(document).ready( function () {
-  $('#upcomingService').DataTable({
+ table = $('#upcomingService').DataTable({
       "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
       "pagingType": "full_numbers",
       "searching":false,
@@ -89,3 +89,36 @@ var spanSorting = '<span class="arrow-hack sort">&nbsp;&nbsp;&nbsp;</span>',
 });   
 
 $("#upcomingService th").first().click().click();
+
+
+function sort(col, order) {
+	table.order([col, order]).draw();
+}
+
+
+  $('input[type=radio][name=sortOption]').change(function() {
+    if (this.value == 'ServiceDate:Oldest') {
+        sort(1,"asc");
+    }
+    else if (this.value == 'ServiceDate:Latest') {
+        sort(1,"desc");
+    }
+    else if (this.value == 'ServiceId:Oldest') {
+        sort(0,"asc");
+    }
+    else if (this.value == 'ServiceId:Latest') {
+        sort(0,"desc");
+    }
+    else if (this.value == 'Customer:AtoZ') {
+        sort(2,"asc");
+    }
+    else if (this.value == 'Customer:ZtoA') {
+        sort(2,"desc");
+    }
+    else if (this.value == 'DistanceLowtoHigh') {
+        sort(3,"asc");
+    }
+    else if (this.value == 'DistanceHightoLow') {
+        sort(3,"desc");
+    }
+});
