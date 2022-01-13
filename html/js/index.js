@@ -6,7 +6,7 @@ const closebtn=document.querySelector('.closebtn');
 const mobileNav = document.querySelector('.mobileNav');
 const cookierow = document.querySelector('.frow2');
 const userloginModal = new bootstrap.Modal(document.querySelector("#userloginModal"));
-const forgotPassLink = document.querySelector('#forgotPassLink');
+
 
 window.addEventListener("scroll", () => {
 	if (window.scrollY > 730) {
@@ -68,3 +68,6 @@ if (cookies.includes("LoginModalOpen=true")) {
 }
 
 
+$('#forgotPassLink').click(function(){
+	$("#userloginModal").modal('hide');
+})
