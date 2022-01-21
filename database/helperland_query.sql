@@ -3,30 +3,30 @@ CREATE DATABASE helperland;
 use helperland;
 --for customer table
 CREATE TABLE Customer(
-	Custid		int			NOT NULL PRIMARY KEY IDENTITY(1,1),
-	FirstName	nvarchar(10) NOT NULL,
+	Custid		int				NOT NULL PRIMARY KEY IDENTITY(1,1),
+	FirstName	nvarchar(10)	NOT NULL,
 	LastName	nvarchar(10)	NOT NULL,
 	Email		nvarchar(15)	NOT NULL Unique ,
 	Mobile		nvarchar(10)	NOT NULL,
 	Password	nvarchar(10)	NOT NULL,
-	Dob			Date		Null,
+	Dob			Date			Null,
 	Language	nvarchar(10)	Null,
-	RoleId		int			NOT NULL
+	RoleId		int				NOT NULL
 );
 
 --customer address
 CREATE TABLE CustAdress(
-AdressId	int			NOT NULL PRIMARY KEY IDENTITY(1,1),
+AdressId	int				NOT NULL PRIMARY KEY IDENTITY(1,1),
 Adress		nvarchar(50)	NOT NULL,	
 CustId		int,
 City		nvarchar(10)	NOT NULL,	
-PostalCode	int			NOT NULL,
+PostalCode	int				NOT NULL,
 Mobile		nvarchar(10)	NOT NULL,	
 );
 
 --for service provider
 CREATE TABLE ServiceProvider(
-SpId		int			NOT NULL PRIMARY KEY IDENTITY(1,1),
+SpId		int				NOT NULL PRIMARY KEY IDENTITY(1,1),
 FirstName	nvarchar(10)	NOT NULL,
 LastName	nvarchar(10)	NOT NULL,
 Email		nvarchar(15)	NOT NULL	UNIQUE,
@@ -35,22 +35,22 @@ Password	nvarchar(10)	NOT NULL,
 Dob			Date,
 Nationality	nvarchar(10),
 Gender		nvarchar(10)	NOT NULL,
-Avtar		Image		NOT NULL,
+Avtar		Image			NOT NULL,
 Adress		nvarchar(50)	NOT NULL,
-PostalCode	int			NOT NULL,
+PostalCode	int				NOT NULL,
 City		nvarchar(10)	NOT NULL,
-RoleId		int			NOT NULL,	
+RoleId		int				NOT NULL,	
 );	
 
 --for service booking
 CREATE TABLE BookService(
-ServiceId		int		NOT NULL PRIMARY KEY	IDENTITY(1,1),
+ServiceId		int				NOT NULL PRIMARY KEY	IDENTITY(1,1),
 CustId			int,	
 SpId			int,		
-PostalCode		int		NOT NULL,	
-ServiceDate		date	NOT NULL,	
-ServiceTime		time	NOT NULL,	
-StayHour		int		NOT NULL,	
+PostalCode		int				NOT NULL,	
+ServiceDate		date			NOT NULL,	
+ServiceTime		time			NOT NULL,	
+StayHour		int				NOT NULL,	
 InsideCabinets	Bit,		
 InsideFridge	Bit,	
 InsideOven		Bit,	
@@ -59,8 +59,8 @@ Windows			Bit,
 Comments		nvarchar(50),
 PetAtHome		Bit,	
 Adress			nvarchar(50)	NOT NULL,	
-Payment			int	NOT NULL,	
-Status			nvarchar(5)	NOT NULL,	
+Payment			int				NOT NULL,	
+Status			nvarchar(5)		NOT NULL,	
 );
 
 --for favourite service provider
@@ -96,9 +96,9 @@ Role	nvarchar(5)	NOT NULL,
 
 --for admin detail
 CREATE TABLE AdminDetail(
-AdminId		int			PRIMARY KEY NOT NULL  IDENTITY(1,1),
+AdminId		int				PRIMARY KEY		NOT NULL  IDENTITY(1,1),
 Username	nvarchar(10)	Unique		NOT NULL ,
-Password	nvarchar(10)	NOT NULL, 
+Password	nvarchar(10)				NOT NULL, 
 );
 
 --add foreign key for all table
