@@ -743,12 +743,13 @@ footer .container a {
   margin-top: 3px !important;
 }
 .step-img .arrow{
-  transform: rotate(90deg);
+  transform: rotate(90deg) !important;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
 }
+
 .step-img .arrow img{
   width: 60px;
   height: 33px;
