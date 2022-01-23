@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif !important;
+}
+
+/*/////////////// NAVBAR////////////// */
+.navbar-nav a{
+    padding: 5px 20px !important;
+}
+.navbar-nav{
+  height: 40px;
+}
+nav{
+    background-color: #525252;
+  }
+  .navbar{
+    padding: 0px 0px !important;
+  }
+  #navbarCollapse {
+      justify-content: right;
+    }
+    .navbar-brand img {
+      width: 73px;
+      height: 54px;
+    }
+    .menu:nth-child(1),.menu:nth-child(6),.menu:nth-child(7){
+      background-color: rgba(0,95,113,.6);
+      border: 1px solid white;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+    .menu:nth-child(2){
+      border: 1px solid white;
+      border-radius: 40px;
+    }
+    .nvbarbtn {
+      border-radius: 25px;
+      border: 1px solid white;
+      color: white;
+      font-size: 17px;
+      padding: 5px 20px;
+      margin: 0px 5px;
+      background: transparent;
+    }
+    .menu {
+      text-decoration: none;
+      color: white;
+      font-size: 17px;
+      padding: 10px 0px;
+      margin: 0px 6px;
+    }
+  
+    #navbarCollapse button{
+        font-size: 16px;
+        padding: 4px 20px;
+        background-color: #29626D;
+    }
+    .menu:hover {
+      color: white;
+    }
+    .bg_main{
+        height: auto;
+        width: 100%;
+    }
+    
+    .fixed-top {
+      background-color: rgba(39,39,39,.7);
+  }
+ 
+  /* /////////////////// MOBILE NAV START //////////////////////// */
+  
+    .mobileNav{
+      top: 0;
+      z-index: 100;
+      display: none;
+      background-color: #525251;
+    }
+    .mobileLogo{
+      height: 55px;
+      width: 73px;
+      margin-left: 10px;
+    }
+    .mobileNavSpaccing{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between !important;
+      align-items: center;
+    }
+    .sideNav{
+      display: flex;
+      position: fixed;
+    top: 0px;
+    width: 100vw;
+    min-height: 100vh;
+    z-index: 1000;
+    left: 100vw;
+    transition: left 0.35s;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+  .sideNav.open{
+    left: 0;
+    
+    background-color: rgba(95, 95, 95,0.6);
+    
+  }
+  .sideNav.toggle{
+    height: 350px;
+    border: 1px solid #ffffff;
+    /* width:50% */
+    float: right;
+    }
+    .menubtn{
+      margin-right: 15px;
+    }
+    .closebtn{
+      
+      height:60px;
+      text-align: end;
+    }
+    .openSidenav{
+      width:50vw;
+      height:100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      z-index: 1000;
+      overflow: scroll;
+    }
+    .navbar-toggler {
+      display: block;
+      width: 55px;
+      padding: 10px;
+      font-size: 0;
+      border: 2px solid white;
+      border-radius: 5px;
+    }
+    .navbar-toggler  span{
+      display: block;
+      height: 3px;
+      background-color: white;
+    }
+    .navbar-toggler  span:nth-child(2){
+      margin: 6px 0;
+    }
+    .closebtn img{
+      height: 50px;
+    width: 50px;
+    margin: 0 auto;
+  }
+  .openSidenav p{
+    margin-bottom: 0px;
+  }
+  .mobileNavMenu{
+    color: black;
+    text-decoration: none;
+  }
+  .openSidenav ul li{
+    list-style: none;
+      margin-bottom: 10px;
+      margin-left: 15px;
+    }
+    /* /////////////////// MOBILE NAV END //////////////////////// */
+    .header-color{
+        color: #4f4f4f;
+    }
+    .star {
+        margin: 9px 0px 40px 0px;
+      }
+      .star img{
+        margin: 0px 9px;
+      }
+      .side_hr{
+        width: 72px;
+      }
+      .header{
+          margin: 30px 0;
+      }
+
+
+      .nav-pills li{
+          background-color: #f3f3f3;
+      }
+      .nav-pills .nav-link{
+          font-size: 18px;
+            color: #646464;
+
+      }
+      .nav-pills a{
+          height: 65px;
+      }
+      .nav-pills a.active.show,.nav-pills .nav-link.active{
+            background-color: #1D7A8C;
+            color: white;
+      }

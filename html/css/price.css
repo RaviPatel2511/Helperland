@@ -240,9 +240,10 @@ nav{
   }
   
   /* <!-- /////////////////// SERVICE////////////////// --> */
-  .service{
+  /* .service{
     margin: 0px 230px ;
-  }
+  } */
+  
   .serviceImage {
     border: 1px solid #b0c9ce;
     width: 108px;
@@ -521,8 +522,15 @@ nav{
       @media screen and (max-width : 854px) and (min-width:569px ) {
        
       .servicefeature{
-        margin-left: 15px;
+        margin: 0 auto;
+        justify-content: center;
       }
+    }
+    @media screen and (max-width : 769px) {
+      .servicefeature{
+        flex-direction: column;
+      }
+      
     }
       @media screen and (max-width : 1198px ) {
         .feature_row{
@@ -530,7 +538,7 @@ nav{
               align-items: center;
         }
       }
-      @media screen and (max-width : 1017px ) {
+      @media screen and (max-width : 1037px ) {
        .navbar{
          display: none;
        }
@@ -538,6 +546,18 @@ nav{
          display: block !important;
        }
       }
+@media screen and (min-width : 1200px) {
+  .service .container{
+    max-width: 1080px;
+  }
+  
+}
+@media screen and (max-width : 767px) {
+  .why_we_column:nth-child(2){
+    text-align: center;
+  }
+  
+}
 
 
 
