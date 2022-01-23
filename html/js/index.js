@@ -71,3 +71,7 @@ if (cookies.includes("LoginModalOpen=true")) {
 $('#forgotPassLink').click(function(){
 	$("#userloginModal").modal('hide');
 })
+
+AOS.init({
+	once : true,
+});
