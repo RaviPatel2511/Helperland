@@ -299,7 +299,7 @@ nav{
           }
         }
 
-        @media screen and (max-width : 1017px ) {
+        @media screen and (max-width : 1031px ) {
           .navbar{
             display: none;
           }
