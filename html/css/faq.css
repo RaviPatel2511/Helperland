@@ -11,11 +11,7 @@ nav{
   background-color: #525252;
 }
 .navbar{
-  padding: 0px;
-}
-#navbarCollapse {
-    justify-content: right;
-  
+  padding: 0rem 0.5rem;
 }
 .bg{
   height: auto;
@@ -25,31 +21,24 @@ nav{
   height: 40px;
 }
   .navbar-nav a{
-    padding: 6px 20px !important;
+    padding: 7px 18px !important;
 }
   .navbar-brand img {
     width: 73px;
     height: 54px;
+    margin-left: 5px;
   }
-  .menu:nth-child(1),.menu:nth-child(6),.menu:nth-child(7){
-    background-color: #29626D;
+  .nav-item:nth-child(1) .menu,.nav-item:nth-child(6) .menu,.nav-item:nth-child(7) .menu{
+    background-color: rgba(0,95,113,.6);
     border: 1px solid white;
     border-radius: 25px;
     cursor: pointer;
   }
-  .menu:nth-child(2){
+  .nav-item:nth-child(2) .menu{
     border: 1px solid white;
     border-radius: 40px;
   }
-  .nvbarbtn {
-    border-radius: 25px;
-    border: 1px solid white;
-    color: white;
-    font-size: 17px;
-    padding: 5px 20px;
-    margin: 0px 5px;
-    background: transparent;
-  }
+  
   .menu {
     text-decoration: none;
     color: white;
@@ -58,11 +47,6 @@ nav{
     margin: 0px 6px;
   }
   
-  #navbarCollapse button{
-      font-size: 16px;
-      padding: 5px 22px 12px 22px;
-      background-color: #29626D;
-  }
   .menu:hover {
     border-radius: 25px;
     border: 1px solid white;

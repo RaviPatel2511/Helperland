@@ -8,64 +8,48 @@
 }
 
 /*/////////////// NAVBAR////////////// */
-.navbar-nav a{
-    padding: 5px 20px !important;
+nav{
+  background-color: #525252;
+}
+.navbar{
+  padding: 0rem 0.5rem;
 }
 .navbar-nav{
   height: 40px;
 }
-.navbar{
-  padding: 0;
+  .navbar-nav a{
+    padding: 7px 18px !important;
 }
-nav{
-    background-color: #525252;
+  .navbar-brand img {
+    width: 73px;
+    height: 54px;
+    margin-left: 5px;
   }
-  #navbarCollapse {
-      justify-content: right;
-    }
-    .navbar-brand img {
-      width: 73px;
-      height: 54px;
-    }
-    .menu:nth-child(1),.menu:nth-child(6),.menu:nth-child(7){
-      background-color: #29626D;
-      border: 1px solid white;
-      border-radius: 25px;
-      cursor: pointer;
-    }
-    .menu:nth-child(2){
-      border: 1px solid white;
-      border-radius: 40px;
-    }
-    .nvbarbtn {
-      border-radius: 25px;
-      border: 1px solid white;
-      color: white;
-      font-size: 17px;
-      padding: 5px 20px;
-      margin: 0px 5px;
-      background: transparent;
-    }
-    .menu {
-      text-decoration: none;
-      color: white;
-      font-size: 17px;
-      padding: 10px 0px;
-      margin: 0px 6px;
-    }
-   
-    #navbarCollapse button{
-        font-size: 16px;
-        padding: 6px 20px;
-        background-color: #29626D;
-    }
-    .menu:hover {
-      border-radius: 25px;
-      border: 1px solid white;
-      color: white;
-      background-color: #29626D;
-    }
-    
+  .nav-item:nth-child(1) .menu,.nav-item:nth-child(6) .menu,.nav-item:nth-child(7) .menu{
+    background-color: rgba(0,95,113,.6);
+    border: 1px solid white;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+  .nav-item:nth-child(2) .menu{
+    border: 1px solid white;
+    border-radius: 40px;
+  }
+  
+  .menu {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 10px 15px !important;
+    margin: 0px 6px;
+  }
+  
+  .menu:hover {
+    border-radius: 25px;
+    border: 1px solid white;
+    color: white;
+    background-color: #29626D;
+  }    
     .bg_main{
         width: 100%;
         height: auto;
