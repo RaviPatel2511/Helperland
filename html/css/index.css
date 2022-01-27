@@ -54,7 +54,10 @@ background: none !important;
   border: 1px solid white;
 }
 .navbar-nav a{
-  padding: 7px 20px !important;
+  padding: 7px 14px !important;
+}
+.navbar-nav{
+
   height: 40px;
 }
 .menu {
@@ -64,10 +67,13 @@ background: none !important;
   padding: 5px 20px;
   margin: 0px 6px;
 }
-.menu:nth-child(1),.menu:nth-child(6),.menu:nth-child(7){
+.nav-item:nth-child(1) .menu,.nav-item:nth-child(6) .menu,.nav-item:nth-child(7) .menu{
   border: 1px solid white;
   border-radius: 45px;
   cursor: pointer;
+}
+.nav-item:nth-child(6) .menu{
+  padding:7px 20px !important ;
 }
 .menu:hover {
   border-radius: 25px;
@@ -90,7 +96,7 @@ background: none !important;
 .home_caption {
   color: white;
   padding: 30px 30px;
-  margin-top: 70px;
+  margin-top: 150px;
   margin-left: 10px;
 }
 .home_caption > div{
@@ -366,12 +372,12 @@ margin:30px 0 ;
 .service .card {
   border: none;
   align-items: center;
-  width: 319.5px;
+  /* width: 319.5px; */
 }
-.srcard{
+/* .srcard{
     width: 319.5px;
     margin-right: 71px;
-  }
+  } */
   .srcard .card:hover img{
     transform: scale(0.9);
     transition: all 0.3s;
@@ -381,8 +387,6 @@ margin:30px 0 ;
   font-size: 40px;
 }
 .service .card-body {
-  width: 319.5px;
-  height: 319.5px;
   padding: 0px 0px 0px 0px;
 }
 .service .circle {
@@ -404,20 +408,21 @@ margin:30px 0 ;
 }
 
 /* <!--3nd part --> */
-
-.acontainer {
-  width: 72.43%;
-
+.about{
+  margin-top: 10px;
 }
+/* .acontainer {
+ max-width: 1162px;
+
+} */
 .aboutmrgn1 {
-  margin-top: 105px;
   color: #4f4f4f;
+  margin: auto 0px;
 }
-.aboutmrgn2 {
-  margin-top: 63px;
+.aboutmrgn2 img{
+  height: 336px;
   width: 403px;
-  height: 337px;
-  margin-left: 135px;
+  float: right;
 }
 .aboutmrgn h2 {
   color: #4f4f4f;
@@ -429,6 +434,7 @@ margin:30px 0 ;
   font-size: 18px;
 }
 
+
 .blogmrgn {
   margin-top: 47px;
   margin-bottom: 66px;
@@ -439,9 +445,9 @@ margin:30px 0 ;
 .brow {
   padding-bottom: 47px;
 }
-.bcontainer {
+/* .bcontainer {
   width: 74.42%;
-}
+} */
 .bcontainer .card {
   box-shadow: 8px 8px 8px -5px rgba(105, 105, 105, 0.75);
   -webkit-box-shadow: 8px 8px 8px -5px rgba(105, 105, 105, 0.75);
@@ -471,28 +477,28 @@ margin:30px 0 ;
   position: absolute;
 }
 .acontainer > svg:nth-child(odd){
-  left: -250px;
+  left: -230px;
 }
 .acontainer > svg:nth-child(even){
-  right: -206px;
+  right: -177px;
 }
 .acontainer > svg:nth-child(1){
-  top: 27px;
+  top: -27px;
 }
 .acontainer > svg:nth-child(2){
-  top: 12px;
+  top: -27px;
 }
 .acontainer > svg:nth-child(3){
-  top: 345px;
+  top: 280px;
 }
 .acontainer > svg:nth-child(4){
-  top: 360px;
+  top: 315px;
 }
 .acontainer > svg:nth-child(5){
   top: 665px;
 }
 .acontainer > svg:nth-child(6){
-  top: 840px;
+  top: 760px;
 }
 
 /* 4th part */
@@ -500,20 +506,19 @@ margin:30px 0 ;
 .review {
   background-color: #F4F5F8;
 }
-.rcontainer {
+/* .rcontainer {
   max-width: 1158px;
-}
+} */
 .reviewmrgn {
   padding-top: 65px;
   color: #4f4f4f;
   font-size: 40px;
   font-weight: bold;
 }
-.review .card {
-  height: 390px;
-}
+
+
 .review .msgimg{
-    margin-top: -20px;
+    margin-top: -80px;
 }
 .review .rowmrgn {
   margin-top: 59px;
@@ -523,6 +528,7 @@ margin:30px 0 ;
 }
 .review .rowmrgn .card {
   border-left: 4px solid #1d7a8c;
+  min-height: 370px;
 }
 .review a {
   text-decoration: none;
@@ -530,7 +536,7 @@ margin:30px 0 ;
 }
 .reviewimg {
   width: 70px;
-  height: 66px;
+  height: 70px;
 }
 .review .custimg {
   margin-top: 29px;
@@ -540,10 +546,12 @@ margin:30px 0 ;
   color: #4f4f4f;
   font-weight: bold;
   size: 20px;
+  margin-bottom: 5px;
 }
 .custimg .city {
   color: #8e8e8e;
   size: 14px;
+  margin-bottom: 0px;
 }
 .custimg a {
   color: #565656;
@@ -581,6 +589,9 @@ margin:30px 0 ;
 .review form {
   margin-top: 20px;
   padding-bottom: 53px;
+}
+.intro{
+  margin-left: 15px;
 }
 
 /* uparrow */
@@ -626,7 +637,9 @@ footer .container a {
   color: white;
 }
 .fmenu{
+  padding-top: 20px;
   height: 101px;
+  max-width: 1320px;
 }
 .fimg1 {
   width: 9px;
@@ -644,6 +657,8 @@ footer .container a {
   bottom: 0;
   left: 0;
   background: #292929;
+  width: 100%;
+  min-height: 64px;
 }
 .frow2 h5 {
   font-size: 14px;
@@ -658,6 +673,7 @@ footer .container a {
   font-size: 16px;
   float: right;
   margin-right: 15px;
+  margin-top: 0.7rem;
 }
 .right{
   color: #737381;
@@ -667,6 +683,14 @@ footer .container a {
 }
 .fmenulink a:hover{
   color: tomato;
+}
+.hr-line{
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.hr-line hr{
+  border-bottom: 1px solid grey; 
+  width: 100%;
 }
 .hidden{
   display: none !important;
@@ -688,7 +712,7 @@ footer .container a {
   transition: all 0.5s;
 }
 
-@media screen and (max-width:1202px){
+@media screen and (max-width:1238px){
   .navbar{
     display: none;
   }
@@ -728,9 +752,9 @@ footer .container a {
  
 }
 @media screen and (max-width: 990px) {
-  .srcard{
+  /* .srcard{
     margin-right: 0px;
-}
+} */
 }
 @media screen and (max-width: 900px) {
   .step-img{
@@ -765,11 +789,10 @@ footer .container a {
 }
  
 }
-@media screen and (max-width: 1150px) {
-.rcontainer{
-  max-width: 70%;
+@media screen and (max-width: 991px) {
+.aboutmrgn2 img{
+  float: unset;
 }
- 
 }
 
 
@@ -790,15 +813,13 @@ footer .container a {
     background-size: 100% 100%;
   }
 }
-@media screen and (max-width:750px) {
+@media screen and (max-width:768px) {
   .review .rowmrgn .card-body {
     margin-left: 5px;
 }
 }
 @media screen and (max-width: 993px) {
-  .submitbtn {
-    margin-top: 10px;
-  }
+ 
   .fmenulink{
     flex-direction: column;
   }
@@ -817,9 +838,7 @@ footer .container a {
   .flogo{
     margin:10px 0px 0px 0px;
   }
-  .fimg2{
-    margin-right: 0px;
-  }
+ 
   .home_caption{
     margin:70px 0 0 0;
     padding: 10px 5px;
@@ -827,9 +846,7 @@ footer .container a {
 }
 @media screen and (max-width: 1380px) {
 
-  .service .card,.service .circle {
-    width: 100%;
-  }
+  
   .service .circle {
     height: 100%;
   }

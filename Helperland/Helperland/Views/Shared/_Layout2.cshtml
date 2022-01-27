@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    @RenderSection("css", required: true)
+    <link rel="shortcut icon" href="~/image/home/favicon.ico" type="image/x-icon" />
+    <title>@ViewBag.Title | Helperland</title>
+</head>
+
+<body>
+    <section class="home">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" asp-controller="Helperland" asp-action="Index"> <img src="~/image/home/logo.png" height="28" alt="Brand" /></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="#">Book a cleaner </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" asp-controller="Helperland" asp-action="Prices">Prices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="javascript:void(0)">Our Guarantee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="javascript:void(0)">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" asp-controller="Helperland" asp-action="Contact">Contact us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu loginbtn" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" asp-controller="Helperland" asp-action="BecomeProvider">Become a Helper</a>
+                    </li>
+                    <li>
+                        <div class="btn-group countryFlag">
+                            <button class="btn dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"> <img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"> </button>
+                            <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                                <li>
+                                    <a class="dropdown-item" data-img="https://cdn-icons-png.flaticon.com/128/555/555417.png" href="#"><img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"></a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" data-img="https://cdn-icons-png.flaticon.com/128/206/206626.png" href="#"><img src="https://cdn-icons-png.flaticon.com/128/206/206626.png" alt="flag"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
+        <div class="mobileNav">
+            <div class="mobileNavSpaccing">
+                <img class="mobileLogo" src="~/image/home/logo.png" alt="">
+                <div class="menubtn">
+                    <button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
+                </div>
+            </div>
+            <div class="sideNav">
+                <div class="openSidenav">
+                    <div class="closebtn"> <img src="~/image/home/times-solid.svg" alt="close"> </div>
+                    <ul>
+                        <li><a href="#" class="mobileNavMenu">Book a cleaner</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="Prices" class="mobileNavMenu">Prices</a></li>
+                        <hr>
+                        <li><a href="javascript:void(0)" class="mobileNavMenu">Our Guarantee</a></li>
+                        <hr>
+                        <li><a href="javascript:void(0)" class="mobileNavMenu">Blog</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact us</a></li>
+                        <hr>
+                        <li><a class="mobileNavMenu loginbtn">Login</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="BecomeProvider" class="mobileNavMenu">Become a Helper</a></li>
+                        <li>
+                            <div class="btn-group countryFlag">
+                                <button class="btn dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"> <img src="https://cdn-icons-png.flaticon.com/128/206/206626.png" alt="flag"> </button>
+                                <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                                    <li>
+                                        <a class="dropdown-item" data-img="https://cdn-icons-png.flaticon.com/128/206/206626.png" href="#"><img src="https://cdn-icons-png.flaticon.com/128/206/206626.png" alt="flag"></a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" data-img="https://cdn-icons-png.flaticon.com/128/555/555417.png" href="#"><img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /////////////////////////////MOBILE NAVBAR END////////////////////////// -->
+        @RenderSection("innerHeader", required: true)
+    </section>
+    @RenderBody()
+    <!-- /*/////////////// FOOTER ////////////// */ -->
+    <footer>
+        <div class="container d-flex justify-content-between align-items-center fmenu">
+            <img class="flogo" width="100px" src="~/image/price/logo.png" alt="" />
+            <div class="d-flex flex-wrap text-center justify-content-center fmenulink"> <a class="px-3" asp-controller="Helperland" asp-action="Index">HOME</a> <a class="px-3" asp-controller="Helperland" asp-action="About">ABOUT</a> <a class="px-3" href="javascript:void(0)">TESTIMONIALS</a> <a class="px-3" asp-controller="Helperland" asp-action="Faqs">FAQS</a> <a class="px-3" href="javascript:void(0)">INSURRANCE POLICY</a> <a class="px-3" href="javascript:void(0)">IMPRESSUM</a> </div>
+            <div> <img class="img-fluid fimg1" src="~/image/price/facebook.png" /> <img class="img-fluid fimg2" src="~/image/price/insta.png" /> </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center text-center hr-line">
+            <hr />
+        </div>
+        <p class="text-center right">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy </p>
+    </footer>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+    @RenderSection("script",required:true)
+</body>
+
+</html>

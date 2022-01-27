@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    @RenderSection("css", required: true)
+    <link rel="shortcut icon" href="~/image/home/favicon.ico" type="image/x-icon" />
+    <title>@ViewBag.Title | Helperland</title>
+</head>
+
+<body>
+    <!--////////////////////// main part////////////////////////////////// -->
+    <header>
+
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" asp-controller="Helperland" asp-action="Index"><img src="~/image/faq/logo.png" height="28" alt="logo" /></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="#">Book Now </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" asp-controller="Helperland" asp-action="Prices">Price & Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="javascript:void(0)">Warranty</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="javascript:void(0)">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" asp-controller="Helperland" asp-action="Contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu loginbtn" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" asp-controller="Helperland" asp-action="BecomeProvider">Become a Helper</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
+        <div class="mobileNav">
+            <div class="mobileNavSpaccing">
+                <img class="mobileLogo" src="~/image/home/logo.png" alt="logo">
+                <div class="menubtn">
+                    <button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
+                </div>
+            </div>
+            <div class="sideNav">
+                <div class="openSidenav">
+                    <div class="closebtn"> <img src="~/image/home/times-solid.svg" alt="close"> </div>
+                    <ul>
+                        <li><a href="#" class="mobileNavMenu">Book Now</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="Prices" class="mobileNavMenu">Prices & Servcies</a></li>
+                        <hr>
+                        <li><a href="javascript:void(0)" class="mobileNavMenu">Warranty</a></li>
+                        <hr>
+                        <li><a href="javascript:void(0)" class="mobileNavMenu">Blog</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact</a></li>
+                        <hr>
+                        <li><a class="mobileNavMenu loginbtn">Login</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="BecomeProvider" class="mobileNavMenu">Become a Helper</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+        <!-- /////////////////////////////MOBILE NAVBAR END////////////////////////// -->
+    @RenderBody()
+    <!--//////////////////////////////////// FOOTER/////////////////////////////// -->
+    <footer>
+        <div class="container d-flex justify-content-between align-items-center fmenu">
+            <img width="100px" src="~/image/faq/logo.png" alt="logo" />
+            <div class="d-flex flex-wrap text-center justify-content-center fmenulink"> <a class="px-3" asp-controller="Helperland" asp-action="Index">HOME</a> <a class="px-3" asp-controller="Helperland" asp-action="About">ABOUT</a> <a class="px-3" href="javascript:void(0)">TESTIMONIALS</a> <a class="px-3" asp-controller="Helperland" asp-action="Faqs">FAQS</a> <a class="px-3" href="javascript:void(0)">INSURRANCE POLICY</a> <a class="px-3" href="javascript:void(0)">IMPRESSUM</a> </div>
+            <div> <img class="img-fluid fimg1" src="~/image/faq/facebook.png" /> <img class="img-fluid fimg2" src="~/image/faq/insta.png" /> </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center text-center hr-line" >
+            <hr/>
+        </div>
+        <p class="text-center right">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy </p>
+    </footer>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <script src="js/faq.js"></script>*@
+    @RenderSection("script", required: true)
+</body>
+
+</html>
