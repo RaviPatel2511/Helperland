@@ -35,10 +35,10 @@ namespace Helperland.Controllers
             ViewBag.Title = "About";
             return View();
         }
-        public IActionResult BecomeProvider()
-        {
-            ViewBag.Title = "BecomeProvider";
-            return View();
-        }
+        //public IActionResult BecomeProvider()
+        //{
+        //    ViewBag.Title = "BecomeProvider";
+        //    return View();
+        //}
     }
 }

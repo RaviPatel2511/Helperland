@@ -223,23 +223,39 @@ nav{
         background: white;
         border: 1px solid #1D7A8C;
       }
-      
-    /* <!--//////////////////////////////////// MAP /////////////////////////////// --> */
-    
-    .map img{
-      width: 100%;
-      height: auto;
-    }
-    .map {
-      position: relative;
-    }
-    .map img:nth-child(2) {
-      position: absolute;
-      width: 3.1%;
-      height: 16.8%;
-      top: 45.5%;
-      left: 45.4%;
-    }
+        .uploadlbl{
+            display:block;
+            color:#515151;
+            font-weight:700;
+            margin-bottom:5px;
+        }
+#uploadFileBtn {
+    border: 1px solid #c6c6c6;
+    color: #666;
+    background: 0 0;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor:pointer;
+}
+#upload-file {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+#AgreeTerms{
+    margin-left:0px;
+    height:20px;
+    width:20px;
+}
+.AgreeTermsStatement {
+    margin-left: 30px;
+    color: #4f4f4f;
+    font-size: 14px;
+}
+/* <!--//////////////////////////////////// MAP /////////////////////////////// --> */
+
     .contact{
       margin-top: 55px;
       font-size: 18px;

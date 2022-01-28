@@ -38,3 +38,10 @@ loginbtn.addEventListener("click", ()=>{
 	document.location.href = "index.html";
 })
 
+
+$(document).ready(function () {
+	$('#upload-file').on("change", function () {
+		var filename = $(this).val().split("\\").pop();
+		$(this).next('#uploadFilePath').html(filename);
+	});
+});

@@ -5,7 +5,7 @@ using Helperland.Models;
 
 #nullable disable
 
-namespace Helperland.Data
+namespace Helperland.Models.Data
 {
     public partial class HelperlandContext : DbContext
     {
@@ -19,14 +19,12 @@ namespace Helperland.Data
         }
 
         public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<ContactU> ContactUs { get; set; }
-        public virtual DbSet<ContactUsAttachment> ContactUsAttachments { get; set; }
+        public virtual DbSet<ContactUs> ContactUs { get; set; }
         public virtual DbSet<FavoriteAndBlocked> FavoriteAndBlockeds { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
         public virtual DbSet<ServiceRequestAddress> ServiceRequestAddresses { get; set; }
         public virtual DbSet<ServiceRequestExtra> ServiceRequestExtras { get; set; }
-        public virtual DbSet<ServiceSetting> ServiceSettings { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserAddress> UserAddresses { get; set; }
@@ -60,7 +58,7 @@ namespace Helperland.Data
                     .HasConstraintName("FK_City_State");
             });
 
-            modelBuilder.Entity<ContactU>(entity =>
+            modelBuilder.Entity<ContactUs>(entity =>
             {
                 entity.HasKey(e => e.ContactUsId);
 
@@ -69,6 +67,10 @@ namespace Helperland.Data
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(200);
+
+                entity.Property(e => e.FileName)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Message).IsRequired();
 
@@ -82,22 +84,7 @@ namespace Helperland.Data
 
                 entity.Property(e => e.Subject).HasMaxLength(500);
 
-                entity.Property(e => e.SubjectType)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
                 entity.Property(e => e.UploadFileName).HasMaxLength(100);
-            });
-
-            modelBuilder.Entity<ContactUsAttachment>(entity =>
-            {
-                entity.ToTable("ContactUsAttachment");
-
-                entity.Property(e => e.FileName).IsRequired();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<FavoriteAndBlocked>(entity =>
@@ -124,8 +111,6 @@ namespace Helperland.Data
                 entity.Property(e => e.Comments).HasMaxLength(2000);
 
                 entity.Property(e => e.Friendly).HasColumnType("decimal(2, 1)");
-
-                entity.Property(e => e.IsApproved).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.OnTimeArrival).HasColumnType("decimal(2, 1)");
 
@@ -222,8 +207,6 @@ namespace Helperland.Data
 
                 entity.Property(e => e.State).HasMaxLength(50);
 
-                entity.Property(e => e.Type).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.ServiceRequest)
                     .WithMany(p => p.ServiceRequestAddresses)
                     .HasForeignKey(d => d.ServiceRequestId)
@@ -239,13 +222,6 @@ namespace Helperland.Data
                     .HasForeignKey(d => d.ServiceRequestId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceRequestExtra_ServiceRequest");
-            });
-
-            modelBuilder.Entity<ServiceSetting>(entity =>
-            {
-                entity.ToTable("ServiceSetting");
-
-                entity.Property(e => e.LastPoll).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<State>(entity =>
@@ -289,13 +265,9 @@ namespace Helperland.Data
 
                 entity.Property(e => e.PaymentGatewayUserRef).HasMaxLength(200);
 
-                entity.Property(e => e.ResetKey).HasMaxLength(200);
-
                 entity.Property(e => e.TaxNo).HasMaxLength(50);
 
                 entity.Property(e => e.UserProfilePicture).HasMaxLength(200);
-
-                entity.Property(e => e.WebSite).HasMaxLength(1000);
 
                 entity.Property(e => e.ZipCode).HasMaxLength(20);
             });
