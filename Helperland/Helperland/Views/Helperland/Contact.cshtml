@@ -1,4 +1,6 @@
-﻿@section css{
+﻿@model Helperland.Models.ViewModels.contactusform
+
+@section css{
     <link rel="stylesheet" href="~/css/contact.css" />
 }
 
@@ -48,49 +50,65 @@
 <section class="contactusForm">
     <h2 class="contactusFormHeading text-center">Get in touch with us</h2>
     <div class="container contactusFormContainer">
-        <form asp-controller="Helperland" asp-action="Contact" method="post">
-            <div class="form-row mb-2">
+
+        @if (ViewBag.IsSuccess == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>
+                        Your message has been sent successfully. Our team will be in touch with you shortly.
+                    </strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div> 
+            }
+        <form enctype="multipart/form-data" asp-controller="Helperland" asp-action="Contact" method="post">
+            <div class="form-row form-group mb-2">
                 <div class="col-12 col-sm-6">
-                    <input type="text" class="form-control" placeholder="First name">
+                    <input id="first_name"  asp-for="fname" class="form-control" placeholder="First name">
+                    <span asp-validation-for="fname" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6">
-                    <input id="last_name" type="text" class="form-control" placeholder="Last name">
+                    <input id="last_name" asp-for="lname" name="lname" type="text" class="form-control" placeholder="Last name">
+                    <span asp-validation-for="lname" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-row mb-2">
+            <div class="form-row form-group mb-2">
                 <div class="col-12 col-sm-6">
                     <div class="input-group mx-0 row">
                         <span class="input-group-text col-2" id="countryCode">+49</span>
-                        @*<input type="text" class="input-group-text col-2 px-0" id="countryCode" placeholder="+91" />*@
-                        <input type="number" class="form-control col-10" placeholder="Mobile Number" aria-label="Mobile Number" aria-describedby="basic-addon1" />
+                        <input asp-for="PhoneNumber" class="form-control col-10" placeholder="Mobile Number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
-                    <input id="usermail" type="email" class="form-control" placeholder="Email Adress">
+                    <input id="usermail" asp-for="Email" class="form-control" placeholder="Email Adress">
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row mb-2">
                 <div class="col-sm-12">
                     <div class="form-group">
-                    <select class="form-control" name="subject" id="subject">
-                        <option value="general" selected>General</option>
-                        <option value="inquiry">Inquiry</option>
-                        <option value="renewal">Renewal</option>
-                        <option value="revocation">Revocation</option>
-                    </select>
+                        <select asp-for="Subject" class="form-control" name="subject" id="subject">
+                            <option value="general" selected>General</option>
+                            <option value="inquiry">Inquiry</option>
+                            <option value="renewal">Renewal</option>
+                            <option value="revocation">Revocation</option>
+                        </select>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group mb-2">
-                <textarea placeholder="Message" class="form-control" rows="3"></textarea>
+                <textarea asp-for="Message" placeholder="Message" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
             </div>
             <div class="form-row mb-2">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label class="uploadlbl">enclose attachment</label>
                         <label id="uploadFileBtn" for="upload-file">Upload</label>
-                        <input type="file" name="file" id="upload-file"/>
+                        <input asp-for="UploadFileName"  id="upload-file"/>
                         <span id="uploadFilePath"></span>
+                            
 
                     </div>
                 </div>
@@ -98,14 +116,15 @@
 
             <div class="form-row">
                 <div class="col-sm-12 form-check">
-                    <input type="checkbox" class="form-check-input" id="AgreeTerms" />
+                    <input type="checkbox" class="form-check-input" id="AgreeTerms" required />
                     <label class="form-check-label AgreeTermsStatement" for="AgreeTerms">Our current data protection regulations apply . I hereby agree that my data entered in the contact form will be stored electronically and processed and used for the purpose of establishing contact. The consent can be revoked at any time in accordance with Art. 7 Para. 3 GDPR by informal notification (e.g. by e-mail).</label>
                 </div>
             </div>
 
 
-            <div class="text-center">
-                <button class="formSubmit mt-2" type="submit">Send</button>
+            <div class="text-center form-group">
+                
+                <input type="submit" value="submit" class="formSubmit mt-2" />
             </div>
         </form>
     </div>
