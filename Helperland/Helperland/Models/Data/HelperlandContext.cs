@@ -2,12 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Helperland.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 #nullable disable
 
 namespace Helperland.Models.Data
 {
-    public partial class HelperlandContext : DbContext
+    public partial class HelperlandContext : IdentityDbContext
     {
         public HelperlandContext()
         {

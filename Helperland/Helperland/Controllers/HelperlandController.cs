@@ -64,6 +64,7 @@ namespace Helperland.Controllers
                     Message = contactform.Message,
                     CreatedOn = DateTime.UtcNow,
                     UploadFileName = contactform.UploadFilePath,
+                    FileName = contactform.UploadFileName.FileName,
             };
             _helperlandContext.ContactUs.Add(request);
             _helperlandContext.SaveChanges();
