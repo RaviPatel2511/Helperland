@@ -33,10 +33,10 @@
                         <a class="nav-link menu" asp-controller="Helperland" asp-action="Contact">Contact us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu loginbtn" href="#">Login</a>
+                        <a class="nav-link menu loginbtn" data-toggle="modal" href="" data-target="#userloginModal">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu" asp-controller="Helperland" asp-action="BecomeProvider">Become a Helper</a>
+                        <a class="nav-link menu" asp-controller="Account" asp-action="ProviderSignup">Become a Helper</a>
                     </li>
                     <li>
                         <div class="btn-group countryFlag">
@@ -57,7 +57,7 @@
         <!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
         <div class="mobileNav">
             <div class="mobileNavSpaccing">
-                <img class="mobileLogo" src="~/image/home/logo.png" alt="">
+                <img class="mobileLogo" src="~/image/home/logo.png" alt="logo">
                 <div class="menubtn">
                     <button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
                 </div>
@@ -76,9 +76,9 @@
                         <hr>
                         <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact us</a></li>
                         <hr>
-                        <li><a class="mobileNavMenu loginbtn">Login</a></li>
+                        <li><a class="mobileNavMenu loginbtn" data-toggle="modal" href="" data-target="#userloginModal">Login</a></li>
                         <hr>
-                        <li><a asp-controller="Helperland" asp-action="BecomeProvider" class="mobileNavMenu">Become a Helper</a></li>
+                        <li><a asp-controller="Account" asp-action="ProviderSignup" class="mobileNavMenu">Become a Helper</a></li>
                         <li>
                             <div class="btn-group countryFlag">
                                 <button class="btn dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"> <img src="https://cdn-icons-png.flaticon.com/128/206/206626.png" alt="flag"> </button>
@@ -110,7 +110,7 @@
         <div class="d-flex justify-content-center align-items-center text-center hr-line">
             <hr />
         </div>
-        <p class="text-center right">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy </p>
+        <p class="text-center right mb-0">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy </p>
     </footer>
 
     <script src="~/lib/jquery/jquery.min.js"></script>

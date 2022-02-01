@@ -16,10 +16,10 @@ $(document).ready( function () {
        }],
       "language": {
           "paginate": {
-            "first": '<img src="./image/upcoming_service/step-backward-solid.svg"></img>',
-            "next": '<img src="./image/upcoming_service/angle-right-solid.svg"></img>',
-          "previous": '<img src="./image/upcoming_service/angle-left-solid.svg"></img>',
-          "last":'<img src="./image/upcoming_service/step-forward-solid.svg"></img>'
+            "first": '<img src="~/image/upcoming_service/step-backward-solid.svg"></img>',
+            "next": '<img src="~/image/upcoming_service/angle-right-solid.svg"></img>',
+          "previous": '<img src="~/image/upcoming_service/angle-left-solid.svg"></img>',
+          "last":'<img src="~/image/upcoming_service/step-forward-solid.svg"></img>'
           },
           'info': "Total Record: _MAX_",
           

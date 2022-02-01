@@ -20,22 +20,27 @@ namespace Helperland.Controllers
             _helperlandContext = helperlandContext;
             _webHostEnvironment = webHostEnvironment;
         }
-        
-        public IActionResult Index()
+        [Route("")]
+        [Route("Home")]
+        public IActionResult Index(bool isLoginDetail=false)
         {
+            ViewBag.IsLoginDetail = isLoginDetail;
             ViewBag.Title = "Home";
             return View();
         }
+        [Route("faqs")]
         public IActionResult Faqs()
         {
             ViewBag.Title = "faqs";
             return View();
         }
+        [Route("price")]
         public IActionResult Prices()
         {
             ViewBag.Title = "Prices";
             return View();
         }
+        //[Route("contact")]
         public IActionResult Contact(bool isSuccess=false)
         {
             ViewBag.IsSuccess = isSuccess;
@@ -73,15 +78,11 @@ namespace Helperland.Controllers
             }
             return View();
         }
+        [Route("about")]
         public IActionResult About()
         {
             ViewBag.Title = "About";
             return View();
         }
-        //public IActionResult BecomeProvider()
-        //{
-        //    ViewBag.Title = "BecomeProvider";
-        //    return View();
-        //}
     }
 }

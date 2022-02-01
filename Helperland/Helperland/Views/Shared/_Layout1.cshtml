@@ -35,10 +35,10 @@
                         <a class="nav-link menu" asp-controller="Helperland" asp-action="Contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu loginbtn" href="#">Login</a>
+                        <a class="nav-link menu loginbtn" asp-controller="Helperland" asp-action="Index" href="#">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu" asp-controller="Helperland" asp-action="BecomeProvider">Become a Helper</a>
+                        <a class="nav-link menu" asp-controller="Account" asp-action="ProviderSignup">Become a Helper</a>
                     </li>
                 </ul>
             </div>
@@ -67,7 +67,7 @@
                         <hr>
                         <li><a class="mobileNavMenu loginbtn">Login</a></li>
                         <hr>
-                        <li><a asp-controller="Helperland" asp-action="BecomeProvider" class="mobileNavMenu">Become a Helper</a></li>
+                        <li><a asp-controller="Account" asp-action="ProviderSignup" class="mobileNavMenu">Become a Helper</a></li>
                     </ul>
                 </div>
             </div>

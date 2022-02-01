@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Helperland.Models.ViewModels.userVM
+
+@{
     Layout = "~/Views/Shared/_Layout2.cshtml";
            }
 @section css{
@@ -17,20 +19,26 @@
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></button>
                     </div>
                     <div class="modal-body user-login-detail">
-                        <form>
+                        @if (ViewBag.IsLoginDetail)
+                        {
+                            <span class="text-danger">Invalid Email or Password</span>
+                        }
+                        <form asp-controller="Account" asp-action="login">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="user-email" placeholder="E-Mail" name="user-email"> <img src="~/image/home/login_user.png">
+                                <input asp-for="Email" class="form-control" id="user-email" placeholder="E-Mail"> <img src="~/image/home/login_user.png">
+                                @*<span asp-validation-for="Email" class="text-danger"></span>*@
                             </div>
                             <div class="input-group">
-                                <input type="password" class="form-control" placeholder="Password" name="user-password" id="user-password"> <img src="~/image/home/login_lock.png">
+                                <input asp-for="Password" class="form-control" placeholder="Password" id="user-password"> <img src="~/image/home/login_lock.png">
+                                @*<span asp-validation-for="Password" class="text-danger"></span>*@
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="remember" />
                                 <label class="form-check-label" for="remember"> Remember Me</label>
                             </div>
-                            <button type="submit" id="loginbtn" name="loginbtn" disabled>Log in</button>
+                            <button type="submit" id="loginbtn" name="loginbtn">Log in</button>
                         </form>
-                        <div class="text-center other-link"> <a href="#" id="forgotPassLink" data-toggle="modal" data-target="#forgotPass" data-dismiss="modal">Forgot Password ?</a> <a href="#">Don't have an account yet ?</a> <a href="upcoming_service.html">Create Account</a> </div>
+                        <div class="text-center other-link"> <a href="#" id="forgotPassLink" data-toggle="modal" data-target="#forgotPass" data-dismiss="modal">Forgot Password ?</a> <a href="javascript:void(0)">Don't have an account yet ?</a> <a asp-controller="Account" asp-action="CustSignup">Create Account</a> </div>
                     </div>
                 </div>
             </div>
