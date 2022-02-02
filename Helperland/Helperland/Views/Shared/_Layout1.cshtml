@@ -13,40 +13,38 @@
 
 <body>
     <!--////////////////////// main part////////////////////////////////// -->
-    <header>
-
+    @if (ViewBag.loginUserType == "provider")
+    {
         <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" asp-controller="Helperland" asp-action="Index"><img src="~/image/faq/logo.png" height="28" alt="logo" /></a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link menu" href="#">Book Now </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu" asp-controller="Helperland" asp-action="Prices">Price & Service</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu" href="javascript:void(0)">Warranty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu" href="javascript:void(0)">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu" asp-controller="Helperland" asp-action="Contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu loginbtn text-white" asp-controller="Helperland" asp-action="Index" asp-route-loginModal="true">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu" asp-controller="Account" asp-action="ProviderSignup">Become a Helper</a>
-                    </li>
-                </ul>
-            </div>
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand"> <img src="~/image/home/logo.png" height="28" alt="CoolBrand" /> </a>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav text-light">
+                        <a href="price.html" class="nav-item nav-link menu">Prices & services</a> <a href="#" class="nav-item nav-link menu">Warranty</a> <a href="#" class="nav-item nav-link menu">Blog</a> <a href="contact.html" class="nav-item nav-link menu">Contact</a>
+                        <a href="#" class="nav-item nav-link notification_item"> <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span> </a>
+                        <div class="btn-group user_setting">
+                            <button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                                <img src="~/image/upcoming_service/user.svg" alt="flag">
+                                <svg style="margin-left: 7px;" xmlns="http://www.w3.org/2000/svg" width="11" height="6">
+                                    <path fill-rule="evenodd" fill="#FFF" d="M.113.674C.37.597 0 .5 0 .394 0 .287.37.191.113.113c.152.297.399.297.55 0L5.499 5.43 10.336.113c.151.297.398.297.55 0 .484.155.484.406 0 .561l-5.112 5.21c-.151.506-.398.506-.55 0L.113.674z" />
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                                <li><span class="dropdown-item">Welcome <br>@ViewBag.UserName</span></li>
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
         </nav>
-        <!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
-        <div class="mobileNav">
+        <section class="mobileNav">
             <div class="mobileNavSpaccing">
-                <img class="mobileLogo" src="~/image/home/logo.png" alt="logo">
+                <img class="mobileLogo" src="~/image/home/logo.png" alt="">
+                <div class="mobileNotification">
+                    <a href="#" class="nav-item nav-link notification_item"> <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span> </a>
+                </div>
                 <div class="menubtn">
                     <button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
                 </div>
@@ -54,26 +52,164 @@
             <div class="sideNav">
                 <div class="openSidenav">
                     <div class="closebtn"> <img src="~/image/home/times-solid.svg" alt="close"> </div>
-                    <ul>
-                        <li><a href="#" class="mobileNavMenu">Book Now</a></li>
-                        <hr>
-                        <li><a asp-controller="Helperland" asp-action="Prices" class="mobileNavMenu">Prices & Servcies</a></li>
-                        <hr>
-                        <li><a href="javascript:void(0)" class="mobileNavMenu">Warranty</a></li>
-                        <hr>
-                        <li><a href="javascript:void(0)" class="mobileNavMenu">Blog</a></li>
-                        <hr>
-                        <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact</a></li>
-                        <hr>
-                        <li><a class="mobileNavMenu loginbtn" asp-controller='Helperland' asp-action='Index' asp-route-loginModal='true'>Login</a></li>
-                        <hr>
-                        <li><a asp-controller="Account" asp-action="ProviderSignup" class="mobileNavMenu">Become a Helper</a></li>
-                    </ul>
+                    <p class="mobileNavMenu">
+                        Welcome
+                        <br><strong>@ViewBag.UserName</strong>
+                    </p>
+                    <hr> <a href="#" class="mobileNavMenu">Dashbord</a> <a href="#" class="mobileNavMenu">New Service Request</a> <a href="#" class="mobileNavMenu current">Upcoming Service</a> <a href="#" class="mobileNavMenu">Service Schedule</a> <a href="#" class="mobileNavMenu">Service History</a> <a href="#" class="mobileNavMenu">My Rating</a> <a href="#" class="mobileNavMenu">Block Customer</a> <a href="#" class="mobileNavMenu">My Setting</a> <a href="#" class="mobileNavMenu">Logout</a>
+                    <hr> <a href="#" class="mobileNavMenu">Book Now</a> <a href="#" class="mobileNavMenu">Prices & Services</a> <a href="#" class="mobileNavMenu">Warrenty</a> <a href="#" class="mobileNavMenu">Blog</a> <a href="#" class="mobileNavMenu">Contact</a>
+                    <hr>
+                    <div class="m-auto"> <img class="px-3" src="~/image/price/facebook.png" /> <img class="px-3" src="~/image/price/insta.png" /> </div>
                 </div>
             </div>
-        </div>
-    </header>
-        <!-- /////////////////////////////MOBILE NAVBAR END////////////////////////// -->
+        </section>
+
+    }
+    else if (ViewBag.loginUserType == "customer")
+    {
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">
+                    <img src="~/image/home/logo.png" height="28" alt="CoolBrand" />
+                </a>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav text-light">
+                        <a href="price.html" class="nav-item nav-link menu">Book now</a>
+                        <a href="price.html" class="nav-item nav-link menu">Prices & services</a>
+                        <a href="#" class="nav-item nav-link menu">Warranty</a>
+                        <a href="#" class="nav-item nav-link menu">Blog</a>
+                        <a href="contact.html" class="nav-item nav-link menu">Contact</a>
+                        <a href="#" class="nav-item nav-link notification_item">
+                            <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                        </a>
+                        <div class="btn-group user_setting">
+                            <button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown"
+                                    data-bs-auto-close="true" aria-expanded="false">
+                                <img src="~/image/upcoming_service/user.svg" alt="flag">
+                                <svg style="margin-left: 7px;" xmlns="http://www.w3.org/2000/svg" width="11" height="6">
+                                    <path fill-rule="evenodd" fill="#FFF"
+                                          d="M.113.674C.37.597 0 .5 0 .394 0 .287.37.191.113.113c.152.297.399.297.55 0L5.499 5.43 10.336.113c.151.297.398.297.55 0 .484.155.484.406 0 .561l-5.112 5.21c-.151.506-.398.506-.55 0L.113.674z" />
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                                <li><span class="dropdown-item">Welcome <br>@ViewBag.UserName</span></li>
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+        <section class="mobileNav">
+            <div class="mobileNavSpaccing">
+                <img class="mobileLogo" src="~/image/home/logo.png" alt="">
+                <div class="mobileNotification">
+                    <a href="#" class="nav-item nav-link notification_item">
+                        <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                    </a>
+                </div>
+                <div class="menubtn">
+                    <button class="navbar-toggler">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+            <div class="sideNav">
+                <div class="openSidenav">
+                    <div class="closebtn">
+                        <img src="~/image/home/times-solid.svg" alt="close">
+                    </div>
+                    <p class="mobileNavMenu">Welcome<br><strong>@ViewBag.UserName</strong></p>
+                    <hr>
+                    <a href="#" class="mobileNavMenu">Dashbord</a>
+                    <a href="#" class="mobileNavMenu current">Service History</a>
+                    <a href="#" class="mobileNavMenu">Service Schedule</a>
+                    <a href="#" class="mobileNavMenu">Favourite Pros</a>
+                    <a href="#" class="mobileNavMenu">Invoices</a>
+                    <a href="#" class="mobileNavMenu">Notification</a>
+                    <a href="#" class="mobileNavMenu">My Setting</a>
+                    <a href="#" class="mobileNavMenu">Logout</a>
+                    <hr>
+                    <a href="#" class="mobileNavMenu">Book Now</a>
+                    <a href="#" class="mobileNavMenu">Prices & Services</a>
+                    <a href="#" class="mobileNavMenu">Warrenty</a>
+                    <a href="#" class="mobileNavMenu">Blog</a>
+                    <a href="#" class="mobileNavMenu">Contact</a>
+                    <hr>
+                    <div class="m-auto">
+                        <img class="px-3" src="~/image/price/facebook.png" />
+                        <img class="px-3" src="~/image/price/insta.png" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" asp-controller="Helperland" asp-action="Index"><img src="~/image/faq/logo.png" height="28" alt="logo" /></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link menu" href="#">Book Now </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu" asp-controller="Helperland" asp-action="Prices">Price & Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu" href="javascript:void(0)">Warranty</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu" href="javascript:void(0)">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu" asp-controller="Helperland" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu loginbtn text-white" asp-controller="Helperland" asp-action="Index" asp-route-loginModal="true">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu" asp-controller="Account" asp-action="ProviderSignup">Become a Helper</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
+            <div class="mobileNav">
+                <div class="mobileNavSpaccing">
+                    <img class="mobileLogo" src="~/image/home/logo.png" alt="logo">
+                    <div class="menubtn">
+                        <button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
+                    </div>
+                </div>
+                <div class="sideNav">
+                    <div class="openSidenav">
+                        <div class="closebtn"> <img src="~/image/home/times-solid.svg" alt="close"> </div>
+                        <ul>
+                            <li><a href="#" class="mobileNavMenu">Book Now</a></li>
+                            <hr>
+                            <li><a asp-controller="Helperland" asp-action="Prices" class="mobileNavMenu">Prices & Servcies</a></li>
+                            <hr>
+                            <li><a href="javascript:void(0)" class="mobileNavMenu">Warranty</a></li>
+                            <hr>
+                            <li><a href="javascript:void(0)" class="mobileNavMenu">Blog</a></li>
+                            <hr>
+                            <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact</a></li>
+                            <hr>
+                            <li><a class="mobileNavMenu loginbtn" asp-controller='Helperland' asp-action='Index' asp-route-loginModal='true'>Login</a></li>
+                            <hr>
+                            <li><a asp-controller="Account" asp-action="ProviderSignup" class="mobileNavMenu">Become a Helper</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    }
+    <!-- /////////////////////////////MOBILE NAVBAR END////////////////////////// -->
     @RenderBody()
     <!--//////////////////////////////////// FOOTER/////////////////////////////// -->
     <footer>
@@ -82,8 +218,8 @@
             <div class="d-flex flex-wrap text-center justify-content-center fmenulink"> <a class="px-3" asp-controller="Helperland" asp-action="Index">HOME</a> <a class="px-3" asp-controller="Helperland" asp-action="About">ABOUT</a> <a class="px-3" href="javascript:void(0)">TESTIMONIALS</a> <a class="px-3" asp-controller="Helperland" asp-action="Faqs">FAQS</a> <a class="px-3" href="javascript:void(0)">INSURRANCE POLICY</a> <a class="px-3" href="javascript:void(0)">IMPRESSUM</a> </div>
             <div> <img class="img-fluid fimg1" src="~/image/faq/facebook.png" /> <img class="img-fluid fimg2" src="~/image/faq/insta.png" /> </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center text-center hr-line" >
-            <hr/>
+        <div class="d-flex justify-content-center align-items-center text-center hr-line">
+            <hr />
         </div>
         <p class="text-center right">©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy </p>
     </footer>

@@ -28,8 +28,8 @@ namespace Helperland
             services.AddControllersWithViews();
             var connection = "server=RAVI;database=Helperland;trusted_connection=true;";
             services.AddDbContext<HelperlandContext>(options => options.UseSqlServer(connection));
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<HelperlandContext>(); 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,15 +39,16 @@ namespace Helperland
             {
                 app.UseDeveloperExceptionPage();
             }
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
-            //}
+            else
+            {
+                app.UseExceptionHandler("/Helperland/Error");
+            }
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

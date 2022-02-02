@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Helperland.Models.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,24 @@ namespace Helperland.Controllers
 {
     public class ProviderController : Controller
     {
-        public IActionResult UpcomingRequest()
+        private readonly HelperlandContext _helperlandContext;
+        public ProviderController(HelperlandContext helperlandContext)
         {
-            return View();
+            _helperlandContext = helperlandContext;
+        }
+        public IActionResult UpcomingService()
+        {
+            
+            if (Convert.ToInt32(HttpContext.Session.GetString("usertypeid")) == 2 && HttpContext.Session.GetString("userid") != null)
+            {
+                ViewBag.Title = "UpcomingRequest";
+                ViewBag.loginUserType = "provider";
+                var userid = Convert.ToInt32(HttpContext.Session.GetString("userid"));
+                var loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
     }
 }
