@@ -16,8 +16,9 @@ namespace Helperland.Controllers
         {
             _helperlandContext = helperlandContext;
         }
-        public IActionResult CustSignup()
+        public IActionResult CustSignup(bool isuserExists= false)
         {
+            ViewBag.IsuserExists = isuserExists;
             ViewBag.Title = "Signup";
             return View();
         }
@@ -39,17 +40,25 @@ namespace Helperland.Controllers
                     ModifiedDate = DateTime.Now
 
                 };
-            _helperlandContext.Users.Add(cust);
-            _helperlandContext.SaveChanges();
-            return RedirectToAction("Index","Helperland");
+                var userExists = _helperlandContext.Users.Where(x => x.Email == cust.Email).FirstOrDefault();
+                if (userExists == null)
+                {
+                    _helperlandContext.Users.Add(cust);
+                    _helperlandContext.SaveChanges();
+                    return RedirectToAction("Index","Helperland");
+                }
+                else
+                {
+                    return RedirectToAction(nameof(CustSignup), new { isuserExists = true });
+                }
             }
-            else
-            {
+           
                 return View();
-            }
+            
         }
-        public IActionResult ProviderSignup()
+        public IActionResult ProviderSignup(bool isproviderExists = false)
         {
+            ViewBag.IsproviderExists = isproviderExists;
             ViewBag.Title = "Signup";
             return View();
         }
@@ -70,14 +79,21 @@ namespace Helperland.Controllers
                     ModifiedDate = DateTime.Now
 
                 };
-                _helperlandContext.Users.Add(provider);
-                _helperlandContext.SaveChanges();
-                return RedirectToAction("Index", "Helperland");
+                var userExists = _helperlandContext.Users.Where(x => x.Email == provider.Email).FirstOrDefault();
+                if (userExists == null)
+                {
+                    _helperlandContext.Users.Add(provider);
+                    _helperlandContext.SaveChanges();
+                    return RedirectToAction("Index", "Helperland");
+                }
+                else
+                {
+                    return RedirectToAction(nameof(ProviderSignup), new { isproviderExists = true });
+                }
             }
-            else
-            {
+            
                 return View();
-            }
+           
         }
         [HttpPost]
         public IActionResult login(userVM uservm)
@@ -97,14 +113,11 @@ namespace Helperland.Controllers
                         return RedirectToAction("UpcomingRequest", "Provider");
                     }
                 }
-                else
-                {
-                    return RedirectToAction("Index","Helperland");
-                }
+  
             }
-            
-                return View();
- 
+
+            return RedirectToAction("Index", "Helperland");
+
         }
     }
 }

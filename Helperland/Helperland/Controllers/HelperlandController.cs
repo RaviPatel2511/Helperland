@@ -24,7 +24,7 @@ namespace Helperland.Controllers
         [Route("Home")]
         public IActionResult Index(bool isLoginDetail=false)
         {
-            ViewBag.IsLoginDetail = isLoginDetail;
+            //ViewBag.IsLoginDetail = isLoginDetail;
             ViewBag.Title = "Home";
             return View();
         }

@@ -3,7 +3,7 @@ const closebtn=document.querySelector('.closebtn');
 const mobileNav = document.querySelector('.mobileNav');
 const menubtn=document.querySelector('.menubtn');
 const nav = document.querySelector("nav");
-const loginbtn = document.querySelector('.loginbtn');
+
 
 window.addEventListener("scroll", () => {
 	if (window.scrollY > 130) {
@@ -32,11 +32,6 @@ window.onclick = function(event) {
 		Sidenav.classList.remove('open')
   }
 }
-
-loginbtn.addEventListener("click", ()=>{
-	document.cookie = "LoginModalOpen=true";
-	document.location.href = "index.html";
-})
 
 
 $(document).ready(function () {

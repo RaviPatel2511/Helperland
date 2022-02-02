@@ -4,7 +4,6 @@ const closebtn=document.querySelector('.closebtn');
 const mobileNav = document.querySelector('.mobileNav');
 const menubtn=document.querySelector('.menubtn');
 const nav = document.querySelector("nav");
-const loginbtn = document.querySelector('.loginbtn');
 
 jQuery('.dropdown-menu li a').click(function() {
     var _this_img = jQuery(this).attr('data-img');
@@ -38,9 +37,5 @@ window.onclick = function(event) {
 		Sidenav.classList.remove('open')
   }
 }
-loginbtn.addEventListener("click", ()=>{
-	document.cookie = "LoginModalOpen=true";
-	document.location.href = "index.html";
-})
 
 

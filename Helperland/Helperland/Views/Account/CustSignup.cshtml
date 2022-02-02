@@ -11,7 +11,15 @@
             <hr / class="side_hr"> <img src="~/image/price/star.png" />
             <hr / class="side_hr">
         </div>
-      
+        @if (ViewBag.IsuserExists == true)
+        {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>
+               This email is already registered please try with another .
+            </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        }
         <form asp-controller="Account" asp-action="CustSignup" method="post">
             <div class="row">
                 <div class="col">
@@ -33,7 +41,7 @@
                         <span class="form-control input-group-text col-2" id="countryCode">+91</span>
                         <input asp-for="Mobile" id="phone" class="form-control col-10" placeholder="Phone Number" />
                     </div>
-                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
@@ -56,7 +64,7 @@
                 </div>
             </div>
             <div class="row d-flex align-items-center justify-content-center">
-              
+
                 <input type="submit" value="Register" class="btn" id="register" />
             </div>
         </form>

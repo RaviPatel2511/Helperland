@@ -5,7 +5,7 @@ const Sidenav=document.querySelector('.sideNav');
 const closebtn=document.querySelector('.closebtn');
 const mobileNav = document.querySelector('.mobileNav');
 const cookierow = document.querySelector('.frow2');
-const userloginModal = new bootstrap.Modal(document.querySelector("#userloginModal"));
+const loginbtn = document.querySelector('.loginbtn');
 
 
 window.addEventListener("scroll", () => {
@@ -59,15 +59,6 @@ window.onclick = function(event) {
 }
 
 
-
-
-let cookies = document.cookie;
-if (cookies.includes("LoginModalOpen=true")) {
-	userloginModal.show();
-	document.cookie = "LoginModalOpen=false";
-}
-
-
 $('#forgotPassLink').click(function(){
 	$("#userloginModal").modal('hide');
 })
@@ -75,3 +66,7 @@ $('#forgotPassLink').click(function(){
 AOS.init({
 	once : true,
 });
+const urlSearchParams = new URLSearchParams(window.location.search);
+if (urlSearchParams == "loginModal=true") {
+	loginbtn.click();
+}
