@@ -1,6 +1,5 @@
 ﻿using Helperland.Models;
 using Helperland.Models.Data;
-using Helperland.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,29 +22,21 @@ namespace Helperland.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CustSignup(userVM uservm)
+        public IActionResult CustSignup(User user)
         {
             
             if (ModelState.IsValid)
             {
-                var cust = new User()
-                {
-                    UserTypeId = 1,
-                    FirstName = uservm.FirstName,
-                    LastName = uservm.LastName,
-                    Email = uservm.Email,
-                    Mobile = uservm.Mobile,
-                    Password = uservm.Password,
-                    CreatedDate = DateTime.Now,
-                    ModifiedDate = DateTime.Now
 
-                };
-                var userExists = _helperlandContext.Users.Where(x => x.Email == cust.Email).FirstOrDefault();
+                user.UserTypeId = 1;
+                user.CreatedDate = DateTime.Now;
+                user.ModifiedDate = DateTime.Now;
+                var userExists = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
                 if (userExists == null)
                 {
-                    _helperlandContext.Users.Add(cust);
+                    _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
-                    return RedirectToAction("Index","Helperland");
+                    return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
                 }
                 else
                 {
@@ -63,28 +54,22 @@ namespace Helperland.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult ProviderSignup(userVM uservm)
+        public IActionResult ProviderSignup(User user)
         {
             if (ModelState.IsValid)
             {
-                var provider = new User()
-                {
-                    UserTypeId = 2,
-                    FirstName = uservm.FirstName,
-                    LastName = uservm.LastName,
-                    Email = uservm.Email,
-                    Mobile = uservm.Mobile,
-                    Password = uservm.Password,
-                    CreatedDate = DateTime.Now,
-                    ModifiedDate = DateTime.Now
 
-                };
-                var userExists = _helperlandContext.Users.Where(x => x.Email == provider.Email).FirstOrDefault();
+                user.UserTypeId = 2;
+                user.CreatedDate = DateTime.Now;
+                user.ModifiedDate = DateTime.Now;
+
+           
+                var userExists = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
                 if (userExists == null)
                 {
-                    _helperlandContext.Users.Add(provider);
+                    _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
-                    return RedirectToAction("Index", "Helperland");
+                    return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
                 }
                 else
                 {
@@ -96,28 +81,30 @@ namespace Helperland.Controllers
            
         }
         [HttpPost]
-        public IActionResult login(userVM uservm)
+        public IActionResult login(User user)
         {
 
-            if(uservm.Email!=null && uservm.Password != null)
+            if(user.Email!=null && user.Password != null)
             {
-                var umail = _helperlandContext.Users.Where(x => x.Email == uservm.Email && x.Password == uservm.Password).FirstOrDefault();
-                if (umail != null)
+                var credentials = _helperlandContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+                if (credentials != null)
                 {
-                    if (umail.UserTypeId == 1)
+                    
+                    if (credentials.UserTypeId == 1)
                     {
                         return RedirectToAction("ServiceHistory", "Customer");
                     }
-                    else if (umail.UserTypeId == 2)
+                    else if (credentials.UserTypeId == 2)
                     {
                         return RedirectToAction("UpcomingRequest", "Provider");
                     }
                 }
   
             }
-
-            return RedirectToAction("Index", "Helperland");
-
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+            //return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+            ////return RedirectToAction(Url.Action("Index", "Helperland") + "?loginModal=true", new { IsLoginerror = true });
+            //return RedirectToPage()
         }
     }
 }

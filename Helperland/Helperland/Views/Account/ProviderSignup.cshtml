@@ -1,4 +1,4 @@
-﻿@model Helperland.Models.ViewModels.userVM
+﻿@model Helperland.Models.User
 
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -35,8 +35,8 @@
             </div>
             <span asp-validation-for="Password" class="text-danger"></span>
             <input class="form-control" asp-for="Password" id="password" placeholder="Password" />
-            <input class="form-control" asp-for="ConfirmPass" id="cpassword" placeholder="Confirm Password" />
-            <span asp-validation-for="ConfirmPass" class="text-danger"></span>
+            <input type="password" class="form-control"  id="cpassword" placeholder="Confirm Password" />
+            <span  class="text-danger"></span>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="acceptTerms" required />
                 <label class="form-check-label" for="acceptTerms"> I accept <a href="javascript:void(0)">terms and conditions</a> & <a href="javascript:void(0)">privacy policy</a> </label>

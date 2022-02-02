@@ -22,9 +22,9 @@ namespace Helperland.Controllers
         }
         [Route("")]
         [Route("Home")]
-        public IActionResult Index(bool isLoginDetail=false)
+        public IActionResult Index(bool isLoginerror=false)
         {
-            //ViewBag.IsLoginDetail = isLoginDetail;
+            ViewBag.IsLoginerror = isLoginerror;
             ViewBag.Title = "Home";
             return View();
         }

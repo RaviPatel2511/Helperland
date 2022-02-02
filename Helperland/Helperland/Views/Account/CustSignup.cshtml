@@ -1,4 +1,4 @@
-﻿@model Helperland.Models.ViewModels.userVM
+﻿@model Helperland.Models.User
 
 
     @section css{
@@ -50,8 +50,8 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="col">
-                    <input asp-for="ConfirmPass" class="form-control" placeholder="Confirm Password">
-                    <span asp-validation-for="ConfirmPass" class="text-danger"></span>
+                    <input type="password"  class="form-control" placeholder="Confirm Password">
+                    <span  class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
