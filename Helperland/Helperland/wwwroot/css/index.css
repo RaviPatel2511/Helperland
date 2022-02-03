@@ -344,13 +344,19 @@
     border-radius: 30px;
     font-size: 25px;
     margin: 10px 0;
+    cursor:pointer;
 }
+    #loginbtn :hover {
+        background: white;
+        color: #1d7a8c;
+        border: 1px solid #1d7a8c;
+    }
 
-#userloginModal .modal-content .other-link a:nth-child(1), #userloginModal .modal-content .other-link a:nth-child(3) {
-    color: #1d7a8c;
-    text-decoration: none;
-    display: block;
-}
+    #userloginModal .modal-content .other-link a:nth-child(1), #userloginModal .modal-content .other-link a:nth-child(3) {
+        color: #1d7a8c;
+        text-decoration: none;
+        display: block;
+    }
 
 #userloginModal .modal-content .other-link a:nth-child(2) {
     color: #646464;

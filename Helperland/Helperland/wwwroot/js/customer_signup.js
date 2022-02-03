@@ -19,4 +19,17 @@ window.onclick = function(event) {
 }
 
 
+$("#confirmPass").keyup(function () {
+    if ($('#pass').val() != $('#confirmPass').val()) {
+        $('#confirmPassError').html('Password doesnot match');
+        $('#register').prop('disabled', true);
+        $('#register').css('cursor', 'not-allowed');
+    } else {
+        $('#confirmPassError').html('');
+        $('#register').prop('disabled', false);
+        $('#register').css('cursor', 'pointer');
+    }
+});
+
+
 

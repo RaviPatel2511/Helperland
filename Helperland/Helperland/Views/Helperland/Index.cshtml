@@ -21,16 +21,15 @@
                         </button>
                     </div>
                     <div class="modal-body user-login-detail">
-                        @if (ViewBag.IsLoginerror)
-                        {
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>
-                                   Enter Valid Email and Password.
-                                </strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                        }
                         <form asp-controller="Account" asp-action="login">
+                        @if (TempData["notfound"]!=null)
+                        {
+                            
+                                <strong class="text-danger">
+                                  Please Enter Valid Email and Password.
+                                </strong>
+                               
+                        }
                             <div class="input-group">
                                 <input asp-for="Email" class="form-control" id="user-email" placeholder="E-Mail"> <img src="~/image/home/login_user.png">
                                 @*<span asp-validation-for="Email" class="text-danger"></span>*@
@@ -61,11 +60,11 @@
                         </button>
                     </div>
                     <div class="modal-body forgot-password">
-                        <form>
+                        <form asp-controller="Account" asp-action="ForgotPassword" method="post">
 
-                            <input type="text" class="form-control" id="passReseat-email" placeholder="E-Mail Adress" name="passReseat-email">
+                            <input asp-for="Email" class="form-control" id="passReseat-email" placeholder="E-Mail Adress">
+                            <button class="btn btn-lg" type="submit" id="pass-mail-button" name="pass-mail-button">Send</button>
                         </form>
-                        <button class="btn btn-lg" type="submit" id="pass-mail-button" name="pass-mail-button" disabled>Send</button>
                         <div class="text-center"><a data-toggle="modal" data-target="#userloginModal" data-dismiss="modal" id="backtologin">Log in now</a></div>
                     </div>
                 </div>

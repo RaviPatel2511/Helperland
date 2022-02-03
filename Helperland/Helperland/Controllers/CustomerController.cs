@@ -20,7 +20,7 @@ namespace Helperland.Controllers
             if(Convert.ToInt32(HttpContext.Session.GetString("usertypeid")) == 1 && HttpContext.Session.GetString("userid") != null)
             {
                 ViewBag.Title = "ServiceHistory";
-                ViewBag.loginUserType = "customer";
+                ViewBag.loginUserTypeId = 1;
                 var userid = Convert.ToInt32(HttpContext.Session.GetString("userid"));
                 var loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
                 ViewBag.UserName = loggeduser.FirstName;

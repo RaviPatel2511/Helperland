@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6b4YKwJPU+6aBUyU5XcgFylu2rmn7u8WNMzZ8TIzImMvbFTxgZpLfhna/QVs1khVqAJ/FGhutoBt1+/9ImIN9Q==",
+  "dgSpecHash": "Xel7ptYc1aCci6pELARY9g/bvQP6YzcUcDRRs6/z/o3Dy/f7bsy8ejBvp5JRIgafq6M/YIRvDa8nyh49ik+iDg==",
   "success": true,
   "projectFilePath": "C:\\Users\\RAVI\\Desktop\\Helperland\\Helperland\\Helperland\\Helperland.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\RAVI\\.nuget\\packages\\bcrypt.net\\0.1.0\\bcrypt.net.0.1.0.nupkg.sha512",
     "C:\\Users\\RAVI\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
@@ -116,5 +117,16 @@
     "C:\\Users\\RAVI\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\RAVI\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "BCrypt.Net",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

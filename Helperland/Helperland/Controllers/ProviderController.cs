@@ -21,7 +21,7 @@ namespace Helperland.Controllers
             if (Convert.ToInt32(HttpContext.Session.GetString("usertypeid")) == 2 && HttpContext.Session.GetString("userid") != null)
             {
                 ViewBag.Title = "UpcomingRequest";
-                ViewBag.loginUserType = "provider";
+                ViewBag.loginUserTypeId = 2;
                 var userid = Convert.ToInt32(HttpContext.Session.GetString("userid"));
                 var loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
                 ViewBag.UserName = loggeduser.FirstName;

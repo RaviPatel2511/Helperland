@@ -12,15 +12,15 @@
     <!-- ////////////////////////////// Register Now Start ///////////////////////// -->
     <div class="container d-flex align-items-center justify-content-center registerNow">
         <form asp-controller="Account" asp-action="ProviderSignup" method="post">
-        @if (ViewBag.IsproviderExists == true)
-        {
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>
-                    This email is already registered please try with another .
-                </strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-        }
+            @if (ViewBag.IsproviderExists == true)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>
+                        This email is already registered please try with another .
+                    </strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            }
             <h2 class="text-center">Register Now!</h2>
             <span asp-validation-for="FirstName" class="text-danger"></span>
             <input class="form-control" asp-for="FirstName" id="fname" placeholder="First Name" />
@@ -35,13 +35,15 @@
             </div>
             <span asp-validation-for="Password" class="text-danger"></span>
             <input class="form-control" asp-for="Password" id="password" placeholder="Password" />
-            <input type="password" class="form-control"  id="cpassword" placeholder="Confirm Password" />
-            <span  class="text-danger"></span>
+            <span id="confirmPassError" class="text-danger"></span>
+            <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" />
+
+            <span class="text-danger"></span>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="acceptTerms" required />
                 <label class="form-check-label" for="acceptTerms"> I accept <a href="javascript:void(0)">terms and conditions</a> & <a href="javascript:void(0)">privacy policy</a> </label>
             </div>
-            <button type="submit" class="become rounded-pill d-flex align-items-center justify-content-center">
+            <button type="submit" class="become btn d-flex align-items-center justify-content-center" id="started" disabled="disabled">
                 <span>Get Started &nbsp;</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="11">
                     <path fill-rule="evenodd" fill="#FFF" d="M.14 4.533h20.786C19.677 2.746 19.56 1.581 18.992.6c2.84 2.131 6.531 3.557 10.993 4.898-4.462 1.285-7.991 2.852-10.993 6.102.191-2.32.709-3.363 1.973-5.263H.14V4.533z" />

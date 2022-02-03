@@ -2,6 +2,7 @@
 using Helperland.Models.Data;
 using Helperland.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Helperland.Controllers
         [Route("Home")]
         public IActionResult Index(bool isLoginerror=false)
         {
+            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
             ViewBag.IsLoginerror = isLoginerror;
             ViewBag.Title = "Home";
             return View();
@@ -31,18 +33,22 @@ namespace Helperland.Controllers
         [Route("faqs")]
         public IActionResult Faqs()
         {
+
+            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
             ViewBag.Title = "faqs";
             return View();
         }
         [Route("price")]
         public IActionResult Prices()
         {
+            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
             ViewBag.Title = "Prices";
             return View();
         }
         //[Route("contact")]
         public IActionResult Contact(bool isSuccess=false)
         {
+            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
             ViewBag.IsSuccess = isSuccess;
             ViewBag.Title = "Contact us";
             return View();
@@ -81,6 +87,7 @@ namespace Helperland.Controllers
         [Route("about")]
         public IActionResult About()
         {
+            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
             ViewBag.Title = "About";
             return View();
         } 

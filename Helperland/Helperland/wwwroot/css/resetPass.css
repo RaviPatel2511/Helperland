@@ -1,0 +1,15 @@
+﻿#save {
+    padding: 4px 29px;
+    color: white;
+    background: rgba(0,95,113);
+    border-radius:20px;
+}
+    #save:hover {
+        color: rgba(0,95,113);
+        background: white;
+        border: 1px solid rgba(0,95,113);
+    }
+ .main{
+     max-width:500px;
+     margin-top:100px;
+ }

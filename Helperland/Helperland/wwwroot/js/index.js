@@ -70,3 +70,4 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 if (urlSearchParams == "loginModal=true") {
 	loginbtn.click();
 }
+

@@ -233,8 +233,8 @@ nav {
     padding: 11px 30px;
     background: #29626D;
     color: white;
-    border: none;
     border-radius: 30px;
+    cursor:not-allowed;
 }
 
     #register:hover {

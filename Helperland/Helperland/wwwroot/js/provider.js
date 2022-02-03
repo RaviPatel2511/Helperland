@@ -39,3 +39,15 @@ window.onclick = function(event) {
 }
 
 
+$("#cpassword").keyup(function () {
+    if ($('#password').val() != $('#cpassword').val()) {
+        $('#confirmPassError').html('Password doesnot match');
+        $('#started').prop('disabled', true);
+        $('#started').css('cursor', 'not-allowed');
+
+    } else {
+        $('#confirmPassError').html('');
+        $('#started').prop('disabled', false);
+        $('#started').css('cursor', 'pointer');
+    }
+});
