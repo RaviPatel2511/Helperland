@@ -14,6 +14,7 @@ namespace Helperland.Controllers
     public class AccountController : Controller
     {
     private readonly HelperlandContext _helperlandContext;
+        
         public AccountController(HelperlandContext helperlandContext)
         {
             _helperlandContext = helperlandContext;
@@ -26,10 +27,11 @@ namespace Helperland.Controllers
         string fromEmailPassword = "Ravi@2511";
         public IActionResult CustSignup(bool isuserExists= false)
         {
-            if(HttpContext.Session.GetString("userid") == null)
+            if(HttpContext.Session.GetInt32("userid") == null)
             {
                     ViewBag.Title = "Signup";
                     ViewBag.IsuserExists = isuserExists;
+                    ViewBag.UType = 1;
                     return View();
             }
             return RedirectToAction("Error", "Helperland");
@@ -42,6 +44,7 @@ namespace Helperland.Controllers
             {
 
                 user.UserTypeId = 1;
+                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
                 user.CreatedDate = DateTime.Now;
                 user.ModifiedDate = DateTime.Now;
                 var userExists = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
@@ -60,12 +63,14 @@ namespace Helperland.Controllers
                 return View();
             
         }
+        [HttpGet]
         public IActionResult ProviderSignup(bool isproviderExists = false)
         {
-            if (HttpContext.Session.GetString("userid") == null)
+            if (HttpContext.Session.GetInt32("userid") == null)
             {
                 ViewBag.Title = "Signup";
                 ViewBag.IsproviderExists = isproviderExists;
+                ViewBag.UType = 1;
                 return View();
             }
             return RedirectToAction("Error", "Helperland");
@@ -79,6 +84,7 @@ namespace Helperland.Controllers
                 user.UserTypeId = 2;
                 user.CreatedDate = DateTime.Now;
                 user.ModifiedDate = DateTime.Now;
+                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
            
                 var userExists = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
@@ -101,13 +107,15 @@ namespace Helperland.Controllers
         public IActionResult login(User user)
         {
 
-            if(user.Email!=null && user.Password != null)
+            if(user.Email !=null && user.Password != null)
             {
-                var credentials = _helperlandContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
-                if (credentials != null)
+
+                User credentials = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
+                bool isvalidpass = BCrypt.Net.BCrypt.Verify(user.Password, credentials.Password);
+                if (isvalidpass)
                 {
-                    HttpContext.Session.SetString("userid", credentials.UserId.ToString());
-                    HttpContext.Session.SetString("usertypeid", credentials.UserTypeId.ToString());
+                    HttpContext.Session.SetInt32("userid", credentials.UserId);
+                    HttpContext.Session.SetInt32("usertypeid", credentials.UserTypeId);
                     if (credentials.UserTypeId == 1)
                     {
                         return RedirectToAction("ServiceHistory", "Customer");
@@ -117,10 +125,11 @@ namespace Helperland.Controllers
                         return RedirectToAction("UpcomingService", "Provider");
                     }
                 }
+                
   
             }
-            TempData["notfound"] = "NotFound";
-            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+                TempData["notfound"] = "NotFound";
+                return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
 
         [HttpPost]
@@ -137,8 +146,7 @@ namespace Helperland.Controllers
                     string MailBody = "<!DOCTYPE html>" +
                              "<html> " +
                                  "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
-                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland</h1> " +
-                                 "<h2 style=\"color:#fff;\">Tap on reset password below link to reset your password</h2> " +
+                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland. Click Below link to change your password.</h1> " +
                                   "<a href='" + Url.Action("ResetPass", "Account", new { code = resetcode, id = account.UserId }, "http") + "'>Reset Password</a>" +
                                  "</body> " +
                              "</html>";
@@ -163,10 +171,12 @@ namespace Helperland.Controllers
                     smtp.Credentials = credential;
 
                     smtp.Send(message);
-                    return RedirectToAction("About", "Helperland");
+                    TempData["mailsend"] = "send";
+                    return Redirect((Url.Action("Index", "Helperland") + "?forgotPass=true"));
                 }
             }
-            return RedirectToAction("Contact", "Helperland");
+            TempData["mailnotfound"] = "NotFound";
+            return Redirect((Url.Action("Index", "Helperland") + "?forgotPass=true"));
         }
         [HttpGet]
         public IActionResult ResetPass(string code, int id)
@@ -186,7 +196,8 @@ namespace Helperland.Controllers
             if (ModelState.IsValid)
             {
             User user = _helperlandContext.Users.Where(x => x.UserId == id).FirstOrDefault();
-            user.Password = resetpass.password;
+            user.Password = BCrypt.Net.BCrypt.HashPassword(resetpass.password);
+            user.ModifiedDate = DateTime.Now;
             _helperlandContext.Users.Update(user);
             _helperlandContext.SaveChanges();
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
@@ -194,8 +205,15 @@ namespace Helperland.Controllers
             }
             else
             {
+                ViewBag.Resetpasserror = true;
                 return View();
             }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return Redirect((Url.Action("Index", "Helperland") + "?logoutModal=true"));
         }
 
     }

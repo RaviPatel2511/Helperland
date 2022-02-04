@@ -66,8 +66,50 @@ $('#forgotPassLink').click(function(){
 AOS.init({
 	once : true,
 });
+
+
 const urlSearchParams = new URLSearchParams(window.location.search);
 if (urlSearchParams == "loginModal=true") {
-	loginbtn.click();
-}
+	$("#userloginModal").modal('show');
+};
+
+
+
+$(".loginfield").keyup(function () {
+	if ($('#user-email').val() && $('#user-password').val() != null) {
+		$('#loginbtn').prop('disabled', false);
+		$('#loginbtn').css('cursor', 'pointer');
+	} else {
+		$('#loginbtn').prop('disabled', true);
+		$('#loginbtn').css('cursor', 'not-allowed');
+	}
+});
+$("#passReseat-email").keyup(function () {
+	if ($('#passReseat-email').val() != null) {
+		$('#pass-mail-button').prop('disabled', false);
+		$('#pass-mail-button').css('cursor', 'pointer');
+	} else {
+		$('#pass-mail-button').prop('disabled', true);
+		$('#pass-mail-button').css('cursor', 'not-allowed');
+	}
+});
+
+$(document).ready(function () {
+	$('[data-toggle="popover"]').popover();
+});
+
+
+const urlSearchParamsforlogout = new URLSearchParams(window.location.search);
+if (urlSearchParamsforlogout == "logoutModal=true") {
+	$('#logoutSuccessfully').modal({
+		backdrop: 'static', // to prevent closing with click
+		keyboard: false  // to prevent closing with 
+	});
+	$("#logoutSuccessfullyBtn").click();
+};
+
+const urlSearchParamsforpass = new URLSearchParams(window.location.search);
+if (urlSearchParamsforpass == "forgotPass=true") {
+	$("#forgotPass").modal('show');
+};
 

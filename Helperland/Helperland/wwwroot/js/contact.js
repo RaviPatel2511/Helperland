@@ -40,3 +40,7 @@ $(document).ready(function () {
 		$(this).next('#uploadFilePath').html(filename);
 	});
 });
+
+$(document).ready(function () {
+	$('[data-toggle="popover"]').popover();
+});

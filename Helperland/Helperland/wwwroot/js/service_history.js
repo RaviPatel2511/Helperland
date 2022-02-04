@@ -110,4 +110,8 @@ function sort(col, order) {
     }else{
         
     }
+  });
+
+$(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
 });

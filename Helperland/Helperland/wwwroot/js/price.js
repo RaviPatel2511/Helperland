@@ -36,3 +36,6 @@ window.onclick = function(event) {
   }
 }
 
+$(document).ready(function () {
+	$('[data-toggle="popover"]').popover();
+});

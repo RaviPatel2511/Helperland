@@ -199,3 +199,70 @@ nav{
             background-color: #1D7A8C;
             color: white;
       }
+
+
+
+
+
+
+
+
+.notification {
+    height: 32px;
+    width: 29px;
+    cursor: pointer;
+}
+
+.notification_number {
+    position: absolute;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    top: 3px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification_item {
+    position: relative;
+}
+
+    .notification_item::after {
+        content: '';
+        position: absolute;
+        background: white;
+        width: 1px;
+        height: 100%;
+        right: 0px;
+        top: 0;
+    }
+
+    .notification_item::before {
+        content: '';
+        position: absolute;
+        background: white;
+        width: 1px;
+        height: 100%;
+        left: 0px;
+        top: 0;
+        .user_setting button {
+    background: none;
+}
+.user_setting button {
+    background: none;
+}
+
+.userInfoItem {
+    color: #4f4f4f;
+    margin: 5px 0;
+    padding: 5px 5px;
+    font-size: 15px;
+}
+
+.user_setting .btn {
+    padding: 0.1rem 0.75rem;
+}

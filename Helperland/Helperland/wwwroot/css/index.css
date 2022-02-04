@@ -88,10 +88,16 @@
     border-radius: 45px;
     cursor: pointer;
 }
+    .nav-item:nth-child(1) .menu:hover,.nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover{
 
-.nav-item:nth-child(6) .menu {
-    padding: 7px 20px !important;
-}
+    color: #006072 !important; 
+    background-color: white;
+    border-color: #006072
+
+    }
+    .nav-item:nth-child(6) .menu {
+        padding: 7px 20px !important;
+    }
 
 .menu:hover {
     border-radius: 25px;
@@ -115,7 +121,7 @@
 .home_caption {
     color: white;
     padding: 30px 30px;
-    margin-top: 150px;
+    margin-top: 100px;
     margin-left: 10px;
 }
 
@@ -143,7 +149,13 @@
     border: 1px solid #ffffff;
     border-radius: 50px;
     opacity: 1;
+    cursor:pointer;
 }
+    .book_btn a:hover {
+        color: #006072;
+        background-color: white;
+        border-color: #006072;
+    }
 
 .process {
     display: flex;
@@ -344,12 +356,13 @@
     border-radius: 30px;
     font-size: 25px;
     margin: 10px 0;
-    cursor:pointer;
+    cursor:not-allowed;
 }
     #loginbtn :hover {
         background: white;
         color: #1d7a8c;
         border: 1px solid #1d7a8c;
+        cursor:not-allowed;
     }
 
     #userloginModal .modal-content .other-link a:nth-child(1), #userloginModal .modal-content .other-link a:nth-child(3) {
@@ -404,6 +417,7 @@ body.modal-open {
     width: 100%;
     height: 55px;
     margin: 30px 0;
+    cursor:not-allowed;
 }
 
 #backtologin {
@@ -822,7 +836,7 @@ footer {
     background-color: rgba(39,39,39,.7);
 }
 
-.smalllogo img {
+.smalllogo .navbar-brand img {
     width: 75px;
     height: 45px;
 }
@@ -844,6 +858,9 @@ footer {
 
     .mobileNav {
         display: block !important;
+    }
+    .countryFlag{
+        background:black;
     }
 
     .modal-content {
@@ -1020,3 +1037,98 @@ footer {
         margin:1.75rem auto;
     }
 }
+
+
+
+/*form AFTER LOGIN NAVBAR*/
+
+.notification {
+    height: 32px;
+    width: 29px;
+    cursor: pointer;
+}
+
+.notification_number {
+    position: absolute;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    top: 3px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification_item {
+    position: relative;
+}
+
+    .notification_item::after {
+        content: '';
+        position: absolute;
+        background: white;
+        width: 1px;
+        height: 100%;
+        right: 0px;
+        top: 0;
+    }
+
+    .notification_item::before {
+        content: '';
+        position: absolute;
+        background: white;
+        width: 1px;
+        height: 100%;
+        left: 0px;
+        top: 0;
+    }
+.user_setting button {
+    background: none;
+}
+
+.userInfoItem {
+    color: #4f4f4f;
+    margin: 5px 0;
+    padding: 5px 5px;
+    font-size: 15px;
+}
+
+.user_setting .btn {
+    padding: 0.1rem 0.75rem;
+}
+
+#logoutSuccessfully span {
+    display: inline-block;
+    background: #67b644;
+    padding: 27px;
+    border-radius: 363px;
+    margin-bottom: 25px;
+}
+#logoutSuccessfully span img {
+    display: block;
+}
+#logoutSuccessfully h3 {
+    margin: 0 0 20px;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 400;
+}
+#logoutSuccessfully button{
+    width:auto;
+    background:#1d7a8c;
+    border-color:white;
+    font-size:16px;
+    padding:9px 20px;
+    border-radius:40px;
+}
+    #logoutSuccessfully button:hover{
+        color:#1d718c;
+        background:white;
+        border-color:#1d7a8c;
+    }
+    #logoutSuccessfully .modal-dialog {
+        max-width: 400px;
+    }

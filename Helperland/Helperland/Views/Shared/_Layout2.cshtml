@@ -17,9 +17,12 @@
             <a class="navbar-brand" asp-controller="Helperland" asp-action="Index"> <img src="~/image/home/logo.png" height="28" alt="Brand" /></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link menu" href="#">Book a cleaner </a>
-                    </li>
+                    @if (@ViewBag.UType == 1)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link menu" href="#">Book a cleaner </a>
+                        </li>
+                    }
                     <li class="nav-item">
                         <a class="nav-link menu" asp-controller="Helperland" asp-action="Prices">Prices</a>
                     </li>
@@ -32,12 +35,36 @@
                     <li class="nav-item">
                         <a class="nav-link menu" asp-controller="Helperland" asp-action="Contact">Contact us</a>
                     </li>
+                    @if (@ViewBag.IsloggedIn == "success")
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-item nav-link notification_item">
+                                <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="btn-group user_setting">
+                                <button class="btn user-setting btn-md" title="<div>Welcome,<b class='d-block'>@ViewBag.UserName</b></div>" data-html="true" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="<a class='d-block userInfoItem' href='#'>My Dashboard</a><a class='d-block userInfoItem' href='#'>My Settings</a><a class='d-block userInfoItem' href='/Account/Logout>Logout</a>">
+
+                                    <img src="~/image/upcoming_service/user.svg" alt="flag">
+                                    <svg style="margin-left: 7px;" xmlns="http://www.w3.org/2000/svg" width="11" height="6">
+                                        <path fill-rule="evenodd" fill="#FFF"
+                                              d="M.113.674C.37.597 0 .5 0 .394 0 .287.37.191.113.113c.152.297.399.297.55 0L5.499 5.43 10.336.113c.151.297.398.297.55 0 .484.155.484.406 0 .561l-5.112 5.21c-.151.506-.398.506-.55 0L.113.674z" />
+                                    </svg>
+                                </button>
+
+                            </div>
+                        </li>
+                      }
+                       else
+                    {
                     <li class="nav-item">
-                        <a class="nav-link menu loginbtn text-white" data-toggle='modal' data-target='#userloginModal'>Login</a>
+                        <a class="nav-link menu loginbtn text-white" asp-controller="Helperland" asp-action="Index" asp-route-loginModal="true">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link menu" asp-controller="Account" asp-action="ProviderSignup">Become a Helper</a>
                     </li>
+                    }
                     <li>
                         <div class="btn-group countryFlag">
                             <button class="btn dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"> <img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"> </button>
@@ -57,7 +84,16 @@
         <!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
         <div class="mobileNav">
             <div class="mobileNavSpaccing">
-                <img class="mobileLogo" src="~/image/home/logo.png" alt="logo">
+                <a asp-controller="Helperland" asp-action="Index"><img class="mobileLogo" src="~/image/home/logo.png" alt="logo"></a>
+                @if (@ViewBag.IsloggedIn == "success")
+                {
+
+                    <div class="mobileNotification">
+                        <a href="#" class="nav-item nav-link notification_item">
+                            <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                        </a>
+                    </div>
+                }
                 <div class="menubtn">
                     <button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
                 </div>
@@ -66,19 +102,78 @@
                 <div class="openSidenav">
                     <div class="closebtn"> <img src="~/image/home/times-solid.svg" alt="close"> </div>
                     <ul>
-                        <li><a href="#" class="mobileNavMenu">Book a cleaner</a></li>
+
+                        @if (@ViewBag.IsloggedIn == "success" && @ViewBag.UType == 1)
+                        {
+                            <li><h5 class="mobileNavMenu">Welcome <br />@ViewBag.UserName</h5></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Dashboard</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Service History</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Service Schedule</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Favourite Pros</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Invoices</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Notification</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">My Setting</a></li>
+                            <hr>
+                            <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                            <hr>
+                        }
+
+                        @if (@ViewBag.IsloggedIn == "success" && @ViewBag.UType == 2)
+                        {
+                            <li><h5 class="mobileNavMenu">Welcome <br />@ViewBag.UserName</h5></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Dashboard</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">New Service Request</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Upcoming Service</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Service Schedule</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Service History</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">My Rating</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">Block Customer</a></li>
+                            <hr>
+                            <li><a href="#" class="mobileNavMenu">My Setting</a></li>
+                            <hr>
+                            <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                            <hr>
+                        }
+                        @if (@ViewBag.UType == 1)
+                        {
+                            <li><a href="#" class="mobileNavMenu">Book Now</a></li>
+                            <hr>
+
+                        }
+
+                        <li><a asp-controller="Helperland" asp-action="Prices" class="mobileNavMenu">Prices & Servcies</a></li>
                         <hr>
-                        <li><a asp-controller="Helperland" asp-action="Prices" class="mobileNavMenu">Prices</a></li>
-                        <hr>
-                        <li><a href="javascript:void(0)" class="mobileNavMenu">Our Guarantee</a></li>
+                        <li><a href="javascript:void(0)" class="mobileNavMenu">Warranty</a></li>
                         <hr>
                         <li><a href="javascript:void(0)" class="mobileNavMenu">Blog</a></li>
                         <hr>
-                        <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact us</a></li>
+                        <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact</a></li>
                         <hr>
-                        <li><a class="mobileNavMenu loginbtn" data-toggle='modal' data-target='#userloginModal'>Login</a></li>
-                        <hr>
-                        <li><a asp-controller="Account" asp-action="ProviderSignup" class="mobileNavMenu">Become a Helper</a></li>
+
+                        @if (@ViewBag.IsloggedIn != "success")
+                        {
+
+
+                            <li><a class="mobileNavMenu loginbtn" asp-controller='Helperland' asp-action='Index' asp-route-loginModal='true'>Login</a></li>
+                            <hr>
+                            <li><a asp-controller="Account" asp-action="ProviderSignup" class="mobileNavMenu">Become a Helper</a></li>
+                            <hr>
+                        }
+
                         <li>
                             <div class="btn-group countryFlag">
                                 <button class="btn dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"> <img src="https://cdn-icons-png.flaticon.com/128/206/206626.png" alt="flag"> </button>
@@ -90,6 +185,12 @@
                                         <a class="dropdown-item" data-img="https://cdn-icons-png.flaticon.com/128/555/555417.png" href="#"><img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="flag"></a>
                                     </li>
                                 </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex justify-content-center">
+                                <img style="width:50px;height:50px;" class="px-3" src="~/image/home/facebook-f-brands.svg" />
+                                <img style="width:60px;height:50px;" class="px-3" src="~/image/home/instagram-brands.svg" />
                             </div>
                         </li>
                     </ul>

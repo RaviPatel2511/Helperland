@@ -25,7 +25,18 @@ namespace Helperland.Controllers
         [Route("Home")]
         public IActionResult Index(bool isLoginerror=false)
         {
-            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            if(logedUserid != null)
+            {
+                User logedUser = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UserName = logedUser.FirstName;
+                ViewBag.UType = logedUser.UserTypeId;
+            }
+            else
+            {
+                ViewBag.UType = 1;
+            }
             ViewBag.IsLoginerror = isLoginerror;
             ViewBag.Title = "Home";
             return View();
@@ -33,22 +44,55 @@ namespace Helperland.Controllers
         [Route("faqs")]
         public IActionResult Faqs()
         {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            if (logedUserid != null)
+            {
+                User logedUser = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UserName = logedUser.FirstName;
+                ViewBag.UType = logedUser.UserTypeId;
+            }
+            else
+            {
+                ViewBag.UType = 1;
+            }
 
-            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
             ViewBag.Title = "faqs";
             return View();
         }
         [Route("price")]
         public IActionResult Prices()
         {
-            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            if (logedUserid != null)
+            {
+                User logedUser = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UserName = logedUser.FirstName;
+                ViewBag.UType = logedUser.UserTypeId;
+            }
+            else
+            {
+                ViewBag.UType = 1;
+            }
             ViewBag.Title = "Prices";
             return View();
         }
         //[Route("contact")]
         public IActionResult Contact(bool isSuccess=false)
         {
-            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            if (logedUserid != null)
+            {
+                User logedUser = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UserName = logedUser.FirstName;
+                ViewBag.UType = logedUser.UserTypeId;
+            }
+            else
+            {
+                ViewBag.UType = 1;
+            }
             ViewBag.IsSuccess = isSuccess;
             ViewBag.Title = "Contact us";
             return View();
@@ -87,7 +131,18 @@ namespace Helperland.Controllers
         [Route("about")]
         public IActionResult About()
         {
-            ViewBag.loginUserType = Convert.ToInt32(HttpContext.Session.GetString("usertypeid"));
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            if (logedUserid != null)
+            {
+                User logedUser = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UserName = logedUser.FirstName;
+                ViewBag.UType = logedUser.UserTypeId;
+            }
+            else
+            {
+                ViewBag.UType = 1;
+            }
             ViewBag.Title = "About";
             return View();
         } 

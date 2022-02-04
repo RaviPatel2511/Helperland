@@ -126,4 +126,5 @@ function sort(col, order) {
     else if (this.value == 'Status:Descending') {
         sort(4,"desc");
     }
-});
+  });
+

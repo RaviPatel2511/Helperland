@@ -1,4 +1,5 @@
-﻿using Helperland.Models.Data;
+﻿using Helperland.Models;
+using Helperland.Models.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,12 +18,13 @@ namespace Helperland.Controllers
         }
         public IActionResult ServiceHistory()
         {
-            if(Convert.ToInt32(HttpContext.Session.GetString("usertypeid")) == 1 && HttpContext.Session.GetString("userid") != null)
+            if(HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
             {
                 ViewBag.Title = "ServiceHistory";
-                ViewBag.loginUserTypeId = 1;
-                var userid = Convert.ToInt32(HttpContext.Session.GetString("userid"));
-                var loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 1;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
                 ViewBag.UserName = loggeduser.FirstName;
                 return View();
             }

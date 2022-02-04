@@ -12,30 +12,20 @@
   .navbar{
     padding: 0;
   }
-  .user_setting .dropdown-menu{
-    min-width: 0px !important;
-}
-.user_setting a{
-  padding: 0 !important;
-}
-.user_setting button{
+.user_setting button {
     background: none;
 }
-.user_setting {
-  display: inline;
+
+.userInfoItem {
+    color: #4f4f4f;
+    margin: 5px 0;
+    padding: 5px 5px;
+    font-size: 15px;
 }
+
 .user_setting .btn {
     padding: 0.1rem 0.75rem;
 }
-.user_setting .btn-group {
-margin:30px;
-background: none !important;
-}
-.user_setting .btn img { 
-  width:36px;
-  height: 36px;
-}
-.user_setting .dropdown-menu img { width:30px}
  
   #navbarCollapse {
     justify-content: right;
@@ -47,16 +37,25 @@ background: none !important;
     width: 73px;
     height: 55px;
   }
-  .menu:nth-child(1){
-      background: #29626D;
-      color: white;
-      border: 1px solid white;
-      border-radius: 30px;
+.nav-item:nth-child(1) .menu {
+    background: #29626D;
+    color: white;
+    border: 1px solid white;
+    border-radius: 30px;
 }
-.menu:nth-child(1):hover{
-    color: #29626D;
-    background: white;
-}
+    .nav-item:nth-child(1) .menu:hover{
+        color: #006072 !important;
+        background-color: white;
+        border-color: #006072
+    }
+    .nav-item:nth-child(1) .menu:hover {
+        color: #29626D;
+        background: white;
+    }
+    .nav-item:nth-child(2) .menu {
+       border:1px solid white;
+       border-radius:30px;
+    }
 .navbar-nav{
   height: 40px;
 }

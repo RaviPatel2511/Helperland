@@ -43,3 +43,6 @@ function changeImage(x) {
     }
 };
 
+$(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+});

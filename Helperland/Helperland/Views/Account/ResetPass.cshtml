@@ -19,20 +19,42 @@
 <body>
     <div class="main container justify-content-center align-items-center">
         <form asp-controller="Account" asp-action="ResetPass" method="post">
+            @if (ViewBag.Resetpasserror == true)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>
+                        Enter Valid Password
+                    </strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            }
             <div class="form-group">
                 <label class="text-dark" asp-for="password">New Password</label>
-                <input asp-for="password"  class="form-control" id="NewPass" placeholder="Password">
+                <input asp-for="password" class="form-control" id="NewPass" placeholder="Password">
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="text-dark" asp-for="confirmPassword">Confirm Password</label>
                 <input asp-for="confirmPassword" class="form-control" id="ConfirmPass" placeholder="Confirm Password">
-                <span asp-validation-for="confirmPassword" class="text-danger"></span>
+                <span id="passerror" asp-validation-for="confirmPassword" class="text-danger"></span>
             </div>
             <div class="text-center">
-            <button type="submit" id="save" class="btn">Save</button>
+                <button type="submit" id="save" class="btn" disabled="disabled">Save</button>
             </div>
         </form>
     </div>
+    <script>
+        $("#ConfirmPass").keyup(function () {
+            if ($('#NewPass').val() != $('#ConfirmPass').val()) {
+                $('#passerror').html('Password doesnot match');
+                $('#save').prop('disabled', true);
+                $('#save').css('cursor', 'not-allowed');
+            } else {
+                $('#passerror').html('');
+                $('#save').prop('disabled', false);
+                $('#save').css('cursor', 'pointer');
+            }
+        });
+    </script>
 </body>
 </html>

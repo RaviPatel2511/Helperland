@@ -121,4 +121,8 @@ function sort(col, order) {
     else if (this.value == 'DistanceHightoLow') {
         sort(3,"desc");
     }
+  });
+
+$(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
 });

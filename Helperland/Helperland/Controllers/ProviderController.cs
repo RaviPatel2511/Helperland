@@ -1,4 +1,5 @@
-﻿using Helperland.Models.Data;
+﻿using Helperland.Models;
+using Helperland.Models.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,12 +19,13 @@ namespace Helperland.Controllers
         public IActionResult UpcomingService()
         {
             
-            if (Convert.ToInt32(HttpContext.Session.GetString("usertypeid")) == 2 && HttpContext.Session.GetString("userid") != null)
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
             {
                 ViewBag.Title = "UpcomingRequest";
-                ViewBag.loginUserTypeId = 2;
-                var userid = Convert.ToInt32(HttpContext.Session.GetString("userid"));
-                var loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UType = 2;
+                ViewBag.IsloggedIn = "success";
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
                 ViewBag.UserName = loggeduser.FirstName;
                 return View();
             }

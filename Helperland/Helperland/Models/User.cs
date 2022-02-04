@@ -33,6 +33,8 @@ namespace Helperland.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password is must")]
+        [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,14}$", ErrorMessage = "Password must contain at least 1 capital letter, 1 small letter, 1 number and one special character. Password length must be in between 6 to 14 characters")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Mobile is must")]

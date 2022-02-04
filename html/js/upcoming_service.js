@@ -122,3 +122,8 @@ function sort(col, order) {
         sort(3,"desc");
     }
 });
+
+
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+  });
