@@ -111,6 +111,8 @@ namespace Helperland.Controllers
             {
 
                 User credentials = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
+                if(credentials != null)
+                {
                 bool isvalidpass = BCrypt.Net.BCrypt.Verify(user.Password, credentials.Password);
                 if (isvalidpass)
                 {
@@ -124,6 +126,7 @@ namespace Helperland.Controllers
                     {
                         return RedirectToAction("UpcomingService", "Provider");
                     }
+                }
                 }
                 
   
