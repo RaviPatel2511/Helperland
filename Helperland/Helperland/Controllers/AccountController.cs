@@ -23,8 +23,8 @@ namespace Helperland.Controllers
       
         string subject = "Password reseat link.";
         string mailTitle = "Helperland Service";
-        string fromEmail = "ravipatelphoto@gmail.com";
-        string fromEmailPassword = "Ravi@2511";
+        string fromEmail = "frommail";
+        string fromEmailPassword = "frommailpassword";
         public IActionResult CustSignup(bool isuserExists= false)
         {
             if(HttpContext.Session.GetInt32("userid") == null)
