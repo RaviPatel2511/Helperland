@@ -110,4 +110,10 @@ function sort(col, order) {
     else if (this.value == 'UserStatus:Descending') {
         sort(6,"desc");
     }
-});
+  });
+
+// PREVENT FFROM BACK BUTTON AFTER LOGOUT
+window.history.forward();
+function noBack() {
+    window.history.forward();
+}

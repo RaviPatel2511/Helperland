@@ -128,3 +128,8 @@ function sort(col, order) {
     }
   });
 
+// PREVENT FFROM BACK BUTTON AFTER LOGOUT
+window.history.forward();
+function noBack() {
+    window.history.forward();
+}

@@ -39,6 +39,7 @@ nav {
     border: 1px solid white;
     border-radius: 25px;
     cursor: pointer;
+    transition: all .5s;
 }
     .nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
         color: #006072 !important;
@@ -239,7 +240,8 @@ nav {
     background: #29626D;
     color: white;
     border-radius: 30px;
-    cursor:not-allowed;
+    cursor: not-allowed;
+    transition: all .5s;
 }
 
     #register:hover {
@@ -306,6 +308,7 @@ footer p {
 
 .fmenulink a:hover {
     color: tomato;
+    transition: all .5s;
 }
 
 @media screen and (max-width: 996px) {

@@ -1,0 +1,630 @@
+﻿
+
+@section css{
+    <link rel="stylesheet" href="~/css/book_service.css" />
+}
+<section>
+    <img src="~/image/booking_service/calculator-banner.png" class="img-fluid bg_main" alt="mainimage" />
+</section>
+<section>
+    <div class="container">
+        <div class="header">
+            <h1 class="text-center header-color">Set up your cleaning service</h1>
+            <div class="d-flex justify-content-center star">
+                <hr / class="side_hr">
+                <img src="~/image/price/star.png" />
+                <hr / class="side_hr">
+            </div>
+        </div>
+        <div class="row mainPortation">
+            <div class="col-xl-8 col-lg-12">
+                <div>
+                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item bookNowMenu">
+                            <a class="nav-link active" id="pills-service-tab" data-toggle="pill" href="#pills-service" role="tab"
+                               aria-controls="pills-service" aria-selected="true">
+                                <img src="~/image/booking_service/setup-service (1).png" /><span class="step-title">
+                                    Setup
+                                    Service
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item bookNowMenu">
+                            <a class="nav-link" id="pills-schedule-tab" data-toggle="pill" href="#pills-schedule" role="tab"
+                               aria-controls="pills-schedule" aria-selected="false">
+                                <img src="~/image/booking_service/schedule-plan.png" /><span class="step-title">Schedule & Plan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item bookNowMenu">
+                            <a class="nav-link" id="pills-details-tab" data-toggle="pill" href="#pills-details" role="tab"
+                               aria-controls="pills-details" aria-selected="false">
+                                <img src="~/image/booking_service/user-details (1).png" /><span class="step-title">
+                                    Your
+                                    Details
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item bookNowMenu">
+                            <a class="nav-link" id="pills-payment-tab" data-toggle="pill" href="#pills-payment" role="tab"
+                               aria-controls="pills-payment" aria-selected="false">
+                                <img src="~/image/booking_service/payment.png" /><span class="step-title">
+                                    Make
+                                    Payment
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-service" role="tabpanel"
+                             aria-labelledby="pills-service-tab">
+                            <form method="post">
+                                <div>
+                                    <span class="question">Enter your Postal Code</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7 col-md-5">
+                                        <input class="form-control" id="postalCode" placeholder="Postal Code" />
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <button type="submit" id="PostalCodeBtn" class="btn custombtn">
+                                            Check Availability
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="pills-schedule" role="tabpanel" aria-labelledby="pills-schedule-tab">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="question">When do you need the cleaner?</span>
+                                        <div class="form-group schedule_booktime">
+                                            <div class="input-wrapper">
+                                                <img src="~/image/admin_ServiceRequest/calendar.svg" />
+                                                <input class="form-control" />
+                                            </div>
+                                            <select class="form-control inline">
+                                                <option value="8">8:00</option>
+                                                <option value="8.5">8:30</option>
+                                                <option value="9">9:00</option>
+                                                <option value="9.5">9:30</option>
+                                                <option value="10">10:00</option>
+                                                <option value="10.5">10:30</option>
+                                                <option value="11">11:00</option>
+                                                <option value="11.5">11:30</option>
+                                                <option value="12">12:00</option>
+                                                <option value="12.5">12:30</option>
+                                                <option value="13">13:00</option>
+                                                <option value="13.5">13:30</option>
+                                                <option value="14">14:00</option>
+                                                <option value="14.5">14:30</option>
+                                                <option value="15">15:00</option>
+                                                <option value="15.5">15:30</option>
+                                                <option value="16">16:00</option>
+                                                <option value="16.5">16:30</option>
+                                                <option value="17">17:00</option>
+                                                <option value="17.5">17:30</option>
+                                                <option value="18">18:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="question">How long do you need your cleaner to stay?</span>
+                                        <select class="form-control cleaner-hour" formControlName="ServiceHour">
+                                            <option value="3">3.0 Hrs</option>
+                                            <option value="3.5">3.5 Hrs</option>
+                                            <option value="4">4.0 Hrs</option>
+                                            <option value="4.5">4.5 Hrs</option>
+                                            <option value="5">5.0 Hrs</option>
+                                            <option value="5.5">5.5 Hrs</option>
+                                            <option value="6">6.0 Hrs</option>
+                                            <option value="6.5">6.5 Hrs</option>
+                                            <option value="7">7.0 Hrs</option>
+                                            <option value="7.5">7.5 Hrs</option>
+                                            <option value="8">8.0 Hrs</option>
+                                            <option value="8.5">8.5 Hrs</option>
+                                            <option value="9">9.0 Hrs</option>
+                                            <option value="9.5">9.5 Hrs</option>
+                                            <option value="10">10.0 Hrs</option>
+                                            <option value="10.5">10.5 Hrs</option>
+                                            <option value="11">11.0 Hrs</option>
+                                            <option value="11.5">11.5 Hrs</option>
+                                            <option value="12">12.0 Hrs</option>
+                                            <option value="12.5">12.5 Hrs</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr class="divider" />
+                                <span class="question">Extra Services</span>
+                                <div class="extra-service">
+                                    <label class="extra-service-icon">
+                                        <input type="checkbox" />
+                                        <div class="extra-service-img">
+                                            <div class="img-wrapper">
+                                                <img src="~/image/price/cabinet.svg" />
+                                            </div>
+                                        </div>
+                                        <span>Inside cabinets</span>
+                                    </label>
+                                    <label class="extra-service-icon">
+                                        <input type="checkbox" />
+                                        <div class="extra-service-img">
+                                            <div class="img-wrapper">
+                                                <img src="~/image/price/fridge.svg" />
+                                            </div>
+                                        </div>
+                                        <span>Inside Fridge</span>
+                                    </label>
+                                    <label class="extra-service-icon">
+                                        <input type="checkbox" />
+                                        <div class="extra-service-img">
+                                            <div class="img-wrapper">
+                                                <img src="~/image/booking_service/oven.png" />
+                                            </div>
+                                        </div>
+                                        <span>Inside oven</span>
+                                    </label>
+                                    <label class="extra-service-icon">
+                                        <input type="checkbox" />
+                                        <div class="extra-service-img">
+                                            <div class="img-wrapper">
+                                                <img src="~/image/price/laundary.svg" />
+                                            </div>
+                                        </div>
+                                        <span>Laundary wash & dry</span>
+                                    </label>
+                                    <label class="extra-service-icon">
+                                        <input type="checkbox" />
+                                        <div class="extra-service-img">
+                                            <div class="img-wrapper">
+                                                <img src="~/image/price/window.svg" />
+                                            </div>
+                                        </div>
+                                        <span>Interior windows</span>
+                                    </label>
+                                </div>
+
+                                <hr class="divider" />
+                                <span class="question">Comments</span>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="comments" id="comments" cols="30" rows="3" maxlength="300"
+                                              placeholder="Comments"></textarea>
+                                </div>
+                                <div class="petcheckbox">
+                                    <label>
+                                        <input type="checkbox" id="pets" name="pets" value="pets" class="petsCheck" />
+                                        <span for="pets"> I have pets at home</span>
+                                    </label>
+                                </div>
+                                <hr class="dividerpet" />
+                                <div class="text-right">
+                                    <button class="btn custombtn btn-lg" type="submit">
+                                        Continue
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab">
+                            <form>
+                                <span class="question">
+                                    Enter your contact details, so we can serve you in better
+                                    way!
+                                </span>
+                                <ul class="address-picker">
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="addressRadio" id="addressRadio" />
+                                            <span class="address-block">
+                                                <b>Address : </b> abc 123, Troisdorf 53844
+                                            </span>
+                                            <span> <b>Phone Number :</b> 987654321 </span>
+                                            <span class="radio-pointer"></span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="radio" name="addressRadio" id="addressRadio" />
+                                            <span class="address-block">
+                                                <b>Address : </b> abc 123, Troisdorf 53844
+                                            </span>
+                                            <span> <b>Phone Number :</b> 987654321 </span>
+                                            <span class="radio-pointer"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+                                <div class="addNewAddress"></div>
+                                <input class="btn addNewAddress-button" type="button" id="AddNewAddress" value="+ Add New Address" />
+                                <div class="newAddressForm d-none">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Street name</label>
+                                                    <input class="form-control" name="StreetName" type="text" placeholder="Street name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">House number</label>
+                                                    <input class="form-control" name="HouseNo" type="text" placeholder="House number" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Postal code</label>
+                                                    <input class="form-control" name="PostalCode" type="text" placeholder="Postal code" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">City</label>
+                                                    <select class="form-control">
+                                                        <option value="Troisdorf">Troisdorf</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Phone number</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode"
+                                                               placeholder="+91" />
+                                                        <input type="text" name="phone" id="phone" class="form-control col-10"
+                                                               placeholder="Phone Number" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input class="btn custombtn" type="button" value="Save" />
+                                        <input class="btn custombtnClose" type="button" id="cancelAdressform" value="Cancel" />
+                                    </form>
+                                </div>
+                                <hr class="divider" />
+                                <div class="text-right">
+                                    <button class="btn custombtn btn-lg" type="submit">
+                                        Continue
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="pills-payment" role="tabpanel" aria-labelledby="pills-payment-tab">
+                            <div class="payment-content">
+                                <form>
+                                    <span class="question">Pay securely with Helperland payment gateway!</span>
+
+                                    <span>Promo Code (Optional)</span>
+                                    <div class="row">
+                                        <div class="col-xs-7 col-sm-6 col-md-4">
+                                            <input class="form-control" type="text" placeholder="Promo Code (Optional)" readonly />
+                                        </div>
+                                        <div class="col-xs-5 col-sm-3 col-md-2">
+                                            <button class="btn custombtn" id="apply" type="submit" disabled>
+                                                Apply
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr class="divider" />
+                                    <div class="inputCardNumber">
+
+                                        <input class="form-control" type="text" placeholder="Card Number" readonly>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-sm-12">
+                                            <div class="Paycard">
+                                                <span>Accept Cards</span><br>
+                                                <span>
+                                                    <img src="../.././" alt="master">
+                                                    <img src="../.././" alt="visa">
+                                                    <img src="../.././" alt="america">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="divider" />
+                                    <div class="acceptTerm">
+                                        <label>
+                                            <input type="checkbox">
+                                            <span>
+                                                I accepted terms and conditions, the cancellation policy and the privacy policy. I confirm that Helperland starts to execute the contract before the expiry of the withdrawal period and I lose my right of withdrawal as a consumer with full performance of the contract.
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <hr class="divider" />
+                                    <div class="text-right">
+                                        <button class="btn custombtn btn-lg" type="submit">
+                                            Complete Booking
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-8" id="paymentSideTable">
+                <div class="payment-summary">
+                    <h3 class="heading">Payment Summary</h3>
+                    <div class="content">
+                        <span>08/02/2022  08:00</span>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Duration</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Basic</td>
+                                    <td>3 Hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="payment-summary-hr">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>Total Service</b>
+                                    </td>
+                                    <td>
+                                        <b>3 Hrs</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="content">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Per Cleaning</td>
+                                    <td><b>54,00&nbsp;€<b></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="content total-payment">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Total Payment</td>
+                                    <td>54,00&nbsp;€</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <p class="no-sales-tax">According §19 UStG no sales tax is calculated.</p>
+                                    </td>
+                                </tr>
+                                <tr class="effective-price">
+
+                                    <td>Effective Price</td>
+                                    <td>
+                                        <b>43,20&nbsp;€</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+
+                            <span>*</span>You will save 20% according to §35a EStG.
+                        </p>
+                    </div>
+                    <div class="footer">
+
+                        <img alt="Smiley" src="~/image/booking_service/smiley.png">
+                        <span>See what is always included</span>
+
+                    </div>
+                </div>
+                <div class="faq">
+                    <h3>Question ?</h3>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="heading0">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse0" title="What's included in a cleaning?" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> What's included in a cleaning?
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse0" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    Bedroom, Living Room &amp; Common Areas,Bathrooms,Kitchen,Extras
+                                </div>
+                            </div>
+                        </div><div class="panel panel-default">
+                            <div class="panel-heading" id="heading1">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse1" title="Which Helperland professional will come to my place?" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> Which Helperland professional will come to my place?
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse1" aria-expanded="false">
+                                <div class="panel-body">
+                                    Helperland has a vast network of experienced, top-rated cleaners. Based on the time and date of your request, we work to assign the best professional available.Like working with a specific pro? Add them to your Pro Team from the mobile app and they'll be requested first for all future bookings.You will receive an email with details about your professional prior to your appointment.
+                                </div>
+                            </div>
+                        </div><div class="panel panel-default">
+                            <div class="panel-heading" id="heading2">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse2" title="Can I skip or reschedule bookings?" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> Can I skip or reschedule bookings?
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse2" aria-expanded="false">
+                                <div class="panel-body">
+                                    You can reschedule any booking for free at least 24 hours in advance of the scheduled start time. If you need to skip a booking within the minimum commitment, we’ll credit the value of the booking to your account. You can use this credit on future cleanings and other Helperland services.
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="heading3">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse3" title="test tatva" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> test tatva
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse3" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    test tatva
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a title="For more help" href="faq.html">For more help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Button trigger modal -->
+<button type="button" id="PaymentModalBtn" class="btn btn-primary" data-toggle="modal" data-target="#PaymentModal">
+    Payment Summary 54,00 €
+</button>
+
+<!-- Paymwnt Summary -->
+<div class="modal fade" id="PaymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Payment Summary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><img src="~/image/booking_service/close-white.png"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-summary">
+                    <div class="content">
+                        <span>08/02/2022  08:00</span>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Duration</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Basic</td>
+                                    <td>3 Hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="payment-summary-hr">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>Total Service</b>
+                                    </td>
+                                    <td>
+                                        <b>3 Hrs</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="content">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Per Cleaning</td>
+                                    <td><b>54,00&nbsp;€<b></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="content total-payment">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Total Payment</td>
+                                    <td>54,00&nbsp;€</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <p class="no-sales-tax">According §19 UStG no sales tax is calculated.</p>
+                                    </td>
+                                </tr>
+                                <tr class="effective-price">
+
+                                    <td>Effective Price</td>
+                                    <td>
+                                        <b>43,20&nbsp;€</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>
+
+                            <span>*</span>You will save 20% according to §35a EStG.
+                        </p>
+                    </div>
+                    <div class="footer">
+
+                        <img alt="Smiley" src="~/image/booking_service/smiley.png">
+                        <span>See what is always included</span>
+
+                    </div>
+                </div>
+                <div class="faq">
+                    <h3>Question ?</h3>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="heading0">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse0" title="What's included in a cleaning?" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> What's included in a cleaning?
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse0" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    Bedroom, Living Room &amp; Common Areas,Bathrooms,Kitchen,Extras
+                                </div>
+                            </div>
+                        </div><div class="panel panel-default">
+                            <div class="panel-heading" id="heading1">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse1" title="Which Helperland professional will come to my place?" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> Which Helperland professional will come to my place?
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse1" aria-expanded="false">
+                                <div class="panel-body">
+                                    Helperland has a vast network of experienced, top-rated cleaners. Based on the time and date of your request, we work to assign the best professional available.Like working with a specific pro? Add them to your Pro Team from the mobile app and they'll be requested first for all future bookings.You will receive an email with details about your professional prior to your appointment.
+                                </div>
+                            </div>
+                        </div><div class="panel panel-default">
+                            <div class="panel-heading" id="heading2">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse2" title="Can I skip or reschedule bookings?" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> Can I skip or reschedule bookings?
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse2" aria-expanded="false">
+                                <div class="panel-body">
+                                    You can reschedule any booking for free at least 24 hours in advance of the scheduled start time. If you need to skip a booking within the minimum commitment, we’ll credit the value of the booking to your account. You can use this credit on future cleanings and other Helperland services.
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="heading3">
+                                <a class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse3" title="test tatva" aria-expanded="false">
+                                    <img alt="Right Arrow" src="~/image/booking_service/right-arrow-dark.png"> test tatva
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" id="collapse3" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    test tatva
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a title="For more help" href="faq.html">For more help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script src="~/js/book_service.js"></script>
+}

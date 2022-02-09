@@ -28,6 +28,10 @@ font-size: 15px;
 .user_setting .btn {
   padding: 0.1rem 0.75rem;
 }
+.user-setting{
+  top: 125%;
+  left: -100%;
+}
  
   #navbarCollapse {
     justify-content: right;
@@ -127,15 +131,13 @@ font-size: 15px;
   .dropdown-menu{
       background: white !important;
       color:black;
-      left: -6px;
+
   }
-  .dropdown-menu a,.dropdown-menu span{
+  .dropdown-item{
     padding: 10px 13px !important;
+    cursor: pointer;
   }
-  .dropdown-item:hover{
-      background: black;
-      color: white;
-  }
+
   .mobileNav{
     display: none;
   }

@@ -30,5 +30,12 @@ namespace Helperland.Controllers
             }
            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
+
+        public IActionResult BookService()
+        {
+        
+            ViewBag.Title = "BookService";
+            return View();
+        }
     }
 }

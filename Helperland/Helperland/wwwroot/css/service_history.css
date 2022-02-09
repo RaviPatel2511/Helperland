@@ -26,6 +26,10 @@
 .user_setting .btn {
     padding: 0.1rem 0.75rem;
 }
+.user-setting {
+    top: 125%;
+    left: -125%;
+}
  
   #navbarCollapse {
     justify-content: right;
@@ -42,6 +46,7 @@
     color: white;
     border: 1px solid white;
     border-radius: 30px;
+    transition: all .5s;
 }
     .nav-item:nth-child(1) .menu:hover{
         color: #006072 !important;
@@ -65,13 +70,13 @@
     font-size: 17px;
     font-weight: normal;
   }
-  .menu {
+.menu {
     text-decoration: none;
     color: white;
     font-size: 17px;
     padding: 5px 20px;
     margin: 0px 6px;
-  }
+}
 
   .menu:hover {
     border-radius: 35px;
@@ -119,13 +124,7 @@
       color:black;
       left: -10px;
   }
-  .dropdown-menu a, .dropdown-menu span{
-    padding: 5px 2px !important;
-  }
-  .dropdown-item:hover{
-      background: black;
-      color: white;
-  }
+ 
   .notification_number{
     position: absolute;
     border-radius: 50%;
@@ -315,9 +314,10 @@ table tr td:nth-child(5){text-align: center;}
 #menu-toggle {
   cursor: pointer;
 }
-.list-group-item-action:hover{
+.list-group-item-action:hover {
     background: #1d7a8c !important;
     color: tomato;
+    transition: all .5s;
 }
 .list-group-item {
   border: none;
@@ -549,9 +549,10 @@ table th:nth-child(5) > span{
     padding-top: 15px;
     padding-bottom: 20px !important;
   }
-  
+
 .fmenulink a:hover {
-      color: tomato;
+    color: tomato;
+    transition: all .5s;
 }
 
   @media screen and (max-width: 996px) {
@@ -620,17 +621,17 @@ table th:nth-child(5) > span{
       #service_history_table {
         border: unset;
       }
-      #service_history_table  tr{
-        display: flex;
-        flex-wrap: wrap;
-        border: 1px solid #e1e1e1;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        background: #f9f9f9;
-        box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
--webkit-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
--moz-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
-      }
+        #service_history_table tr {
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid #e1e1e1;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+            -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+            -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+        }
       table.dataTable.no-footer {
         width: 100% !important;
     }

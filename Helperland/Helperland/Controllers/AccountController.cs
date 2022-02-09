@@ -23,8 +23,8 @@ namespace Helperland.Controllers
       
         string subject = "Password reseat link.";
         string mailTitle = "Helperland Service";
-        string fromEmail = "frommail";
-        string fromEmailPassword = "frommailpassword";
+        string fromEmail = "username";
+        string fromEmailPassword = "password";
         public IActionResult CustSignup(bool isuserExists= false)
         {
             if(HttpContext.Session.GetInt32("userid") == null)
@@ -43,13 +43,14 @@ namespace Helperland.Controllers
             if (ModelState.IsValid)
             {
 
-                user.UserTypeId = 1;
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                user.CreatedDate = DateTime.Now;
-                user.ModifiedDate = DateTime.Now;
+               
                 var userExists = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
                 if (userExists == null)
                 {
+                    user.UserTypeId = 1;
+                    user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                    user.CreatedDate = DateTime.Now;
+                    user.ModifiedDate = DateTime.Now;
                     _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
                     return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
@@ -80,16 +81,15 @@ namespace Helperland.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                user.UserTypeId = 2;
-                user.CreatedDate = DateTime.Now;
-                user.ModifiedDate = DateTime.Now;
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-
+                          
            
                 var userExists = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
                 if (userExists == null)
                 {
+                    user.UserTypeId = 2;
+                    user.CreatedDate = DateTime.Now;
+                    user.ModifiedDate = DateTime.Now;
+                    user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
                     _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
                     return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));

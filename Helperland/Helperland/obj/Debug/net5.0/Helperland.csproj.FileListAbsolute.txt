@@ -81,3 +81,4 @@ C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Vi
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Helperland\error.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\bin\Debug\net5.0\BCrypt.Net.dll
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Account\ResetPass.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\BookService.cshtml.g.cs

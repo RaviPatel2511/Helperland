@@ -25,12 +25,13 @@ nav{
     height: 54px;
     margin-left: 5px;
   }
-  .nav-item:nth-child(1) .menu,.nav-item:nth-child(6) .menu,.nav-item:nth-child(7) .menu{
+.nav-item:nth-child(1) .menu, .nav-item:nth-child(6) .menu, .nav-item:nth-child(7) .menu {
     background-color: rgba(0,95,113,.6);
     border: 1px solid white;
     border-radius: 25px;
     cursor: pointer;
-  }
+    transition: all .5s;
+}
     .nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
         color: #006072 !important;
         background-color: white;
@@ -40,14 +41,14 @@ nav{
     border: 1px solid white;
     border-radius: 40px;
   }
-  
-  .menu {
+
+.menu {
     text-decoration: none;
     color: white;
     font-size: 17px;
     padding: 10px 15px !important;
     margin: 0px 6px;
-  }
+}
   
   .menu:hover {
     border-radius: 25px;
@@ -158,6 +159,68 @@ nav{
     margin-bottom: 10px;
     margin-left: 15px;
   }
+
+/*form AFTER LOGIN NAVBAR*/
+.notification {
+    height: 32px;
+    width: 29px;
+    cursor: pointer;
+}
+
+.notification_number {
+    position: absolute;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    top: 3px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification_item {
+    position: relative;
+}
+
+    .notification_item::after {
+        content: '';
+        position: absolute;
+        background: white;
+        width: 1px;
+        height: 100%;
+        right: 0px;
+        top: 0;
+    }
+
+    .notification_item::before {
+        content: '';
+        position: absolute;
+        background: white;
+        width: 1px;
+        height: 100%;
+        left: 0px;
+        top: 0;
+    }
+
+.user_setting button {
+    background: none;
+}
+
+.userInfoItem {
+    color: #4f4f4f;
+    margin: 5px 0;
+    padding: 5px 5px;
+    font-size: 15px;
+}
+
+.user_setting .btn {
+    padding: 0.1rem 0.75rem;
+}
+
+
   /* mobile navbar end */
   
   /* <!--//////////////////////////////////// Contact us/////////////////////////////// --> */
@@ -213,16 +276,18 @@ nav{
         color: #A0A0A0 !important;
         font-size: 16px !important;
       }
-      .formSubmit{
-        width: 163px;
-        height: 45px;
-        border-radius: 45px;
-        background-color: #1D7A8C;
-        border: none;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-      }
+.formSubmit {
+    width: 163px;
+    height: 45px;
+    border-radius: 45px;
+    background-color: #1D7A8C;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all .5s;
+    cursor:pointer;
+}
       .formSubmit:hover{
         color: #1D7A8C;
         background: white;
@@ -321,9 +386,10 @@ nav{
       footer p{
         margin-bottom: 0px !important;
       }
-      .fmenulink  a:hover{
-        color: tomato;
-      }
+.fmenulink a:hover {
+    color: tomato;
+    transition: all .5s;
+}
       .hr-line{
         max-width: 1320px;
         margin: 0 auto;
@@ -409,62 +475,3 @@ nav{
           }
          }
 
-
-/*form AFTER LOGIN NAVBAR*/
-.notification {
-    height: 32px;
-    width: 29px;
-    cursor: pointer;
-}
-
-.notification_number {
-    position: absolute;
-    border-radius: 50%;
-    background: red;
-    color: white;
-    top: 3px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.notification_item {
-    position: relative;
-}
-
-    .notification_item::after {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        right: 0px;
-        top: 0;
-    }
-
-    .notification_item::before {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        left: 0px;
-        top: 0;
-    }
-.user_setting button {
-    background: none;
-}
-
-.userInfoItem {
-    color: #4f4f4f;
-    margin: 5px 0;
-    padding: 5px 5px;
-    font-size: 15px;
-}
-
-.user_setting .btn {
-    padding: 0.1rem 0.75rem;
-}

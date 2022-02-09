@@ -60,11 +60,12 @@ background: none !important;
     padding: 5px 18px;
     margin: 0px 3px;
   }
-  .nav-item:nth-child(1) .menu,.nav-item:nth-child(6) .menu,.nav-item:nth-child(7) .menu{
+.nav-item:nth-child(1) .menu, .nav-item:nth-child(6) .menu, .nav-item:nth-child(7) .menu {
     border: 1px solid white;
     border-radius: 45px;
     cursor: pointer;
-  }
+    transition: all .5s;
+}
     .nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
         color: #006072 !important;
         background-color: white;
@@ -73,11 +74,11 @@ background: none !important;
   .nav-item:nth-child(6) .menu{
     padding:5px 20px !important;
   }
-  .menu:hover {
+.menu:hover {
     border-radius: 20px;
     border: 1px solid white;
     color: white;
-  }
+}
   .flag {
     height: 11px;
     height: 20px;
@@ -243,15 +244,16 @@ text-decoration: none;
   .form-check-label a{
     color: #1fb6ff;
   }
-.become{
-  background-color:  #1d7a8c ;
-  color: white;
-  padding: 12px 19px 12px 27px;
-  border-radius: 46px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: not-allowed;
-  margin:10px auto;
+.become {
+    background-color: #1d7a8c;
+    color: white;
+    padding: 12px 19px 12px 27px;
+    border-radius: 46px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: not-allowed;
+    margin: 10px auto;
+    transition: all .5s;
 }
 .become:hover{
   background: white;
@@ -395,9 +397,10 @@ footer{
   footer p{
     margin-bottom: 0px !important;
   }
-  
+
 .fmenulink a:hover {
-      color: tomato;
+    color: tomato;
+    transition: all .5s;
 }
 
 

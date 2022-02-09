@@ -309,7 +309,7 @@ table tbody tr td p {
     color: #A2A6A8;
     margin-top: 22px;
 }
-.action{
+.action {
     cursor: pointer;
     height: 30px;
     width: 30px;
@@ -319,7 +319,7 @@ table tbody tr td p {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-
+    transition: all .5s;
 }
 .action:hover{
     background-color: #F4F4F4;

@@ -51,3 +51,4 @@ $("#cpassword").keyup(function () {
         $('#started').css('cursor', 'pointer');
     }
 });
+
