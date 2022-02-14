@@ -101,7 +101,7 @@
                                     <hr class="divider" />
                                     <div class="acceptTerm">
                                         <label>
-                                            <input type="checkbox">
+                                            <input type="checkbox" required>
                                             <span>
                                                 I accepted terms and conditions, the cancellation policy and the privacy policy. I confirm that Helperland starts to execute the contract before the expiry of the withdrawal period and I lose my right of withdrawal as a consumer with full performance of the contract.
                                             </span>
@@ -109,7 +109,7 @@
                                     </div>
                                     <hr class="divider" />
                                     <div class="text-right">
-                                        <button class="btn custombtn btn-lg" type="submit">
+                                        <button class="btn custombtn btn-lg" id="CompleteBookingBtn" onclick="CompleteBooking()">
                                             Complete Booking
                                         </button>
                                     </div>
@@ -413,6 +413,7 @@
 
             $.ajax({
                 type: 'Post',
+                cache: false,
                 url: '/Customer/IsAvailableZip',
                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 data: Zipdata,
@@ -437,6 +438,7 @@
 
             $.ajax({
                 type: 'Post',
+                cache: false,
                 url: '/Customer/ScheduleService',
                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 data: ScheduleData,
@@ -465,6 +467,7 @@
         function getAddressOfUser() {
             $.ajax({
                 type: 'GET',
+                cache: false,
                 url: '/Customer/getAddressOfUser',
                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 success:
@@ -474,9 +477,9 @@
                         address_picker.empty();
                         for (var i = 0; i < response.length; i++) {
                             if (response[i].isDefault == true) {
-                                address_picker.append(' <li> <label> <input type="radio" name="addressRadio" id="addressRadio" /> <span class="address-block"> <b>Address : </b> ' + response[i].addressline1 + ' ' + response[i].addressline2 + ', ' + response[i].city + ' ' + response[i].postalcode + ' </span > <span> <b>Phone Number :</b>  ' + response[i].mobile + '   </span> <span class="radio-pointer"></span> </label > </li > ')
+                                address_picker.append(' <li> <label> <input type="radio" name="addressRadio" id="addressRadio" value="' + response[i].id + '" checked /> <span class="address-block"> <b>Address : </b> ' + response[i].addressline1 + ' ' + response[i].addressline2 + ', ' + response[i].city + ' ' + response[i].postalcode + ' </span > <span> <b>Phone Number :</b>  ' + response[i].mobile + '   </span> <span class="radio-pointer"></span> </label > </li > ')
                             } else {
-                                address_picker.append(' <li> <label> <input type="radio" name="addressRadio" id="addressRadio" /> <span class="address-block"> <b>Address : </b> ' + response[i].addressline1 + ' ' + response[i].addressline2 + ', ' + response[i].city + ' ' + response[i].postalcode + ' </span > <span> <b>Phone Number :</b>  ' + response[i].mobile + '   </span> <span class="radio-pointer"></span> </label > </li > ')
+                                address_picker.append(' <li> <label> <input type="radio" name="addressRadio" id="addressRadio" value="' + response[i].id + '" /> <span class="address-block"> <b>Address : </b> ' + response[i].addressline1 + ' ' + response[i].addressline2 + ', ' + response[i].city + ' ' + response[i].postalcode + ' </span > <span> <b>Phone Number :</b>  ' + response[i].mobile + '   </span> <span class="radio-pointer"></span> </label > </li > ')
                             }
                         }
 
@@ -485,5 +488,102 @@
 
             });
         }
+
+
+        function ClearAddressForm() {
+            $('#NewHouseNo').val("");
+            $('#NewStreetName').val("");
+            $('#NewCity').val("");
+            $('#NewPostalCode').val("");
+            $('#NewMobile').val("");
+        }
+
+        function AddNewUserAddress() {
+            
+            var NewAddress = {};
+            NewAddress.AddLine1 = $('#NewHouseNo').val();
+            NewAddress.AddLine2 = $('#NewStreetName').val();
+            NewAddress.NewCity = $('#NewCity').val();
+            NewAddress.NewMobile = $('#NewMobile').val();
+            NewAddress.NewPostal = $('#NewPostalCode').val();
+
+            $.ajax({
+                type: "POST",
+                url: '/Customer/AddNewAddressToDB',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: { 'AddLine1': NewAddress.AddLine1, 'AddLine2': NewAddress.AddLine2, 'NewCity': NewAddress.NewCity, 'NewMobile': NewAddress.NewMobile, 'NewPostal': NewAddress.NewPostal  },
+                cache: false,
+                success:
+                    function (response) {
+                        if (response.value == "true") {
+                            getAddressOfUser();
+                            ClearAddressForm();
+                        } else {
+                            alert("fail");
+                        }
+                    },
+                error:
+                    function (err) {
+                        console.error(err);
+                    }
+            });
+        }
+
+        $("#step3btn").on("click", function () {
+            $('#pills-payment-tab').click();
+        });
+
+        function CompleteBooking() {
+
+            var NewBookingRequest = {};
+            NewBookingRequest.ServiceZipCode = $('#postalCode').val();
+            NewBookingRequest.ServiceDate = $('#scheduleDate').val();
+            NewBookingRequest.ServiceHours = $('#scheduleTime').val();
+            NewBookingRequest.Comments = $('#comments').val();
+            NewBookingRequestHavePets = $('#pets').val();
+            NewBookingRequest.extraHour = 0;
+            NewBookingRequest.cabinet = $('#cabinet').val();
+            NewBookingRequest.fridge = $('#fridge').val();
+            NewBookingRequest.oven = $('#oven').val();
+            NewBookingRequest.laundary = $('#laundary').val();
+            NewBookingRequest.window = $('#window').val();
+            NewBookingRequest.SelectedAddressId = $(".address-picker input[name='addressRadio']:checked").val();
+
+            if (NewBookingRequest.cabinet) {
+                NewBookingRequest.extraHour += 0.5;
+            }
+            if (NewBookingRequest.fridge) {
+                NewBookingRequest.extraHour += 0.5;
+            }
+            if (NewBookingRequest.oven) {
+                NewBookingRequest.extraHour += 0.5;
+            }
+            if (NewBookingRequest.laundary) {
+                NewBookingRequest.extraHour += 0.5;
+            }
+            if (NewBookingRequest.window) {
+                NewBookingRequest.extraHour += 0.5;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/Customer/CompleteBooking',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: NewBookingRequest,
+                success:
+                    function (response) {
+                        if (response.value == "true") {
+                            alert("Booking Successfully");
+                        } else {
+                            alert("booking not done");
+                        }
+                    },
+                error:
+                    function (err) {
+                        console.error(err);
+                    }
+            });
+           
+        }
+       
     </script>
 }

@@ -12,9 +12,9 @@
                 <div class="form-group schedule_booktime">
                     <div class="input-wrapper">
                         <img src="~/image/admin_ServiceRequest/calendar.svg" />
-                        <input asp-for="scheduleDate" class="form-control" />
+                        <input asp-for="scheduleDate" class="form-control" id="scheduleDate" />
                     </div>
-                    <select asp-for="scheduleTime" class="form-control inline">
+                    <select asp-for="scheduleTime" class="form-control inline" id="scheduleTime">
                         <option value="8">8:00</option>
                         <option value="8.5">8:30</option>
                         <option value="9">9:00</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-6">
                 <span class="question">How long do you need your cleaner to stay?</span>
-                <select asp-for="stayHour" class="form-control cleaner-hour" formControlName="ServiceHour">
+                <select asp-for="stayHour" class="form-control cleaner-hour" id="StayHour">
                     <option value="3">3.0 Hrs</option>
                     <option value="3.5">3.5 Hrs</option>
                     <option value="4">4.0 Hrs</option>
@@ -69,7 +69,7 @@
         <span class="question">Extra Services</span>
         <div class="extra-service">
             <label class="extra-service-icon">
-                <input asp-for="cabinet" type="checkbox" />
+                <input asp-for="cabinet" type="checkbox" id="cabinet" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/cabinet.svg" />
@@ -78,7 +78,7 @@
                 <span>Inside cabinets</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="fridge" type="checkbox" />
+                <input asp-for="fridge" type="checkbox" id="fridge" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/fridge.svg" />
@@ -87,7 +87,7 @@
                 <span>Inside Fridge</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="oven" type="checkbox" />
+                <input asp-for="oven" type="checkbox" id="oven" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/booking_service/oven.png" />
@@ -96,7 +96,7 @@
                 <span>Inside oven</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="laundary" type="checkbox" />
+                <input asp-for="laundary" type="checkbox" id="laundary" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/laundary.svg" />
@@ -105,7 +105,7 @@
                 <span>Laundary wash & dry</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="window" type="checkbox" />
+                <input asp-for="window" type="checkbox" id="window" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/window.svg" />

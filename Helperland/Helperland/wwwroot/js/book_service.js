@@ -4,7 +4,7 @@ const mobileNav = document.querySelector('.mobileNav');
 const menubtn = document.querySelector('.menubtn');
 const nav = document.querySelector("nav");
 const loginbtn = document.querySelector('.loginbtn');
-const AddNewAddress = document.querySelector('#AddNewAddress');
+const AddNewAddressbtn = document.querySelector('#AddNewAddress');
 const newAddressForm = document.querySelector('.newAddressForm');
 const cancelAdressform = document.querySelector('#cancelAdressform');
 
@@ -36,12 +36,13 @@ window.onclick = function (event) {
 	}
 }
 
-AddNewAddress.addEventListener('click', () => {
+AddNewAddressbtn.addEventListener('click', () => {
 	newAddressForm.classList.remove('d-none');
-	AddNewAddress.classList.add('d-none');
+	AddNewAddressbtn.classList.add('d-none');
 })
 
 cancelAdressform.addEventListener('click', () => {
-	AddNewAddress.classList.remove('d-none');
+	AddNewAddressbtn.classList.remove('d-none');
 	newAddressForm.classList.add('d-none');
 })
+
