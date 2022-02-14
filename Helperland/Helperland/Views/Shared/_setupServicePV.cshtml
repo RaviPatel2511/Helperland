@@ -1,0 +1,25 @@
+﻿@model Helperland.Models.ViewModels.setupService;
+
+
+@{
+    Layout = null;
+}
+<div class="tab-pane fade show active" id="pills-service" role="tabpanel"
+     aria-labelledby="pills-service-tab">
+    <form id="setupService">
+        <div>
+            <span class="question">Enter your Postal Code</span>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 col-md-5">
+                <input asp-for="Zipcode" class="form-control" id="postalCode" placeholder="Postal Code" />
+            </div>
+            <div class="col-sm-5">
+                <button type="button" id="PostalCodeBtn" onclick="checkZip()" class="btn custombtn">
+                    Check Availability
+                </button>
+            </div>
+        </div>
+        <span class="text-danger mt-3" id="notAvailablezipError"></span>
+    </form>
+</div>

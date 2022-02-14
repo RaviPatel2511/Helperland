@@ -1,0 +1,137 @@
+﻿@model Helperland.Models.ViewModels.ScheduleService;
+
+@{
+    Layout = null;
+}
+
+<div class="tab-pane fade" id="pills-schedule" role="tabpanel" aria-labelledby="pills-schedule-tab">
+    <form id="scheduleData" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <span class="question">When do you need the cleaner?</span>
+                <div class="form-group schedule_booktime">
+                    <div class="input-wrapper">
+                        <img src="~/image/admin_ServiceRequest/calendar.svg" />
+                        <input asp-for="scheduleDate" class="form-control" />
+                    </div>
+                    <select asp-for="scheduleTime" class="form-control inline">
+                        <option value="8">8:00</option>
+                        <option value="8.5">8:30</option>
+                        <option value="9">9:00</option>
+                        <option value="9.5">9:30</option>
+                        <option value="10">10:00</option>
+                        <option value="10.5">10:30</option>
+                        <option value="11">11:00</option>
+                        <option value="11.5">11:30</option>
+                        <option value="12">12:00</option>
+                        <option value="12.5">12:30</option>
+                        <option value="13">13:00</option>
+                        <option value="13.5">13:30</option>
+                        <option value="14">14:00</option>
+                        <option value="14.5">14:30</option>
+                        <option value="15">15:00</option>
+                        <option value="15.5">15:30</option>
+                        <option value="16">16:00</option>
+                        <option value="16.5">16:30</option>
+                        <option value="17">17:00</option>
+                        <option value="17.5">17:30</option>
+                        <option value="18">18:00</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <span class="question">How long do you need your cleaner to stay?</span>
+                <select asp-for="stayHour" class="form-control cleaner-hour" formControlName="ServiceHour">
+                    <option value="3">3.0 Hrs</option>
+                    <option value="3.5">3.5 Hrs</option>
+                    <option value="4">4.0 Hrs</option>
+                    <option value="4.5">4.5 Hrs</option>
+                    <option value="5">5.0 Hrs</option>
+                    <option value="5.5">5.5 Hrs</option>
+                    <option value="6">6.0 Hrs</option>
+                    <option value="6.5">6.5 Hrs</option>
+                    <option value="7">7.0 Hrs</option>
+                    <option value="7.5">7.5 Hrs</option>
+                    <option value="8">8.0 Hrs</option>
+                    <option value="8.5">8.5 Hrs</option>
+                    <option value="9">9.0 Hrs</option>
+                    <option value="9.5">9.5 Hrs</option>
+                    <option value="10">10.0 Hrs</option>
+                    <option value="10.5">10.5 Hrs</option>
+                    <option value="11">11.0 Hrs</option>
+                    <option value="11.5">11.5 Hrs</option>
+                    <option value="12">12.0 Hrs</option>
+                    <option value="12.5">12.5 Hrs</option>
+                </select>
+            </div>
+        </div>
+        <hr class="divider" />
+        <span class="question">Extra Services</span>
+        <div class="extra-service">
+            <label class="extra-service-icon">
+                <input asp-for="cabinet" type="checkbox" />
+                <div class="extra-service-img">
+                    <div class="img-wrapper">
+                        <img src="~/image/price/cabinet.svg" />
+                    </div>
+                </div>
+                <span>Inside cabinets</span>
+            </label>
+            <label class="extra-service-icon">
+                <input asp-for="fridge" type="checkbox" />
+                <div class="extra-service-img">
+                    <div class="img-wrapper">
+                        <img src="~/image/price/fridge.svg" />
+                    </div>
+                </div>
+                <span>Inside Fridge</span>
+            </label>
+            <label class="extra-service-icon">
+                <input asp-for="oven" type="checkbox" />
+                <div class="extra-service-img">
+                    <div class="img-wrapper">
+                        <img src="~/image/booking_service/oven.png" />
+                    </div>
+                </div>
+                <span>Inside oven</span>
+            </label>
+            <label class="extra-service-icon">
+                <input asp-for="laundary" type="checkbox" />
+                <div class="extra-service-img">
+                    <div class="img-wrapper">
+                        <img src="~/image/price/laundary.svg" />
+                    </div>
+                </div>
+                <span>Laundary wash & dry</span>
+            </label>
+            <label class="extra-service-icon">
+                <input asp-for="window" type="checkbox" />
+                <div class="extra-service-img">
+                    <div class="img-wrapper">
+                        <img src="~/image/price/window.svg" />
+                    </div>
+                </div>
+                <span>Interior windows</span>
+            </label>
+        </div>
+
+        <hr class="divider" />
+        <span class="question">Comments</span>
+        <div class="form-group">
+            <textarea asp-for="comment" class="form-control"  id="comments" cols="30" rows="3" maxlength="300"
+                      placeholder="Comments"></textarea>
+        </div>
+        <div class="petcheckbox">
+            <label>
+                <input asp-for="havePet" type="checkbox" id="pets" class="petsCheck" />
+                <span for="pets"> I have pets at home</span>
+            </label>
+        </div>
+        <hr class="dividerpet" />
+        <div class="text-right">
+            <a class="btn custombtn btn-lg" id="step2btn" onclick="ScheduleService()">
+                Continue
+            </a>
+        </div>
+    </form>
+</div>

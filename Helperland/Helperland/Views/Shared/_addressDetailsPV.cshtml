@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="tab-pane fade" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab">
+    <form>
+        <span class="question">
+            Enter your contact details, so we can serve you in better
+            way!
+        </span>
+        <ul class="address-picker">
+            <li>
+                <label>
+                    <input type="radio" name="addressRadio" id="addressRadio" />
+                    <span class="address-block">
+                        <b>Address : </b> XXX 000, XXXXXXX 0000
+                    </span>
+                    <span> <b>Phone Number :</b> 0000000000 </span>
+                    <span class="radio-pointer"></span>
+                </label>
+            </li>
+        </ul>
+        <div class="addNewAddress"></div>
+        <input class="btn addNewAddress-button" type="button" id="AddNewAddress" value="+ Add New Address" />
+        <div class="newAddressForm d-none">
+            <form>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Street name</label>
+                            <input class="form-control" name="StreetName" type="text" placeholder="Street name" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">House number</label>
+                            <input class="form-control" name="HouseNo" type="text" placeholder="House number" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Postal code</label>
+                            <input class="form-control" name="PostalCode" type="text" placeholder="Postal code" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">City</label>
+                            <select class="form-control">
+                                <option value="Troisdorf">Troisdorf</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Phone number</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode"
+                                       placeholder="+91" />
+                                <input type="text" name="phone" id="phone" class="form-control col-10"
+                                       placeholder="Phone Number" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input class="btn custombtn" type="button" value="Save" />
+                <input class="btn custombtnClose" type="button" id="cancelAdressform" value="Cancel" />
+            </form>
+        </div>
+        <hr class="divider" />
+        <div class="text-right">
+            <a class="btn custombtn btn-lg" id="step3btn">
+                Continue
+            </a>
+        </div>
+    </form>
+</div>

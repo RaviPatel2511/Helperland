@@ -73,7 +73,6 @@ C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\bin\Debug\net5.0\runtimes
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Helperland.csproj.AssemblyReference.cache
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Account\CustSignup.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Account\ProviderSignup.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\ServiceHistory.cshtml.g.cs
@@ -82,3 +81,7 @@ C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Vi
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\bin\Debug\net5.0\BCrypt.Net.dll
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Account\ResetPass.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\BookService.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_addressDetailsPV.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_scheduleServicePV.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_setupServicePV.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Helperland.csproj.AssemblyReference.cache
