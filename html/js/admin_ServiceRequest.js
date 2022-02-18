@@ -26,14 +26,12 @@ $(document).ready( function () {
 } );
 
 $(document).ready(function(){
-    var date_input=$('input[name="date"]'); 
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    var date_input=$('input[name="date"]');
     date_input.datepicker({
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
+        format: 'dd/mm/yyyy',
         autoclose: true,
-    })
+        startDate: '+1d',
+    });
 })
 
 const mobileNavIcon = document.querySelector('.mobileNavIcon');

@@ -7,7 +7,7 @@ namespace Helperland.Models.ViewModels
 {
     public class BookService
     {
-        public DateTime ServiceDate { get; set; }
+        public string ServiceDateTime { get; set; }
         public string ServiceZipCode { get; set; }
         public double ServiceHours { get; set; }
         public double? ExtraServiceHours { get; set; }
@@ -16,7 +16,7 @@ namespace Helperland.Models.ViewModels
         public bool cabinet { get; set; }
         public bool fridge { get; set; }
         public bool oven { get; set; }
-        public bool laundry { get; set; }
+        public bool laundary { get; set; }
         public bool window { get; set; }
 
         public int SelectedAddressId { get; set; }

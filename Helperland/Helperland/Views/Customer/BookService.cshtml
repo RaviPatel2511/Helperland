@@ -1,12 +1,42 @@
 ﻿
 
 @section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
     <link rel="stylesheet" href="~/css/book_service.css" />
 }
 <section>
     <img src="~/image/booking_service/calculator-banner.png" class="img-fluid bg_main" alt="mainimage" />
 </section>
 <section>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn d-none" data-toggle="modal" data-target="#bookingSuccessfulyDone" id="bookingSuccessfulyDoneBtn">
+        ok
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="bookingSuccessfulyDone" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <span>
+                        <img src="~/image/home/logout.png" />
+                    </span>
+                    <h3>Your Booking has been confirmed , Your BookingId is : <b id="CoonfirmBookReferenceId"></b></h3>
+                    <a class="btn btn-primary" asp-controller="Customer" asp-action="BookService">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loader-div d-none">
+        <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+        </div>
+    </div>
     <div class="container">
         <div class="header">
             <h1 class="text-center header-color">Set up your cleaning service</h1>
@@ -22,38 +52,51 @@
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item bookNowMenu">
                             <a class="nav-link active" id="pills-service-tab" data-toggle="pill" href="#pills-service" role="tab"
-                               aria-controls="pills-service" aria-selected="true">
-                                <img src="~/image/booking_service/setup-service (1).png" /><span class="step-title">
-                                    Setup
-                                    Service
-                                </span>
+                               aria-controls="pills-service" aria-selected="true" onclick="firstTab()">
+                                <img src="~/image/booking_service/setup-service (1).png" />
+                                <p class="mb-0">
+                                    <span class="step-title">
+                                        Setup
+                                        Service
+                                    </span>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item bookNowMenu">
                             <a class="nav-link" id="pills-schedule-tab" data-toggle="pill" href="#pills-schedule" role="tab"
-                               aria-controls="pills-schedule" aria-selected="false">
-                                <img src="~/image/booking_service/schedule-plan.png" /><span class="step-title">Schedule & Plan</span>
+                               aria-controls="pills-schedule" aria-selected="false" onclick="secondTab()">
+                                <img src="~/image/booking_service/schedule-plan.png" />
+                                <p class="mb-0">
+                                    <span class="step-title">Schedule & Plan</span>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item bookNowMenu">
                             <a class="nav-link" id="pills-details-tab" data-toggle="pill" href="#pills-details" role="tab"
-                               aria-controls="pills-details" aria-selected="false">
-                                <img src="~/image/booking_service/user-details (1).png" /><span class="step-title">
-                                    Your
-                                    Details
-                                </span>
+                               aria-controls="pills-details" aria-selected="false" onclick="thirdTab()">
+                                <img src="~/image/booking_service/user-details (1).png" />
+                                <p class="mb-0">
+                                    <span class="step-title">
+                                        Your
+                                        Details
+                                    </span>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item bookNowMenu">
                             <a class="nav-link" id="pills-payment-tab" data-toggle="pill" href="#pills-payment" role="tab"
-                               aria-controls="pills-payment" aria-selected="false">
-                                <img src="~/image/booking_service/payment.png" /><span class="step-title">
-                                    Make
-                                    Payment
-                                </span>
+                               aria-controls="pills-payment" aria-selected="false" onclick="fourthTab()">
+                                <img src="~/image/booking_service/payment.png" />
+                                <p class="mb-0">
+                                    <span class="step-title">
+                                        Make
+                                        Payment
+                                    </span>
+                                </p>
                             </a>
                         </li>
                     </ul>
+                    <img src="~/image/price/logo.png" style="display:none" id="loader" />
                     <div class="tab-content" id="pills-tabContent">
 
                         @await Html.PartialAsync("_setupServicePV")
@@ -109,7 +152,7 @@
                                     </div>
                                     <hr class="divider" />
                                     <div class="text-right">
-                                        <button class="btn custombtn btn-lg" id="CompleteBookingBtn" onclick="CompleteBooking()">
+                                        <button type="button" class="btn custombtn btn-lg" id="CompleteBookingBtn" onclick="CompleteBooking()">
                                             Complete Booking
                                         </button>
                                     </div>
@@ -124,7 +167,7 @@
                 <div class="payment-summary">
                     <h3 class="heading">Payment Summary</h3>
                     <div class="content">
-                        <span>08/02/2022  08:00</span>
+                        <span class="psDatetime"></span>
                         <table>
                             <thead>
                                 <tr>
@@ -135,8 +178,33 @@
                             <tbody>
                                 <tr>
                                     <td>Basic</td>
-                                    <td>3 Hrs</td>
+                                    <td class="psBasicHrs"></td>
                                 </tr>
+                                <tr class="psExtraHeading">
+                                    <td>Extra</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="psInsideCabinet d-none">
+                                    <td>Inside cabinets</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psInsideFridge d-none">
+                                    <td>Inside fridge</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psInsideOven d-none">
+                                    <td>Inside oven</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psLaundary d-none">
+                                    <td>Laundry wash & dry</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psWindows d-none">
+                                    <td>Interior windows</td>
+                                    <td>30 Min.</td>
+                                </tr>
+
                             </tbody>
                         </table>
                         <hr class="payment-summary-hr">
@@ -147,7 +215,7 @@
                                         <b>Total Service</b>
                                     </td>
                                     <td>
-                                        <b>3 Hrs</b>
+                                        <b class="psTotalHour">3 Hrs</b>
                                     </td>
                                 </tr>
                             </tbody>
@@ -158,7 +226,7 @@
                             <tbody>
                                 <tr>
                                     <td>Per Cleaning</td>
-                                    <td><b>54,00&nbsp;€<b></b></td>
+                                    <td><b class="psTotalPayment">54,00&nbsp;€</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -168,26 +236,10 @@
                             <tbody>
                                 <tr>
                                     <td>Total Payment</td>
-                                    <td>54,00&nbsp;€</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <p class="no-sales-tax">According §19 UStG no sales tax is calculated.</p>
-                                    </td>
-                                </tr>
-                                <tr class="effective-price">
-
-                                    <td>Effective Price</td>
-                                    <td>
-                                        <b>43,20&nbsp;€</b>
-                                    </td>
+                                    <td class="psTotalPayment">54,00&nbsp;€</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p>
-
-                            <span>*</span>You will save 20% according to §35a EStG.
-                        </p>
                     </div>
                     <div class="footer">
 
@@ -271,7 +323,7 @@
             <div class="modal-body">
                 <div class="payment-summary">
                     <div class="content">
-                        <span>08/02/2022  08:00</span>
+                        <span class="psDatetime"></span>
                         <table>
                             <thead>
                                 <tr>
@@ -282,8 +334,33 @@
                             <tbody>
                                 <tr>
                                     <td>Basic</td>
-                                    <td>3 Hrs</td>
+                                    <td class="psBasicHrs"></td>
                                 </tr>
+                                <tr class="psExtraHeading">
+                                    <td>Extra</td>
+                                    <td></td>
+                                </tr>
+                                <tr class="psInsideCabinet">
+                                    <td>Inside cabinets</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psInsideFridge">
+                                    <td>Inside fridge</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psInsideOven">
+                                    <td>Inside oven</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psLaundary">
+                                    <td>Laundry wash & dry</td>
+                                    <td>30 Min.</td>
+                                </tr>
+                                <tr class="psWindows">
+                                    <td>Interior windows</td>
+                                    <td>30 Min.</td>
+                                </tr>
+
                             </tbody>
                         </table>
                         <hr class="payment-summary-hr">
@@ -294,7 +371,7 @@
                                         <b>Total Service</b>
                                     </td>
                                     <td>
-                                        <b>3 Hrs</b>
+                                        <b class="psTotalHour">3 Hrs</b>
                                     </td>
                                 </tr>
                             </tbody>
@@ -305,7 +382,7 @@
                             <tbody>
                                 <tr>
                                     <td>Per Cleaning</td>
-                                    <td><b>54,00&nbsp;€<b></b></td>
+                                    <td><b class="psTotalPayment">54,00&nbsp;€</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -315,26 +392,10 @@
                             <tbody>
                                 <tr>
                                     <td>Total Payment</td>
-                                    <td>54,00&nbsp;€</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <p class="no-sales-tax">According §19 UStG no sales tax is calculated.</p>
-                                    </td>
-                                </tr>
-                                <tr class="effective-price">
-
-                                    <td>Effective Price</td>
-                                    <td>
-                                        <b>43,20&nbsp;€</b>
-                                    </td>
+                                    <td class="psTotalPayment">54,00&nbsp;€</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <p>
-
-                            <span>*</span>You will save 20% according to §35a EStG.
-                        </p>
                     </div>
                     <div class="footer">
 
@@ -405,185 +466,6 @@
 
 
 @section script{
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <script src="~/js/book_service.js"></script>
-    <script>
-        function checkZip() {
-           
-            var Zipdata = $('#setupService').serialize();
-
-            $.ajax({
-                type: 'Post',
-                cache: false,
-                url: '/Customer/IsAvailableZip',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: Zipdata,
-                success:
-                    function (response) {
-                        if (response.value == "true") {
-                            $('#pills-schedule-tab').click();
-                        } else {
-                            $('#notAvailablezipError').html("We are not providing service in this area. We’ll notify you if any helper would start working near your area.");
-                        }
-                    },
-                error:
-                    function (err) {
-                        console.error(err);
-                    }
-            });
-        }
-
-
-        function ScheduleService() {
-            var ScheduleData = $('#scheduleData').serialize();
-
-            $.ajax({
-                type: 'Post',
-                cache: false,
-                url: '/Customer/ScheduleService',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: ScheduleData,
-                success:
-                    function (response) {
-                        if (response.value == "true") {
-                            console.log("ok");
-                            getAddressOfUser();
-                            $('#pills-details-tab').click();
-
-                        } else {
-                            console.log("data not found");
-                         
-
-                        }
-                    },
-                error:
-                    function (err) {
-                        console.error(err);
-                    }
-            });
-
-        }
-
-
-        function getAddressOfUser() {
-            $.ajax({
-                type: 'GET',
-                cache: false,
-                url: '/Customer/getAddressOfUser',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                success:
-                    function (response) {
-                        console.log(response);
-                        var address_picker = $('.address-picker');
-                        address_picker.empty();
-                        for (var i = 0; i < response.length; i++) {
-                            if (response[i].isDefault == true) {
-                                address_picker.append(' <li> <label> <input type="radio" name="addressRadio" id="addressRadio" value="' + response[i].id + '" checked /> <span class="address-block"> <b>Address : </b> ' + response[i].addressline1 + ' ' + response[i].addressline2 + ', ' + response[i].city + ' ' + response[i].postalcode + ' </span > <span> <b>Phone Number :</b>  ' + response[i].mobile + '   </span> <span class="radio-pointer"></span> </label > </li > ')
-                            } else {
-                                address_picker.append(' <li> <label> <input type="radio" name="addressRadio" id="addressRadio" value="' + response[i].id + '" /> <span class="address-block"> <b>Address : </b> ' + response[i].addressline1 + ' ' + response[i].addressline2 + ', ' + response[i].city + ' ' + response[i].postalcode + ' </span > <span> <b>Phone Number :</b>  ' + response[i].mobile + '   </span> <span class="radio-pointer"></span> </label > </li > ')
-                            }
-                        }
-
-                    }
-                 
-
-            });
-        }
-
-
-        function ClearAddressForm() {
-            $('#NewHouseNo').val("");
-            $('#NewStreetName').val("");
-            $('#NewCity').val("");
-            $('#NewPostalCode').val("");
-            $('#NewMobile').val("");
-        }
-
-        function AddNewUserAddress() {
-            
-            var NewAddress = {};
-            NewAddress.AddLine1 = $('#NewHouseNo').val();
-            NewAddress.AddLine2 = $('#NewStreetName').val();
-            NewAddress.NewCity = $('#NewCity').val();
-            NewAddress.NewMobile = $('#NewMobile').val();
-            NewAddress.NewPostal = $('#NewPostalCode').val();
-
-            $.ajax({
-                type: "POST",
-                url: '/Customer/AddNewAddressToDB',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: { 'AddLine1': NewAddress.AddLine1, 'AddLine2': NewAddress.AddLine2, 'NewCity': NewAddress.NewCity, 'NewMobile': NewAddress.NewMobile, 'NewPostal': NewAddress.NewPostal  },
-                cache: false,
-                success:
-                    function (response) {
-                        if (response.value == "true") {
-                            getAddressOfUser();
-                            ClearAddressForm();
-                        } else {
-                            alert("fail");
-                        }
-                    },
-                error:
-                    function (err) {
-                        console.error(err);
-                    }
-            });
-        }
-
-        $("#step3btn").on("click", function () {
-            $('#pills-payment-tab').click();
-        });
-
-        function CompleteBooking() {
-
-            var NewBookingRequest = {};
-            NewBookingRequest.ServiceZipCode = $('#postalCode').val();
-            NewBookingRequest.ServiceDate = $('#scheduleDate').val();
-            NewBookingRequest.ServiceHours = $('#scheduleTime').val();
-            NewBookingRequest.Comments = $('#comments').val();
-            NewBookingRequestHavePets = $('#pets').val();
-            NewBookingRequest.extraHour = 0;
-            NewBookingRequest.cabinet = $('#cabinet').val();
-            NewBookingRequest.fridge = $('#fridge').val();
-            NewBookingRequest.oven = $('#oven').val();
-            NewBookingRequest.laundary = $('#laundary').val();
-            NewBookingRequest.window = $('#window').val();
-            NewBookingRequest.SelectedAddressId = $(".address-picker input[name='addressRadio']:checked").val();
-
-            if (NewBookingRequest.cabinet) {
-                NewBookingRequest.extraHour += 0.5;
-            }
-            if (NewBookingRequest.fridge) {
-                NewBookingRequest.extraHour += 0.5;
-            }
-            if (NewBookingRequest.oven) {
-                NewBookingRequest.extraHour += 0.5;
-            }
-            if (NewBookingRequest.laundary) {
-                NewBookingRequest.extraHour += 0.5;
-            }
-            if (NewBookingRequest.window) {
-                NewBookingRequest.extraHour += 0.5;
-            }
-            $.ajax({
-                type: 'POST',
-                url: '/Customer/CompleteBooking',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: NewBookingRequest,
-                success:
-                    function (response) {
-                        if (response.value == "true") {
-                            alert("Booking Successfully");
-                        } else {
-                            alert("booking not done");
-                        }
-                    },
-                error:
-                    function (err) {
-                        console.error(err);
-                    }
-            });
-           
-        }
-       
-    </script>
 }

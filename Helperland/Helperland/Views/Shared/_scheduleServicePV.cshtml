@@ -5,43 +5,47 @@
 }
 
 <div class="tab-pane fade" id="pills-schedule" role="tabpanel" aria-labelledby="pills-schedule-tab">
+    <div class="alert alert-danger fade show d-none" role="alert" id="DateErrorAllert">
+        <strong>
+            Please Select Date.
+        </strong>
+    </div>
     <form id="scheduleData" method="post">
         <div class="row">
             <div class="col-md-6">
                 <span class="question">When do you need the cleaner?</span>
                 <div class="form-group schedule_booktime">
                     <div class="input-wrapper">
-                        <img src="~/image/admin_ServiceRequest/calendar.svg" />
-                        <input asp-for="scheduleDate" class="form-control" id="scheduleDate" />
+                        <input asp-for="scheduleDate" class="form-control" id="scheduleDate" placeholder="Service Date" type="text" onchange="PaymentSummaryTable()" />
                     </div>
-                    <select asp-for="scheduleTime" class="form-control inline" id="scheduleTime">
-                        <option value="8">8:00</option>
-                        <option value="8.5">8:30</option>
-                        <option value="9">9:00</option>
-                        <option value="9.5">9:30</option>
-                        <option value="10">10:00</option>
-                        <option value="10.5">10:30</option>
-                        <option value="11">11:00</option>
-                        <option value="11.5">11:30</option>
-                        <option value="12">12:00</option>
-                        <option value="12.5">12:30</option>
-                        <option value="13">13:00</option>
-                        <option value="13.5">13:30</option>
-                        <option value="14">14:00</option>
-                        <option value="14.5">14:30</option>
-                        <option value="15">15:00</option>
-                        <option value="15.5">15:30</option>
-                        <option value="16">16:00</option>
-                        <option value="16.5">16:30</option>
-                        <option value="17">17:00</option>
-                        <option value="17.5">17:30</option>
-                        <option value="18">18:00</option>
+                    <select asp-for="scheduleTime" class="form-control inline" id="scheduleTime" onchange="PaymentSummaryTable()">
+                        <option value="08:00 AM">08:00 AM</option>
+                        <option value="08:30 AM">08:30 AM</option>
+                        <option value="09:00 AM">09:00 AM</option>
+                        <option value="09:30 AM">09:30 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="10:30 AM">10:30 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="11:30 AM">11:30 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="12:30 PM">12:30 PM</option>
+                        <option value="01:00 PM">01:00 PM</option>
+                        <option value="01:30 PM">01:30 PM</option>
+                        <option value="02:00 PM">02:00 PM</option>
+                        <option value="02:30 PM">02:30 PM</option>
+                        <option value="03:00 PM">03:00 PM</option>
+                        <option value="03:30 PM">03:30 PM</option>
+                        <option value="04:00 PM">04:00 PM</option>
+                        <option value="04:30 PM">04:30 PM</option>
+                        <option value="05:00 PM">05:00 PM</option>
+                        <option value="05:30 PM">05:30 PM</option>
+                        <option value="06:00 PM">06:00 PM</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-6">
                 <span class="question">How long do you need your cleaner to stay?</span>
-                <select asp-for="stayHour" class="form-control cleaner-hour" id="StayHour">
+                <select asp-for="stayHour" class="form-control cleaner-hour" id="StayHour" onchange="PaymentSummaryTable()">
                     <option value="3">3.0 Hrs</option>
                     <option value="3.5">3.5 Hrs</option>
                     <option value="4">4.0 Hrs</option>
@@ -69,7 +73,7 @@
         <span class="question">Extra Services</span>
         <div class="extra-service">
             <label class="extra-service-icon">
-                <input asp-for="cabinet" type="checkbox" id="cabinet" />
+                <input asp-for="cabinet" type="checkbox" id="cabinet" onchange="PaymentSummaryTable()" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/cabinet.svg" />
@@ -78,7 +82,7 @@
                 <span>Inside cabinets</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="fridge" type="checkbox" id="fridge" />
+                <input asp-for="fridge" type="checkbox" id="fridge" onchange="PaymentSummaryTable()" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/fridge.svg" />
@@ -87,7 +91,7 @@
                 <span>Inside Fridge</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="oven" type="checkbox" id="oven" />
+                <input asp-for="oven" type="checkbox" id="oven" onchange="PaymentSummaryTable()" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/booking_service/oven.png" />
@@ -96,7 +100,7 @@
                 <span>Inside oven</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="laundary" type="checkbox" id="laundary" />
+                <input asp-for="laundary" type="checkbox" id="laundary" onchange="PaymentSummaryTable()" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/laundary.svg" />
@@ -105,7 +109,7 @@
                 <span>Laundary wash & dry</span>
             </label>
             <label class="extra-service-icon">
-                <input asp-for="window" type="checkbox" id="window" />
+                <input asp-for="window" type="checkbox" id="window" onchange="PaymentSummaryTable()" />
                 <div class="extra-service-img">
                     <div class="img-wrapper">
                         <img src="~/image/price/window.svg" />
@@ -117,10 +121,16 @@
 
         <hr class="divider" />
         <span class="question">Comments</span>
+        @*<div class="alert alert-danger fade show d-none" role="alert" id="CommentErrorAllert">
+                <strong>
+                    Comment should contain 10 to 500 character.
+                </strong>
+            </div>*@
         <div class="form-group">
-            <textarea asp-for="comment" class="form-control"  id="comments" cols="30" rows="3" maxlength="300"
+            <textarea asp-for="comment" class="form-control" id="comments" cols="30" rows="3" maxlength="300"
                       placeholder="Comments"></textarea>
         </div>
+
         <div class="petcheckbox">
             <label>
                 <input asp-for="havePet" type="checkbox" id="pets" class="petsCheck" />

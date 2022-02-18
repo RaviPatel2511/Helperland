@@ -64,16 +64,23 @@ namespace Helperland.Controllers
         [HttpPost]
         public ActionResult IsAvailableZip(setupService setupservice)
         {
-            var availableZipcode = _helperlandContext.Zipcodes.Where(x => x.ZipcodeValue == setupservice.Zipcode);
-            if (availableZipcode.Count() > 0)
+            if (ModelState.IsValid)
+            {
+
+            var availableZipcode = _helperlandContext.Zipcodes.Where(x => x.ZipcodeValue == setupservice.Zipcode).FirstOrDefault();
+            if (availableZipcode != null)
             {
                 TempData["EnteredZip"] = setupservice.Zipcode;
-                return Ok(Json("true"));
+                    var city = _helperlandContext.Cities.Where(x => x.Id == availableZipcode.CityId).FirstOrDefault();
+                    var cityName = city.CityName;
+                    return Ok(Json(cityName));
             }
             else
             {
                 return Ok(Json("false"));
             }
+            }
+                return Ok(Json("Invalid"));
         }
 
         [HttpPost]
@@ -126,6 +133,9 @@ namespace Helperland.Controllers
             int? logedUserid = HttpContext.Session.GetInt32("userid");
             if (logedUserid != null)
             {
+                var city = _helperlandContext.Cities.Where(x => x.CityName == NewCity).FirstOrDefault();
+                var state = _helperlandContext.States.Where(x => x.Id == city.StateId).FirstOrDefault();
+
                 User logedUser = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
                 userAddress.UserId = logedUser.UserId;
                 userAddress.AddressLine1 = AddLine1;
@@ -134,6 +144,7 @@ namespace Helperland.Controllers
                 userAddress.PostalCode = NewPostal;
                 userAddress.Mobile = NewMobile;
                 userAddress.Email = logedUser.Email;
+                userAddress.State = state.StateName;
                 userAddress.IsDefault = false;
                 userAddress.IsDeleted = false;
                 _helperlandContext.UserAddresses.Add(userAddress);
@@ -145,7 +156,7 @@ namespace Helperland.Controllers
         }
 
         [HttpPost]
-        public ActionResult CompleteBooking(BookService data)
+        public IActionResult CompleteBooking(BookService data)
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
             if (logedUserid != null)
@@ -153,38 +164,87 @@ namespace Helperland.Controllers
                 ServiceRequest newRequest = new ServiceRequest();
                 newRequest.UserId = Convert.ToInt32(logedUserid);
                 newRequest.ServiceId = Convert.ToInt32(logedUserid);
-                newRequest.ServiceStartDate = data.ServiceDate;
+                newRequest.ServiceStartDate = DateTime.ParseExact(data.ServiceDateTime, "dd/MM/yyyy hh:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+
                 newRequest.ServiceHours = data.ServiceHours;
-                newRequest.ExtraHours = data.ExtraServiceHours;// not provide any value
+                newRequest.ExtraHours = data.ExtraServiceHours;
+                newRequest.ServiceHourlyRate = 10;
+                newRequest.SubTotal = Convert.ToDecimal(newRequest.ServiceHours + newRequest.ExtraHours);
+                newRequest.TotalCost = Convert.ToDecimal(newRequest.SubTotal * 10);
                 newRequest.Comments = data.Comments;
-                newRequest.HasPets = data.HavePets; // not provide value
+                newRequest.HasPets = data.HavePets;
                 newRequest.CreatedDate = DateTime.Now;
                 newRequest.ModifiedDate = DateTime.Now;
                 newRequest.ZipCode = data.ServiceZipCode;
+                newRequest.PaymentDue = false;
+                newRequest.PaymentDone = true;
+                newRequest.HasIssue = false;
+                newRequest.ModifiedBy = logedUserid;
+                var saveBooking = _helperlandContext.ServiceRequests.Add(newRequest);
+                _helperlandContext.SaveChanges();
 
-                //var saveData = _helperlandContext.ServiceRequests.Add(newRequest);
-                //_helperlandContext.SaveChanges();
+                
+                UserAddress selectedAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == data.SelectedAddressId).FirstOrDefault();
 
-                var SelectedAddId = data.SelectedAddressId;
-                var selectedAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == SelectedAddId).FirstOrDefault();
                 ServiceRequestAddress newBookingAddress = new ServiceRequestAddress();
-                //newBookingAddress.ServiceRequestId = saveData.Entity.ServiceRequestId;
+                newBookingAddress.ServiceRequestId = saveBooking.Entity.ServiceRequestId;
                 newBookingAddress.AddressLine1 = selectedAddress.AddressLine1;
                 newBookingAddress.AddressLine2 = selectedAddress.AddressLine2;
                 newBookingAddress.City = selectedAddress.City;
-                newBookingAddress.State= selectedAddress.State; // no any input
+                newBookingAddress.State = selectedAddress.State; // no any input
                 newBookingAddress.PostalCode = selectedAddress.PostalCode;
                 newBookingAddress.Mobile = selectedAddress.Mobile;
                 newBookingAddress.Email = selectedAddress.Email;
+                newBookingAddress.State = selectedAddress.State;
+                var saveaddress = _helperlandContext.ServiceRequestAddresses.Add(newBookingAddress);
+                _helperlandContext.SaveChanges();
 
 
 
+                if (data.cabinet)
+                {
+                    ServiceRequestExtra newExtraService = new ServiceRequestExtra();
+                    newExtraService.ServiceRequestId = saveBooking.Entity.ServiceRequestId;
+                    newExtraService.ServiceExtraId = 1;
+                    _helperlandContext.ServiceRequestExtras.Add(newExtraService);
+                    _helperlandContext.SaveChanges();
+                }
+                if (data.fridge)
+                {
+                    ServiceRequestExtra newExtraService = new ServiceRequestExtra();
+                    newExtraService.ServiceRequestId = saveBooking.Entity.ServiceRequestId;
+                    newExtraService.ServiceExtraId = 2;
+                    _helperlandContext.ServiceRequestExtras.Add(newExtraService);
+                    _helperlandContext.SaveChanges();
+                }
+                if (data.oven)
+                {
+                    ServiceRequestExtra newExtraService = new ServiceRequestExtra();
+                    newExtraService.ServiceRequestId = saveBooking.Entity.ServiceRequestId;
+                    newExtraService.ServiceExtraId = 3;
+                    _helperlandContext.ServiceRequestExtras.Add(newExtraService);
+                    _helperlandContext.SaveChanges();
+                }
+                if (data.laundary)
+                {
+                    ServiceRequestExtra newExtraService = new ServiceRequestExtra();
+                    newExtraService.ServiceRequestId = saveBooking.Entity.ServiceRequestId;
+                    newExtraService.ServiceExtraId = 4;
+                    _helperlandContext.ServiceRequestExtras.Add(newExtraService);
+                    _helperlandContext.SaveChanges();
+                }
+                if (data.window)
+                {
+                    ServiceRequestExtra newExtraService = new ServiceRequestExtra();
+                    newExtraService.ServiceRequestId = saveBooking.Entity.ServiceRequestId;
+                    newExtraService.ServiceExtraId = 5;
+                    _helperlandContext.ServiceRequestExtras.Add(newExtraService);
+                    _helperlandContext.SaveChanges();
+                }
 
-
-
-                return Ok(Json("true"));
+                return Json(saveBooking.Entity.ServiceRequestId);
             }
-            return Ok(Json("false"));
+            return Json("false");
         }
     }
 }

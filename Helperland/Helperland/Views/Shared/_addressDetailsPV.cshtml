@@ -9,6 +9,11 @@
             Enter your contact details, so we can serve you in better
             way!
         </span>
+        <div class="alert alert-danger fade show d-none" role="alert" id="AddressErrorAlert">
+            <strong>
+                Please Select Any Address !
+            </strong>
+        </div>
         <ul class="address-picker">
             <li>
                 <label>
@@ -25,6 +30,9 @@
         <input class="btn addNewAddress-button" type="button" id="AddNewAddress" value="+ Add New Address" />
         <div class="newAddressForm d-none">
             <form>
+                <div class="alert alert-danger fade show d-none" role="alert" id="AddAddressErrorAllert">
+                    
+                </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -41,7 +49,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label">Postal code</label>
-                            <input class="form-control" id="NewPostalCode" name="PostalCode" type="text"/>
+                            <input class="form-control" id="NewPostalCode" name="PostalCode" type="text" disabled />
 
                         </div>
                     </div>
@@ -49,9 +57,9 @@
                         <div class="form-group">
                             <label class="control-label">City</label>
                             @*<select class="form-control">
-            <option value="Troisdorf">Troisdorf</option>
-        </select>*@
-                        <input class="form-control" id="NewCity" name="CityName" type="text" placeholder="City" />
+                        <option value="Troisdorf">Troisdorf</option>
+                    </select>*@
+                            <input class="form-control" id="NewCity" name="CityName" type="text" placeholder="City" disabled />
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -60,7 +68,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode"
                                        placeholder="+91" readonly />
-                                <input type="text" name="phone" id="NewMobile" class="form-control col-10"
+                                <input type="number" name="phone" id="NewMobile" class="form-control col-10"
                                        placeholder="Phone Number" />
                             </div>
                         </div>
