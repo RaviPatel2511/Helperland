@@ -63,10 +63,10 @@
                     <form asp-controller="Account" asp-action="ForgotPassword" method="post">
                         @if (TempData["mailnotfound"] != null)
                         {
-                           <p class="text-danger">
-                                    we could not find any user registered with this email please provide valid mail
+                            <p class="text-danger">
+                                we could not find any user registered with this email please provide valid mail
                             </p>
-                              
+
                         }
                         else if (TempData["mailsend"] != null)
                         {
@@ -95,13 +95,13 @@
     <div class="modal fade" id="logoutSuccessfully" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                
+
                 <div class="modal-body text-center">
                     <span>
                         <img src="~/image/home/logout.png" />
                     </span>
                     <h3>You have successfully logged out</h3>
-                    <a class="btn btn-primary"  asp-controller="Helperland" asp-action="Index">Ok</a>
+                    <a class="btn btn-primary" asp-controller="Helperland" asp-action="Index">Ok</a>
                 </div>
             </div>
         </div>
@@ -383,7 +383,7 @@
 </div>
 
 @section script{
-  
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="~/js/index.js"></script>

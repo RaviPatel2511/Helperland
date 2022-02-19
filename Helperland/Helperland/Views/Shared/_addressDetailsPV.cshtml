@@ -31,7 +31,7 @@
         <div class="newAddressForm d-none">
             <form>
                 <div class="alert alert-danger fade show d-none" role="alert" id="AddAddressErrorAllert">
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -57,8 +57,8 @@
                         <div class="form-group">
                             <label class="control-label">City</label>
                             @*<select class="form-control">
-                        <option value="Troisdorf">Troisdorf</option>
-                    </select>*@
+                                <option value="Troisdorf">Troisdorf</option>
+                            </select>*@
                             <input class="form-control" id="NewCity" name="CityName" type="text" placeholder="City" disabled />
                         </div>
                     </div>
@@ -79,6 +79,21 @@
                 <input class="btn custombtnClose" type="button" id="cancelAdressform" value="Cancel" onclick="ClearAddressForm()" />
             </form>
         </div>
+        <div id="ChooseFavProvider">
+        <span class="question">Your Favourite Service Provider</span>
+        <hr class="FavProviderdivider" />
+        <span>You can Choose your favourite provider from the below list .</span>
+            <div class="favProvider">
+                <div>
+                    <img src="~/image/booking_service/cap.png" />
+                    <p class="mb-2">Sandip Patel</p>
+                    <button class="btn btn-outline-dark" type="button">
+                        Select
+                    </button>
+                </div>
+            </div>
+        </div>
+        
         <hr class="divider" />
         <div class="text-right">
             <a class="btn custombtn btn-lg" id="step3btn">

@@ -21,8 +21,9 @@
                     <span>
                         <img src="~/image/home/logout.png" />
                     </span>
-                    <h3>Your Booking has been confirmed , Your BookingId is : <b id="CoonfirmBookReferenceId"></b></h3>
-                    <a class="btn btn-primary" asp-controller="Customer" asp-action="BookService">Ok</a>
+                    <h3>Booking has been successfully submitted</h3>
+                    <h4>Service Request Id : <b id="CoonfirmBookReferenceId"></b></h4>
+                    <a class="btn SuccessOkBtn" asp-controller="Customer" asp-action="BookService">Ok</a>
                 </div>
             </div>
         </div>
@@ -134,9 +135,9 @@
                                             <div class="Paycard">
                                                 <span>Accept Cards</span><br>
                                                 <span>
-                                                    <img src="../.././" alt="master">
-                                                    <img src="../.././" alt="visa">
-                                                    <img src="../.././" alt="america">
+                                                    <img src="~/image/booking_service/master.png" alt="master">
+                                                    <img src="~/image/booking_service/visa.png" alt="visa">
+                                                    <img src="~/image/booking_service/american.png" alt="america">
                                                 </span>
                                             </div>
                                         </div>
@@ -226,7 +227,7 @@
                             <tbody>
                                 <tr>
                                     <td>Per Cleaning</td>
-                                    <td><b class="psTotalPayment">54,00&nbsp;€</b></td>
+                                    <td><b class="psTotalPayment">0 Rs.</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -236,7 +237,7 @@
                             <tbody>
                                 <tr>
                                     <td>Total Payment</td>
-                                    <td class="psTotalPayment">54,00&nbsp;€</td>
+                                    <td class="psTotalPayment">0 Rs.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -340,23 +341,23 @@
                                     <td>Extra</td>
                                     <td></td>
                                 </tr>
-                                <tr class="psInsideCabinet">
+                                <tr class="psInsideCabinet d-none">
                                     <td>Inside cabinets</td>
                                     <td>30 Min.</td>
                                 </tr>
-                                <tr class="psInsideFridge">
+                                <tr class="psInsideFridge d-none">
                                     <td>Inside fridge</td>
                                     <td>30 Min.</td>
                                 </tr>
-                                <tr class="psInsideOven">
+                                <tr class="psInsideOven d-none">
                                     <td>Inside oven</td>
                                     <td>30 Min.</td>
                                 </tr>
-                                <tr class="psLaundary">
+                                <tr class="psLaundary d-none">
                                     <td>Laundry wash & dry</td>
                                     <td>30 Min.</td>
                                 </tr>
-                                <tr class="psWindows">
+                                <tr class="psWindows d-none">
                                     <td>Interior windows</td>
                                     <td>30 Min.</td>
                                 </tr>
@@ -382,7 +383,7 @@
                             <tbody>
                                 <tr>
                                     <td>Per Cleaning</td>
-                                    <td><b class="psTotalPayment">54,00&nbsp;€</b></td>
+                                    <td><b class="psTotalPayment">0 Rs.</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -392,7 +393,7 @@
                             <tbody>
                                 <tr>
                                     <td>Total Payment</td>
-                                    <td class="psTotalPayment">54,00&nbsp;€</td>
+                                    <td class="psTotalPayment">0 Rs.</td>
                                 </tr>
                             </tbody>
                         </table>

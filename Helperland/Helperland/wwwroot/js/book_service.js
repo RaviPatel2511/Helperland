@@ -109,7 +109,7 @@ function PaymentSummaryTable() {
 	var totalHr = basicHr + ExtraHr;
 	$('.psTotalHour').text(totalHr+ " " + "Hrs");
 
-	$(".psTotalPayment").text(parseFloat(totalHr * 10)+ " " + "Euro");
+	$(".psTotalPayment").text(parseFloat(totalHr * 10)+ " " + "Rs.");
 }
 
 // FIRST TAB POST REQUEST
@@ -215,6 +215,10 @@ function getAddressOfUser() {
                     }
                 }
 
+            },
+        error:
+            function (err) {
+                console.error(err);
             }
     });
 }
