@@ -158,11 +158,6 @@ nav {
         border-color: #006072
     }
 
-.nav-item:nth-child(2) .menu {
-    border: 1px solid white;
-    border-radius: 40px;
-}
-
 .menu {
     text-decoration: none;
     color: white;
@@ -507,7 +502,9 @@ nav {
     height: 46px;
     resize: none;
 }
-
+#PostalCodeBtn{
+    cursor:not-allowed;
+}
 select.form-control {
     height: 46px !important;
 }
@@ -648,6 +645,8 @@ textarea.form-control {
 .dividerpet {
     margin: 10px 0 30px 0;
 }
+
+
 
 .btn-lg {
     font-size: 20px;

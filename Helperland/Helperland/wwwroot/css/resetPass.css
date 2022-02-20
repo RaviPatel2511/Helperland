@@ -15,4 +15,19 @@
      max-width:500px;
      margin-top:100px;
  }
+.heading h2 {
+    color: #4F4F4F;
+    font-size: 35px;
+    display: block;
+}
+.main hr {
+    width: 200px;
+}
+
+.star {
+    margin-top: 9px;
+}
+.star img {
+    margin: 0px 9px;
+}
  

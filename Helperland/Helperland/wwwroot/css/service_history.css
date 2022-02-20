@@ -57,10 +57,6 @@
         color: #29626D;
         background: white;
     }
-    .nav-item:nth-child(2) .menu {
-       border:1px solid white;
-       border-radius:30px;
-    }
 .navbar-nav{
   height: 40px;
 }

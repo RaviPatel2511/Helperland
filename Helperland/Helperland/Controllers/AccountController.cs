@@ -23,8 +23,8 @@ namespace Helperland.Controllers
       
         string subject = "Password reseat link.";
         string mailTitle = "Helperland Service";
-        string fromEmail = "username";
-        string fromEmailPassword = "password";
+        string fromEmail = "ravipatelphoto@gmail.com";
+        string fromEmailPassword = "Vanee@2019";
         public IActionResult CustSignup(bool isuserExists= false)
         {
             if(HttpContext.Session.GetInt32("userid") == null)
@@ -149,8 +149,8 @@ namespace Helperland.Controllers
                     string MailBody = "<!DOCTYPE html>" +
                              "<html> " +
                                  "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
-                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland. Click Below link to change your password.</h1> " +
-                                  "<a href='" + Url.Action("ResetPass", "Account", new { code = resetcode, id = account.UserId }, "http") + "'>Reset Password</a>" +
+                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland. Click Below Button to change your password.</h1> " +
+                                  "<a style=\"background:#1d7a8c;padding:9px 20px;color:white;text-decoration:none;font-size:25px;\" href='" + Url.Action("ResetPass", "Account", new { code = resetcode, id = account.UserId }, "http") + "'>Reset Password</a>" +
                                  "</body> " +
                              "</html>";
                     MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(account.Email));

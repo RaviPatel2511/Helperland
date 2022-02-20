@@ -18,6 +18,13 @@
 
 <body>
     <div class="main container justify-content-center align-items-center">
+        <div class="heading my-3">
+            <h2 class="text-center"><strong>Reset Password</strong></h2>
+        </div>
+        <div class="d-flex justify-content-center star my-3">
+            <hr /> <img src="~/image/faq/star.png" />
+            <hr />
+        </div>
         <form asp-controller="Account" asp-action="ResetPass" method="post">
             @if (ViewBag.Resetpasserror == true)
             {

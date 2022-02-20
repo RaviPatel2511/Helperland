@@ -13,6 +13,23 @@
     top: 100%;
 }
 
+#logoutSuccessfully a {
+    width: auto;
+    background: #1d7a8c;
+    border-color: white;
+    font-size: 17px;
+    padding: 9px 25px;
+    border-radius: 40px;
+    transition: all .5s;
+    color:white;
+}
+
+#logoutSuccessfully a:hover {
+    color: #1d718c;
+    background: white;
+    border-color: #1d7a8c;
+}
+
 .countryFlag button {
     background: none;
     color: white;
@@ -824,6 +841,11 @@ body.modal-open {
     position: relative;
     border-radius: 50%;
     background-color: #525252;
+    cursor:pointer;
+    transition:all .3s;
+}
+.up_arrow:hover{
+    background-color:#1d7a8c;
 }
 
 .up_arr {

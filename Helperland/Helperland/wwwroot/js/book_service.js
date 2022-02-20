@@ -129,7 +129,7 @@ function checkZip() {
             function (response) {
                 setTimeout(function () {
                     if (response.value == "false") {
-                        $('#errormsg').text("We are not providing service in this area. We’ll notify you if any helper would start working near your area.");
+                        $('#errormsg').text("We are not providing service in this area. We will notify you if any helper would start working near your area.");
                         $('#errorAlert').removeClass('d-none');
                     }
                     else if (response.value == "Invalid") {
@@ -412,3 +412,16 @@ function fourthTab() {
     $("#pills-details").removeClass("show active");
     $("#pills-payment").addClass("show active");
 }
+firstTab();
+
+$("#postalCode").keyup(function () {
+    if ($('#postalCode').val().length > 5) {
+        $('#PostalCodeBtn').prop('disabled', false);
+        $('#PostalCodeBtn').css('cursor', 'pointer');
+    } else {
+        $('#PostalCodeBtn').prop('disabled', true);
+        $('#PostalCodeBtn').css('cursor', 'not-allowed');
+    }
+});
+
+

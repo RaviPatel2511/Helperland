@@ -38,10 +38,7 @@ nav{
         background-color: white;
         border-color: #006072
     }
-  .nav-item:nth-child(2) .menu{
-    border: 1px solid white;
-    border-radius: 40px;
-  }
+ 
 
 .menu {
     text-decoration: none;

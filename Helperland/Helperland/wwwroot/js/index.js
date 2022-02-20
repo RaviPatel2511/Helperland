@@ -7,17 +7,14 @@ const mobileNav = document.querySelector('.mobileNav');
 const cookierow = document.querySelector('.frow2');
 const loginbtn = document.querySelector('.loginbtn');
 
-
 window.addEventListener("scroll", () => {
 	if (window.scrollY > 730) {
 		nav.classList.add("bg-grey");
 		nav.classList.add("fixed-top");
 		nav.classList.add("smalllogo");
-        up_arr.classList.remove("hidden");
         mobileNav.classList.add("bg-grey");
 		mobileNav.classList.add("fixed-top");
-		
-
+        up_arr.classList.remove("hidden");
 	}
 	else if(window.scrollY > 300){
 		cookierow.classList.remove('hidden');
@@ -49,7 +46,9 @@ menubtn.addEventListener('click',()=>{
 closebtn.addEventListener('click',()=>{
     Sidenav.classList.remove('open')
 })
-
+up_arr.addEventListener('click', () => {
+	window.scrollTo(0, 0);
+})
 
 
 window.onclick = function(event) {
@@ -57,6 +56,7 @@ window.onclick = function(event) {
 		Sidenav.classList.remove('open')
   }
 }
+
 
 
 $('#forgotPassLink').click(function(){
