@@ -148,7 +148,7 @@ nav{
   margin-bottom: 0px;
 }
 .mobileNavMenu{
-  color: black;
+  color: black!important;
   text-decoration: none;
 }
 .openSidenav ul li{

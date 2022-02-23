@@ -1,0 +1,207 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_CustDashLayout.cshtml";
+}
+
+
+<div id="Dashboard">
+    <div class="d-flex datatable_heading">
+        <div class="py-2">Current Service Requests</div>
+        <div class="py-2 mobile_sorting mx-3">
+            <a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal"><img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a>
+        </div>
+        <div class="modal fade" id="mobileSorting" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Choose Option</h4>
+                        <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                    </div>
+                    <div class="modal-body forgot-password">
+                        <form>
+                            <input type="radio" name="sortOption" id="ServiceIdOldest" value="ServiceId:Oldest">&nbsp;Service Id : Oldest<br>
+                            <input type="radio" name="sortOption" id="ServiceIdLatest" value="ServiceId:Latest">&nbsp;Service Id : Latest<br>
+                            <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
+                            <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
+                            <input type="radio" name="sortOption" id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
+                            <input type="radio" name="sortOption" id="ServiceProvider:ZtoA" value="ServiceProvider:ZtoA">&nbsp;Service Provider : Z to A<br>
+                            <input type="radio" name="sortOption" id="PaymentLowtoHigh" value="PaymentLowtoHigh">&nbsp;Payment Low to High<br>
+                            <input type="radio" name="sortOption" id="PaymentHightoLow" value="PaymentHightoLow">&nbsp;Payment High to Low<br>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Reschedule Modal content-->
+        <div class="modal fade" id="rescheduleModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Reschedule service Request</h4>
+                        <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label>Select New Date & Time</label>
+                            <div class="row">
+                                <div class="col-sm-6 mb-sm-2">
+                                    <input class="form-control" id="rescheduleDate" placeholder="Service Date" type="text" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="rescheduleTime">
+                                        <option value="08:00 AM">08:00 AM</option>
+                                        <option value="08:30 AM">08:30 AM</option>
+                                        <option value="09:00 AM">09:00 AM</option>
+                                        <option value="09:30 AM">09:30 AM</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="10:30 AM">10:30 AM</option>
+                                        <option value="11:00 AM">11:00 AM</option>
+                                        <option value="11:30 AM">11:30 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="12:30 PM">12:30 PM</option>
+                                        <option value="01:00 PM">01:00 PM</option>
+                                        <option value="01:30 PM">01:30 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="02:30 PM">02:30 PM</option>
+                                        <option value="03:00 PM">03:00 PM</option>
+                                        <option value="03:30 PM">03:30 PM</option>
+                                        <option value="04:00 PM">04:00 PM</option>
+                                        <option value="04:30 PM">04:30 PM</option>
+                                        <option value="05:00 PM">05:00 PM</option>
+                                        <option value="05:30 PM">05:30 PM</option>
+                                        <option value="06:00 PM">06:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="btn largeBtn">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--cancle Modal content-->
+        <div class="modal fade" id="cancleModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cancel Service Request</h4>
+                        <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label>Why You Want to cancle the service request ?</label>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <textarea class="form-control" id="canclecomments" rows="3" maxlength="300"></textarea>
+                                </div>
+                            </div>
+                            <button type="button" class="btn largeBtn">Cancel Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Display All data  Modal content-->
+        <div class="modal fade" id="displaydataModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Service Details</h4>
+                        <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                    </div>
+                    <div class="modal-body">
+                        <p class="date-time">21/02/2022 08:00-11.00</p>
+                        <span class="title-text"><b>Duration : </b>3 Hrs</span>
+                        <hr />
+                        <span class="title-text"><b>Service Id : </b>9495</span>
+                        <span class="title-text"><b>Extras : </b></span>
+                        <span class="title-text"><b>Net Amout : </b><span class="NetAmount">72 Rs.</span></span>
+                        <hr />
+                        <span class="title-text"><b>Service Address : </b>AKJAHK,KJAhsk</span>
+                        <span class="title-text"><b>Billing Address : </b>Same as cleaning Address</span>
+                        <span class="title-text"><b>Phone : </b>98989898989</span>
+                        <span class="title-text"><b>Email : </b>a@gmail.com</span>
+                        <hr />
+                        <span class="title-text"><b>Comments : </b>3 Hrs</span>
+                        <span class="title-text"><img src="~/image/service_history/notpet.png"/>I do not have pets at home</span>
+                        <hr />
+                        <div class="action-btn">
+                            <a href="#" data-toggle="modal" data-target="#rescheduleModal" data-dismiss="modal" class="btn rescheduleBtn"><img src="~/image/service_history/reschedule.png" />Reschedule</a>
+                            <a href="#" data-toggle="modal" data-target="#cancleModal" data-dismiss="modal" class="btn cancelbtn"><img src="~/image/service_history/cancle.png" />Cancle</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ml-auto py-2" id="AddNewServiceBtn"><a asp-controller="Customer" asp-action="BookService">Add New Service Request</a></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="dataTable table" id="Dashboard_table">
+                <thead>
+                    <tr>
+                        <th>Service Id </th>
+                        <th>Service Date </th>
+                        <th>Service Provider </th>
+                        <th>Payment</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="dashTblData">
+                    @*<tr>
+                        <td data-toggle="modal" data-target="#displaydataModal" data-dismiss="modal">323436</td>
+                        <td>
+                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col sp_icon d-flex align-items-center" >
+                                    <Span class="img_circle">
+                                        <img src="~/image/service_history/cap.png" alt="cap">
+                                    </Span>
+                                </div>
+                                <div class="col">
+                                    <p>Lyum Watson</p>
+                                    <p>
+                                        <div class="Stars" style="--rating: 4;"></div>&nbsp;4
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="payment">63 Rs.</p>
+                        </td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#rescheduleModal" data-dismiss="modal" class="btn rescheduleBtn">Reschedule</a>
+                            <a href="#" data-toggle="modal" data-target="#cancleModal" data-dismiss="modal" class="btn cancelbtn">Cancle</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3234</td>
+                        <td>
+                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <p class="payment">63 Rs.</p>
+                        </td>
+                        <td>
+                            <a class="btn rescheduleBtn">Reschedule</a>
+                            <a class="btn cancelbtn">Cancle</a>
+                        </td>
+                    </tr>*@
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+@section script{
+    <script src="~/js/CDashboard.js"></script>
+}

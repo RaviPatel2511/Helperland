@@ -85,3 +85,6 @@ C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Vi
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_scheduleServicePV.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_setupServicePV.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Helperland.csproj.AssemblyReference.cache
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_CustDashLayout.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\Dashboard.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\MySetting.cshtml.g.cs

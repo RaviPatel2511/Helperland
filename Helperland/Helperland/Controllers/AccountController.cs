@@ -23,8 +23,8 @@ namespace Helperland.Controllers
       
         string subject = "Password reseat link.";
         string mailTitle = "Helperland Service";
-        string fromEmail = "ravipatelphoto@gmail.com";
-        string fromEmailPassword = "Vanee@2019";
+        string fromEmail = "";
+        string fromEmailPassword = "";
         public IActionResult CustSignup(bool isuserExists= false)
         {
             if(HttpContext.Session.GetInt32("userid") == null)
@@ -120,7 +120,7 @@ namespace Helperland.Controllers
                     HttpContext.Session.SetInt32("usertypeid", credentials.UserTypeId);
                     if (credentials.UserTypeId == 1)
                     {
-                        return RedirectToAction("ServiceHistory", "Customer");
+                        return RedirectToAction("Dashboard", "Customer");
                     }   
                     else if (credentials.UserTypeId == 2)
                     {

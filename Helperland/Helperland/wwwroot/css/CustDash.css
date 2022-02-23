@@ -40,6 +40,7 @@
   .navbar-brand img {
     width: 73px;
     height: 55px;
+    margin-left:10px;
   }
 .nav-item:nth-child(1) .menu {
     background: #29626D;
@@ -225,7 +226,7 @@ width: 73px;
   margin-bottom: 0px;
 }
 .mobileNavMenu{
-  color: #646464;
+  color: black!important;
   margin-left: 15px;
   margin-bottom: 10px;
 }
@@ -278,7 +279,7 @@ table tr td:nth-child(5){text-align: center;}
   vertical-align: middle;
   font-size: 16px;
   color: #646464;
-  background: #f9f9f9;
+  /*background: #f9f9f9;*/
 }
 
 .dashboard{
@@ -298,7 +299,7 @@ table tr td:nth-child(5){text-align: center;}
   border: 1px solid rgb(255, 255, 255,0.3);
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-    
+  font-size:18px;
 }
 
 
@@ -335,14 +336,13 @@ table.dataTable.no-footer{
   color: #646464;
   font-weight: bold;
 }
-.datatable_heading  button{
-  background: #146371;
-  color: white;
-  border: none;
-  border-radius:35px ;
-  font-size: 14px;
-  padding: 10px 15px 10px 15px;
-
+#ServiceHistory .datatable_heading button {
+    background: #1d7a8c;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    font-size: 14px;
+    padding: 10px 15px 10px 15px;
 }
 .img_circle img{
   border: 1px solid #646464;
@@ -404,19 +404,22 @@ thead tr {
 tbody tr td p{
   margin-bottom: 0px !important;
 }
-
-#page-content-wrapper .dataTables_wrapper .dataTables_paginate a{
-  background-color: unset;
-  background: unset;
-  border: 1px solid #e1e1e1 ;
-  border-radius: 50%;
-  height: 45px;
-  width: 45px;
-  margin-left: 5px ;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
+#page-content-wrapper{
+    padding-left:30px;
+    padding-right:30px;
+}
+#page-content-wrapper .dataTables_wrapper .dataTables_paginate a {
+    background-color: unset;
+    background: unset;
+    border: 1px solid #e1e1e1;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
 }
 #page-content-wrapper .dataTables_wrapper .dataTables_paginate span{
   display: flex;
@@ -494,19 +497,236 @@ table th:nth-child(5) > span{
 }
 /* <!--////////////////////////////// DASHBOARD END////////////////////////// --> */
 
+/*Customer Dashboard CSS*/
 
+#Dashboard_table .date{
+    font-weight:bold;
+}
+#Dashboard_table tbody tr td .rescheduleBtn, #displaydataModal .rescheduleBtn, #newAddressSection .AddnewBtn {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 8px 10px 6px;
+    margin: 2px 0;
+    background: #1d7a8c;
+    border: none !important;
+    color: #fff !important;
+    border-radius: 50px;
+}
+#AddNewServiceBtn a {
+    color: white !important;
+    padding: 10px 10px;
+    font-size: 14px;
+    text-align: right;
+    background: #1d7a8c;
+    border-radius:50px;
+    font-weight:normal;
+}
+#Dashboard_table .cancelbtn, #displaydataModal .cancelbtn {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 8px 10px 6px;
+    margin: 2px 0;
+    background: #ff6b6b;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 50px;
+}
+#Dashboard_table thead tr th:nth-child(3){
+    text-align:initial;
+}
+#Dashboard .largeBtn, #MySetting .largeBtn {
+    width: 100%;
+    padding: 11px 34px;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    margin: 10px 0;
+    border-radius: 50px;
+}
+#Dashboard #rescheduleDate {
+    background-image: url(../image/booking_service/calendar.png);
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-position-y: center;
+    background-position-x: 5px;
+}
+#rescheduleModal .modal-dialog, #cancleModal .modal-dialog {
+    max-width: 420px;
+}
+#cancleModal label, #rescheduleModal label {
+    font-size: 16px;
+    font-weight: normal;
+}
+#displaydataModal .title-text {
+    display: block;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4f4f4f;
+    margin-bottom: 5px;
+    font-weight:normal;
+}
+#displaydataModal .date-time {
+    font-size: 22px;
+    line-height: 26px;
+    color: #4f4f4f;
+    font-weight: 700;
+}
+#displaydataModal hr {
+    border-color: #e1e1e1;
+    margin: 12px 0;
+}
+#displaydataModal .NetAmount {
+    font-size: 26px;
+    line-height: 26px;
+    color: #1d7a8c;
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 5px;
+}
+#displaydataModal .action-btn img{
+    vertical-align:top;
+    margin-right:4px;
+}
 
-
-
-
- /*/////////////// FOOTER ////////////// */
-
- footer{
+/*MySetting CSS*/
+#pills-tab-setting .tab-img{
+    display:none;
+}
+#MySetting {
+    color: #646464;
+}
+#MySetting .nav-pills .nav-link.active {
+    color: #1d7a8c;
+    background: 0 0;
+    border: none !important;
+    border-bottom: 4px solid #1d7a8c !important;
+}
+#MySetting .nav-pills .nav-item .active .tab-img img{
+   filter: invert(38%) sepia(31%) saturate(1012%) hue-rotate(142deg) brightness(97%) contrast(90%);
+}
+#MySetting .nav-pills .nav-link {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #646464;
+    border: none;
+    border-radius: 0;
+    border-bottom: 4px solid #e1e1e1;
+    padding: 15px 0;
+    margin-bottom: 0;
+    white-space: nowrap;
+    transition:all 0.3s;
+}
+#MySetting .nav-pills li a:hover {
+    color: #1d7a8c;
+    background: 0 0;
+    border: none !important;
+    border-bottom: 4px solid #1d7a8c !important;
+}
+#pills-details button, #pills-password button {
+    background: #1d7a8c;
+    border: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 30px;
+}
+#MySetting .control-label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color:#646464;
+}
+#MySetting .form-control {
+    background: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+    padding: 12px 15px;
+    box-shadow: none;
+    border: 1px solid #dedddd;
+    resize: vertical;
+    height: 45px;
+}
+#MySetting .form-group .input-group-add{
+    font-size: 16px;
+    line-height: 20px;
+    border-color: #dedddd;
+    padding: 11px 12px;
+    font-weight: 400;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 0;
+}
+#MySetting .inner-wrapper{
+    width:100%;
+    display:table;
+}
+#MySetting .inner-wrapper .inner {
+    display: table-cell;
+}
+#MySetting .inner-wrapper .inner:nth-child(2){
+    padding:0 10px;
+}
+#MySetting #language{
+    width:auto;
+}
+#MySetting .inner select{
+    padding:0 5px;
+}
+#myAddressTbl {
+    border: 1px solid #e5e5e5;
+    width:100%;
+    color:#646464;
+}
+#myAddressTbl thead {
+    background: #f3f3f3;
+    border-bottom: 2px solid #e1e1e1;
+}
+#myAddressTbl thead tr th{
+    padding: 10px 15px;
+    font-weight:normal;
+}
+#myAddressTbl thead tr th:nth-child(1){
+    padding:10px 15px 10px 50px;    
+}
+#myAddressTbl tbody tr td{
+    padding: 15px;
+    vertical-align: middle;
+}
+#myAddressTbl tbody tr td:nth-child(1){
+    padding:15px 15px 15px 50px;
+}
+#myAddressTbl .userAddressDetails span {
+    display: inline-block;
+    line-height: 24px;
+}
+#myAddressTbl .userAddressDetails span:nth-child(1){
+    display:block;
+}
+#myAddressTbl .action-buttons a {
+    color: transparent;
+    display: inline-block;
+    position: relative;
+    padding: 5px;
+}
+#myAddressTbl tbody tr td{
+    background:unset;
+}
+/*/////////////// FOOTER ////////////// */
+footer {
     background-color: #111111;
     width: 100%;
     color: white;
     /* height: 195px; */
-  }
+}
   footer .container a {
     text-decoration: none;
     color: #F1F1F1;
@@ -606,6 +826,15 @@ table th:nth-child(5) > span{
       .iconcolumn{
           margin-top:30px ;
       }
+      #rescheduleModal .modal-dialog, #cancleModal .modal-dialog{
+          margin:1.75rem auto;
+      }
+      #pills-tab-setting .tab-img{
+          display:block;
+      }
+      #pills-tab-setting .tab-title{
+            display:none;
+      }
     }
     @media screen and (max-width: 992px) {
       .navbar{
@@ -614,44 +843,50 @@ table th:nth-child(5) > span{
       .mobile_sorting{
         display: block;
       }
-      #service_history_table {
-        border: unset;
-      }
-        #service_history_table tr {
-            display: flex;
-            flex-wrap: wrap;
-            border: 1px solid #e1e1e1;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background: #f9f9f9;
-            box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-            -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-            -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-        }
-      table.dataTable.no-footer {
-        width: 100% !important;
+    .date {
+        margin: 0px 5px;
     }
-      #service_history_table  tr td{
+    .dataTable {
+        border: unset;
+    }
+    .dataTable tr {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #e1e1e1;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background: #f9f9f9;
+        box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+        -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+        -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    }
+    table.dataTable.no-footer {
+    width: 100% !important;
+    }
+    .dataTable  tr td {
         width: 100%;
-        background: unset;
+        background: unset!important;
         margin-top: 0px !important;
         height: unset;
-      }
+    }
       #service_history_table  tr td:nth-child(1){
         text-align: center;
       }
-      #service_history_table  tr td:nth-child(2){
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #service_history_table  tr th{
-        display: none;
-
-      }
-      #sidebar-wrapper{
-        display: none;
-      }
+        #service_history_table tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(3) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dataTable tr th{
+            display: none;
+        }
+        #sidebar-wrapper {
+            display: none;
+        }
+        #page-content-wrapper {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
       .table-bottom{
         flex-wrap: wrap;
       }
@@ -661,20 +896,30 @@ table th:nth-child(5) > span{
       }
       #page-content-wrapper .dataTables_paginate {
         width: 100%;
-       
       }
-      
       .mobileNav{
         display: block;
       }
+
+      /*dashboard css*/
+        #Dashboard_table thead, #ServiceHistory thead {
+            display: none;
+            background: unset;
+        }
+        #Dashboard_table, #service_history_table {
+            border: none;
+        }
+      #Dashboard_table tbody tr td{
+          text-align:center;
+          background:unset;
+      }
     }
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: 993px) {
       #sidebar-wrapper,.notification_item{
         display: block;
       }
-      
-      .mobileNotification ,.mobileNotification .notification_item{
-        display: none ;
-      }
+    .mobileNotification ,.mobileNotification .notification_item{
+    display: none ;
     }
+}
 

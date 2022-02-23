@@ -1,460 +1,122 @@
-﻿
-@section css{
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="~/css/service_history.css" />
+﻿@{
+    Layout = "~/Views/Shared/_CustDashLayout.cshtml";
 }
 
-<section class="welcome_msg">
-    <div class="container">
-        <h2 class="text-center">Welcome, <strong>@ViewBag.UserName !</strong></h2>
-    </div>
-</section>
-<!-- /////////////////////////////// TABLE START//////////////////////////////// -->
-<section>
-    <div class="container dashboard">
-        <div class="d-flex" id="wrapper">
-            <!-- Sidebar -->
-            <div id="sidebar-wrapper">
-                <a href="" class="list-group-item list-group-item-action">Dashboard</a>
-                <a href="" class="list-group-item list-group-item-action active">Service History</a>
-                <a href="" class="list-group-item list-group-item-action">Service Schedule</a>
-                <a href="" class="list-group-item list-group-item-action">Favourite Pros</a>
-                <a href="" class="list-group-item list-group-item-action">Invoices</a>
-                <a href="" class="list-group-item list-group-item-action">Notification</a>
-            </div>
-            <!-- /#sidebar-wrapper -->
-            <!-- Page Content -->
-            <div class="w-100 ml-2" id="page-content-wrapper">
-                <div class="d-flex datatable_heading">
-                    <div class="py-2">Service History</div>
-                    <div class="py-2 ml-3 mobile_sorting">
-                        <a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal"><img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a>
+<div id="ServiceHistory">
+    <div class="d-flex datatable_heading">
+        <div class="py-2">Service History</div>
+        <div class="py-2 ml-3 mobile_sorting">
+            <a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal"><img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a>
 
+        </div>
+        <div class="modal fade" id="mobileSorting" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Choose Option</h4>
+                        <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
                     </div>
-                    <div class="modal fade" id="mobileSorting" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Choose Option</h4>
-                                    <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
-                                </div>
-                                <div class="modal-body forgot-password">
-                                    <form>
-                                        <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
-                                        <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
-                                        <input type="radio" name="sortOption" id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
-                                        <input type="radio" name="sortOption" id="ServiceProvider:ZtoA" value="ServiceProvider:ZtoA">&nbsp;Service Provider : Z to A<br>
-                                        <input type="radio" name="sortOption" id="PaymentLowtoHigh" value="PaymentLowtoHigh">&nbsp;Payment Low to High<br>
-                                        <input type="radio" name="sortOption" id="PaymentHightoLow" value="PaymentHightoLow">&nbsp;Payment High to Low<br>
+                    <div class="modal-body forgot-password">
+                        <form>
+                            <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
+                            <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
+                            <input type="radio" name="sortOption" id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
+                            <input type="radio" name="sortOption" id="ServiceProvider:ZtoA" value="ServiceProvider:ZtoA">&nbsp;Service Provider : Z to A<br>
+                            <input type="radio" name="sortOption" id="PaymentLowtoHigh" value="PaymentLowtoHigh">&nbsp;Payment Low to High<br>
+                            <input type="radio" name="sortOption" id="PaymentHightoLow" value="PaymentHightoLow">&nbsp;Payment High to Low<br>
 
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="ml-auto py-2"><button>Export</button></div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <table class="dataTable table" id="service_history_table">
-                            <thead>
-                                <tr>
-                                    <th>Service Details </th>
-                                    <th>Service Provider </th>
-                                    <th>Payment </th>
-                                    <th>Status </th>
-                                    <th>Rate SP</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p>
-                                            <span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong>
-                                                31/03/2019
-                                            </strong>
-                                        </p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_complete">Completed</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate" onclick="rating()" id="rate_btn">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 10/03/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_complete">Completed</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 10/03/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;1
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_complete">Completed</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€36</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_cancelled">Cancelled</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 10/03/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_complete">Completed</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€21</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_cancelled">Cancelled</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 10/03/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_complete">Completed</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 10/03/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€19</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_complete">Completed</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_cancelled">Cancelled</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_cancelled">Cancelled</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_cancelled">Cancelled</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
-                                        <p>12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col sp_icon">
-                                                <Span class="img_circle">
-                                                    <img src="~/image/service_history/cap.png" alt="cap">
-                                                </Span>
-                                            </div>
-                                            <div class="col">
-                                                <p>Lyum Watson</p>
-                                                <p>
-                                                    <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="payment">€63</p>
-                                    </td>
-                                    <td>
-                                        <p class="status_cancelled">Cancelled</p>
-                                    </td>
-                                    <td>
-                                        <p> <button class="rate">Rate SP</button></p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="ml-auto py-2"><button>Export</button></div>
     </div>
-    <!-- /#page-content-wrapper -->
-    @*</div>*@
-</section>
-<!-- /////////////////////////////// TABLE End//////////////////////////////// -->
+    <div class="row">
+        <div class="col">
+            <table class="dataTable table" id="service_history_table">
+                <thead>
+                    <tr>
+                        <th>Service Details </th>
+                        <th>Service Provider </th>
+                        <th>Payment </th>
+                        <th>Status </th>
+                        <th>Rate SP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>
+                                <span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong>
+                                    31/03/2019
+                                </strong>
+                            </p>
+                            <p>12:00 - 18:00</p>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col sp_icon d-flex align-items-center">
+                                    <Span class="img_circle">
+                                        <img src="~/image/service_history/cap.png" alt="cap">
+                                    </Span>
+                                </div>
+                                <div class="col">
+                                    <p>Lyum Watson</p>
+                                    <p>
+                                        <div class="Stars" style="--rating: 4;"></div>&nbsp;4
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="payment">€63</p>
+                        </td>
+                        <td>
+                            <p class="status_complete">Completed</p>
+                        </td>
+                        <td>
+                            <p> <button class="rate" onclick="rating()" id="rate_btn">Rate SP</button></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
+                            <p>12:00 - 18:00</p>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col sp_icon d-flex align-items-center">
+                                    <Span class="img_circle">
+                                        <img src="~/image/service_history/cap.png" alt="cap">
+                                    </Span>
+                                </div>
+                                <div class="col">
+                                    <p>Lyum Watson</p>
+                                    <p>
+                                        <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="payment">€63</p>
+                        </td>
+                        <td>
+                            <p class="status_cancelled">Cancelled</p>
+                        </td>
+                        <td>
+                            <p> <button class="rate">Rate SP</button></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 @section script{
-    @*<script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>*@
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-    <script src="~/js/service_history.js"></script>
-}
+                <script src="~/js/Cservice_history.js"></script>
+            }

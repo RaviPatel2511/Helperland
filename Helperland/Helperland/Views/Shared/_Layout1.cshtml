@@ -70,7 +70,7 @@
                                      <li>
                                          <hr class="dropdown-divider">
                                      </li>
-                                     <li><a class="dropdown-item text-dark" role="button">My Dashboard</a></li>
+                                     <li><a class="dropdown-item text-dark" role="button" asp-controller="Customer" asp-action="Dashboard">My Dashboard</a></li>
                                      <li><a class="dropdown-item text-dark" role="button">My Settings</a></li>
                                      <li><a class="dropdown-item text-dark" role="button" asp-controller="Account" asp-action="Logout">Logout</a></li>
                                  </ul>
@@ -115,19 +115,19 @@
                             {
                                 <li><h5 class="mobileNavMenu">Welcome <br />@ViewBag.UserName</h5></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Dashboard</a></li>
+                                <li><a  asp-controller="Customer" asp-action="Dashboard" class="mobileNavMenu">Dashboard</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Service History</a></li>
+                                <li><a  asp-controller="Customer" asp-action="ServiceHistory" class="mobileNavMenu">Service History</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Service Schedule</a></li>
+                                <li><a  class="mobileNavMenu">Service Schedule</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Favourite Pros</a></li>
+                                <li><a  class="mobileNavMenu">Favourite Pros</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Invoices</a></li>
+                                <li><a  class="mobileNavMenu">Invoices</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Notification</a></li>
+                                <li><a  class="mobileNavMenu">Notification</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">My Setting</a></li>
+                                <li><a  class="mobileNavMenu">My Setting</a></li>
                                 <hr>
                                 <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
                                 <hr>
@@ -137,21 +137,21 @@
                             {
                                 <li><h5 class="mobileNavMenu">Welcome <br />@ViewBag.UserName</h5></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Dashboard</a></li>
+                                <li><a  class="mobileNavMenu">Dashboard</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">New Service Request</a></li>
+                                <li><a  class="mobileNavMenu">New Service Request</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Upcoming Service</a></li>
+                                <li><a  class="mobileNavMenu">Upcoming Service</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Service Schedule</a></li>
+                                <li><a  class="mobileNavMenu">Service Schedule</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Service History</a></li>
+                                <li><a  class="mobileNavMenu">Service History</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">My Rating</a></li>
+                                <li><a  class="mobileNavMenu">My Rating</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">Block Customer</a></li>
+                                <li><a  class="mobileNavMenu">Block Customer</a></li>
                                 <hr>
-                                <li><a href="#" class="mobileNavMenu">My Setting</a></li>
+                                <li><a  class="mobileNavMenu">My Setting</a></li>
                                 <hr>
                                 <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
                                 <hr>

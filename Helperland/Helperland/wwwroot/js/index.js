@@ -114,8 +114,8 @@ if (urlSearchParamsforpass == "forgotPass=true") {
 };
 
 // PREVENT FFROM BACK BUTTON AFTER LOGOUT
-window.history.forward();
-function noBack() {
-	window.history.forward();
-}
+//window.history.forward();
+//function noBack() {
+//	window.history.forward();
+//}
 

@@ -17,6 +17,37 @@ namespace Helperland.Controllers
         {
             _helperlandContext = helperlandContext;
         }
+
+        public IActionResult Dashboard()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Dashboard";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 1;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        public  IActionResult MySetting()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Setting";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 1;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
         public IActionResult ServiceHistory()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
@@ -120,10 +151,7 @@ namespace Helperland.Controllers
 
                 userAddressDetails.Add(RequestAddress);
             }
-
             return new JsonResult(userAddressDetails);
-
-
         }
 
         [HttpPost]
@@ -245,6 +273,45 @@ namespace Helperland.Controllers
                 return Json(saveBooking.Entity.ServiceRequestId);
             }
             return Json("false");
+        }
+
+        [HttpGet]
+        public JsonResult getDashboardDetails()
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            List<CustDashboard> custDashboard = new List<CustDashboard>();
+
+            var ServiceDetail = _helperlandContext.ServiceRequests.Where(x => x.UserId == logedUserid).ToList();
+
+            foreach (var Service in ServiceDetail)
+            {
+                CustDashboard RequestData = new CustDashboard();
+                RequestData.ServiceId = Service.ServiceRequestId;
+                RequestData.ServiceDate = Service.ServiceStartDate;
+                RequestData.Payment = Service.TotalCost;
+                custDashboard.Add(RequestData);
+            }
+            return new JsonResult(custDashboard);
+        }
+
+        [HttpPost]
+
+        public IActionResult UpdatePassword(ResetPass resetPass)
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            User credentials = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
+            bool isvalidpass = BCrypt.Net.BCrypt.Verify(resetPass.oldPassword, credentials.Password);
+            if (isvalidpass)
+            {
+                credentials.Password = BCrypt.Net.BCrypt.HashPassword(resetPass.password);
+                _helperlandContext.Users.Update(credentials);
+                _helperlandContext.SaveChanges();
+                return Json("PasswordUpdate");
+            }
+            else
+            {
+                return Json("wrongPassword");
+            }
         }
     }
 }
