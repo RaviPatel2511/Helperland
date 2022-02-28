@@ -279,6 +279,59 @@ namespace Helperland.Controllers
         //    return Json(ServiceDate + ServiceStartTime); 
         //}
 
+        [HttpGet]
+        public ActionResult GetServiceSummaryData(int ReqServiceId)
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            ServiceRequest reqService = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == ReqServiceId && x.UserId == logedUserid).FirstOrDefault();
+            CustDashServiceSummary custDashServiceSummary = new CustDashServiceSummary();
+            custDashServiceSummary.id = ReqServiceId;
+            custDashServiceSummary.ServiceDate = reqService.ServiceStartDate.ToString("dd/MM/yyyy");
+            custDashServiceSummary.ServiceStartTime = reqService.ServiceStartDate.ToString("HH:mm");
+            custDashServiceSummary.ServiceEndTime = reqService.ServiceStartDate.AddHours((double)reqService.SubTotal).ToString("HH:mm");
+            custDashServiceSummary.Duration = reqService.SubTotal;
+            custDashServiceSummary.Payment = reqService.TotalCost;
+            custDashServiceSummary.Comments = reqService.Comments;
+            custDashServiceSummary.HavePets = reqService.HasPets;
+
+            ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == ReqServiceId).FirstOrDefault();
+            custDashServiceSummary.AddressLine1 = serviceRequestAddress.AddressLine1;
+            custDashServiceSummary.AddressLine2 = serviceRequestAddress.AddressLine2;
+            custDashServiceSummary.City = serviceRequestAddress.City;
+            custDashServiceSummary.PostalCode = serviceRequestAddress.PostalCode;
+            custDashServiceSummary.Mobile = serviceRequestAddress.Mobile;
+            custDashServiceSummary.Email = serviceRequestAddress.Email;
+
+            //ServiceRequestExtra serviceRequestExtra = _helperlandContext.ServiceRequestExtras.Where(x => x.ServiceRequestId == ReqServiceId).FirstOrDefault();
+            List<ServiceRequestExtra> serviceRequestExtra = _helperlandContext.ServiceRequestExtras.Where(x => x.ServiceRequestId == ReqServiceId).ToList();
+            foreach (ServiceRequestExtra row in serviceRequestExtra)
+            {
+                if (row.ServiceExtraId == 1)
+                {
+                    custDashServiceSummary.cabinet = true;
+                }
+                else if (row.ServiceExtraId == 2)
+                {
+                    custDashServiceSummary.fridge = true;
+                }
+                else if (row.ServiceExtraId == 3)
+                {
+                    custDashServiceSummary.oven = true;
+                }
+                else if (row.ServiceExtraId == 4)
+                {
+                    custDashServiceSummary.laundary = true;
+                }
+                else if (row.ServiceExtraId == 5)
+                {
+                    custDashServiceSummary.window = true;
+                }
+            }
+            
+
+            return Json(custDashServiceSummary);
+        }
+
         [HttpPost]
         public ActionResult RescheduleService(string InputserviceIdVal, string rescheduleServiceTime)
         {

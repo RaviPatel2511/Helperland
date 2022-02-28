@@ -120,20 +120,21 @@
                         <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
                     </div>
                     <div class="modal-body">
-                        <p class="date-time">21/02/2022 08:00-11.00</p>
-                        <span class="title-text"><b>Duration : </b>3 Hrs</span>
+                        <p class="date-time"><span id="SerDate"></span> <span id="SerStartTime"></span>-<span id="SerEndTime"></span></p>
+                        <span class="title-text"><b>Duration : </b><span id="SerDuration"></span> Hrs</span>
                         <hr />
-                        <span class="title-text"><b>Service Id : </b>9495</span>
-                        <span class="title-text"><b>Extras : </b></span>
-                        <span class="title-text"><b>Net Amout : </b><span class="NetAmount">72 Rs.</span></span>
+                        <span class="title-text"><b>Service Id : </b><span id="SerId"></span></span>
+                        <span class="title-text"><b>Extras :  </b><span id="SerExtra"></span></span>
+                        <span class="title-text"><b>Net Amout : </b><span id="SerPayment" class="NetAmount"></span></span>
                         <hr />
-                        <span class="title-text"><b>Service Address : </b>AKJAHK,KJAhsk</span>
+                        <span class="title-text"><b>Service Address : </b><span id="SerAddress"></span></span>
                         <span class="title-text"><b>Billing Address : </b>Same as cleaning Address</span>
-                        <span class="title-text"><b>Phone : </b>98989898989</span>
-                        <span class="title-text"><b>Email : </b>a@gmail.com</span>
+                        <span class="title-text"><b>Phone : </b><span id="SerMobile"></span></span>
+                        <span class="title-text"><b>Email : </b><span id="SerEmail"></span></span>
                         <hr />
-                        <span class="title-text"><b>Comments : </b>3 Hrs</span>
-                        <span class="title-text"><img src="~/image/service_history/notpet.png" />I do not have pets at home</span>
+                        <span class="title-text"><b>Comments : </b><span id="SerComment"></span></span>
+                        @*<span class="title-text"><img src="~/image/service_history/notpet.png" />I do not have pets at home</span>*@
+                        <span class="title-text"><span id="SerPets"></span></span>
                         <hr />
                         <div class="action-btn">
                             <a href="#" data-toggle="modal" data-target="#rescheduleModal" data-dismiss="modal" class="btn rescheduleBtn"><img src="~/image/service_history/reschedule.png" />Reschedule</a>

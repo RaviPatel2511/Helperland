@@ -70,7 +70,7 @@ function getData() {
                 var dashtbldata = $('#dashTblData');
                 dashtbldata.empty();
                 for (var i = 0; i < response.length; i++) {
-                    dashtbldata.append('<tr> <td class="pl-4" data-toggle="modal" data-target="#displaydatamodal" data-dismiss="modal" >' + response[i].serviceId + '</td><td><p class="date"><img class="ServiceDateImg" src="../image/upcoming_service/calendar.webp">' + response[i].serviceDate + '</p><p><img class="ServiceTimeImg" src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td></td><td class="text-center"><span class="payment">' + response[i].payment + " Rs." + '</span></td><td><a href="#" data-toggle="modal" data-target="#reschedulemodal" data-dismiss="modal" class="btn rescheduleBtn mx-1">Reschedule</a><a href="#" data-toggle="modal" data-target="#canclemodal" data-dismiss="modal" class="btn cancelbtn mx-1">Cancle</a></td></tr>');
+                    dashtbldata.append('<tr> <td class="pl-4 serviceSummary" data-toggle="modal" data-target="#displaydatamodal" data-dismiss="modal" >' + response[i].serviceId + '</td><td class="serviceSummary"><p class="date"><img class="ServiceDateImg" src="../image/upcoming_service/calendar.webp">' + response[i].serviceDate + '</p><p><img class="ServiceTimeImg" src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td class="serviceSummary"></td><td class="text-center serviceSummary"><span class="payment">' + response[i].payment + " Rs." + '</span></td><td><a  class="btn rescheduleBtn mx-1">Reschedule</a><a  class="btn cancelbtn mx-1">Cancle</a></td></tr>');
                    /* dashtbldata.append('<tr> <td class="pl-4" data-toggle="modal" data-target="#displaydatamodal" data-dismiss="modal" >' + response[i].serviceId + '</td><td><p class="date"><img class="ServiceDateImg" src="../image/upcoming_service/calendar.webp">' + response[i].serviceDate + '</p><p><img class="ServiceTimeImg" src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td><div class="row"><div class="col sp_icon d-flex align-items-center"><span class="img_circle"><img src="../image/service_history/cap.png" alt="cap"></span></div><div class="col"><p>lyum watson</p><p><div class="stars" style="--rating:4;"></div>&nbsp;4</p></div></div></td><td><p class="payment">' + response[i].payment + " Rs." + '</p></td><td><a href="#" data-toggle="modal" data-target="#reschedulemodal" data-dismiss="modal" class="btn rescheduleBtn">Reschedule</a><a href="#" data-toggle="modal" data-target="#canclemodal" data-dismiss="modal" class="btn cancelbtn">Cancle</a></td></tr>');*/
 
                 }
@@ -110,14 +110,18 @@ function getData() {
                     
                     
                     $('#Dashboard_table tbody').on('click', '.cancelbtn', function () {
-                    $("#canclecomments").val('');
-                    $('#cancleServiceMdodelBtn').prop('disabled', true);
-                    $('#cancleServiceMdodelBtn').css('cursor', 'not-allowed');
-                    $("#cancleModalBtn").click();
-                    var ClickserviceId = $(this).parent().parent().children(':first-child').text();
-                    $("#cancleReqServiceId").val(ClickserviceId);
-                    
-                });
+                        $("#canclecomments").val('');
+                        $('#cancleServiceMdodelBtn').prop('disabled', true);
+                        $('#cancleServiceMdodelBtn').css('cursor', 'not-allowed');
+                        $("#cancleModalBtn").click();
+                        var ClickserviceId = $(this).parent().parent().children(':first-child').text();
+                        $("#cancleReqServiceId").val(ClickserviceId);
+                    });
+
+                    $('#Dashboard_table tbody').on('click', '.serviceSummary', function () {
+                        var clickedRow = $(this).parent().children(':first-child').text();
+                        GetServiceSummary(clickedRow);
+                    });
 
                 }, 1000);
             },
@@ -151,6 +155,59 @@ function getData() {
 //            }
 //    });
 //}
+
+function GetServiceSummary(x) {
+    $.ajax({
+        type: 'GET',
+        cache: false,
+        data: { 'ReqServiceId': x },
+        url: '/Customer/GetServiceSummaryData',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success:
+            function (response) {
+                console.log(response);
+                //var ExtraItem = "";
+                //if (response.cabinet) {
+                //    ExtraItem =  ExtraItem.concat(",", "Inside cabinets");
+                //} else if (response.laundary) {
+                //    //ExtraItem += "Laundry wash & dry, ";
+                //    ExtraItem =  ExtraItem.concat(",", "Laundry wash & dry");
+                //} else if (response.fridge) { 
+                //    //ExtraItem += "Inside fridge, ";
+                //    ExtraItem = ExtraItem.concat(",", "Inside fridge");
+                //} else if (response.oven) {
+                //    //ExtraItem += "Inside oven, ";
+                //    ExtraItem = ExtraItem.concat(",", "Inside oven");
+                //} else if (response.window) {
+                //    //ExtraItem += "Interior windows ";
+                //    ExtraItem =  ExtraItem.concat(",", "Interior windows");
+                //}
+                $("#SerDate").text(response.serviceDate);
+                $("#SerStartTime").text(response.serviceStartTime);
+                $("#SerEndTime").text(response.serviceEndTime);
+                $("#SerDuration").text(response.duration);
+                $("#SerId").text(response.id);
+                //$("#SerExtra").text(ExtraItem);
+                $("#SerPayment").html(response.payment + " Rs.");
+                $("#SerAddress").html(response.addressLine1 + " " + response.addressLine2 + " , " + response.city + " " + response.postalCode);
+                $("#SerMobile").text(response.mobile);
+                $("#SerEmail").text(response.email);
+                $("#SerComment").text(response.comments);
+                $("#SerPets").empty();
+                if (response.havePets) {
+                    $("#SerPets").html('<img src="../image/service_history/havepet.png" /> I have pets at home');
+                } else {
+                    $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
+                }
+                $("#displaydataModal").modal('show');
+
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
+}
 
 $("#rescheduleServiceUpdateBtn").click(function () {
     var InputserviceIdVal = $("#serviceIdForReschedule").val();
