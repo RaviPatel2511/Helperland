@@ -8,9 +8,7 @@ namespace Helperland.Models.ViewModels
 {
     public class ResetPass
     {
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password")]
+       
         public string oldPassword { get; set; }
         [Required]
         [Display(Name ="New Password")]

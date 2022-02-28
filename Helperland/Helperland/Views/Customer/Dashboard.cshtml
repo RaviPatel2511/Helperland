@@ -35,8 +35,11 @@
             </div>
         </div>
         <!-- Reschedule Modal content-->
+        <button type="button" class="btn d-none" data-toggle="modal" data-target="#rescheduleModal" id="rescheduleModalBtn">
+            Launch modal
+        </button>
         <div class="modal fade" id="rescheduleModal" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Reschedule service Request</h4>
@@ -46,6 +49,7 @@
                         <form>
                             <label>Select New Date & Time</label>
                             <div class="row">
+                                <input type="text" class="d-none" id="serviceIdForReschedule" />
                                 <div class="col-sm-6 mb-sm-2">
                                     <input class="form-control" id="rescheduleDate" placeholder="Service Date" type="text" />
                                 </div>
@@ -75,15 +79,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <button type="button" class="btn largeBtn">Update</button>
+                            <button type="button" class="btn largeBtn" id="rescheduleServiceUpdateBtn" disabled="disabled">Update</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <!--cancle Modal content-->
+        <button type="button" class="btn d-none" data-toggle="modal" data-target="#cancleModal" id="cancleModalBtn">
+            Launch modal
+        </button>
         <div class="modal fade" id="cancleModal" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Cancel Service Request</h4>
@@ -91,13 +98,14 @@
                     </div>
                     <div class="modal-body">
                         <form>
+                            <input class="d-none" id="cancleReqServiceId" />
                             <label>Why You Want to cancle the service request ?</label>
                             <div class="form-group row">
                                 <div class="col">
                                     <textarea class="form-control" id="canclecomments" rows="3" maxlength="300"></textarea>
                                 </div>
                             </div>
-                            <button type="button" class="btn largeBtn">Cancel Now</button>
+                            <button type="button" class="btn largeBtn" id="cancleServiceMdodelBtn" disabled="disabled">Cancel Now</button>
                         </form>
                     </div>
                 </div>
@@ -125,12 +133,32 @@
                         <span class="title-text"><b>Email : </b>a@gmail.com</span>
                         <hr />
                         <span class="title-text"><b>Comments : </b>3 Hrs</span>
-                        <span class="title-text"><img src="~/image/service_history/notpet.png"/>I do not have pets at home</span>
+                        <span class="title-text"><img src="~/image/service_history/notpet.png" />I do not have pets at home</span>
                         <hr />
                         <div class="action-btn">
                             <a href="#" data-toggle="modal" data-target="#rescheduleModal" data-dismiss="modal" class="btn rescheduleBtn"><img src="~/image/service_history/reschedule.png" />Reschedule</a>
                             <a href="#" data-toggle="modal" data-target="#cancleModal" data-dismiss="modal" class="btn cancelbtn"><img src="~/image/service_history/cancle.png" />Cancle</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn d-none" data-toggle="modal" data-target="#CancleSuccessfulyDone" id="CancleSuccessfulyDoneBtn">
+            ok
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="CancleSuccessfulyDone" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <span>
+                            <img src="~/image/home/logout.png" />
+                        </span>
+                        <h3>Your service request canceled successfully</h3>
+                        <h4>Cancle Request Id : <b id="CancleReferenceId"></b></h4>
+                        <a class="btn CancleOkBtn" asp-controller="Customer" asp-action="Dashboard">Ok</a>
                     </div>
                 </div>
             </div>

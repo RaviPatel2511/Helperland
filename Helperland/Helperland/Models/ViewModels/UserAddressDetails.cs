@@ -15,5 +15,7 @@ namespace Helperland.Models.ViewModels
         public string mobile { get; set; }
         public string email { get; set; }
         public bool IsDefault { get; set; }
+        public string state { get; set; }
+
     }
 }

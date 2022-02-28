@@ -14,11 +14,10 @@
         <form asp-controller="Account" asp-action="ProviderSignup" method="post">
             @if (ViewBag.IsproviderExists == true)
             {
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert alert-danger fade show" role="alert">
                     <strong>
                         This email is already registered please try with another .
                     </strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
             }
             <h2 class="text-center">Register Now!</h2>

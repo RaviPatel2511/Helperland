@@ -8,6 +8,117 @@
     font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
   }
+.loader-div {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(26,26,26,0.8);
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sk-chase {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: sk-chase 2.5s infinite linear both;
+}
+
+.sk-chase-dot {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: sk-chase-dot 2.0s infinite ease-in-out both;
+}
+
+    .sk-chase-dot:before {
+        content: '';
+        display: block;
+        width: 25%;
+        height: 25%;
+        background-color: #fff;
+        border-radius: 100%;
+        animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
+    }
+
+    .sk-chase-dot:nth-child(1) {
+        animation-delay: -1.1s;
+    }
+
+    .sk-chase-dot:nth-child(2) {
+        animation-delay: -1.0s;
+    }
+
+    .sk-chase-dot:nth-child(3) {
+        animation-delay: -0.9s;
+    }
+
+    .sk-chase-dot:nth-child(4) {
+        animation-delay: -0.8s;
+    }
+
+    .sk-chase-dot:nth-child(5) {
+        animation-delay: -0.7s;
+    }
+
+    .sk-chase-dot:nth-child(6) {
+        animation-delay: -0.6s;
+    }
+
+    .sk-chase-dot:nth-child(1):before {
+        animation-delay: -1.1s;
+        background-color: #1d7a8c;
+    }
+
+    .sk-chase-dot:nth-child(2):before {
+        animation-delay: -1.0s;
+        background-color: #1d7a8c;
+    }
+
+    .sk-chase-dot:nth-child(3):before {
+        animation-delay: -0.9s;
+        background-color: #1d7a8c;
+    }
+
+    .sk-chase-dot:nth-child(4):before {
+        animation-delay: -0.8s;
+    }
+
+    .sk-chase-dot:nth-child(5):before {
+        animation-delay: -0.7s;
+    }
+
+    .sk-chase-dot:nth-child(6):before {
+        animation-delay: -0.6s;
+    }
+
+@keyframes sk-chase {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sk-chase-dot {
+    80%, 100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sk-chase-dot-before {
+    50% {
+        transform: scale(0.4);
+    }
+
+    100%, 0% {
+        transform: scale(1.0);
+    }
+}
   /* 1st section */
   .navbar{
     padding: 0;
@@ -49,15 +160,15 @@
     border-radius: 30px;
     transition: all .5s;
 }
-    .nav-item:nth-child(1) .menu:hover{
-        color: #006072 !important;
-        background-color: white;
-        border-color: #006072
-    }
-    .nav-item:nth-child(1) .menu:hover {
-        color: #29626D;
-        background: white;
-    }
+.nav-item:nth-child(1) .menu:hover{
+    color: #006072 !important;
+    background-color: white;
+    border-color: #006072
+}
+.nav-item:nth-child(1) .menu:hover {
+    color: #29626D;
+    background: white;
+}
 .navbar-nav{
   height: 40px;
 }
@@ -498,9 +609,11 @@ table th:nth-child(5) > span{
 /* <!--////////////////////////////// DASHBOARD END////////////////////////// --> */
 
 /*Customer Dashboard CSS*/
-
-#Dashboard_table .date{
-    font-weight:bold;
+.ServiceDateImg, .ServiceTimeImg {
+    margin: 0px 10px;
+}
+#Dashboard_table .date {
+    font-weight: bold;
 }
 #Dashboard_table tbody tr td .rescheduleBtn, #displaydataModal .rescheduleBtn, #newAddressSection .AddnewBtn {
     font-size: 14px;
@@ -590,10 +703,71 @@ table th:nth-child(5) > span{
     vertical-align:top;
     margin-right:4px;
 }
+#CancleSuccessfulyDone span {
+    display: inline-block;
+    background: #67b644;
+    padding: 27px;
+    border-radius: 363px;
+    margin-bottom: 25px;
+}
+
+#CancleSuccessfulyDone span img {
+    display: block;
+}
+
+#CancleSuccessfulyDone h3 {
+    margin: 0 0 20px;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+#CancleSuccessfulyDone a {
+    width: auto;
+    background: #1d7a8c;
+    border-color: white;
+    font-size: 16px;
+    padding: 9px 20px;
+    border-radius: 40px;
+    transition: all .5s;
+}
+
+#CancleSuccessfulyDone a:hover {
+    color: #1d718c;
+    background: white;
+    border-color: #1d7a8c;
+}
+
+#CancleSuccessfulyDone .modal-dialog {
+    max-width: 400px;
+}
+
+/*////////////// SERVICE HISTORY TABLE//////////////////*/
 
 /*MySetting CSS*/
-#pills-tab-setting .tab-img{
-    display:none;
+#pills-details .date-dropdowns select {
+    background: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+    padding: 12px 15px;
+    box-shadow: none;
+    border: 1px solid #dedddd;
+    resize: vertical;
+    height: 45px;
+    display: inline-block;
+}
+#pills-details .date-dropdowns .month{
+    margin:0px 20px;
+}
+#pills-details #languageId{
+    width:auto;
+}
+#pills-tab-setting .tab-img {
+    display: none;
+}
+#MySetting #addNewAddBtn, #Dashboard #cancleServiceMdodelBtn, #Dashboard #rescheduleServiceUpdateBtn {
+    cursor: not-allowed;
 }
 #MySetting {
     color: #646464;
@@ -626,7 +800,7 @@ table th:nth-child(5) > span{
     border: none !important;
     border-bottom: 4px solid #1d7a8c !important;
 }
-#pills-details button, #pills-password button {
+#pills-details #updateDetailsBtn, #pills-password #updatePassBtn {
     background: #1d7a8c;
     border: none;
     font-size: 16px;
@@ -635,6 +809,7 @@ table th:nth-child(5) > span{
     transition: all .3s ease;
     padding: 11px 25px;
     border-radius: 30px;
+    cursor: not-allowed;
 }
 #MySetting .control-label {
     display: block;
@@ -665,16 +840,7 @@ table th:nth-child(5) > span{
     border: 1px solid #ccc;
     border-radius: 0;
 }
-#MySetting .inner-wrapper{
-    width:100%;
-    display:table;
-}
-#MySetting .inner-wrapper .inner {
-    display: table-cell;
-}
-#MySetting .inner-wrapper .inner:nth-child(2){
-    padding:0 10px;
-}
+
 #MySetting #language{
     width:auto;
 }
@@ -701,7 +867,7 @@ table th:nth-child(5) > span{
     padding: 15px;
     vertical-align: middle;
 }
-#myAddressTbl tbody tr td:nth-child(1){
+#myAddressTbl tbody tr td:nth-child(2){
     padding:15px 15px 15px 50px;
 }
 #myAddressTbl .userAddressDetails span {
@@ -719,6 +885,26 @@ table th:nth-child(5) > span{
 }
 #myAddressTbl tbody tr td{
     background:unset;
+}
+#MySetting #EditAddBtn{
+    cursor:not-allowed;
+}
+#MySetting #DeleteAddBtn {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 7px 20px;
+    width:auto;
+    cursor:pointer;
+}
+#MySetting .EditAdd, #MySetting .DeleteAdd{
+    cursor:pointer;
+}
+#MySetting #NewCity, #MySetting #EditCity, #MySetting #email {
+    background:#e1e1e1!important;
 }
 /*/////////////// FOOTER ////////////// */
 footer {
@@ -836,90 +1022,108 @@ footer {
             display:none;
       }
     }
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width: 1087px) {
       .navbar{
         display: none;
       }
-      .mobile_sorting{
+        .notification_item {
+            display: block;
+        }
+
+        .mobileNotification, .mobileNotification .notification_item {
+            display: block;
+        }
+    
+        #sidebar-wrapper {
+            display: none;
+        }
+        
+      .mobileNav{
         display: block;
       }
-    .date {
-        margin: 0px 5px;
+
+      
     }
-    .dataTable {
-        border: unset;
-    }
-    .dataTable tr {
-        display: flex;
-        flex-wrap: wrap;
-        border: 1px solid #e1e1e1;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        background: #f9f9f9;
-        box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-        -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-        -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-    }
-    table.dataTable.no-footer {
-    width: 100% !important;
-    }
-    .dataTable  tr td {
-        width: 100%;
-        background: unset!important;
-        margin-top: 0px !important;
-        height: unset;
-    }
-      #service_history_table  tr td:nth-child(1){
-        text-align: center;
-      }
+    @media screen and (max-width:700px){
+        #page-content-wrapper {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .table-bottom {
+            flex-wrap: wrap;
+        }
+
+        #page-content-wrapper .table-bottom-inner {
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        #page-content-wrapper .dataTables_paginate {
+            width: 100%;
+        }
+        .mobile_sorting {
+            display: block;
+        }
+
+        .date {
+            margin: 0px 5px;
+        }
+        .dataTable {
+            border: unset;
+        }
+
+            .dataTable tr {
+                display: flex;
+                flex-wrap: wrap;
+                border: 1px solid #e1e1e1;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                background: #f9f9f9;
+                box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+                -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+                -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+            }
+
+        table.dataTable.no-footer {
+            width: 100% !important;
+        }
+
+        .dataTable tr td {
+            width: 100%;
+            background: unset !important;
+            margin-top: 0px !important;
+            height: unset;
+        }
+
+        #service_history_table tr td:nth-child(1) {
+            text-align: center;
+        }
+
         #service_history_table tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(3) {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .dataTable tr th{
-            display: none;
-        }
-        #sidebar-wrapper {
-            display: none;
-        }
-        #page-content-wrapper {
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-      .table-bottom{
-        flex-wrap: wrap;
-      }
-      #page-content-wrapper .table-bottom-inner{
-        justify-content: space-between;
-        width: 100%;
-      }
-      #page-content-wrapper .dataTables_paginate {
-        width: 100%;
-      }
-      .mobileNav{
-        display: block;
-      }
 
-      /*dashboard css*/
+        .dataTable tr th {
+            display: none;
+        }
+        /*dashboard css*/
         #Dashboard_table thead, #ServiceHistory thead {
             display: none;
             background: unset;
         }
+
         #Dashboard_table, #service_history_table {
             border: none;
         }
-      #Dashboard_table tbody tr td{
-          text-align:center;
-          background:unset;
-      }
+
+            #Dashboard_table tbody tr td {
+                text-align: center;
+                background: unset;
+            }
     }
-    @media screen and (min-width: 993px) {
-      #sidebar-wrapper,.notification_item{
-        display: block;
-      }
-    .mobileNotification ,.mobileNotification .notification_item{
-    display: none ;
-    }
+    
 }
 

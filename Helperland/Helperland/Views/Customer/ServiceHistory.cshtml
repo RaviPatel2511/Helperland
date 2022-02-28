@@ -19,6 +19,8 @@
                     </div>
                     <div class="modal-body forgot-password">
                         <form>
+                            <input type="radio" name="sortOption" id="ServiceIdOldest" value="ServiceId:Oldest">&nbsp;Service Id : Oldest<br>
+                            <input type="radio" name="sortOption" id="ServiceIdOldest" value="ServiceId:Latest">&nbsp;Service Id : Latest<br>
                             <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
                             <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
                             <input type="radio" name="sortOption" id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
@@ -39,15 +41,18 @@
             <table class="dataTable table" id="service_history_table">
                 <thead>
                     <tr>
-                        <th>Service Details </th>
-                        <th>Service Provider </th>
-                        <th>Payment </th>
-                        <th>Status </th>
+                        <th>Service Id</th>
+                        <th>Service Details</th>
+                        <th>Service Provider</th>
+                        <th>Payment</th>
+                        <th>Status</th>
                         <th>Rate SP</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody id="ServiceHistoryTblData">
+                    
+                    @*<tr>
+                        <td>8470</td>
                         <td>
                             <p>
                                 <span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong>
@@ -72,16 +77,17 @@
                             </div>
                         </td>
                         <td>
-                            <p class="payment">€63</p>
+                            <span class="payment">€63</span>
                         </td>
                         <td>
-                            <p class="status_complete">Completed</p>
+                            <span class="status_complete">Completed</span>
                         </td>
                         <td>
                             <p> <button class="rate" onclick="rating()" id="rate_btn">Rate SP</button></p>
                         </td>
                     </tr>
                     <tr>
+                        <td>8470</td>
                         <td>
                             <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
                             <p>12:00 - 18:00</p>
@@ -102,15 +108,15 @@
                             </div>
                         </td>
                         <td>
-                            <p class="payment">€63</p>
+                            <span class="payment">€63</span>
                         </td>
                         <td>
-                            <p class="status_cancelled">Cancelled</p>
+                            <span class="status_cancelled">Cancelled</span>
                         </td>
                         <td>
-                            <p> <button class="rate">Rate SP</button></p>
+                            <span> <button class="rate">Rate SP</button></span>
                         </td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
         </div>

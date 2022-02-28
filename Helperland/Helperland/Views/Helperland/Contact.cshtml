@@ -53,11 +53,10 @@
 
         @if (ViewBag.IsSuccess == true)
         {
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success  fade show" role="alert">
                 <strong>
                     Your message has been sent successfully. Our team will be in touch with you shortly.
                 </strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
         }
         <form enctype="multipart/form-data" asp-controller="Helperland" asp-action="Contact" method="post">

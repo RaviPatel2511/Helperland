@@ -71,7 +71,7 @@
                                          <hr class="dropdown-divider">
                                      </li>
                                      <li><a class="dropdown-item text-dark" role="button" asp-controller="Customer" asp-action="Dashboard">My Dashboard</a></li>
-                                     <li><a class="dropdown-item text-dark" role="button">My Settings</a></li>
+                                     <li><a class="dropdown-item text-dark" role="button" asp-controller="Customer" asp-action="MySetting">My Settings</a></li>
                                      <li><a class="dropdown-item text-dark" role="button" asp-controller="Account" asp-action="Logout">Logout</a></li>
                                  </ul>
 
@@ -127,7 +127,7 @@
                                 <hr>
                                 <li><a  class="mobileNavMenu">Notification</a></li>
                                 <hr>
-                                <li><a  class="mobileNavMenu">My Setting</a></li>
+                                <li><a asp-controller="Customer" asp-action="MySetting" class="mobileNavMenu">My Setting</a></li>
                                 <hr>
                                 <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
                                 <hr>

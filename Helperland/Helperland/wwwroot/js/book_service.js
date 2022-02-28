@@ -57,6 +57,12 @@ cancelAdressform.addEventListener('click', () => {
 	newAddressForm.classList.add('d-none');
 })
 
+$('#bookingSuccessfulyDoneBtn').click(function () {
+$('#bookingSuccessfulyDone').modal({
+    backdrop: 'static', // to prevent closing with click
+    keyboard: false  // to prevent closing with 
+});
+});
 
 //FOR PAYMENT SUMMARY
 function PaymentSummaryTable() {

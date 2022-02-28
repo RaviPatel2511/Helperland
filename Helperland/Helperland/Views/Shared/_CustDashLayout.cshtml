@@ -58,7 +58,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item text-dark" asp-controller="Customer" asp-action="Dashboard" role="button">My Dashboard</a></li>
-                                <li><a class="dropdown-item text-dark" role="button">My Settings</a></li>
+                                <li><a class="dropdown-item text-dark" asp-controller="Customer" asp-action="MySetting" role="button">My Settings</a></li>
                                 <li><a class="dropdown-item text-dark" role="button" asp-controller="Account" asp-action="Logout">Logout</a></li>
                             </ul>
 
@@ -100,7 +100,7 @@
                         <hr>
                         <li><a class="mobileNavMenu">Notification</a></li>
                         <hr>
-                        <li><a class="mobileNavMenu">My Setting</a></li>
+                        <li><a class="mobileNavMenu" asp-controller="Customer" asp-action="MySetting">My Setting</a></li>
                         <hr>
                         <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
                         <hr>
@@ -113,10 +113,6 @@
                         <li><a href="javascript:void(0)" class="mobileNavMenu">Blog</a></li>
                         <hr>
                         <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact</a></li>
-                        <hr>
-                        <li><a class="mobileNavMenu loginbtn" asp-controller='Helperland' asp-action='Index' asp-route-loginModal='true'>Login</a></li>
-                        <hr>
-                        <li><a asp-controller="Account" asp-action="ProviderSignup" class="mobileNavMenu">Become a Helper</a></li>
                         <hr>
                         <li>
                             <div class="d-flex justify-content-center">
@@ -131,7 +127,16 @@
     </header>
 
     <!-- /////////////////////////////MOBILE NAVBAR END////////////////////////// -->
-
+    <div class="loader-div d-none">
+        <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+        </div>
+    </div>
     <section class="welcome_msg">
         <div class="container">
             <h2 class="text-center">Welcome, <strong>@ViewBag.UserName !</strong></h2>

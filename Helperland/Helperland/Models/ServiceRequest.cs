@@ -13,7 +13,7 @@ namespace Helperland.Models
             ServiceRequestAddresses = new HashSet<ServiceRequestAddress>();
             ServiceRequestExtras = new HashSet<ServiceRequestExtra>();
         }
-
+        //STATUS 1=CANCLE,2=COMPLETE
         public int ServiceRequestId { get; set; }
         public int UserId { get; set; }
         public int ServiceId { get; set; }
