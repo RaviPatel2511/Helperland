@@ -3,6 +3,112 @@
 }
 
 <div id="ServiceHistory">
+
+    <div class="modal fade" id="displaydataModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Service Details</h4>
+                    <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                </div>
+                <div class="modal-body">
+                    <p class="date-time"><span id="SerDate"></span> <span id="SerStartTime"></span>-<span id="SerEndTime"></span></p>
+                    <span class="title-text"><b>Duration : </b><span id="SerDuration"></span> Hrs</span>
+                    <hr />
+                    <span class="title-text"><b>Service Id : </b><span id="SerId"></span></span>
+                    <span class="title-text"><b>Extras :  </b><span id="SerExtra"></span></span>
+                    <span class="title-text"><b>Net Amout : </b><span id="SerPayment" class="NetAmount"></span></span>
+                    <hr />
+                    <span class="title-text"><b>Service Address : </b><span id="SerAddress"></span></span>
+                    <span class="title-text"><b>Billing Address : </b>Same as cleaning Address</span>
+                    <span class="title-text"><b>Phone : </b><span id="SerMobile"></span></span>
+                    <span class="title-text"><b>Email : </b><span id="SerEmail"></span></span>
+                    <hr />
+                    <span class="title-text"><b>Comments : </b><span id="SerComment"></span></span>
+                    <span class="title-text"><span id="SerPets"></span></span>
+                    <hr />
+                    <div id="AccepetedSp">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ratingModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                    <div id="SpDetails">
+                    </div>
+                    <h4>Rate Your Service Provider</h4>
+                    <hr />
+                    <form>
+                    <input type="text" class="d-none" id="rateServiceId" />
+                    <div class="row">
+                        <div class="col-6 title">
+                            <span class="title-text">On time arrival</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="rating">
+                                <input id="radio1" type="radio" name="ontime" value="5" class="star" />
+                                <label for="radio1">&#9733;</label>
+                                <input id="radio2" type="radio" name="ontime" value="4" class="star" />
+                                <label for="radio2">&#9733;</label>
+                                <input id="radio3" type="radio" name="ontime" value="3" class="star" />
+                                <label for="radio3">&#9733;</label>
+                                <input id="radio4" type="radio" name="ontime" value="2" class="star" />
+                                <label for="radio4">&#9733;</label>
+                                <input id="radio5" type="radio" name="ontime" value="1" class="star" />
+                                <label for="radio5">&#9733;</label>
+                            </div>
+                        </div>
+                        <div class="col-6 title">
+                            <span class="title-text">Friendly</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="rating">
+                                <input id="radio6" type="radio" name="friendly" value="5" class="star" />
+                                <label for="radio6">&#9733;</label>
+                                <input id="radio7" type="radio" name="friendly" value="4" class="star" />
+                                <label for="radio7">&#9733;</label>
+                                <input id="radio8" type="radio" name="friendly" value="3" class="star" />
+                                <label for="radio8">&#9733;</label>
+                                <input id="radio9" type="radio" name="friendly" value="2" class="star" />
+                                <label for="radio9">&#9733;</label>
+                                <input id="radio10" type="radio" name="friendly" value="1" class="star" />
+                                <label for="radio10">&#9733;</label>
+                            </div>
+                        </div>
+                        <div class="col-6 title">
+                            <span class="title-text">Quality of service</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="rating">
+                                <input id="radio11" type="radio" name="quality" value="5" class="star" />
+                                <label for="radio11">&#9733;</label>
+                                <input id="radio12" type="radio" name="quality" value="4" class="star" />
+                                <label for="radio12">&#9733;</label>
+                                <input id="radio13" type="radio" name="quality" value="3" class="star" />
+                                <label for="radio13">&#9733;</label>
+                                <input id="radio14" type="radio" name="quality" value="2" class="star" />
+                                <label for="radio14">&#9733;</label>
+                                <input id="radio15" type="radio" name="quality" value="1" class="star" />
+                                <label for="radio15">&#9733;</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback mt-3">
+                        <span>Feedback on service provider</span>
+                        <textarea class="form-control" id="feedback" rows="3" maxlength="300"></textarea>
+                    </div>
+                    <button type="button" class="btn" id="RatingSaveMdodelBtn" onclick="saveRating();" disabled="disabled">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="d-flex datatable_heading">
         <div class="py-2">Service History</div>
         <div class="py-2 ml-3 mobile_sorting">
@@ -34,7 +140,7 @@
             </div>
         </div>
 
-        <div class="ml-auto py-2"><button>Export</button></div>
+        <div class="ml-auto py-2"><button onclick="ExcelSheetDown('xlsx');">Export</button></div>
     </div>
     <div class="row">
         <div class="col">
@@ -50,73 +156,73 @@
                     </tr>
                 </thead>
                 <tbody id="ServiceHistoryTblData">
-                    
+
                     @*<tr>
-                        <td>8470</td>
-                        <td>
-                            <p>
-                                <span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong>
-                                    31/03/2019
-                                </strong>
-                            </p>
-                            <p>12:00 - 18:00</p>
-                        </td>
-                        <td>
-                            <div class="row">
-                                <div class="col sp_icon d-flex align-items-center">
-                                    <Span class="img_circle">
-                                        <img src="~/image/service_history/cap.png" alt="cap">
-                                    </Span>
+                            <td>8470</td>
+                            <td>
+                                <p>
+                                    <span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong>
+                                        31/03/2019
+                                    </strong>
+                                </p>
+                                <p>12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col sp_icon d-flex align-items-center">
+                                        <Span class="img_circle">
+                                            <img src="~/image/service_history/cap.png" alt="cap">
+                                        </Span>
+                                    </div>
+                                    <div class="col">
+                                        <p>Lyum Watson</p>
+                                        <p>
+                                            <div class="Stars" style="--rating: 4;"></div>&nbsp;4
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <p>Lyum Watson</p>
-                                    <p>
-                                        <div class="Stars" style="--rating: 4;"></div>&nbsp;4
-                                    </p>
+                            </td>
+                            <td>
+                                <span class="payment">€63</span>
+                            </td>
+                            <td>
+                                <span class="status_complete">Completed</span>
+                            </td>
+                            <td>
+                                <p> <button class="rate" onclick="rating()" id="rate_btn">Rate SP</button></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8470</td>
+                            <td>
+                                <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
+                                <p>12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col sp_icon d-flex align-items-center">
+                                        <Span class="img_circle">
+                                            <img src="~/image/service_history/cap.png" alt="cap">
+                                        </Span>
+                                    </div>
+                                    <div class="col">
+                                        <p>Lyum Watson</p>
+                                        <p>
+                                            <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="payment">€63</span>
-                        </td>
-                        <td>
-                            <span class="status_complete">Completed</span>
-                        </td>
-                        <td>
-                            <p> <button class="rate" onclick="rating()" id="rate_btn">Rate SP</button></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>8470</td>
-                        <td>
-                            <p><span><img src="~/image/service_history/calendar.png" alt="calendar"></span> <strong> 28/02/2018</strong></p>
-                            <p>12:00 - 18:00</p>
-                        </td>
-                        <td>
-                            <div class="row">
-                                <div class="col sp_icon d-flex align-items-center">
-                                    <Span class="img_circle">
-                                        <img src="~/image/service_history/cap.png" alt="cap">
-                                    </Span>
-                                </div>
-                                <div class="col">
-                                    <p>Lyum Watson</p>
-                                    <p>
-                                        <div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4
-                                    </p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="payment">€63</span>
-                        </td>
-                        <td>
-                            <span class="status_cancelled">Cancelled</span>
-                        </td>
-                        <td>
-                            <span> <button class="rate">Rate SP</button></span>
-                        </td>
-                    </tr>*@
+                            </td>
+                            <td>
+                                <span class="payment">€63</span>
+                            </td>
+                            <td>
+                                <span class="status_cancelled">Cancelled</span>
+                            </td>
+                            <td>
+                                <span> <button class="rate">Rate SP</button></span>
+                            </td>
+                        </tr>*@
                 </tbody>
             </table>
         </div>
@@ -124,5 +230,6 @@
 </div>
 
 @section script{
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
                 <script src="~/js/Cservice_history.js"></script>
             }

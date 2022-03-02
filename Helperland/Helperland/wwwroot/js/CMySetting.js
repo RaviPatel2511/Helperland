@@ -18,6 +18,7 @@ function getUserDetails() {
                 $(".date-dropdowns .month").val(dobdatearr[1]);
                 $(".date-dropdowns .year").val(dobdatearr[0]);
                 }
+                    console.log(response);
             },
         error:
             function (err) {
@@ -34,17 +35,20 @@ function updateMyDetails() {
     UpdateDetails.mobile = $("#mobile").val();
     UpdateDetails.dob = $("#userDob").val();
     UpdateDetails.languageid = $("#languageId").val();
+    if ($("#fname").val() == '' || $("#lname").val() == '' || $("#email").val() == '' || $("#mobile").val() == '')
+    {
+        $("#updateDetailsAllert").empty();
+        $("#updateDetailsAllert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please Fill All Detail !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    }
+    else
+    {
     $.ajax({
         type: 'POST',
         url: '/Customer/updateMyDetails',
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         data: UpdateDetails,
-        beforeSend: function () {
-            $(".loader-div").removeClass('d-none');
-        },
         success:
             function (response) {
-                setTimeout(function () {
                     if (response == "updateSuccessfully") {
                         $("#updateDetailsAllert").empty();
                         $("#updateDetailsAllert").append('<div class="alert alert-success alert-dismissible fade show" role="alert">Your details were Updated Successfully !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -55,19 +59,13 @@ function updateMyDetails() {
                     else {
                         $("#updateDetailsAllert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">Some error occur Please Try Again !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
                     }
-                    
-                }, 1000);
             },
         error:
             function (err) {
                 console.error(err);
-            },
-        complete: function () {
-            setTimeout(function () {
-                $(".loader-div").addClass('d-none');
-            }, 1000);
-        }
+            }
     });
+    }
 }
 
 
@@ -141,7 +139,7 @@ function getAddIntoModel(x) {
 }
 
 function EditAdd() {
-    if ($("#EditCity").val() == '') {
+    if ($("#EditStreetName").val() == '' || $("#EditHouseNo").val() == '' || $("#EditPostalCode").val() == '' || $("#EditCity").val() == '' || $("#EditMobile").val() == '') {
     $("#EditAddAlert").removeClass('d-none');
     } else {
     $("#EditAddAlert").addClass('d-none');
@@ -164,10 +162,10 @@ function EditAdd() {
                 $('#EditAddBtn').prop('disabled', true);
                 $('#EditAddBtn').css('cursor', 'not-allowed');
                 $('#EditAddressModel').modal('hide');
-                $('#EditAddAlert').removeClass('d-none');
+                $('#EditAddSuccessAlert').removeClass('d-none');
                 getUserAddress();
                 setTimeout(function () {
-                $('#EditAddAlert').addClass('d-none');
+                    $('#EditAddSuccessAlert').addClass('d-none');
                 }, 3000);
             },
         error:
@@ -230,7 +228,7 @@ function DeleteAdd() {
     });
 }
 function AddNewAdd() {
-    if ($("#NewCity").val() == '') {
+    if ($("#NewHouseNo").val() == '' || $("#NewStreetName").val() == '' || $("#NewCity").val() == '' || $("#NewPostalCode").val() == '' || $("#NewMobile").val() == '') {
         $("#AddNewAddAlert").removeClass('d-none');
     } else {
     $("#AddNewAddAlert").addClass('d-none');
@@ -319,6 +317,12 @@ function updatePassword() {
     UpdatePass.oldPassword = $("#oldPass").val();
     UpdatePass.password = $("#newPass").val();
     UpdatePass.confirmPassword = $("#confirmPass").val();
+    if ($("#oldPass").val() == '' || $("#newPass").val() == '' || $("#confirmPass").val() == '') {
+        $("#passUpdateAlert").empty();
+        $("#passUpdateAlert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please Fill All Details !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    }
+    else
+    {
     $.ajax({
         type: 'POST',
         url: '/Customer/UpdatePassword',
@@ -354,6 +358,8 @@ function updatePassword() {
             }, 1000);
         }
     });
+
+    }
 }
 
 $("#newPass").keyup(function () {

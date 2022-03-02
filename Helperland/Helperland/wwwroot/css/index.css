@@ -222,6 +222,20 @@
     height: 20px;
     width: 15px;
 }
+.user-setting {
+    top: 125%;
+}
+
+.user_setting .dropdown-menu:before {
+    position: absolute;
+    top: 0;
+    content: "";
+    border-width: 0 8px 12px 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    top: -12px;
+    right: 35px;
+}
 /* ////////mobile navbar start///////////////// */
 
 
@@ -394,7 +408,7 @@
 }
 
 .user_setting .btn {
-    padding: 0.1rem 0.75rem;
+    padding: 0.1rem 1.3rem;
 }
 
 #logoutSuccessfully span {
@@ -475,6 +489,7 @@
     margin: 10px 0;
     cursor: not-allowed;
     transition: all .5s;
+    line-height:22px;
 }
     .user-login-detail button :hover {
         background: white;

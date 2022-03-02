@@ -135,11 +135,10 @@
 }
 
 .user_setting .btn {
-    padding: 0.1rem 0.75rem;
+    padding: 0.1rem 1.3rem;
 }
 .user-setting {
     top: 125%;
-    left: -125%;
 }
  
   #navbarCollapse {
@@ -347,9 +346,18 @@ width: 73px;
 .menubtn{
   margin: auto 10px;
 }
+.user_setting .dropdown-menu:before {
+    position: absolute;
+    top: 0;
+    content: "";
+    border-width: 0 8px 12px 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    top: -12px;
+    right: 35px;
+}
 /*//////////////////////////// NAVBAR END/////////////////////////////////// */
-
-.welcome_msg{
+.welcome_msg {
     padding: 44px 0px;
     background: #f9f9f9;
 }
@@ -404,7 +412,9 @@ table tr td:nth-child(5){text-align: center;}
   
   background: #1d7a8c;
 }
-
+#sidebar-wrapper a:hover{
+background: #146371 !important;
+} 
 
 #sidebar-wrapper a{
   border: 1px solid rgb(255, 255, 255,0.3);
@@ -458,7 +468,7 @@ table.dataTable.no-footer{
 .img_circle img{
   border: 1px solid #646464;
   border-radius: 50%;
-  padding: 10px 6px;
+  padding: 15px 10px;
 }
 .sp_icon{
   max-width: 65px;
@@ -475,7 +485,6 @@ table.dataTable.no-footer{
 }
 .Stars::before {
   content: '★★★★★';
-  /* letter-spacing: 3px; */
   background: linear-gradient(90deg, #fc0 var(--percent), rgb(173, 170, 170) var(--percent));
   background-clip: text;
   -webkit-background-clip: text;
@@ -491,22 +500,29 @@ table.dataTable.no-footer{
   text-align: center;
   background-color: #67b644;
   color: white;
-  padding: 5px 10px 4px 9px;
+  padding: 5px 9px 4px 8px;
 }
 .status_cancelled{
   text-align: center;
   background-color: tomato;
   color: white;
-  padding: 5px 10px 4px 9px;
+  padding: 5px 12px 4px 12px;
+}
+#RatingSaveMdodelBtn{
+    cursor:not-allowed;
 }
 .rate{
-  color: white;
-  font-size: 14px;
-padding: 11px 19px;
-background: #6da9b5;
+color: white;
+font-size: 14px;
+padding: 8px 16px;
+background: #1d7a8c;
 border: none;
 border-radius: 30px;
 cursor: pointer;
+}
+.rate.disable{
+    opacity:0.6;
+    cursor:not-allowed;
 }
 thead tr {
   text-align: center;
@@ -626,7 +642,7 @@ table th:nth-child(5) > span{
     border-radius: 50px;
 }
 #AddNewServiceBtn a {
-    color: white !important;
+    color: white;
     padding: 10px 10px;
     font-size: 14px;
     text-align: right;
@@ -673,13 +689,80 @@ table th:nth-child(5) > span{
     font-size: 16px;
     font-weight: normal;
 }
+#service_history_table thead tr th:nth-child(3){
+    text-align:start;
+}
+.rating {
+display: inline-block;
+direction: rtl;
+unicode-bidi: bidi-override;
+text-align: center;
+}
+
+.rating .star {
+    display: none;
+}
+
+.rating label {
+    color: lightgray;
+    display: inline-block;
+    font-size: 22pt;
+    margin: 0 -2px;
+    transition: transform .15s ease;
+}
+
+.rating label:hover {
+    transform: scale(1.35, 1.35);
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: orange;
+}
+
+.rating .star:checked ~ label {
+    color: orange;
+}
+#ratingModal h4{
+    margin-top:1rem;
+    color:#4f4f4f;
+}
+#spDetails p{
+    margin-bottom:0px!important;
+}
+#SpDetails p {
+    margin-bottom: 0px !important;
+}
+#ratingModal .title-text {
+    font-size: 16px;
+    line-height: 20px;
+    color: #4f4f4f;
+    font-weight: normal;
+}
+#ratingModal .title{
+    max-width:160px;
+    display:flex;
+    align-items:center;
+}
+#RatingSaveMdodelBtn {
+    width: auto;
+    padding: 11px 34px;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    margin: 10px 0;
+    border-radius: 50px;
+}
 #displaydataModal .title-text {
     display: block;
     font-size: 16px;
     line-height: 20px;
     color: #4f4f4f;
     margin-bottom: 5px;
-    font-weight:normal;
+    font-weight: normal;
 }
 #displaydataModal .date-time {
     font-size: 22px;
@@ -687,7 +770,7 @@ table th:nth-child(5) > span{
     color: #4f4f4f;
     font-weight: 700;
 }
-#displaydataModal hr {
+#displaydataModal hr, #ratingModal hr {
     border-color: #e1e1e1;
     margin: 12px 0;
 }
@@ -702,6 +785,20 @@ table th:nth-child(5) > span{
 #displaydataModal .action-btn img{
     vertical-align:top;
     margin-right:4px;
+}
+#displaydataModal #spDetails{
+    position:absolute;
+    top:10px;
+    right:3px;
+}
+#AccepetedSp {
+    display: flex;
+    position: absolute;
+    right: 2px;
+    top: 15px;
+}
+#AccepetedSp p{
+    margin-bottom:0px;
 }
 #CancleSuccessfulyDone span {
     display: inline-block;
@@ -730,6 +827,7 @@ table th:nth-child(5) > span{
     padding: 9px 20px;
     border-radius: 40px;
     transition: all .5s;
+    color:white;
 }
 
 #CancleSuccessfulyDone a:hover {
@@ -742,7 +840,7 @@ table th:nth-child(5) > span{
     max-width: 400px;
 }
 
-/*////////////// SERVICE HISTORY TABLE//////////////////*/
+/*//////////////  MY SETTING  TABLE//////////////////*/
 
 /*MySetting CSS*/
 #pills-details .date-dropdowns select {
@@ -772,6 +870,7 @@ table th:nth-child(5) > span{
 #MySetting {
     color: #646464;
 }
+
 #MySetting .nav-pills .nav-link.active {
     color: #1d7a8c;
     background: 0 0;
@@ -1044,12 +1143,28 @@ footer {
 
       
     }
+    @media screen and (max-width:508px){
+        #AddNewServiceBtn a{
+            font-size: 22px;
+            color: #646464;
+            font-weight: bold;
+            background:unset;
+            text-align:right;
+        }
+        #AddNewServiceBtn{
+            text-align:right;
+        }
+    }
     @media screen and (max-width:700px){
         #page-content-wrapper {
             padding-left: 0px;
             padding-right: 0px;
         }
-
+        #ServiceHistoryTblData tr td:nth-child(3) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .table-bottom {
             flex-wrap: wrap;
         }

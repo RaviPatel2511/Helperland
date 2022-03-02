@@ -176,7 +176,7 @@ namespace Helperland.Controllers
                 newBookingAddress.AddressLine1 = selectedAddress.AddressLine1;
                 newBookingAddress.AddressLine2 = selectedAddress.AddressLine2;
                 newBookingAddress.City = selectedAddress.City;
-                newBookingAddress.State = selectedAddress.State; // no any input
+                newBookingAddress.State = selectedAddress.State;
                 newBookingAddress.PostalCode = selectedAddress.PostalCode;
                 newBookingAddress.Mobile = selectedAddress.Mobile;
                 newBookingAddress.Email = selectedAddress.Email;
@@ -264,20 +264,41 @@ namespace Helperland.Controllers
                 RequestData.ServiceStartTime = Service.ServiceStartDate.ToString("HH:mm");
                 RequestData.ServiceEndTime = Service.ServiceStartDate.AddHours((double)Service.SubTotal).ToString("HH:mm");
                 RequestData.Payment = Service.TotalCost;
+                RequestData.ProviderId = Service.ServiceProviderId;
+                if(Service.ServiceProviderId != null)
+                {
+                User user = _helperlandContext.Users.Where(x => x.UserId == Service.ServiceProviderId).FirstOrDefault();
+                RequestData.Spname = user.FirstName + " " + user.LastName;
+
+                var rating = _helperlandContext.Ratings.Where(x => x.RatingTo == Service.ServiceProviderId);
+                if (rating.Count() > 0)
+                {
+                    RequestData.SpRatings = Math.Round(rating.Average(x => x.Ratings), 1);
+                }
+                else
+                {
+                    RequestData.SpRatings = 0;
+                }
+                }
                 custDashboard.Add(RequestData);
             }
             return new JsonResult(custDashboard);
         }
 
-        //[HttpGet]
-        //public ActionResult GetRescheduleRequestData(int ReqServiceId)
-        //{
-        //    int? logedUserid = HttpContext.Session.GetInt32("userid");
-        //    ServiceRequest rescheduleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(ReqServiceId) && x.UserId == logedUserid).FirstOrDefault();
-        //    var ServiceDate = rescheduleReq.ServiceStartDate.ToString("dd/MM/yyyy"); ;
-        //    var ServiceStartTime = rescheduleReq.ServiceStartDate.ToString("HH:mm tt");
-        //    return Json(ServiceDate + ServiceStartTime); 
-        //}
+        [HttpGet]
+        public ActionResult GetRescheduleRequestData(int ReqServiceId)
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            ServiceRequest rescheduleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(ReqServiceId) && x.UserId == logedUserid).FirstOrDefault();
+            var ServiceDate = rescheduleReq.ServiceStartDate.ToString("dd/MM/yyyy"); ;
+            var ServiceStartTime = rescheduleReq.ServiceStartDate.ToString("HH:mm");
+            var obj = new
+            {
+                serviceDate = ServiceDate,
+                serviceStartTime = ServiceStartTime
+            };
+            return Json(obj);
+        }
 
         [HttpGet]
         public ActionResult GetServiceSummaryData(int ReqServiceId)
@@ -337,7 +358,7 @@ namespace Helperland.Controllers
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
             ServiceRequest rescheduleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(InputserviceIdVal) && x.UserId == logedUserid).FirstOrDefault();
-            rescheduleReq.ServiceStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy hh:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+            rescheduleReq.ServiceStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null);
             rescheduleReq.ModifiedDate = DateTime.Now;
             _helperlandContext.ServiceRequests.Update(rescheduleReq);
             _helperlandContext.SaveChanges();
@@ -380,7 +401,7 @@ namespace Helperland.Controllers
             List<CustDashboard> custServiceHistory = new List<CustDashboard>();
 
             var ServiceDetail = _helperlandContext.ServiceRequests.Where(x => x.UserId == logedUserid && x.Status != null).ToList();
-
+            
             foreach (var Service in ServiceDetail)
             {
                 CustDashboard RequestData = new CustDashboard();
@@ -390,9 +411,66 @@ namespace Helperland.Controllers
                 RequestData.ServiceEndTime = Service.ServiceStartDate.AddHours((double)Service.SubTotal).ToString("HH:mm");
                 RequestData.Payment = Service.TotalCost;
                 RequestData.Status = Service.Status;
+                RequestData.ProviderId = Service.ServiceProviderId;
+                if (Service.ServiceProviderId != null)
+                {
+                    User user = _helperlandContext.Users.Where(x => x.UserId == Service.ServiceProviderId).FirstOrDefault();
+                    var rating = _helperlandContext.Ratings.Where(x => x.RatingTo == Service.ServiceProviderId);
+                    if (rating.Count() > 0)
+                    {
+                        RequestData.SpRatings = Math.Round(rating.Average(x => x.Ratings), 1);
+                    }
+                    else
+                    {
+                        RequestData.SpRatings = 0;
+                    }
+                    RequestData.Spname = user.FirstName + " " + user.LastName;
+                }
                 custServiceHistory.Add(RequestData);
             }
             return new JsonResult(custServiceHistory);
+        }
+
+        [HttpGet]
+        public ActionResult GetRatingData(int ReqServiceId)
+        {
+            Rating rating = _helperlandContext.Ratings.Where(x => x.ServiceRequestId == ReqServiceId).FirstOrDefault();
+            if(rating != null)
+            {
+                var obj = new
+                {
+                    ontime = rating.OnTimeArrival,
+                    friendly = rating.Friendly,
+                    quality = rating.QualityOfService,
+                    comment = rating.Comments
+                };
+                return Json(obj);
+            }
+            else
+            {
+                return Json("NoRatingFound");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SaveSpRating(SpRating spRating)
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            ServiceRequest ServiceDetail = _helperlandContext.ServiceRequests.Where(x => x.UserId == logedUserid && x.ServiceRequestId == spRating.ServiceRequestId).FirstOrDefault();
+
+            Rating rating = new Rating();
+            rating.ServiceRequestId = ServiceDetail.ServiceRequestId;
+            rating.RatingFrom = ServiceDetail.UserId;
+            rating.RatingTo = (int)ServiceDetail.ServiceProviderId;
+            rating.Comments = spRating.Comments;
+            rating.OnTimeArrival = spRating.OnTimeArrival;
+            rating.Friendly = spRating.Friendly;
+            rating.QualityOfService = spRating.QualityOfService;
+            rating.Ratings = (spRating.OnTimeArrival + spRating.Friendly + spRating.QualityOfService)/3;
+            rating.RatingDate = DateTime.Now;
+            _helperlandContext.Ratings.Add(rating);
+            _helperlandContext.SaveChanges();
+            return Json("Successfully");
         }
 
         public IActionResult MySetting()

@@ -69,11 +69,14 @@ function getData() {
                 setTimeout(function () {
                 var dashtbldata = $('#dashTblData');
                 dashtbldata.empty();
-                for (var i = 0; i < response.length; i++) {
-                    dashtbldata.append('<tr> <td class="pl-4 serviceSummary" data-toggle="modal" data-target="#displaydatamodal" data-dismiss="modal" >' + response[i].serviceId + '</td><td class="serviceSummary"><p class="date"><img class="ServiceDateImg" src="../image/upcoming_service/calendar.webp">' + response[i].serviceDate + '</p><p><img class="ServiceTimeImg" src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td class="serviceSummary"></td><td class="text-center serviceSummary"><span class="payment">' + response[i].payment + " Rs." + '</span></td><td><a  class="btn rescheduleBtn mx-1">Reschedule</a><a  class="btn cancelbtn mx-1">Cancle</a></td></tr>');
-                   /* dashtbldata.append('<tr> <td class="pl-4" data-toggle="modal" data-target="#displaydatamodal" data-dismiss="modal" >' + response[i].serviceId + '</td><td><p class="date"><img class="ServiceDateImg" src="../image/upcoming_service/calendar.webp">' + response[i].serviceDate + '</p><p><img class="ServiceTimeImg" src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td><div class="row"><div class="col sp_icon d-flex align-items-center"><span class="img_circle"><img src="../image/service_history/cap.png" alt="cap"></span></div><div class="col"><p>lyum watson</p><p><div class="stars" style="--rating:4;"></div>&nbsp;4</p></div></div></td><td><p class="payment">' + response[i].payment + " Rs." + '</p></td><td><a href="#" data-toggle="modal" data-target="#reschedulemodal" data-dismiss="modal" class="btn rescheduleBtn">Reschedule</a><a href="#" data-toggle="modal" data-target="#canclemodal" data-dismiss="modal" class="btn cancelbtn">Cancle</a></td></tr>');*/
-
-                }
+                    for (var i = 0; i < response.length; i++) {
+                        if (response[i].providerId == null) {
+                                dashtbldata.append('<tr> <td class="pl-4 serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><p class="date"><img class="ServiceDateImg" src="../image/upcoming_service/calendar.webp">' + response[i].serviceDate + '</p><p><img class="ServiceTimeImg" src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td class="serviceSummary"></td><td class="text-center serviceSummary"><span class="payment">' + response[i].payment + " Rs." + '</span></td><td><a  class="btn rescheduleBtn mx-1">Reschedule</a><a  class="btn cancelbtn mx-1">Cancle</a></td></tr>');
+                        } else {
+                            dashtbldata.append('<tr> <td class="pl-4 serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><p class="date"><img class="ServiceDateImg" src="../image/upcoming_service/calendar.webp">' + response[i].serviceDate + '</p><p><img class="ServiceTimeImg" src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td class="serviceSummary"><div class="row"><div class="col sp_icon d-flex align-items-center"><span class="img_circle"><img src="../image/service_history/cap.png" alt="avtar"></span></div><div class="col"><p>' + response[i].spname + '</p><p><div class="Stars" style="--rating:' + response[i].spRatings + ';"></div>&nbsp;' + response[i].spRatings+'</p></div></div></td><td class="text-center serviceSummary"><span class="payment">' + response[i].payment + " Rs." + '</span></td><td><a  class="btn rescheduleBtn mx-1">Reschedule</a><a  class="btn cancelbtn mx-1">Cancle</a></td></tr>');
+                        }
+                    }
+                    //console.log(response);     
                 table = $('#Dashboard_table').DataTable({
                     "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
                     "pagingType": "full_numbers",
@@ -101,11 +104,12 @@ function getData() {
                 });
 
                     $('#Dashboard_table tbody').on('click', '.rescheduleBtn', function () {
-                        $('#rescheduleTime').val('08:00 AM');
+                        $('#rescheduleServiceUpdateBtn').prop('disabled', true);
+                        $('#rescheduleServiceUpdateBtn').css('cursor', 'not-allowed');
                         $("#rescheduleModalBtn").click();
                         var ClickedserviceId = $(this).parent().parent().children(':first-child').text();
                         $("#serviceIdForReschedule").val(ClickedserviceId);
-                        //GetRescheduleRequest(ClickedserviceId);
+                        GetRescheduleRequest(ClickedserviceId);
                     });
                     
                     
@@ -120,10 +124,31 @@ function getData() {
 
                     $('#Dashboard_table tbody').on('click', '.serviceSummary', function () {
                         var clickedRow = $(this).parent().children(':first-child').text();
-                        GetServiceSummary(clickedRow);
+                        var ServicePro = $(this).parent().children(':nth-child(3)').html();
+                        GetServiceSummary(clickedRow, ServicePro);
                     });
 
-                }, 1000);
+                    $('#SerRescheduleBtn').click(function () {
+                        $('#rescheduleServiceUpdateBtn').prop('disabled', true);
+                        $('#rescheduleServiceUpdateBtn').css('cursor', 'not-allowed');
+                        $("#rescheduleModalBtn").click();
+                        var ClickedSerIdReschedule = $("#SerId").text();
+                        $("#serviceIdForReschedule").val(ClickedSerIdReschedule);
+                        $("#displaydataModal").modal('hide');
+                        GetRescheduleRequest(ClickedSerIdReschedule);
+                    });
+
+                    $('#SerCancleBtn').click(function () {
+                        $("#canclecomments").val('');
+                        $('#cancleServiceMdodelBtn').prop('disabled', true);
+                        $('#cancleServiceMdodelBtn').css('cursor', 'not-allowed');
+                        $("#cancleModalBtn").click();
+                        var ClickedSerIdCancle = $("#SerId").text();
+                        $("#displaydataModal").modal('hide');
+                        $("#cancleReqServiceId").val(ClickedSerIdCancle);
+                    });
+
+                }, 500);
             },
         error:
             function (err) {
@@ -133,30 +158,34 @@ function getData() {
         complete: function () {
             setTimeout(function () {
                 $(".loader-div").addClass('d-none');
-            }, 1000);
+            }, 500);
         }
     });
 }
 
-//function GetRescheduleRequest(x) {
-//    $.ajax({
-//        type: 'GET',
-//        cache: false,
-//        data: { 'ReqServiceId': x },
-//        url: '/Customer/GetRescheduleRequestData',
-//        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-//        success:
-//            function (response) {
-//                console.log(response);
-//            },
-//        error:
-//            function (err) {
-//                console.error(err);
-//            }
-//    });
-//}
+function GetRescheduleRequest(x) {
+    $.ajax({
+        type: 'GET',
+        cache: false,
+        data: { 'ReqServiceId': x },
+        url: '/Customer/GetRescheduleRequestData',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success:
+            function (response) {
+                //console.log(response);
+                var time = response.serviceStartTime;
+                var date = response.serviceDate;
+                $("#rescheduleDate").val(date);
+                $("#rescheduleTime").val(time);
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
+}
 
-function GetServiceSummary(x) {
+function GetServiceSummary(x,y) {
     $.ajax({
         type: 'GET',
         cache: false,
@@ -165,29 +194,28 @@ function GetServiceSummary(x) {
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success:
             function (response) {
-                console.log(response);
-                //var ExtraItem = "";
-                //if (response.cabinet) {
-                //    ExtraItem =  ExtraItem.concat(",", "Inside cabinets");
-                //} else if (response.laundary) {
-                //    //ExtraItem += "Laundry wash & dry, ";
-                //    ExtraItem =  ExtraItem.concat(",", "Laundry wash & dry");
-                //} else if (response.fridge) { 
-                //    //ExtraItem += "Inside fridge, ";
-                //    ExtraItem = ExtraItem.concat(",", "Inside fridge");
-                //} else if (response.oven) {
-                //    //ExtraItem += "Inside oven, ";
-                //    ExtraItem = ExtraItem.concat(",", "Inside oven");
-                //} else if (response.window) {
-                //    //ExtraItem += "Interior windows ";
-                //    ExtraItem =  ExtraItem.concat(",", "Interior windows");
-                //}
+                //console.log(response);
+                $("#SerExtra").empty();
+                if (response.cabinet) {
+                    $("#SerExtra").append('Inside Cabinet, ')
+                }
+                if (response.fridge) {
+                    $("#SerExtra").append('Inside Fridge, ')
+                }
+                if (response.laundary) {
+                    $("#SerExtra").append('Laundary Wash & Dry, ')
+                }
+                if (response.oven) {
+                    $("#SerExtra").append('Inside Oven, ')
+                }
+                if (response.window) {
+                    $("#SerExtra").append('Inside Window')
+                }
                 $("#SerDate").text(response.serviceDate);
                 $("#SerStartTime").text(response.serviceStartTime);
                 $("#SerEndTime").text(response.serviceEndTime);
                 $("#SerDuration").text(response.duration);
                 $("#SerId").text(response.id);
-                //$("#SerExtra").text(ExtraItem);
                 $("#SerPayment").html(response.payment + " Rs.");
                 $("#SerAddress").html(response.addressLine1 + " " + response.addressLine2 + " , " + response.city + " " + response.postalCode);
                 $("#SerMobile").text(response.mobile);
@@ -198,6 +226,9 @@ function GetServiceSummary(x) {
                     $("#SerPets").html('<img src="../image/service_history/havepet.png" /> I have pets at home');
                 } else {
                     $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
+                }
+                if (y != null) {
+                    $("#spDetails").html(y);
                 }
                 $("#displaydataModal").modal('show');
 
@@ -255,7 +286,7 @@ $("#cancleServiceMdodelBtn").click(function () {
     });
 });
 
-$("#rescheduleDate").change(function () {
+$("#rescheduleDate,#rescheduleTime").change(function () {
     if ($("#rescheduleDate").val() == '' || $("#rescheduleTime").val() == '') {
         $('#rescheduleServiceUpdateBtn').prop('disabled', true);
         $('#rescheduleServiceUpdateBtn').css('cursor', 'not-allowed');
@@ -279,15 +310,17 @@ $("#canclecomments").keyup(function () {
 
 
 $(document).ready(function () {
-
     getData();
-
     var date_input = $('#rescheduleDate');
     date_input.datepicker({
         format: 'dd/mm/yyyy',
         autoclose: true,
         startDate: '+1d',
     });
+
+    var selector = '#sidebar-wrapper a';
+    $(selector).removeClass('active');
+    $(selector)[0].classList.add("active");
 });
 
 

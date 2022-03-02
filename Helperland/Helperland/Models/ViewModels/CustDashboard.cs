@@ -13,5 +13,9 @@ namespace Helperland.Models.ViewModels
         public string ServiceEndTime { get; set; }
         public decimal Payment { get; set; }
         public int? Status { get; set; }
+        public int? ProviderId { get; set; }
+        public string Spname { get; set; }
+
+        public decimal SpRatings { get; set; }
     }
 }

@@ -27,7 +27,7 @@
 }
 
 .user_setting .btn {
-    padding: 0.1rem 0.75rem;
+    padding: 0.1rem 1.3rem;
 }
 .user-setting {
     top: 125%;
@@ -128,19 +128,33 @@
   left: 0px;
   top: 0;
 }
+.user-setting {
+    top: 125%;
+}
 
-  .dropdown-menu{
-      background: white !important;
-      color:black;
-      left: -6px;
-  }
-  .dropdown-menu a,.dropdown-menu span{
-    padding: 10px 13px !important;
-  }
+.user_setting .dropdown-menu:before {
+    position: absolute;
+    top: 0;
+    content: "";
+    border-width: 0 8px 12px 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    top: -12px;
+    right: 35px;
+}
+
+.dropdown-menu{
+    background: white !important;
+    color:black;
+    left: -6px;
+}
+.dropdown-menu a,.dropdown-menu span{
+padding: 10px 13px !important;
+}
  
-  .mobileNav{
-    display: none;
-  }
+.mobileNav{
+display: none;
+}
 .mobileNav{
     background-color: #525252;
     position: sticky;

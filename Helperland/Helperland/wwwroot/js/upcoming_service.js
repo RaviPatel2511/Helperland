@@ -4,28 +4,7 @@ const Sidenav=document.querySelector('.sideNav');
 const closebtn=document.querySelector('.closebtn');
 const nav = document.querySelector("nav");
 
-$(document).ready( function () {
- table = $('#upcomingService').DataTable({
-      "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
-      "pagingType": "full_numbers",
-      "searching":false,
-      "order":[],
-      'columnDefs': [ {
-          'targets': [4], 
-          'orderable': false, 
-       }],
-      "language": {
-          "paginate": {
-              "first": '<i class="fas fa-step-backward"></i>',
-              "next": '<i class="fas fa-angle-right"></i>',
-              "previous": '<i class="fas fa-angle-left"></i>',
-              "last": '<i class="fas fa-step-forward"></i>'
-          },
-          'info': "Total Record: _MAX_",
-          
-      }
-  });
-} );
+
 
 var $links = $('#sidebar-wrapper a');
 $links.click(function(){
@@ -124,9 +103,29 @@ function sort(col, order) {
   });
 
 $(document).ready(function () {
+    table = $('#upcomingService').DataTable({
+        "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
+        "pagingType": "full_numbers",
+        "searching": false,
+        "order": [],
+        'columnDefs': [{
+            'targets': [4],
+            'orderable': false,
+        }],
+        "language": {
+            "paginate": {
+                "first": '<i class="fas fa-step-backward"></i>',
+                "next": '<i class="fas fa-angle-right"></i>',
+                "previous": '<i class="fas fa-angle-left"></i>',
+                "last": '<i class="fas fa-step-forward"></i>'
+            },
+            'info': "Total Record: _MAX_",
+
+        }
+    });
+
     $('[data-toggle="popover"]').popover();
 });
-
 
 // PREVENT FFROM BACK BUTTON AFTER LOGOUT
 //window.history.forward();

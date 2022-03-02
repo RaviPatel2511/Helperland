@@ -191,30 +191,43 @@ nav{
     position: relative;
 }
 
-    .notification_item::after {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        right: 0px;
-        top: 0;
-    }
+.notification_item::after {
+    content: '';
+    position: absolute;
+    background: white;
+    width: 1px;
+    height: 100%;
+    right: 0px;
+    top: 0;
+}
 
-    .notification_item::before {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        left: 0px;
-        top: 0;
-    }
+.notification_item::before {
+    content: '';
+    position: absolute;
+    background: white;
+    width: 1px;
+    height: 100%;
+    left: 0px;
+    top: 0;
+}
 
 .user_setting button {
     background: none;
 }
+.user-setting {
+    top: 125%;
+}
 
+.user_setting .dropdown-menu:before {
+    position: absolute;
+    top: 0;
+    content: "";
+    border-width: 0 8px 12px 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    top: -12px;
+    right: 35px;
+}
 .userInfoItem {
     color: #4f4f4f;
     margin: 5px 0;
@@ -223,7 +236,7 @@ nav{
 }
 
 .user_setting .btn {
-    padding: 0.1rem 0.75rem;
+    padding: 0.1rem 1.3rem;
 }
 
 
