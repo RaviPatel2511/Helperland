@@ -275,14 +275,13 @@
   }
 .mobileNav{
     background-color: #525252;
-    position: sticky;
     top: 0;
     z-index: 100;
 }
 .mobileLogo{
   height: 55px;
 width: 73px;
-
+margin-left:10px;
 }
 .mobileNavSpaccing{
   display: flex;
@@ -360,6 +359,7 @@ width: 73px;
 .welcome_msg {
     padding: 44px 0px;
     background: #f9f9f9;
+    margin-top:65px;
 }
 .welcome_msg h2{
     font-size: 30px;
@@ -607,8 +607,8 @@ span.arrow-hack {
 .arrow-hack.asc {
   background: url("../image/service_history/acendingSort.png") no-repeat center right;
 }
-table th:nth-child(5) > span{
-  display: none;
+#service_history_table th:nth-child(6) > span, #Dashboard_table th:nth-child(5) > span {
+    display: none;
 }
 #page-content-wrapper .dataTables_paginate{
   display: flex;
@@ -786,19 +786,17 @@ text-align: center;
     vertical-align:top;
     margin-right:4px;
 }
-#displaydataModal #spDetails{
-    position:absolute;
-    top:10px;
-    right:3px;
+#AccepetedSp .row, #spDetails .row {
+    display: -webkit-inline-box;
 }
-#AccepetedSp {
+#AccepetedSp p {
+    margin-bottom: 0px;
+}
+#spDetails .row{
+    font-size:15px;
+}
+#displaydataModal .modal-body {
     display: flex;
-    position: absolute;
-    right: 2px;
-    top: 15px;
-}
-#AccepetedSp p{
-    margin-bottom:0px;
 }
 #CancleSuccessfulyDone span {
     display: inline-block;
@@ -915,6 +913,16 @@ text-align: center;
     font-weight: 700;
     margin-bottom: 5px;
     color:#646464;
+}
+#loadMoreAddBtn {
+    border-color: #c6c6c6;
+    color: #666;
+    transition: all .3s ease;
+    background: 0 0;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 7px 20px;
+    border-radius: 50px;
 }
 #MySetting .form-control {
     background: #fff;
@@ -1106,6 +1114,10 @@ footer {
         height: auto;
         /* width: fit-content; */
       }
+    #displaydataModal .modal-body {
+        flex-direction:column-reverse;
+    }
+
     }
     @media screen and (max-width: 576px) {
       .iconcolumn{

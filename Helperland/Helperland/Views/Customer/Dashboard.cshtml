@@ -120,25 +120,27 @@
                         <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
                     </div>
                     <div class="modal-body">
-                        <p class="date-time"><span id="SerDate"></span> <span id="SerStartTime"></span>-<span id="SerEndTime"></span></p>
-                        <span class="title-text"><b>Duration : </b><span id="SerDuration"></span> Hrs</span>
-                        <hr />
-                        <span class="title-text"><b>Service Id : </b><span id="SerId"></span></span>
-                        <span class="title-text"><b>Extras :  </b><span id="SerExtra"></span></span>
-                        <span class="title-text"><b>Net Amout : </b><span id="SerPayment" class="NetAmount"></span></span>
-                        <hr />
-                        <span class="title-text"><b>Service Address : </b><span id="SerAddress"></span></span>
-                        <span class="title-text"><b>Billing Address : </b>Same as cleaning Address</span>
-                        <span class="title-text"><b>Phone : </b><span id="SerMobile"></span></span>
-                        <span class="title-text"><b>Email : </b><span id="SerEmail"></span></span>
-                        <hr />
-                        <span class="title-text"><b>Comments : </b><span id="SerComment"></span></span>
-                        @*<span class="title-text"><img src="~/image/service_history/notpet.png" />I do not have pets at home</span>*@
-                        <span class="title-text"><span id="SerPets"></span></span>
-                        <hr />
-                        <div class="action-btn">
-                            <a id="SerRescheduleBtn" class="btn rescheduleBtn"><img src="~/image/service_history/reschedule.png" />Reschedule</a>
-                            <a id="SerCancleBtn" class="btn cancelbtn"><img src="~/image/service_history/cancle.png" />Cancle</a>
+                        <div id="SerSummaryDetails">
+                            <p class="date-time"><span id="SerDate"></span> <span id="SerStartTime"></span>-<span id="SerEndTime"></span></p>
+                            <span class="title-text"><b>Duration : </b><span id="SerDuration"></span> Hrs</span>
+                            <hr />
+                            <span class="title-text"><b>Service Id : </b><span id="SerId"></span></span>
+                            <span class="title-text"><b>Extras :  </b><span id="SerExtra"></span></span>
+                            <span class="title-text"><b>Net Amout : </b><span id="SerPayment" class="NetAmount"></span></span>
+                            <hr />
+                            <span class="title-text"><b>Service Address : </b><span id="SerAddress"></span></span>
+                            <span class="title-text"><b>Billing Address : </b>Same as cleaning Address</span>
+                            <span class="title-text"><b>Phone : </b><span id="SerMobile"></span></span>
+                            <span class="title-text"><b>Email : </b><span id="SerEmail"></span></span>
+                            <hr />
+                            <span class="title-text"><b>Comments : </b><span id="SerComment"></span></span>
+                            @*<span class="title-text"><img src="~/image/service_history/notpet.png" />I do not have pets at home</span>*@
+                            <span class="title-text"><span id="SerPets"></span></span>
+                            <hr />
+                            <div class="action-btn">
+                                <a id="SerRescheduleBtn" class="btn rescheduleBtn"><img src="~/image/service_history/reschedule.png" />Reschedule</a>
+                                <a id="SerCancleBtn" class="btn cancelbtn"><img src="~/image/service_history/cancle.png" />Cancle</a>
+                            </div>
                         </div>
                         <div id="spDetails">
                         </div>
@@ -182,51 +184,6 @@
                     </tr>
                 </thead>
                 <tbody id="dashTblData">
-                    @*<tr>
-                        <td data-toggle="modal" data-target="#displaydataModal" data-dismiss="modal">323436</td>
-                        <td>
-                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
-                        </td>
-                        <td>
-                            <div class="row">
-                                <div class="col sp_icon d-flex align-items-center" >
-                                    <Span class="img_circle">
-                                        <img src="~/image/service_history/cap.png" alt="cap">
-                                    </Span>
-                                </div>
-                                <div class="col">
-                                    <p>Lyum Watson</p>
-                                    <p>
-                                        <div class="Stars" style="--rating: 4;"></div>&nbsp;4
-                                    </p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="payment">63 Rs.</p>
-                        </td>
-                        <td>
-                            <a href="#" data-toggle="modal" data-target="#rescheduleModal" data-dismiss="modal" class="btn rescheduleBtn">Reschedule</a>
-                            <a href="#" data-toggle="modal" data-target="#cancleModal" data-dismiss="modal" class="btn cancelbtn">Cancle</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3234</td>
-                        <td>
-                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <p class="payment">63 Rs.</p>
-                        </td>
-                        <td>
-                            <a class="btn rescheduleBtn">Reschedule</a>
-                            <a class="btn cancelbtn">Cancle</a>
-                        </td>
-                    </tr>*@
                 </tbody>
             </table>
         </div>

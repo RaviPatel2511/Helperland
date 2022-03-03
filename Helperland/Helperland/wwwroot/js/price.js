@@ -7,17 +7,10 @@ const up_arr = document.querySelector(".up_arr");
 
 
 window.addEventListener("scroll", () => {
-	if (window.scrollY > 130) {
-	
-		nav.classList.add("fixed-top");
-	
+	if (window.scrollY > 130) {	
 		up_arr.classList.remove("hidden");
-		mobileNav.classList.add("fixed-top");
 	} else {
-	
-		nav.classList.remove("fixed-top");
 		up_arr.classList.add("hidden");
-		mobileNav.classList.remove("fixed-top");
 	}
 
 });

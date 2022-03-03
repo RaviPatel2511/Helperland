@@ -74,6 +74,7 @@ nav{
     .bg_main{
         width: 100%;
         height: auto;
+        margin-top:64px;
     }
     
   .about{
@@ -405,12 +406,15 @@ nav{
           }
         }
         @media screen and (max-width : 1031px ) {
-          .navbar{
-            display: none;
-          }
-          .mobileNav{
-            display: block !important;
-          }
+        .navbar{
+        display: none;
+        }
+        .mobileNav{
+        display: block !important;
+        }
+        .bg_main{
+            margin-top:55px
+        }
          }
 
 

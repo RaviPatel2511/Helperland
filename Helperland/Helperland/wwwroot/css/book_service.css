@@ -194,6 +194,7 @@ nav {
 .bg_main {
     width: 100%;
     height: auto;
+    margin-top:64px;
 }
 
 .about {
@@ -1201,5 +1202,8 @@ footer p {
 
     .mobileNav {
         display: block !important;
+    }
+    .bg_main{
+        margin-top:55px;
     }
 }

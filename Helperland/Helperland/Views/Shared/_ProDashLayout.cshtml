@@ -1,0 +1,187 @@
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/ProviderDash.css" />
+    <link rel="shortcut icon" href="~/image/home/favicon.ico" type="image/x-icon" />
+    <title>@ViewBag.Title | Helperland</title>
+</head>
+
+<body>
+    <!--////////////////////// main part////////////////////////////////// -->
+
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <a class="navbar-brand" asp-controller="Helperland" asp-action="Index"><img src="~/image/faq/logo.png" height="28" alt="logo" /></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link menu text-white" asp-controller="Helperland" asp-action="Prices">Price & Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="javascript:void(0)">Warranty</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu" href="javascript:void(0)">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu text-white" asp-controller="Helperland" asp-action="Contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-item nav-link notification_item">
+                            <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown user_setting">
+                            <button class="btn  dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="~/image/upcoming_service/user.svg" alt="user">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right text-start user-setting"
+                                aria-labelledby="dropdownMenuLink">
+                                <li><label class="dropdown-item text-dark">Welcome,<br><strong>@ViewBag.UserName</strong></label></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-dark" asp-controller="Provider" asp-action="Dashboard" role="button">My Dashboard</a></li>
+                                <li><a class="dropdown-item text-dark" asp-controller="Provider" asp-action="MySetting" role="button">My Settings</a></li>
+                                <li><a class="dropdown-item text-dark" role="button" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- /////////////////////////////MOBILE NAVBAR START////////////////////////// -->
+        <div class="mobileNav fixed-top">
+            <div class="mobileNavSpaccing">
+                <a asp-controller="Helperland" asp-action="Index"><img class="mobileLogo" src="~/image/home/logo.png" alt="logo"></a>
+                <div class="mobileNotification">
+                    <a href="#" class="nav-item nav-link notification_item">
+                        <img class="notification" src="~/image/upcoming_service/notification.png" alt="notification icon"><span class="notification_number">2</span>
+                    </a>
+                </div>
+                <div class="menubtn">
+                    <button class="navbar-toggler"> <span></span> <span></span> <span></span> </button>
+                </div>
+            </div>
+            <div class="sideNav">
+                <div class="openSidenav">
+                    <div class="closebtn"> <img src="~/image/home/times-solid.svg" alt="close"> </div>
+                    <ul>
+
+                        <li><h5 class="mobileNavMenu">Welcome <br />@ViewBag.UserName</h5></li>
+                        <hr>
+                        <li><a asp-controller="Provider" asp-action="Dashboard" class="mobileNavMenu">Dashboard</a></li>
+                        <hr>
+                        <li><a asp-controller="Provider" asp-action="NewService" class="mobileNavMenu">New Service Request</a></li>
+                        <hr>
+                        <li><a asp-controller="Provider" asp-action="UpcomingService"  class="mobileNavMenu">Upcoming Services</a></li>
+                        <hr>
+                        <li><a asp-controller="Provider" asp-action="NewService"  class="mobileNavMenu">Service Schedule</a></li>
+                        <hr>
+                        <li><a asp-controller="Provider" asp-action="ServiceHistory"  class="mobileNavMenu">Service History</a></li>
+                        <hr>
+                        <li><a asp-controller="Provider" asp-action="MyRating"  class="mobileNavMenu">My Rating</a></li>
+                        <hr>
+                        <li><a asp-controller="Provider" asp-action="BlockCustomer"  class="mobileNavMenu">Block Customer</a></li>
+                        <hr>
+                        <li><a class="mobileNavMenu" asp-controller="Provider" asp-action="MySetting">My Setting</a></li>
+                        <hr>
+                        <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="Prices" class="mobileNavMenu">Prices & Servcies</a></li>
+                        <hr>
+                        <li><a href="javascript:void(0)" class="mobileNavMenu">Warranty</a></li>
+                        <hr>
+                        <li><a href="javascript:void(0)" class="mobileNavMenu">Blog</a></li>
+                        <hr>
+                        <li><a asp-controller="Helperland" asp-action="Contact" class="mobileNavMenu">Contact</a></li>
+                        <hr>
+                        <li>
+                            <div class="d-flex justify-content-center">
+                                <img style="width:50px;height:50px;" class="px-3" src="~/image/home/facebook-f-brands.svg" />
+                                <img style="width:60px;height:50px;" class="px-3" src="~/image/home/instagram-brands.svg" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- /////////////////////////////MOBILE NAVBAR END////////////////////////// -->
+    <div class="loader-div d-none">
+        <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+        </div>
+    </div>
+    <section class="welcome_msg">
+        <div class="container">
+            <h2 class="text-center">Welcome, <strong>@ViewBag.UserName !</strong></h2>
+        </div>
+    </section>
+    <!-- /////////////////////////////// TABLE START//////////////////////////////// -->
+    <section>
+        <div class="container-fluid dashboard">
+            <div class="d-flex" id="wrapper">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <a asp-controller="Provider" asp-action="Dashboard" class="list-group-item list-group-item-action text-white">Dashboard</a>
+                    <a asp-controller="Provider" asp-action="NewService" class="list-group-item list-group-item-action text-white">New Service Request</a>
+                    <a  asp-controller="Provider" asp-action="UpcomingService"  class="list-group-item list-group-item-action text-white">Upcoming Services</a>
+                    <a class="list-group-item list-group-item-action text-white">Service Schedule</a>
+                    <a asp-controller="Provider" asp-action="ServiceHistory"  class="list-group-item list-group-item-action text-white">Service History</a>
+                    <a asp-controller="Provider" asp-action="MyRating"  class="list-group-item list-group-item-action text-white">My Ratings</a>
+                    <a asp-controller="Provider" asp-action="BlockCustomer"  class="list-group-item list-group-item-action text-white">Block Customer</a>
+                    <a class="list-group-item list-group-item-action text-white">Invoices</a>
+                    <a class="list-group-item list-group-item-action text-white">Notifications</a>
+                </div>
+                <!-- /#sidebar-wrapper -->
+                <!-- Page Content -->
+                <div class="w-100" id="page-content-wrapper">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </section>
+    <!--//////////////////////////////////// FOOTER/////////////////////////////// -->
+    <footer>
+        <div class="container d-flex justify-content-between align-items-center fmenu">
+            <a asp-controller="Helperland" asp-action="Index"><img width="100px" src="~/image/faq/logo.png" alt="logo" /></a>
+            <div class="d-flex flex-wrap text-center justify-content-center fmenulink"> <a class="px-3" asp-controller="Helperland" asp-action="Index">HOME</a> <a class="px-3" asp-controller="Helperland" asp-action="About">ABOUT</a> <a class="px-3" href="javascript:void(0)">TESTIMONIALS</a> <a class="px-3" asp-controller="Helperland" asp-action="Faqs">FAQS</a> <a class="px-3" href="javascript:void(0)">INSURRANCE POLICY</a> <a class="px-3" href="javascript:void(0)">IMPRESSUM</a> </div>
+            <div> <img class="img-fluid fimg1" src="~/image/faq/facebook.png" /> <img class="img-fluid fimg2" src="~/image/faq/insta.png" /> </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center text-center hr-line">
+            <hr />
+        </div>
+        <p class="text-center right">©2018 Helperland.All rights reserved.Terms and Conditions | Privacy Policy</p>
+    </footer>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="~/js/ProviderDash.js"></script>
+    @RenderSection("script", required: false)
+</body>
+</html>

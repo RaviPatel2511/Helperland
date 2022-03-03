@@ -44,17 +44,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            @*<div class="btn-group user_setting">
-            <button class="btn user-setting btn-md" title="<div>Welcome,<b class='d-block'>@ViewBag.UserName</b></div>" data-html="true" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="<a class='d-block userInfoItem' href='#'>My Dashboard</a><a class='d-block userInfoItem' href='#'>My Settings</a><a class='d-block userInfoItem' href='/Account/Logout'>Logout</a>">
-
-                <img src="~/image/upcoming_service/user.svg" alt="flag">
-                <svg style="margin-left: 7px;" xmlns="http://www.w3.org/2000/svg" width="11" height="6">
-                    <path fill-rule="evenodd" fill="#FFF"
-                          d="M.113.674C.37.597 0 .5 0 .394 0 .287.37.191.113.113c.152.297.399.297.55 0L5.499 5.43 10.336.113c.151.297.398.297.55 0 .484.155.484.406 0 .561l-5.112 5.21c-.151.506-.398.506-.55 0L.113.674z" />
-                </svg>
-            </button>
-
-        </div>*@
                             <div class="dropdown user_setting">
                                 <button class="btn  dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="~/image/upcoming_service/user.svg" alt="user">
@@ -68,9 +57,19 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item text-dark" role="button" asp-controller="Customer" asp-action="Dashboard">My Dashboard</a></li>
-                                    <li><a class="dropdown-item text-dark" role="button" asp-controller="Customer" asp-action="MySetting">My Settings</a></li>
-                                    <li><a class="dropdown-item text-dark" role="button" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                    @if (@ViewBag.UType == 1)
+                                    {
+                                        <li><a class="dropdown-item text-dark" role="button" asp-controller="Customer" asp-action="Dashboard">My Dashboard</a></li>
+                                        <li><a class="dropdown-item text-dark" role="button" asp-controller="Customer" asp-action="MySetting">My Settings</a></li>
+                                        <li><a class="dropdown-item text-dark" role="button" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                    }
+                                    @if (@ViewBag.UType == 2)
+                                    {
+                                        <li><a class="dropdown-item text-dark" role="button" asp-controller="Provider" asp-action="Dashboard">My Dashboard</a></li>
+                                        <li><a class="dropdown-item text-dark" role="button" asp-controller="Provider" asp-action="MySetting">My Settings</a></li>
+                                        <li><a class="dropdown-item text-dark" role="button" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                                    }
+
                                 </ul>
 
                             </div>
@@ -149,21 +148,21 @@
                         {
                             <li><h5 class="mobileNavMenu">Welcome <br />@ViewBag.UserName</h5></li>
                             <hr>
-                            <li><a  class="mobileNavMenu">Dashboard</a></li>
+                            <li><a asp-controller="Provider" asp-action="Dashboard" class="mobileNavMenu">Dashboard</a></li>
                             <hr>
-                            <li><a  class="mobileNavMenu">New Service Request</a></li>
+                            <li><a  asp-controller="Provider" asp-action="NewService"  class="mobileNavMenu">New Service Request</a></li>
                             <hr>
-                            <li><a  class="mobileNavMenu">Upcoming Service</a></li>
+                            <li><a asp-controller="Provider" asp-action="UpcomingService" class="mobileNavMenu">Upcoming Service</a></li>
                             <hr>
                             <li><a  class="mobileNavMenu">Service Schedule</a></li>
                             <hr>
-                            <li><a  class="mobileNavMenu">Service History</a></li>
+                            <li><a asp-controller="Provider" asp-action="ServiceHistory" class="mobileNavMenu">Service History</a></li>
                             <hr>
-                            <li><a  class="mobileNavMenu">My Rating</a></li>
+                            <li><a asp-controller="Provider" asp-action="MyRating" class="mobileNavMenu">My Rating</a></li>
                             <hr>
-                            <li><a  class="mobileNavMenu">Block Customer</a></li>
+                            <li><a asp-controller="Provider" asp-action="BlockCustomer" class="mobileNavMenu">Block Customer</a></li>
                             <hr>
-                            <li><a  class="mobileNavMenu">My Setting</a></li>
+                            <li><a asp-controller="Provider" asp-action="MySetting" class="mobileNavMenu">My Setting</a></li>
                             <hr>
                             <li><a class="mobileNavMenu" asp-controller="Account" asp-action="Logout">Logout</a></li>
                             <hr>

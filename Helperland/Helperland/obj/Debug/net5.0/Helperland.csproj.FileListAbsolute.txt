@@ -88,3 +88,10 @@ C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Helperla
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_CustDashLayout.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\Dashboard.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\MySetting.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Shared\_ProDashLayout.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\BlockCustomer.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\Dashboard.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\MyRating.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\MySetting.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\NewService.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\ServiceHistory.cshtml.g.cs

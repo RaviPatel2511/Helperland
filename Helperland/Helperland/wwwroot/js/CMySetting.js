@@ -102,6 +102,9 @@ function getUserAddress() {
                     $("#DeleteAddServiceId").val(ClickserviceId);
                 });
 
+                    ShowAddNum();
+
+
                 }, 1000);
             },
         error:
@@ -137,6 +140,41 @@ function getAddIntoModel(x) {
             }
     });
 }
+
+var NumRow = 0;
+
+function ShowAddNum() {
+
+    NumRow = 5;
+
+    var $table = $('#myAddressTbl').find('tbody');
+    var TotalAddRow = $table.find('tr').length;
+
+    $table.find('tr:gt(' + (NumRow - 1) + ')').hide();
+
+    if (NumRow > TotalAddRow) {
+        $("#shownRow").text(TotalAddRow);
+    } else {
+        $("#shownRow").text(NumRow);
+    }
+    $("#totalRow").text(TotalAddRow);
+}
+
+$("#loadMoreAddBtn").click(() => {
+
+    NumRow += 5;
+
+    var $table = $('#myAddressTbl').find('tbody');
+    var TotalAddRow = $table.find('tr').length;
+
+
+    if (NumRow > TotalAddRow) {
+        NumRow = TotalAddRow;
+    }
+
+    $("#shownRow").text(NumRow);
+    $table.find('tr:lt(' + NumRow + ')').show();
+});
 
 function EditAdd() {
     if ($("#EditStreetName").val() == '' || $("#EditHouseNo").val() == '' || $("#EditPostalCode").val() == '' || $("#EditCity").val() == '' || $("#EditMobile").val() == '') {

@@ -28,14 +28,6 @@ window.onclick = function(event) {
   }
 }
 
-window.addEventListener("scroll", () => {
-	if (window.scrollY > 50) {
-	    nav.classList.add("fixed-top");
-	} else {
-    	nav.classList.remove("fixed-top");
-	}
-
-});
 
 
 $(document).ready(function () {

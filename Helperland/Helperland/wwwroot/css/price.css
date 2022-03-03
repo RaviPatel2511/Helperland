@@ -60,6 +60,7 @@ nav{
     .bg{
       height: auto;
       width: 100%;
+      margin-top:64px;
     }
     
   
@@ -615,6 +616,9 @@ nav{
        }
        .mobileNav{
          display: block !important;
+       }
+       .bg{
+           margin-top:54px;
        }
       }
 @media screen and (min-width : 1200px) {

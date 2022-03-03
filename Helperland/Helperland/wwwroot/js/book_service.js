@@ -8,21 +8,6 @@ const AddNewAddressbtn = document.querySelector('#AddNewAddress');
 const newAddressForm = document.querySelector('.newAddressForm');
 const cancelAdressform = document.querySelector('#cancelAdressform');
 
-window.addEventListener("scroll", () => {
-	if (window.scrollY > 130) {
-
-		nav.classList.add("fixed-top");
-
-		mobileNav.classList.add("fixed-top");
-	} else {
-
-		nav.classList.remove("fixed-top");
-
-		mobileNav.classList.remove("fixed-top");
-	}
-
-});
-
 menubtn.addEventListener('click', () => {
 	Sidenav.classList.add('open');
 })

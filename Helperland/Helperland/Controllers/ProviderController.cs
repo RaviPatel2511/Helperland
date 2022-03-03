@@ -1,5 +1,6 @@
 ﻿using Helperland.Models;
 using Helperland.Models.Data;
+using Helperland.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,6 +17,49 @@ namespace Helperland.Controllers
         {
             _helperlandContext = helperlandContext;
         }
+
+        public IActionResult Dashboard()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Dashboard";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 2;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+        public IActionResult MySetting()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "My Setting";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 2;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+        public IActionResult NewService()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "New Request";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 2;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
         public IActionResult UpcomingService()
         {
             
@@ -31,5 +75,134 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
+
+        public IActionResult ServiceHistory()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Service History";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 2;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+        [HttpGet]
+        public IActionResult GetServiceHistoryDetails()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                List<ProviderDashboard> serviceHistory = new List<ProviderDashboard>();
+                var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status == 2).ToList();
+                foreach (var data in Alldata)
+                {
+                    ProviderDashboard ServiceHistoryData = new ProviderDashboard();
+                    ServiceHistoryData.ServiceId = data.ServiceRequestId;
+                    ServiceHistoryData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
+                    ServiceHistoryData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
+                    ServiceHistoryData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
+
+                    User user = _helperlandContext.Users.Where(x => x.UserId == data.UserId).FirstOrDefault();
+                    ServiceHistoryData.CustName = user.FirstName + " " + user.LastName;
+                    
+                    ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
+                    ServiceHistoryData.CustAddress = serviceRequestAddress.AddressLine1 + " " + serviceRequestAddress.AddressLine2 + " " + serviceRequestAddress.PostalCode + " " + serviceRequestAddress.City + " " + serviceRequestAddress.State;
+                    serviceHistory.Add(ServiceHistoryData);
+                }
+                return new JsonResult(serviceHistory);
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+        public ActionResult GetServiceSummaryData(int ReqServiceId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                ServiceRequest reqService = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == ReqServiceId).FirstOrDefault();
+                CustDashServiceSummary custDashServiceSummary = new CustDashServiceSummary();
+                custDashServiceSummary.id = ReqServiceId;
+                custDashServiceSummary.ServiceDate = reqService.ServiceStartDate.ToString("dd/MM/yyyy");
+                custDashServiceSummary.ServiceStartTime = reqService.ServiceStartDate.ToString("HH:mm");
+                custDashServiceSummary.ServiceEndTime = reqService.ServiceStartDate.AddHours((double)reqService.SubTotal).ToString("HH:mm");
+                custDashServiceSummary.Duration = reqService.SubTotal;
+                custDashServiceSummary.Payment = reqService.TotalCost;
+                custDashServiceSummary.Comments = reqService.Comments;
+                custDashServiceSummary.HavePets = reqService.HasPets;
+
+                ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == ReqServiceId).FirstOrDefault();
+                custDashServiceSummary.AddressLine1 = serviceRequestAddress.AddressLine1;
+                custDashServiceSummary.AddressLine2 = serviceRequestAddress.AddressLine2;
+                custDashServiceSummary.City = serviceRequestAddress.City;
+                custDashServiceSummary.PostalCode = serviceRequestAddress.PostalCode;
+                custDashServiceSummary.Mobile = serviceRequestAddress.Mobile;
+                custDashServiceSummary.Email = serviceRequestAddress.Email;
+
+                List<ServiceRequestExtra> serviceRequestExtra = _helperlandContext.ServiceRequestExtras.Where(x => x.ServiceRequestId == ReqServiceId).ToList();
+                foreach (ServiceRequestExtra row in serviceRequestExtra)
+                {
+                    if (row.ServiceExtraId == 1)
+                    {
+                        custDashServiceSummary.cabinet = true;
+                    }
+                    else if (row.ServiceExtraId == 2)
+                    {
+                        custDashServiceSummary.fridge = true;
+                    }
+                    else if (row.ServiceExtraId == 3)
+                    {
+                        custDashServiceSummary.oven = true;
+                    }
+                    else if (row.ServiceExtraId == 4)
+                    {
+                        custDashServiceSummary.laundary = true;
+                    }
+                    else if (row.ServiceExtraId == 5)
+                    {
+                        custDashServiceSummary.window = true;
+                    }
+                }
+
+
+                return Json(custDashServiceSummary);
+
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+        public IActionResult MyRating()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "My Rating";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 2;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        public IActionResult BlockCustomer()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Block Customer";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 2;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
     }
 }

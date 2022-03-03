@@ -12,6 +12,7 @@
                     <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
                 </div>
                 <div class="modal-body">
+                    <div id="SerDetail">
                     <p class="date-time"><span id="SerDate"></span> <span id="SerStartTime"></span>-<span id="SerEndTime"></span></p>
                     <span class="title-text"><b>Duration : </b><span id="SerDuration"></span> Hrs</span>
                     <hr />
@@ -27,6 +28,7 @@
                     <span class="title-text"><b>Comments : </b><span id="SerComment"></span></span>
                     <span class="title-text"><span id="SerPets"></span></span>
                     <hr />
+                    </div>
                     <div id="AccepetedSp">
                     </div>
                 </div>
@@ -140,7 +142,7 @@
             </div>
         </div>
 
-        <div class="ml-auto py-2"><button onclick="ExcelSheetDown('xlsx');">Export</button></div>
+        <div class="ml-auto py-2"><button onclick="ExcelSheetDown()">Export</button></div>
     </div>
     <div class="row">
         <div class="col">
@@ -230,6 +232,6 @@
 </div>
 
 @section script{
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
                 <script src="~/js/Cservice_history.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
             }

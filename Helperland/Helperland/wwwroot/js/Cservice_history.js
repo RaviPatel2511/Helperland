@@ -90,7 +90,6 @@ function getData() {
                             }
                         }
                     }
-                    //console.log(response);
                     table = $('#service_history_table').DataTable({
                         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
                         "pagingType": "full_numbers",
@@ -288,14 +287,14 @@ $('input[type=radio][name=ontime],input[type=radio][name=friendly],input[type=ra
     $('#RatingSaveMdodelBtn').css('cursor', 'pointer');
 });
 
-function ExcelSheetDown(type) {
+function ExcelSheetDown() {
     var data = document.getElementById("service_history_table");
 
     var file = XLSX.utils.table_to_book(data, { sheet: "sheet1" });
 
-    XLSX.write(file, { bookType: type, bookSST: true, type: "base64" });
+    XLSX.write(file, { bookType: 'xlsx', bookSST: true, type: "base64" });
 
-    XLSX.writeFile(file, "file." + type);
+    XLSX.writeFile(file, "ServiceHistory." + 'xlsx');
 }
 
 $(document).ready( function () {

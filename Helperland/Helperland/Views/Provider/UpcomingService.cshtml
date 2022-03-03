@@ -1,263 +1,109 @@
-﻿@section css{
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="~/css/upcoming_service.css" />
-
+﻿@{
+    Layout = "~/Views/Shared/_ProDashLayout.cshtml";
 }
 
-<section class="welcome_msg">
-    <div class="container">
-        <h2 class="text-center">Welcome, <strong>@ViewBag.UserName !</strong></h2>
+<div>
+    <div class="row">
+        <div class="col">
+            <table id="upcomingService" class="dataTable table">
+                <thead>
+                    <tr>
+                        <th>Service ID</th>
+                        <th>Service date</th>
+                        <th>Customer detail</th>
+                        <th>Payment</th>
+                        <th>Distance </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>323436</td>
+                        <td>
+                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+                        </td>
+                        <td>
+                            <p>David Bough</p>
+                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                        </td>
+                        <td>25 Rs.</td>
+                        <td>15 km</td>
+                        <td>
+                            <input class="cancelbtn" type="button" value="Cancel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>323437</td>
+                        <td>
+                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 03/04/2018</p>
+                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+                        </td>
+                        <td>
+                            <p>David Bough</p>
+                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                        </td>
+                        <td>25 Rs.</td>
+                        <td>10 km</td>
+                        <td>
+                            <input class="cancelbtn" type="button" value="Cancel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>323438</td>
+                        <td>
+                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+                        </td>
+                        <td>
+                            <p>David Bugh</p>
+                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                        </td>
+                        <td>25 Rs.</td>
+                        <td>15 km</td>
+                        <td>
+                            <input class="cancelbtn" type="button" value="Cancel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>323439</td>
+                        <td>
+                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 02/04/2018</p>
+                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+                        </td>
+                        <td>
+                            <p>David Bough</p>
+                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                        </td>
+                        <td>10 Rs.</td>
+                        <td>15 km</td>
+                        <td>
+                            <input class="cancelbtn" type="button" value="Cancel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>323445</td>
+                        <td>
+                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+                        </td>
+                        <td>
+                            <p>David Bough</p>
+                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                        </td>
+                        <td>25 Rs.</td>
+                        <td>05 km</td>
+                        <td>
+                            <input class="cancelbtn" type="button" value="Cancel">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="py-2 mt-3 mobile_sorting text-center"><a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal">Sort Data : <img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a></div>
-    <div class="modal fade" id="mobileSorting" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Choose Option</h4>
-                    <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
-                </div>
-                <div class="modal-body forgot-password">
-                    <form>
-                        <input type="radio" name="sortOption" id="ServiceIdOldest" value="ServiceId:Oldest">&nbsp;Service Id : Oldest<br>
-                        <input type="radio" name="sortOption" id="ServiceIdLatest" value="ServiceId:Latest">&nbsp;Service Id : Latest<br>
-                        <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
-                        <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
-                        <input type="radio" name="sortOption" id="Customer:AtoZ" value="Customer:AtoZ">&nbsp;Customer : A to Z<br>
-                        <input type="radio" name="sortOption" id="Customer:ZtoA" value="Customer:ZtoA">&nbsp;Customer : Z to A<br>
-                        <input type="radio" name="sortOption" id="DistanceLowtoHigh" value="DistanceLowtoHigh">&nbsp;Distance Low to High<br>
-                        <input type="radio" name="sortOption" id="DistanceHightoLow" value="DistanceHightoLow">&nbsp;Distance High to Low<br>
+</div>
 
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--////////////////////////////// DASHBOARD START////////////////////////// -->
-<section>
-    <div class="container dashboard">
-        <div class="d-flex" id="wrapper">
-            <!-- Sidebar -->
-            <div id="sidebar-wrapper"> <a href="#" class="list-group-item list-group-item-action">Dashboard</a> <a href="#" class="list-group-item list-group-item-action">New Service Request</a> <a href="#" class="list-group-item list-group-item-action active">Upcoming Service</a> <a href="#" class="list-group-item list-group-item-action">Service Schedule</a> <a href="#" class="list-group-item list-group-item-action">Service History</a> <a href="#" class="list-group-item list-group-item-action">My Rating</a> <a href="#" class="list-group-item list-group-item-action">Block Customer</a> </div>
-            <!-- /#sidebar-wrapper -->
-            <!-- Page Content -->
-            <div class="w-100 ml-2" id="page-content-wrapper">
-                <div class="row">
-                    <div class="col">
-                        <table id="upcomingService" class="dataTable table">
-                            <thead>
-                                <tr>
-                                    <th>Service ID</th>
-                                    <th style="width: 165px;">Service date</th>
-                                    <th style="width: 270px;">Customer detail</th>
-                                    <th>Distance </th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>323436</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>15 km</td>
-                                    <!-- <td><button>Cancel</button></td> -->
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323437</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 03/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>10 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323438</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bugh</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>15 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323439</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 02/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>15 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323440</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>Gavid Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>10 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323441</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>25 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323442</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>15 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323443</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>05 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323444</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>15 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323445</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>05 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323445</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>05 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>323445</td>
-                                    <td>
-                                        <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                        <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
-                                    </td>
-                                    <td>
-                                        <p>David Bough</p>
-                                        <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
-                                    </td>
-                                    <td>05 km</td>
-                                    <td>
-                                        <input class="cancelbtn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-    @*</div>*@
-</section>
-<!--////////////////////////////// DASHBOARD End////////////////////////// -->
 
 @section script{
-    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-    <script src="~/js/upcoming_service.js"></script>
-
+    <script src="~/js/PUpcomingService.js"></script>
 }

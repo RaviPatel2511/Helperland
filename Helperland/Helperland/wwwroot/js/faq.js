@@ -4,16 +4,6 @@ const mobileNav = document.querySelector('.mobileNav');
 const menubtn=document.querySelector('.menubtn');
 const nav = document.querySelector("nav");
 
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 130) {
-        nav.classList.add("fixed-top");
-        mobileNav.classList.add("fixed-top");
-        nav.css("background-color", "yellow");
-    } else {
-        nav.classList.remove("fixed-top");
-        mobileNav.classList.remove("fixed-top");
-    }
-});
 
 menubtn.addEventListener('click',()=>{
     Sidenav.classList.add('open');

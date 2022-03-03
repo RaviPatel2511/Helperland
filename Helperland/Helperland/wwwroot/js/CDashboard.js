@@ -172,7 +172,6 @@ function GetRescheduleRequest(x) {
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success:
             function (response) {
-                //console.log(response);
                 var time = response.serviceStartTime;
                 var date = response.serviceDate;
                 $("#rescheduleDate").val(date);

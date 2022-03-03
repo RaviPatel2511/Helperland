@@ -53,10 +53,11 @@ nav{
     color: white;
     background-color: #29626D;
   }    
-    .bg_main{
-        width: 100%;
-        height: auto;
-    }
+.bg_main{
+    width: 100%;
+    height: auto;
+    margin-top:65px;
+}
     
     .fixed-top {
       background-color: rgba(39,39,39,.7)!important;
@@ -483,5 +484,8 @@ nav{
           .mobileNav{
             display: block !important;
           }
+            .bg_main {
+                margin-top: 55px;
+            }
          }
 
