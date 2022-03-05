@@ -2,10 +2,114 @@
     Layout = "~/Views/Shared/_ProDashLayout.cshtml";
 }
 
+<div id="MySetting">
+    <ul class="nav nav-pills nav-fill mb-3" id="pills-tab-setting" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-details-tab" data-toggle="pill" href="#pills-details" role="tab" aria-controls="pills-home" aria-selected="true">
+                <span class="tab-img"><img src="~/image/service_history/my-account-details.png" /></span>
+                <span class="tab-title">My Details</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab" aria-controls="pills-contact" aria-selected="false">
+                <span class="tab-img"><img src="~/image/service_history/my-account-password.png" /></span>
+                <span class="tab-title">Change Password</span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div id="updateDetailsAllert"></div>
+            <h3 class="account-status">
+                Account Status : <span>Active</span>
+            <img alt="avtar" src="~/image/upcoming_service/cap.png">
+            </h3>
+            <form>
+                <h3 class="title">Basic details</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">
+                                First Name
+                            </label>
+                            <input class="form-control" placeholder="First Name" id="fname" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">
+                                Last Name
+                            </label>
+                            <input class="form-control" placeholder="Last Name" id="lname" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">
+                                E-mail address
+                            </label>
+                            <input class="form-control" placeholder="Email" id="email" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">
+                                Mobile Number
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-add">+91</span>
+                                <input class="form-control" placeholder="Mobile Number" id="mobile" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col d-flex">
+                        <div class="form-group date-group">
+                            <label class="control-label">
+                                Date of Birth
+                            </label>
+                            <input class="form-control" type="hidden" id="userDob">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label">
+                                Nationality
+                            </label>
+                            <select class="form-control" id="languageId">
+                                <option value="1">
+                                    English
+                                </option>
+                                <option value="2">
+                                    Hindi
+                                </option>
+                                <option value="3">
+                                    Gujrati
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <lable class="control-label">Gender</lable>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+        
 
 
 
 
-@section script{
-    <script src="~/js/PMySetting.js"></script>
-}
+
+    </div>
+
+
+
+    @section script{
+        <script src="~/js/CustomDate.min.js"></script>
+        <script src="~/js/PMySetting.js"></script>
+    }

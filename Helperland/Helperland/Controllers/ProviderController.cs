@@ -34,17 +34,17 @@ namespace Helperland.Controllers
         }
         public IActionResult MySetting()
         {
-            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
-            {
-                ViewBag.Title = "My Setting";
-                ViewBag.IsloggedIn = "success";
-                ViewBag.UType = 2;
-                var userid = HttpContext.Session.GetInt32("userid");
-                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
-                ViewBag.UserName = loggeduser.FirstName;
+            //if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            //{
+                //ViewBag.Title = "My Setting";
+                //ViewBag.IsloggedIn = "success";
+                //ViewBag.UType = 2;
+                //var userid = HttpContext.Session.GetInt32("userid");
+                //User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                //ViewBag.UserName = loggeduser.FirstName;
                 return View();
-            }
-            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+            //}
+            //return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
         public IActionResult NewService()
         {
@@ -185,6 +185,41 @@ namespace Helperland.Controllers
                 User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
                 ViewBag.UserName = loggeduser.FirstName;
                 return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+        public ActionResult GetMyRatingData()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                List<ProviderDashboard> MyRating = new List<ProviderDashboard>();
+                var RatingData = _helperlandContext.Ratings.Where(x=>x.RatingTo == logedUserid).ToList();
+                foreach (var data in RatingData)
+                {
+                    ProviderDashboard ratingTbldata = new ProviderDashboard();
+                    ratingTbldata.ServiceId = data.ServiceRequestId;
+
+                    ServiceRequest serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
+                    ratingTbldata.ServiceDate = serviceRequest.ServiceStartDate.ToString("dd/MM/yyyy");
+                    ratingTbldata.ServiceStartTime = serviceRequest.ServiceStartDate.ToString("HH:mm");
+                    ratingTbldata.ServiceEndTime = serviceRequest.ServiceStartDate.AddHours((double)serviceRequest.SubTotal).ToString("HH:mm");
+                    ratingTbldata.comment = serviceRequest.Comments;
+
+
+                    User user = _helperlandContext.Users.Where(x => x.UserId == data.RatingFrom).FirstOrDefault();
+                    ratingTbldata.CustName = user.FirstName + " " + user.LastName;
+
+                    Rating rating = _helperlandContext.Ratings.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
+                    ratingTbldata.SpRatings = rating.Ratings;
+
+
+
+                    MyRating.Add(ratingTbldata);
+                }
+                return new JsonResult(MyRating);
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }

@@ -2,7 +2,76 @@
     Layout = "~/Views/Shared/_ProDashLayout.cshtml";
 }
 
-
+<div id="myRating">
+    <div class="d-flex">
+        <div class="my-2" id="ratingDropdown">
+            Rating : 
+            <select>
+                <option value="All">All</option>
+                <option value="Very Good">Very Good</option>
+                <option value="Best">Best</option>
+                <option value="Average">Average</option>
+                <option value="Poor">Poor</option>
+            </select>
+        </div>
+        <div class="my-2 ml-auto">
+            <a href="#" class="text-dark" data-toggle="modal" data-target="#Sorting" data-dismiss="modal">Sorting&nbsp;<img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a>
+        </div>
+        <div class="modal fade" id="Sorting" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Choose Option</h4>
+                        <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <input type="radio" name="sortOption" id="ServiceIdOldest" value="ServiceId:Oldest">&nbsp;Service Id : Oldest<br>
+                            <input type="radio" name="sortOption" id="ServiceIdLatest" value="ServiceId:Latest">&nbsp;Service Id : Latest<br>
+                            <input type="radio" name="sortOption" id="PaymentLowtoHigh" value="RatingLowtoHigh">&nbsp;Rating Low to High<br>
+                            <input type="radio" name="sortOption" id="PaymentHightoLow" value="RatingHightoLow">&nbsp;Rating High to Low<br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table id="myRatingTbl" class="dataTable table">
+                <thead>
+                    <tr>
+                        <th class="d-none text-center">Service ID</th>
+                        <th class="text-center d-none">Service date</th>
+                        <th class="text-center d-none">Rating</th>
+                        <th class="text-center d-none">Comment</th>
+                    </tr>
+                </thead>
+                <tbody id="myRatingTblData">
+                    @*<tr>
+                            <td class="text-center">
+                                <p>8318</p>
+                                <p class="font-weight-bold">Gaurang Patel</p>
+                            </td>
+                            <td class="text-center">
+                                <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                                <p><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</p>
+                            </td>
+                            <td class="text-center">
+                                <p class="font-weight-bold">ratings</p>
+                                <p><div class="Stars" id="rate1" style="--rating: 4;"></div>&nbsp;4</p>
+                            </td>
+                            <td>
+                                <p class="font-weight-bold">Customer Comment</p>
+                                <p>Excellent.</p>
+                            </td>
+                        </tr>*@
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 

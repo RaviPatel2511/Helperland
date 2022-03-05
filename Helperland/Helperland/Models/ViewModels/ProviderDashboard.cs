@@ -14,5 +14,7 @@ namespace Helperland.Models.ViewModels
         public int? CustId { get; set; }
         public string CustName { get; set; }
         public string CustAddress { get; set; }
+        public decimal? SpRatings { get; set; }
+        public string comment { get; set; }
     }
 }
