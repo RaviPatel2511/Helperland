@@ -21,8 +21,8 @@
         <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-home-tab">
             <div id="updateDetailsAllert"></div>
             <h3 class="account-status">
-                Account Status : <span>Active</span>
-            <img alt="avtar" src="~/image/upcoming_service/cap.png">
+                Account Status : <span id="status"></span>
+                <img id="avtarPreviewImg" alt="avtar" src="~/image/upcoming_service/cap.png">
             </h3>
             <form>
                 <h3 class="title">Basic details</h3>
@@ -76,26 +76,143 @@
                             <label class="control-label">
                                 Nationality
                             </label>
-                            <select class="form-control" id="languageId">
+                            <select class="form-control" id="nationnalityId">
                                 <option value="1">
-                                    English
+                                    Indian
                                 </option>
                                 <option value="2">
-                                    Hindi
+                                    German
                                 </option>
                                 <option value="3">
-                                    Gujrati
+                                    Pakistani
                                 </option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-md-12 GenderRadio">
+                        <lable class="control-label">Gender</lable>
                         <div class="form-group">
-                            <lable class="control-label">Gender</lable>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" id="Male" name="gender" value="1">
+                                    <span class="pointer"></span>
+                                    Male
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" id="Female" name="gender" value="2">
+                                    <span class="pointer"></span>
+                                    Female
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" id="Other" name="gender" value="3">
+                                    <span class="pointer"></span>
+                                    Rather not to say
+                                </label>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-12 avtar">
+                        <div class="form-group">
+                            <label class="control-label">Select Avtar</label>
+                            <label class="avtarDiv">
+                                <input class="d-none" type="radio" id="car" name="avtar" value="car">
+                                <img src="~/image/upcoming_service/car.png" />
+                            </label>
+                            <label class="avtarDiv">
+                                <input class="d-none" type="radio" id="woman" name="avtar" value="woman">
+                                <img src="~/image/upcoming_service/woman.png" />
+                            </label>
+                            <label class="avtarDiv">
+                                <input class="d-none" type="radio" id="cap" name="avtar" value="cap">
+                                <img src="~/image/upcoming_service/cap.png" />
+                            </label>
+                            <label class="avtarDiv">
+                                <input class="d-none" type="radio" id="iron" name="avtar" value="iron">
+                                <img src="~/image/upcoming_service/iron.png" />
+                            </label>
+                            <label class="avtarDiv">
+                                <input class="d-none" type="radio" id="man" name="avtar" value="man">
+                                <img src="~/image/upcoming_service/man.png" />
+                            </label>
+                            <label class="avtarDiv">
+                                <input class="d-none" type="radio" id="ship" name="avtar" value="ship">
+                                <img src="~/image/upcoming_service/ship.png" />
+                            </label>
+                        </div>
+                    </div>
+                    @*<div class="addressesDiv">*@
+                    <h3 class="title w-100">My Address</h3>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Street name</label>
+                            <input class="form-control" id="EditStreetName" name="StreetName" type="text" placeholder="Street name" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">House number</label>
+                            <input class="form-control" id="EditHouseNo" name="HouseNo" type="text" placeholder="House number" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">Postal code</label>
+                            <input class="form-control" id="EditPostalCode" name="PostalCode" type="text" placeholder="Postal Code" maxlength="6" />
+                            <span class="text-danger d-none" id="EditinvalidZipError">Invalid Postal code</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label">City</label>
+                            <input class="form-control" id="EditCity" name="CityName" type="text" placeholder="City" disabled />
+                            <input class="form-control d-none" id="EditState" name="State" type="text" readonly />
+                        </div>
+                    </div>
+                    <div class="pl-3 w-100">
+                        <button class="btn btn-primary" type="button" onclick="updateMyDetails()">Save</button>
+                    </div>
+                    @*</div>*@
                 </div>
-                
+
+            </form>
+        </div>
+        <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <form>
+                <div id="passUpdateAlert">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Old Password
+                        </label>
+                        <input class="form-control" placeholder="Old Password" id="oldPass" type="password" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">
+                            New Password
+                        </label>
+                        <input class="form-control" placeholder="New Password" id="newPass" type="password" />
+                    </div>
+                    <span class="text-danger" id="passValidationError"></span>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Confirm Password
+                        </label>
+                        <input class="form-control" placeholder="Confirm Password" id="confirmPass" type="password" />
+                    </div>
+                    <span id="confirmPassError" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn" onclick="updatePassword()" id="updatePassBtn" disabled="disabled">Save</button>
+                </div>
             </form>
         </div>
     </div>

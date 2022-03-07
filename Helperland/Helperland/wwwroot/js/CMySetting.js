@@ -384,7 +384,7 @@ function updatePassword() {
                     $("#passUpdateAlert").empty();
                     $("#passUpdateAlert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">Old password not match Please try again !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     }
-                }, 1000);
+                }, 500);
             },
         error:
             function (err) {
@@ -393,7 +393,7 @@ function updatePassword() {
         complete: function () {
             setTimeout(function () {
                 $(".loader-div").addClass('d-none');
-            }, 1000);
+            }, 500);
         }
     });
 

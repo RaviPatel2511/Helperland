@@ -809,6 +809,122 @@ position:relative;
 #pills-details .date-dropdowns .month {
     margin: 0px 8px;
 }
+.GenderRadio .radio {
+    display:inline-block;
+}
+.GenderRadio .radio label{
+    font-size: 16px;
+    line-height: 45px;
+    font-weight: 400;
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    margin-right: 15px;
+}
+.GenderRadio .radio input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.GenderRadio .radio span{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 18px;
+    width: 18px;
+    border-radius: 500px;
+    padding: 3px;
+    border: 1px solid #c8c8c8;
+    margin-top: -10px;
+}
+.GenderRadio .radio span:after{
+    background: #1d7a8c;
+    content: "";
+    border-radius: 500px;
+    height: 10px;
+    width: 10px;
+    display: block;
+    opacity: 0;
+    transition: all .2s ease;
+}
+.GenderRadio .radio input:checked ~ span:after {
+    opacity: 1;
+}
+.GenderRadio .radio input:checked ~ span{
+    border-color: #1d7a8c;
+}
+.avtarDiv {
+    float: left;
+    cursor: pointer;
+    padding: 5px;
+}
+.avtarDiv img {
+    height: 85px;
+    border-radius: 85px;
+}
+.avtar .avtarDiv input:checked ~ img {
+    border: 3px solid #1D7A8c;
+}
+#MySetting .btn-primary {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius:50px;
+}
+#pills-password #updatePassBtn {
+    background: #1d7a8c;
+    border: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 30px;
+    cursor: not-allowed;
+}
+
+/*/////////////New Service Request///////////////*/
+#NewServiceTblData span{
+    display:block;
+}
+#NewServiceTblData .custDetails, #ServiceHistoryTblData .custDetails {
+    display: flex;
+    justify-content:center;
+}
+#NewServiceTblData .custDetails div:nth-child(1), #ServiceHistoryTblData .custDetails div:nth-child(1) {
+    display: flex;
+    align-items: center;
+}
+#NewServiceTblData .custInfo, #ServiceHistoryTblData .custInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+#NewService .datatable_heading div:nth-child(1) {
+    font-size: 22px;
+    color: #646464;
+    font-weight: bold;
+}
+
+#NewServiceTblData .datatable_heading button, #NewServiceTblData .AcceptBtn {
+    background: #1d7a8c;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    font-size: 14px;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+}
+#havePetFilterDiv {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+}
 /*/////////////// FOOTER ////////////// */
 footer {
     background-color: #111111;
@@ -886,6 +1002,11 @@ footer {
       height: auto;
     }
   }
+  @media screen and (max-width:768px){
+    #pills-details .account-status img {
+        float: unset;
+    }
+  }
     @media screen and (max-width: 1415px) {
     .fimage {
         margin-top: 61px;
@@ -944,16 +1065,16 @@ footer {
     .mobile_sorting{
       display: block;
     }
-        #upcomingService tr {
-            display: flex;
-            flex-wrap: wrap;
-            border: 1px solid #e1e1e1;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-            -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-            -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-        }
+    #upcomingService tr {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #e1e1e1;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+        -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+        -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    }
     table.dataTable.no-footer {
       width: 100% !important;
   }

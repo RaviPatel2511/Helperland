@@ -17,11 +17,6 @@ $links2.click(function(){
    $(this).addClass('current');
 });
 
-$('table').on('click', 'input[type="button"]', function(e){
-   $(this).closest('tr').remove()
-   alert('data deleted sucessfully;')
-})
-
 
 menubtn.addEventListener('click',()=>{
     Sidenav.classList.add('open');

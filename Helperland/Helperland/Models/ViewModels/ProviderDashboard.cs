@@ -13,7 +13,10 @@ namespace Helperland.Models.ViewModels
         public string ServiceEndTime { get; set; }
         public int? CustId { get; set; }
         public string CustName { get; set; }
-        public string CustAddress { get; set; }
+        public string add1 { get; set; }
+        public string add2 { get; set; }
+        public string city { get; set; }
+        public string pincode { get; set; }
         public decimal? SpRatings { get; set; }
         public string comment { get; set; }
     }
