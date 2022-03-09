@@ -65,7 +65,7 @@ function getData() {
                     var ServiceHistoryTblData = $('#ServiceHistoryTblData');
                     ServiceHistoryTblData.empty();
                     for (var i = 0; i < response.length; i++) {
-                        ServiceHistoryTblData.append('<tr><td>' + response[i].serviceId + '</td><td class="text-center"><p class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</p><p><img src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + response[i].add2 + " ," + '</span><span>' + response[i].pincode + response[i].city + '</span></div></div></td></tr>')
+                        ServiceHistoryTblData.append('<tr><td>' + response[i].serviceId + '</td><td class="text-center"><p class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</p><p><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + " ," + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td></tr>')
                     }
 
                     console.log(response);

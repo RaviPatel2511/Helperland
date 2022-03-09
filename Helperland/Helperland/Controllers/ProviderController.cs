@@ -232,6 +232,76 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
+
+        [HttpGet]
+        public IActionResult GetNewServiceData()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                List<ProviderDashboard> NewService = new List<ProviderDashboard>();
+                User user1 = _helperlandContext.Users.Where(x => x.UserId == logedUserid).FirstOrDefault();
+                var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ZipCode == user1.ZipCode && x.Status == null && x.ServiceProviderId  == null).ToList();
+                foreach (var data in Alldata)
+                {
+                    ProviderDashboard NewServiceData = new ProviderDashboard();
+                    NewServiceData.ServiceId = data.ServiceRequestId;
+                    NewServiceData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
+                    NewServiceData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
+                    NewServiceData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
+                    NewServiceData.Payment = data.TotalCost;
+
+                    User user = _helperlandContext.Users.Where(x => x.UserId == data.UserId).FirstOrDefault();
+                    NewServiceData.CustName = user.FirstName + " " + user.LastName;
+
+                    ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
+                    NewServiceData.add1 = serviceRequestAddress.AddressLine1;
+                    NewServiceData.add2 = serviceRequestAddress.AddressLine2;
+                    NewServiceData.city = serviceRequestAddress.City;
+                    NewServiceData.pincode = serviceRequestAddress.PostalCode;
+
+
+                    NewService.Add(NewServiceData);
+                }
+                return new JsonResult(NewService);
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+        //[HttpGet]
+        //public IActionResult GetNewServiceFilteredData()
+        //{
+        //    if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+        //    {
+        //        int? logedUserid = HttpContext.Session.GetInt32("userid");
+        //        List<ProviderDashboard> NewServiceFilter = new List<ProviderDashboard>();
+        //        UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.UserId == logedUserid).FirstOrDefault();
+        //        var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ZipCode == userAddress.PostalCode && x.HasPets == false).ToList();
+        //        foreach (var data in Alldata)
+        //        {
+        //            ProviderDashboard NewServiceFilterData = new ProviderDashboard();
+        //            NewServiceFilterData.ServiceId = data.ServiceRequestId;
+        //            NewServiceFilterData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
+        //            NewServiceFilterData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
+        //            NewServiceFilterData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
+        //            NewServiceFilterData.Payment = data.TotalCost;
+
+        //            User user = _helperlandContext.Users.Where(x => x.UserId == data.UserId).FirstOrDefault();
+        //            NewServiceFilterData.CustName = user.FirstName + " " + user.LastName;
+
+        //            ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
+        //            NewServiceFilterData.add1 = serviceRequestAddress.AddressLine1;
+        //            NewServiceFilterData.add2 = serviceRequestAddress.AddressLine2;
+        //            NewServiceFilterData.city = serviceRequestAddress.City;
+        //            NewServiceFilterData.pincode = serviceRequestAddress.PostalCode;
+
+
+        //            NewServiceFilter.Add(NewServiceFilterData);
+        //        }
+        //        return new JsonResult(NewServiceFilter);
+        //    }
+        //    return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        //}
+
         public IActionResult UpcomingService()
         {
             
@@ -244,6 +314,40 @@ namespace Helperland.Controllers
                 User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
                 ViewBag.UserName = loggeduser.FirstName;
                 return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+        public IActionResult GetUpcomingServiceData()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                List<ProviderDashboard> Upcoming = new List<ProviderDashboard>();
+                var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status == null).ToList();
+                foreach (var data in Alldata)
+                {
+                    ProviderDashboard UpcomingData = new ProviderDashboard();
+                    UpcomingData.ServiceId = data.ServiceRequestId;
+                    UpcomingData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
+                    UpcomingData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
+                    UpcomingData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
+                    UpcomingData.Payment = data.TotalCost;
+
+                    User user = _helperlandContext.Users.Where(x => x.UserId == data.UserId).FirstOrDefault();
+                    UpcomingData.CustName = user.FirstName + " " + user.LastName;
+
+                    ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
+                    UpcomingData.add1 = serviceRequestAddress.AddressLine1;
+                    UpcomingData.add2 = serviceRequestAddress.AddressLine2;
+                    UpcomingData.city = serviceRequestAddress.City;
+                    UpcomingData.pincode = serviceRequestAddress.PostalCode;
+
+
+                    Upcoming.Add(UpcomingData);
+                }
+                return new JsonResult(Upcoming);
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }

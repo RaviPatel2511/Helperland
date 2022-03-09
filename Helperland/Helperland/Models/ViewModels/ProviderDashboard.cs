@@ -17,6 +17,7 @@ namespace Helperland.Models.ViewModels
         public string add2 { get; set; }
         public string city { get; set; }
         public string pincode { get; set; }
+        public decimal? Payment { get; set; }
         public decimal? SpRatings { get; set; }
         public string comment { get; set; }
     }

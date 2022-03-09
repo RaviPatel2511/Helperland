@@ -468,7 +468,7 @@ table.dataTable.no-footer{
 .img_circle img{
   border: 1px solid #646464;
   border-radius: 50%;
-  padding: 15px 10px;
+  height:50px;
 }
 .sp_icon{
   max-width: 65px;

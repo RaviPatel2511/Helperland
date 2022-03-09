@@ -15,7 +15,7 @@ namespace Helperland.Models.ViewModels
         public int? Status { get; set; }
         public int? ProviderId { get; set; }
         public string Spname { get; set; }
-
+        public string Avtar { get; set; }
         public decimal SpRatings { get; set; }
     }
 }

@@ -65,7 +65,7 @@ function getData() {
                     var NewServiceTblData = $('#NewServiceTblData');
                     NewServiceTblData.empty();
                     for (var i = 0; i < response.length; i++) {
-                        //NewServiceTblData.append('<tr><td>' + response[i].serviceId + '</td><td class="text-center"><p class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</p><p><img src="../image/upcoming_service/layer-14.png">' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</p></td><td><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + response[i].add2 + " ," + '</span><span>' + response[i].pincode + response[i].city + '</span></div></div></td></tr>')
+                        NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td></tr>')
                     }
 
                     console.log(response);
@@ -95,10 +95,10 @@ function getData() {
                         }
                     });
 
-                    //$('#ServiceHistoryTbl tbody').on('click', 'tr', function () {
-                    //    var clickedRow = $(this).children(':first-child').text();
-                    //    GetServiceSummary(clickedRow);
-                    //});
+                    $('#NewServiceTbl tbody').on('click', '.SerSummary', function () {
+                        var clickedRow = $(this).parent().children(':first-child').text();
+                        GetServiceSummary(clickedRow);
+                    });
 
 
                 }, 500);
@@ -116,63 +116,137 @@ function getData() {
     });
 }
 
-//function GetServiceSummary(x) {
+//function getFilteredData() {
 //    $.ajax({
 //        type: 'GET',
 //        cache: false,
-//        data: { 'ReqServiceId': x },
-//        url: '/Provider/GetServiceSummaryData',
+//        url: '/Provider/GetNewServiceFilteredData',
 //        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+//        beforeSend: function () {
+//            $(".loader-div").removeClass('d-none');
+//        },
 //        success:
 //            function (response) {
-//                $("#SerExtra").empty();
-//                if (response.cabinet) {
-//                    $("#SerExtra").append('Inside Cabinet, ')
-//                }
-//                if (response.fridge) {
-//                    $("#SerExtra").append('Inside Fridge, ')
-//                }
-//                if (response.laundary) {
-//                    $("#SerExtra").append('Laundary Wash & Dry, ')
-//                }
-//                if (response.oven) {
-//                    $("#SerExtra").append('Inside Oven, ')
-//                }
-//                if (response.window) {
-//                    $("#SerExtra").append('Inside Window')
-//                }
-//                $("#SerDate").text(response.serviceDate);
-//                $("#SerStartTime").text(response.serviceStartTime);
-//                $("#SerEndTime").text(response.serviceEndTime);
-//                $("#SerDuration").text(response.duration);
-//                $("#SerId").text(response.id);
-//                $("#SerPayment").html(response.payment + " Rs.");
-//                $("#SerAddress").html(response.addressLine1 + " " + response.addressLine2 + " , " + response.city + " " + response.postalCode);
-//                $("#SerMobile").text(response.mobile);
-//                $("#SerEmail").text(response.email);
-//                $("#SerComment").text(response.comments);
-//                $("#SerPets").empty();
-//                if (response.havePets) {
-//                    $("#SerPets").html('<img src="../image/service_history/havepet.png" /> I have pets at home');
-//                } else {
-//                    $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
-//                }
+//                setTimeout(function () {
+//                    var NewServiceTblData = $('#NewServiceTblData');
+//                    NewServiceTblData.empty();
+//                    for (var i = 0; i < response.length; i++) {
+//                        NewServiceTblData.append('<tr><td>' + response[i].serviceId + '</td><td><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td></tr>')
+//                    }
 
-//                $("#displaydataModal").modal('show');
+//                    console.log(response);
+//                    //table = $('#NewServiceTbl').DataTable({
+//                    //    "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
+//                    //    "pagingType": "full_numbers",
+//                    //    "searching": false,
+//                    //    "autoWidth": false,
+//                    //    "order": [],
+//                    //    'buttons': [{
+//                    //        extend: 'excel',
+//                    //        text: 'Export'
+//                    //    }],
+//                    //    'columnDefs': [{
+//                    //        'orderable': false,
+//                    //        'target': 5,
+//                    //    }],
+//                    //    "language": {
+//                    //        "paginate": {
+//                    //            "first": '<i class="fas fa-step-backward"></i>',
+//                    //            "next": '<i class="fas fa-angle-right"></i>',
+//                    //            "previous": '<i class="fas fa-angle-left"></i>',
+//                    //            "last": '<i class="fas fa-step-forward"></i>'
+//                    //        },
+//                    //        'info': "Total Record: _MAX_",
 
+//                    //    }
+//                    //});
+
+//                    //$('#ServiceHistoryTbl tbody').on('click', 'tr', function () {
+//                    //    var clickedRow = $(this).children(':first-child').text();
+//                    //    GetServiceSummary(clickedRow);
+//                    //});
+
+
+//                }, 500);
 //            },
 //        error:
 //            function (err) {
 //                console.error(err);
-//            }
+
+//            },
+//        complete: function () {
+//            setTimeout(function () {
+//                $(".loader-div").addClass('d-none');
+//            }, 500);
+//        }
 //    });
 //}
 
+function GetServiceSummary(x) {
+    $.ajax({
+        type: 'GET',
+        cache: false,
+        data: { 'ReqServiceId': x },
+        url: '/Provider/GetServiceSummaryData',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success:
+            function (response) {
+                $("#SerExtra").empty();
+                if (response.cabinet) {
+                    $("#SerExtra").append('Inside Cabinet, ')
+                }
+                if (response.fridge) {
+                    $("#SerExtra").append('Inside Fridge, ')
+                }
+                if (response.laundary) {
+                    $("#SerExtra").append('Laundary Wash & Dry, ')
+                }
+                if (response.oven) {
+                    $("#SerExtra").append('Inside Oven, ')
+                }
+                if (response.window) {
+                    $("#SerExtra").append('Inside Window')
+                }
+                $("#SerDate").text(response.serviceDate);
+                $("#SerStartTime").text(response.serviceStartTime);
+                $("#SerEndTime").text(response.serviceEndTime);
+                $("#SerDuration").text(response.duration);
+                $("#SerId").text(response.id);
+                $("#SerPayment").html(response.payment + " Rs.");
+                $("#SerAddress").html(response.addressLine1 + " " + response.addressLine2 + " , " + response.city + " " + response.postalCode);
+                $("#SerMobile").text(response.mobile);
+                $("#SerEmail").text(response.email);
+                $("#SerComment").text(response.comments);
+                $("#SerPets").empty();
+                if (response.havePets) {
+                    $("#SerPets").html('<img src="../image/service_history/havepet.png" /> I have pets at home');
+                } else {
+                    $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
+                }
 
+                $("#displaydataModal").modal('show');
+
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
+}
+
+//$('#havePetFilter').change(function () {
+//    if ($('#havePetFilter').is(":checked")) {
+//        window.location.reload();
+//    } else {
+//        getFilteredData();
+//    }
+//});
 
 
 
 $(document).ready(function () {
+    getData();
+    $("#havePetFilter").prop("checked", true);
     var selector = '#sidebar-wrapper a';
     $(selector).removeClass('active');
     $(selector)[1].classList.add("active");
@@ -181,4 +255,4 @@ $(document).ready(function () {
 
 
 
-//<tr><td>8453</td><td><span class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</span><span><img src="~/image/upcoming_service/layer-14.png"> 12:00 - 18:00</span></td><td><div class="custDetails"><div><img src="~/image/upcoming_service/home.png" /></div><div class="custInfo"><span>Gaurang Patel</span><span>11 Gurunagar</span><span>364001 Bhavnagar</span></div></div></td><td class="text-center">56 Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td></tr>
+//

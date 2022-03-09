@@ -269,7 +269,10 @@ namespace Helperland.Controllers
                 {
                 User user = _helperlandContext.Users.Where(x => x.UserId == Service.ServiceProviderId).FirstOrDefault();
                 RequestData.Spname = user.FirstName + " " + user.LastName;
-
+                    if (user.UserProfilePicture != null)
+                    {
+                RequestData.Avtar = user.UserProfilePicture;
+                    }
                 var rating = _helperlandContext.Ratings.Where(x => x.RatingTo == Service.ServiceProviderId);
                 if (rating.Count() > 0)
                 {
@@ -425,6 +428,10 @@ namespace Helperland.Controllers
                         RequestData.SpRatings = 0;
                     }
                     RequestData.Spname = user.FirstName + " " + user.LastName;
+                    if (user.UserProfilePicture != null)
+                    {
+                        RequestData.Avtar = user.UserProfilePicture;
+                    }
                 }
                 custServiceHistory.Add(RequestData);
             }

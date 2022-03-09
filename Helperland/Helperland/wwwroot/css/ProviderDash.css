@@ -5,7 +5,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif !important;
+    font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
   }
 .loader-div {
@@ -626,7 +626,12 @@ span.arrow-hack {
     color: #646464;
     font-weight: bold;
 }
-
+#ServiceHistoryTblData td:hover, #NewServiceTblData td:nth-child(1):hover, #NewServiceTblData td:nth-child(2):hover, #NewServiceTblData td:nth-child(3):hover,
+#UpcomingSer tbody tr td:not(:last-child):hover
+{
+    color: black;
+    cursor: pointer;
+}
 #ServiceHistory .datatable_heading button {
     background: #1d7a8c;
     color: white;
@@ -634,7 +639,7 @@ span.arrow-hack {
     border-radius: 35px;
     font-size: 14px;
     padding: 10px 15px 10px 15px;
-    cursor:pointer;
+    cursor: pointer;
 }
 #displaydataModal .title-text {
     display: block;
@@ -889,18 +894,18 @@ position:relative;
 }
 
 /*/////////////New Service Request///////////////*/
-#NewServiceTblData span{
-    display:block;
+#NewServiceTblData span, #UpcomingServiceTblData span {
+    display: block;
 }
-#NewServiceTblData .custDetails, #ServiceHistoryTblData .custDetails {
+#NewServiceTblData .custDetails, #ServiceHistoryTblData .custDetails, #UpcomingServiceTblData .custDetails {
     display: flex;
-    justify-content:center;
+    justify-content: center;
 }
-#NewServiceTblData .custDetails div:nth-child(1), #ServiceHistoryTblData .custDetails div:nth-child(1) {
-    display: flex;
-    align-items: center;
-}
-#NewServiceTblData .custInfo, #ServiceHistoryTblData .custInfo {
+    #NewServiceTblData .custDetails div:nth-child(1), #ServiceHistoryTblData .custDetails div:nth-child(1), #UpcomingServiceTblData .custDetails div:nth-child(1) {
+        display: flex;
+        align-items: center;
+    }
+#NewServiceTblData .custInfo, #ServiceHistoryTblData .custInfo, #UpcomingServiceTblData .custInfo {
     display: flex;
     flex-direction: column;
     margin-left: 15px;
