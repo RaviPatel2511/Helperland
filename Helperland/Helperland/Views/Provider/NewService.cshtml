@@ -4,6 +4,17 @@
 
 
 <div id="NewService">
+    <div class="modal fade" id="AcceptService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <input type="text" class="d-none" id="acceptSerId" />
+                    <h3>Are you sure you want to Accept service ?</h3>
+                    <input type="button" class="btn" value="Yes" onclick="AcceptService()" />
+                </div>
+            </div>
+        </div>
+    </div>
     <div>
         <div class="modal fade" id="displaydataModal" role="dialog">
             <div class="modal-dialog">
@@ -30,6 +41,10 @@
                             <span class="title-text"><span id="SerPets"></span></span>
                             <hr />
                         </div>
+                        <div>
+                            <div id='CustMap'>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,8 +52,8 @@
     </div>
     <div class="d-flex datatable_heading">
         <div class="py-2">New Service Request</div>
-        <div class="py-2" id="havePetFilterDiv"><input type="checkbox" id="havePetFilter" /> &nbsp;Include pet at home</div>
-        <div class="py-2 ml-3 mobile_sorting">
+        <div class="py-2 text-center" id="havePetFilterDiv"><input type="checkbox" id="havePetFilter" /> &nbsp;Include pet at home</div>
+        <div class="py-2 ml-auto mobile_sorting">
             <a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal"><img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a>
 
         </div>
@@ -56,8 +71,8 @@
                             <input type="radio" name="sortOption" id="ServiceIdOldest" value="ServiceId:Latest">&nbsp;Service Id : Latest<br>
                             <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
                             <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
-                            <input type="radio" name="sortOption" id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
-                            <input type="radio" name="sortOption" id="ServiceProvider:ZtoA" value="ServiceProvider:ZtoA">&nbsp;Service Provider : Z to A<br>
+                            <input type="radio" name="sortOption" id="CustomerDetailsAtoZ" value="CustomerDetails:AtoZ">&nbsp;Customer Details: A to Z<br>
+                            <input type="radio" name="sortOption" id="CustomerDetailsZtoA" value="CustomerDetails:ZtoA">&nbsp;Customer Details: Z to A<br>
                             <input type="radio" name="sortOption" id="PaymentLowtoHigh" value="PaymentLowtoHigh">&nbsp;Payment Low to High<br>
                             <input type="radio" name="sortOption" id="PaymentHightoLow" value="PaymentHightoLow">&nbsp;Payment High to Low<br>
 
@@ -113,5 +128,8 @@
 
 
 @section script{
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
     <script src="~/js/PNewService.js"></script>
 }

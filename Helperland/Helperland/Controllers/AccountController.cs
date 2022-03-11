@@ -124,7 +124,7 @@ namespace Helperland.Controllers
                     }   
                     else if (credentials.UserTypeId == 2)
                     {
-                        return RedirectToAction("UpcomingService", "Provider");
+                        return RedirectToAction("Dashboard", "Provider");
                     }
                 }
                 }

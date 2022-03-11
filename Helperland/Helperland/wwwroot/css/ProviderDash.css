@@ -360,19 +360,94 @@ margin-left:10px;
 }  
 /*//////////////////////////// NAVBAR END/////////////////////////////////// */
 
-.welcome_msg{
+.welcome_msg {
     padding: 44px 0px;
     background: #f9f9f9;
-    margin-top:65px;
+    margin-top: 65px;
+    border-bottom: 1px solid #e1e1e1;
 }
 .welcome_msg h2{
     font-size: 30px;
     color: #4f4f4f;
 }
 
-
-
 /* <!--////////////////////////////// DASHBOARD START////////////////////////// --> */
+
+#Dashboard {
+    display: flex;
+    justify-content: space-around;
+}
+
+.NewServiceTab, .UpcomingServiceTab, .CompleteServiceTab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ViewAllBtn {
+    background-color: white;
+    border: 1px solid #1D7A8C;
+    color: #1D7A8C;
+    border-radius: 50px;
+}
+
+.ViewAllBtn:hover {
+    background-color: #1D7A8C;
+    color: white;
+}
+
+#Dashboard .TabTitle {
+    color: #646464;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#NewServiceCount {
+    font-size: 44px;
+    font-weight: bold;
+    background-color: #1fb6ff;
+    color: white;
+    height: 100px;
+    border-radius: 50%;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#UpcomingServiceCount {
+    font-size: 44px;
+    font-weight: bold;
+    background-color: #2cc896;
+    color: white;
+    height: 100px;
+    border-radius: 50%;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#CompleteServiceCount {
+    font-size: 44px;
+    font-weight: bold;
+    background-color: #fd6966;
+    color: white;
+    height: 100px;
+    border-radius: 50%;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+
+/* <!--////////////////////////////// Upcoming START////////////////////////// --> */
 table th{
   cursor: pointer;
 }
@@ -380,10 +455,6 @@ table th{
     padding-left: 30px;
     padding-right: 30px;
 }
-/*.dashboard .table td,.dashboard .table th{
-    margin: 0.3rem 30px !important;
-   
-} */
 
 .dashboard table tr th{
     background: #f9f9f9;
@@ -414,25 +485,29 @@ table.dataTable thead th, table.dataTable thead td{
 .dashboard table tr td p{
     margin-bottom: 0px !important;
 }
-.cancelbtn{
+.cancelbtn, .completebtn {
     background: #ff6b6b;
     border: none;
     border-radius: 25px;
-    padding: 10px 20px;
+    padding: 6px 12px;
     color: white;
     font-size: 16px;
     cursor: pointer;
+    margin:0px 2px;
 }
-    .cancelbtn:hover {
-        color: black;
-        transition: all .5s;
-    }
+.completebtn{
+    background:#1d7a8c;
+}
+.cancelbtn:hover, .completebtn:hover {
+    color: black;
+    transition: all .5s;
+}
 .dashboard{
     margin-top: 30px;
     margin-bottom: 30px;
 }
 #sidebar-wrapper {
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     background: #1d7a8c;
   }
   
@@ -614,7 +689,26 @@ span.arrow-hack {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-/* <!--////////////////////////////// DASHBOARD END ////////////////////////// --> */
+#cancleModal .modal-dialog {
+    max-width: 420px;
+}
+
+#cancleModal label{
+    font-size: 16px;
+    font-weight: normal;
+}
+#cancleModal .largeBtn{
+    width: 100%;
+    padding: 11px 34px;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    margin: 10px 0;
+    border-radius: 50px;
+}
 
 /*///////////////////SERVICE HISTORY TABLE/////////////////*/
 
@@ -625,6 +719,7 @@ span.arrow-hack {
     font-size: 22px;
     color: #646464;
     font-weight: bold;
+
 }
 #ServiceHistoryTblData td:hover, #NewServiceTblData td:nth-child(1):hover, #NewServiceTblData td:nth-child(2):hover, #NewServiceTblData td:nth-child(3):hover,
 #UpcomingSer tbody tr td:not(:last-child):hover
@@ -775,6 +870,9 @@ position:relative;
     border: 1px solid #ccc;
     border-radius: 0;
 }
+#MySetting #EditCity, #MySetting #email {
+    background: #e1e1e1 !important;
+}
 #pills-details .account-status {
     font-size: 20px;
     line-height: 24px;
@@ -910,7 +1008,7 @@ position:relative;
     flex-direction: column;
     margin-left: 15px;
 }
-#NewService .datatable_heading div:nth-child(1) {
+#NewService .datatable_heading div:nth-child(1), #UpcomingSer .datatable_heading div:nth-child(1) {
     font-size: 22px;
     color: #646464;
     font-weight: bold;
@@ -925,11 +1023,128 @@ position:relative;
     padding: 10px 15px 10px 15px;
     cursor: pointer;
 }
+.AcceptBtn.disabled{
+    opacity:0.6;
+    cursor:not-allowed!important;
+}
 #havePetFilterDiv {
     display: flex;
     align-items: center;
-    margin-left: 25px;
+    margin: 0px 20px;
 }
+.ConfllictBtn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    font-size: 14px;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+}
+#AcceptService h3, #CompleteService h3, #SuccessModal h3{
+    color: darkslategrey;
+}
+#AcceptService .btn, #CompleteService .btn, .CancleOkBtn, #SuccessModal a{
+    width: auto;
+    padding: 11px 34px;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    margin: 10px 0;
+    border-radius: 50px;
+}
+/*Map Part*/
+#CustMap {
+    width: 350px;
+    height: 440px;
+    z-index: 100;
+}
+
+#mapSearchContainer {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    height: 30px;
+    width: 180px;
+    z-index: 110;
+    font-size: 10pt;
+    color: #5d5d5d;
+    border: solid 1px #bbb;
+    background-color: #f8f8f8;
+}
+#displaydataModal .modal-body{
+    display:flex;
+}
+#displaydataModal .modal-dialog{
+    min-width:750px;
+}
+/*Map Part*/
+
+/*//////////////////block customer///////////*/
+#BlockCustTbl{
+    border:none!important;
+}
+#BlockCustTbl tbody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#BlockCustTbl tbody tr {
+    margin: 15px;
+    border: 1px solid #E1E1E1;
+}
+
+#BlockCustTbl tbody td {
+    display: flex;
+    justify-content: center;
+    min-width: 275px;
+}
+
+.BlockBtn {
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 50px;
+    padding: 5px 10px;
+    margin-bottom: 30px;
+}
+
+.BlockBtn:hover {
+    background-color: #cc5656;
+}
+
+.UnblockBtn {
+    background-color: #67B644;
+    color: white;
+    border-radius: 50px;
+    padding: 5px 10px;
+    margin-bottom: 30px;
+}
+
+.UnblockBtn:hover {
+    color: white;
+    background-color: #51b425;
+}
+
+#BlockCustTbl tbody td img {
+    border: 1px solid #c8c8c8;
+    border-radius: 50%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.BlockCustName {
+    font-size: 18px;
+    color: #646464;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+
 /*/////////////// FOOTER ////////////// */
 footer {
     background-color: #111111;
@@ -1008,8 +1223,21 @@ footer {
     }
   }
   @media screen and (max-width:768px){
+    #Dashboard{
+        flex-direction:column;
+    }
     #pills-details .account-status img {
         float: unset;
+    }
+    #displaydataModal .modal-body {
+        flex-direction:column;
+    }
+    #CustMap{
+        width:100%;
+        margin:15px 0;
+    }
+    #displaydataModal .modal-dialog{
+        min-width:unset;
     }
   }
     @media screen and (max-width: 1415px) {
@@ -1057,20 +1285,19 @@ footer {
             margin: 5px 0px 0px 0px !important;
         }
     }
-    @media screen and (max-width: 992px) {
-      .navbar{
-        display: none;
-      }
-    #upcomingService {
-      border: unset;
+    @media screen and (max-width: 855px) {
+
+    #upcomingService, #NewServiceTbl, #ServiceHistoryTbl, #myRatingTbl {
+        border: unset;
     }
     .date{
       margin: 0px 5px;
     }
     .mobile_sorting{
-      display: block;
+      display: flex;
+      align-items:center;
     }
-    #upcomingService tr {
+    #upcomingService tr, #NewServiceTbl tr, #ServiceHistoryTbl tr, #myRatingTbl  tr{
         display: flex;
         flex-wrap: wrap;
         border: 1px solid #e1e1e1;
@@ -1082,30 +1309,27 @@ footer {
     }
     table.dataTable.no-footer {
       width: 100% !important;
-  }
-    #upcomingService  tr td{
-      width: 100%;
-      background: unset;
-      margin-top: 0px !important;
-      height: unset;
+    }
+    #upcomingService tr td, #NewServiceTbl tr td, #ServiceHistoryTbl tr td, #myRatingTbl tr td{
+        width: 100%;
+        background: unset;
+        margin-top: 0px !important;
+        height: unset;
     }
     #upcomingService  tr td:nth-child(1){
       text-align: center;
     }
-    #upcomingService  tr td:nth-child(2),#upcomingService  tr td:nth-child(3),#upcomingService  tr td:nth-child(4),#upcomingService  tr td:nth-child(5){
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    #upcomingService tr td:nth-child(2), #upcomingService tr td:nth-child(3),
+    #upcomingService tr td:nth-child(4), #upcomingService tr td:nth-child(5),
+    #ServiceHistoryTbl tr td:nth-child(1), #NewServiceTbl tr td:nth-child(1),
+    #NewServiceTbl tr td:nth-child(2) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    #upcomingService  tr th{
-      display: none;
-
+    #upcomingService thead, #NewServiceTbl thead, #ServiceHistoryTbl thead, #myRatingTbl thead{
+        display: none;
     }
-    
-    #sidebar-wrapper{
-      display: none;
-    }
-    
     #page-content-wrapper .table-bottom-inner{
       justify-content: space-between;
       width: 100%;
@@ -1116,14 +1340,33 @@ footer {
     #page-content-wrapper .dataTables_paginate {
       width: 100%;
     }
-    .mobileNav{
-      display: block;
+    #NewServiceTblData span.date{
+    display: unset;
     }
-    
-   
+    #myRatingTbl tbody tr td:nth-child(2), #myRatingTbl tbody tr td:nth-child(3){
+        position:static;
     }
-    @media screen and (min-width: 992px) {
-      #sidebar-wrapper,.notification_item{
+    #myRatingTbl tbody tr td {
+        border: 1px solid #e1e1e1;
+    }
+    #myRatingTbl tbody tr td:last-child {
+     margin: 0px 0px; 
+     padding: 8px 24px; 
+    }
+    }
+    @media screen and (max-width: 1106px) {
+        .navbar {
+            display: none;
+        }
+        #sidebar-wrapper {
+            display: none;
+        }
+        .mobileNav {
+            display: block;
+        }
+    }
+    @media screen and (min-width: 1106px) {
+      .notification_item{
         display: block;
       }
       
@@ -1132,12 +1375,32 @@ footer {
       }
     }
 
-@media screen and (max-width: 576px) {
-    #pills-tab-setting .tab-img {
-        display: block;
+    @media screen and (max-width: 576px) {
+        #pills-tab-setting .tab-img {
+            display: block;
+        }
+
+        #pills-tab-setting .tab-title {
+            display: none;
+        }
     }
-    #pills-tab-setting .tab-title {
-        display: none;
+
+    @media screen and (max-width: 960px) {
+        #BlockCustTbl tbody {
+            justify-content: center;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        #page-content-wrapper {
+             padding-left: unset; 
+             padding-right: unset; 
+        }
+    }
+    @media screen and (max-width: 350px) {
+        #BlockCustTblData tr td {
+            min-width:auto;
+        }
     }
 }
 

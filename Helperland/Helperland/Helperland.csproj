@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\PUpcomingService.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\contactUsUploadedFile\" />
   </ItemGroup>
 

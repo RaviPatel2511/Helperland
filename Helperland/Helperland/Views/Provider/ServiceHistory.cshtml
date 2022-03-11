@@ -31,6 +31,10 @@
                             <span class="title-text"><span id="SerPets"></span></span>
                             <hr />
                         </div>
+                        <div>
+                            <div id='CustMap'>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,10 +60,8 @@
                             <input type="radio" name="sortOption" id="ServiceIdOldest" value="ServiceId:Latest">&nbsp;Service Id : Latest<br>
                             <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
                             <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
-                            <input type="radio" name="sortOption" id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
-                            <input type="radio" name="sortOption" id="ServiceProvider:ZtoA" value="ServiceProvider:ZtoA">&nbsp;Service Provider : Z to A<br>
-                            <input type="radio" name="sortOption" id="PaymentLowtoHigh" value="PaymentLowtoHigh">&nbsp;Payment Low to High<br>
-                            <input type="radio" name="sortOption" id="PaymentHightoLow" value="PaymentHightoLow">&nbsp;Payment High to Low<br>
+                            <input type="radio" name="sortOption" id="CustomerDetailsAtoZ" value="CustomerDetails:AtoZ">&nbsp;Customer Details : A to Z<br>
+                            <input type="radio" name="sortOption" id="CustomerDetailsZtoA" value="CustomerDetails:ZtoA">&nbsp;Customer Details : Z to A<br>
 
                         </form>
                     </div>
@@ -103,6 +105,9 @@
 
 
 @section script{
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
     <script src="~/js/PServiceHistory.js"></script>
 }

@@ -18,37 +18,37 @@ $("#NewServiceTbl").on('click', 'th', function () {
 $("#NewServiceTbl th").first().click().click();
 
 
-//function sort(col, order) {
-//    table.order([col, order]).draw();
-//}
+function sort(col, order) {
+    table.order([col, order]).draw();
+}
 
 
-//$('input[type=radio][name=sortOption]').change(function () {
-//    if (this.value == 'ServiceDate:Oldest') {
-//        sort(1, "asc");
-//    }
-//    else if (this.value == 'ServiceDate:Latest') {
-//        sort(1, "desc");
-//    }
-//    else if (this.value == 'ServiceId:Oldest') {
-//        sort(0, "asc");
-//    }
-//    else if (this.value == 'ServiceId:Latest') {
-//        sort(0, "desc");
-//    }
-//    else if (this.value == 'Customer:AtoZ') {
-//        sort(2, "asc");
-//    }
-//    else if (this.value == 'Customer:ZtoA') {
-//        sort(2, "desc");
-//    }
-//    else if (this.value == 'DistanceLowtoHigh') {
-//        sort(3, "asc");
-//    }
-//    else if (this.value == 'DistanceHightoLow') {
-//        sort(3, "desc");
-//    }
-//});
+$('input[type=radio][name=sortOption]').change(function () {
+    if (this.value == 'ServiceDate:Oldest') {
+        sort(1, "asc");
+    }
+    else if (this.value == 'ServiceDate:Latest') {
+        sort(1, "desc");
+    }
+    else if (this.value == 'ServiceId:Oldest') {
+        sort(0, "asc");
+    }
+    else if (this.value == 'ServiceId:Latest') {
+        sort(0, "desc");
+    }
+    else if (this.value == 'CustomerDetails:AtoZ') {
+        sort(2, "asc");
+    }
+    else if (this.value == 'CustomerDetails:AtoZ') {
+        sort(2, "desc");
+    }
+    else if (this.value == 'PaymentLowtoHigh') {
+        sort(3, "asc");
+    }
+    else if (this.value == 'PaymentHightoLow') {
+        sort(3, "desc");
+    }
+});
 
 function getData() {
     $.ajax({
@@ -65,20 +65,31 @@ function getData() {
                     var NewServiceTblData = $('#NewServiceTblData');
                     NewServiceTblData.empty();
                     for (var i = 0; i < response.length; i++) {
-                        NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td></tr>')
+                        if (response[i].hasPet == true) {
+                            if (response[i].conflictServiceId == null) {
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td></tr>');
+                            } else {
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td class="text-center"><span class="d-none">' + response[i].conflictServiceId + '</span><input type="button" class="ConfllictBtn" value="Conflict" /></td><td class="text-center"><input type="button" class="AcceptBtn disabled" value="Accept" disabled="disabled"/></td></tr>');
+                            }
+                        } else {
+                            if (response[i].conflictServiceId == null) {
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /><span class="d-none">withoutpet<span></td></tr>');
+                            } else {
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td class="text-center"><span class="d-none">' + response[i].conflictServiceId + '</span><input type="button" class="ConfllictBtn" value="Conflict" /></td><td class="text-center"><input type="button" class="AcceptBtn disabled" value="Accept" disabled="disabled"/><span class="d-none">withoutpet<span></td></tr>');
+                            }
+                        }
+                        
                     }
+                    
 
                     console.log(response);
                     table = $('#NewServiceTbl').DataTable({
                         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
                         "pagingType": "full_numbers",
-                        "searching": false,
+                        "searching": true,
+                        retrieve: true,
                         "autoWidth": false,
                         "order": [],
-                        'buttons': [{
-                            extend: 'excel',
-                            text: 'Export'
-                        }],
                         'columnDefs': [{
                             'orderable': false,
                             'target':5,
@@ -95,11 +106,30 @@ function getData() {
                         }
                     });
 
+                    $("#havePetFilter").change(() => {
+                        var petCheck = $("#havePetFilter").is(':checked');
+                        if (!petCheck) {
+                            table.search("withoutpet").draw();
+                        } else {
+                            table.search("").draw();
+                        }
+                    });
+
                     $('#NewServiceTbl tbody').on('click', '.SerSummary', function () {
                         var clickedRow = $(this).parent().children(':first-child').text();
                         GetServiceSummary(clickedRow);
                     });
 
+                    $('#NewServiceTbl tbody').on('click', '.AcceptBtn', function () {
+                        var clickRow = $(this).parent().parent().children(':first-child').text();
+                        $("#AcceptService").modal('show');
+                        $("#acceptSerId").val(clickRow);
+                    });
+
+                    $('#NewServiceTbl tbody').on('click', '.ConfllictBtn', function () {
+                        var clickkedRow = $(this).parent().children(':first-child').text();
+                        GetServiceSummary(clickkedRow);
+                    });
 
                 }, 500);
             },
@@ -116,71 +146,28 @@ function getData() {
     });
 }
 
-//function getFilteredData() {
-//    $.ajax({
-//        type: 'GET',
-//        cache: false,
-//        url: '/Provider/GetNewServiceFilteredData',
-//        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-//        beforeSend: function () {
-//            $(".loader-div").removeClass('d-none');
-//        },
-//        success:
-//            function (response) {
-//                setTimeout(function () {
-//                    var NewServiceTblData = $('#NewServiceTblData');
-//                    NewServiceTblData.empty();
-//                    for (var i = 0; i < response.length; i++) {
-//                        NewServiceTblData.append('<tr><td>' + response[i].serviceId + '</td><td><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td></tr>')
-//                    }
 
-//                    console.log(response);
-//                    //table = $('#NewServiceTbl').DataTable({
-//                    //    "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
-//                    //    "pagingType": "full_numbers",
-//                    //    "searching": false,
-//                    //    "autoWidth": false,
-//                    //    "order": [],
-//                    //    'buttons': [{
-//                    //        extend: 'excel',
-//                    //        text: 'Export'
-//                    //    }],
-//                    //    'columnDefs': [{
-//                    //        'orderable': false,
-//                    //        'target': 5,
-//                    //    }],
-//                    //    "language": {
-//                    //        "paginate": {
-//                    //            "first": '<i class="fas fa-step-backward"></i>',
-//                    //            "next": '<i class="fas fa-angle-right"></i>',
-//                    //            "previous": '<i class="fas fa-angle-left"></i>',
-//                    //            "last": '<i class="fas fa-step-forward"></i>'
-//                    //        },
-//                    //        'info': "Total Record: _MAX_",
+function AcceptService() {
+    var acceptSerId = $("#acceptSerId").val();
+    $.ajax({
+        type: "POST",
+        url: '/Provider/AcceptServiceRequest',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        data: { 'acceptSerId': acceptSerId },
+        cache: false,
+        success:
+            function (response) {
+                if (response == "Successfully") {
+                    window.location.reload();
+                }
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
 
-//                    //    }
-//                    //});
-
-//                    //$('#ServiceHistoryTbl tbody').on('click', 'tr', function () {
-//                    //    var clickedRow = $(this).children(':first-child').text();
-//                    //    GetServiceSummary(clickedRow);
-//                    //});
-
-
-//                }, 500);
-//            },
-//        error:
-//            function (err) {
-//                console.error(err);
-
-//            },
-//        complete: function () {
-//            setTimeout(function () {
-//                $(".loader-div").addClass('d-none');
-//            }, 500);
-//        }
-//    });
-//}
+}
 
 function GetServiceSummary(x) {
     $.ajax({
@@ -223,7 +210,7 @@ function GetServiceSummary(x) {
                 } else {
                     $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
                 }
-
+                GetMap(response.postalCode + " " + response.city);
                 $("#displaydataModal").modal('show');
 
             },
@@ -234,14 +221,33 @@ function GetServiceSummary(x) {
     });
 }
 
-//$('#havePetFilter').change(function () {
-//    if ($('#havePetFilter').is(":checked")) {
-//        window.location.reload();
-//    } else {
-//        getFilteredData();
-//    }
-//});
+var map = L.map('CustMap');
+function GetMap(x) {
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        "url": "https://trueway-geocoding.p.rapidapi.com/Geocode?address="+x,
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
+            "x-rapidapi-key": "af7a97fb09msh8757aecf65ca54dp1d68e3jsn9b9058109b2e"
+        },
+        success: (response) => {
+            map.setView([response.results[0].location.lat, response.results[0].location.lng], 14);
 
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([response.results[0].location.lat, response.results[0].location.lng]).addTo(map);
+
+        },
+        error: (err) => {
+            console.log(err);
+
+        }
+    });
+}
 
 
 $(document).ready(function () {
@@ -252,7 +258,3 @@ $(document).ready(function () {
     $(selector)[1].classList.add("active");
 });
 
-
-
-
-//

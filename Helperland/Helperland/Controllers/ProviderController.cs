@@ -32,6 +32,38 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
+
+        [HttpGet]
+        public IActionResult GetDashboardData()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                var ProviderZipcode = _helperlandContext.Users.FirstOrDefault(x => x.UserId == logedUserid).ZipCode;
+                var NewService = _helperlandContext.ServiceRequests.Where(x => x.ZipCode == ProviderZipcode && x.ServiceProviderId == null && x.Status == null).ToList();
+                int NewServicveCount = 0;
+                foreach (var item in NewService)
+                {
+                    if (!_helperlandContext.FavoriteAndBlockeds.Any(x => x.UserId == logedUserid && x.TargetUserId == item.UserId && x.IsBlocked == true))
+                    {
+                        NewServicveCount += 1;
+                    }
+
+                }
+                var UpcomingService = _helperlandContext.ServiceRequests.Where(x => x.ZipCode == ProviderZipcode && x.ServiceProviderId == logedUserid && x.Status == null).ToList().Count();
+                var CompleteService = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status == 2).ToList().Count();
+
+                var obj = new
+                {
+                    TotalNewService = NewServicveCount,
+                    TotalUpcomingService = UpcomingService,
+                    TotalCompleteService = CompleteService
+                };
+
+                return Json(obj);
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
         public IActionResult MySetting()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -233,6 +265,7 @@ namespace Helperland.Controllers
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
 
+
         [HttpGet]
         public IActionResult GetNewServiceData()
         {
@@ -244,63 +277,83 @@ namespace Helperland.Controllers
                 var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ZipCode == user1.ZipCode && x.Status == null && x.ServiceProviderId  == null).ToList();
                 foreach (var data in Alldata)
                 {
-                    ProviderDashboard NewServiceData = new ProviderDashboard();
-                    NewServiceData.ServiceId = data.ServiceRequestId;
-                    NewServiceData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
-                    NewServiceData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
-                    NewServiceData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
-                    NewServiceData.Payment = data.TotalCost;
+                    var isBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == data.UserId && x.IsBlocked == true).FirstOrDefault();
+                    if (isBlocked == null)
+                    {
+                        ProviderDashboard NewServiceData = new ProviderDashboard();
+                        NewServiceData.ServiceId = data.ServiceRequestId;
+                        NewServiceData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
+                        NewServiceData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
+                        NewServiceData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
+                        NewServiceData.Payment = data.TotalCost;
+                        NewServiceData.hasPet = data.HasPets;
 
-                    User user = _helperlandContext.Users.Where(x => x.UserId == data.UserId).FirstOrDefault();
-                    NewServiceData.CustName = user.FirstName + " " + user.LastName;
+                        User user = _helperlandContext.Users.Where(x => x.UserId == data.UserId).FirstOrDefault();
+                        NewServiceData.CustName = user.FirstName + " " + user.LastName;
 
-                    ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
-                    NewServiceData.add1 = serviceRequestAddress.AddressLine1;
-                    NewServiceData.add2 = serviceRequestAddress.AddressLine2;
-                    NewServiceData.city = serviceRequestAddress.City;
-                    NewServiceData.pincode = serviceRequestAddress.PostalCode;
+                        ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
+                        NewServiceData.add1 = serviceRequestAddress.AddressLine1;
+                        NewServiceData.add2 = serviceRequestAddress.AddressLine2;
+                        NewServiceData.city = serviceRequestAddress.City;
+                        NewServiceData.pincode = serviceRequestAddress.PostalCode;
 
+                        var AllReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status == null).ToList();
 
-                    NewService.Add(NewServiceData);
+                        if (AllReq.Count() > 0)
+                        {
+                            foreach (var req in AllReq)
+                            {
+                                var NewServiceStartDate = data.ServiceStartDate;
+                                var NewServiceEndDateTime = data.ServiceStartDate.AddHours((double)data.SubTotal);
+                                var UpcomingStartDate = req.ServiceStartDate;
+                                var UpcomingEndDateTime = req.ServiceStartDate.AddHours((double)req.SubTotal + 1);
+
+                                if (NewServiceStartDate >= UpcomingStartDate && NewServiceStartDate <= UpcomingEndDateTime)
+                                {
+                                    NewServiceData.ConflictServiceId = req.ServiceRequestId;
+                                    break;
+                                }
+                                else if (NewServiceEndDateTime >= UpcomingStartDate && NewServiceEndDateTime <= UpcomingEndDateTime)
+                                {
+                                    NewServiceData.ConflictServiceId = req.ServiceRequestId;
+                                    break;
+                                }
+                                else if (NewServiceStartDate < UpcomingStartDate && NewServiceEndDateTime > UpcomingEndDateTime)
+                                {
+                                    NewServiceData.ConflictServiceId = req.ServiceRequestId;
+                                    break;
+                                }
+                                else
+                                {
+                                    NewServiceData.ConflictServiceId = null;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            NewServiceData.ConflictServiceId = null;
+                        }
+
+                        NewService.Add(NewServiceData);
+                    }
                 }
                 return new JsonResult(NewService);
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
-        //[HttpGet]
-        //public IActionResult GetNewServiceFilteredData()
-        //{
-        //    if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
-        //    {
-        //        int? logedUserid = HttpContext.Session.GetInt32("userid");
-        //        List<ProviderDashboard> NewServiceFilter = new List<ProviderDashboard>();
-        //        UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.UserId == logedUserid).FirstOrDefault();
-        //        var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ZipCode == userAddress.PostalCode && x.HasPets == false).ToList();
-        //        foreach (var data in Alldata)
-        //        {
-        //            ProviderDashboard NewServiceFilterData = new ProviderDashboard();
-        //            NewServiceFilterData.ServiceId = data.ServiceRequestId;
-        //            NewServiceFilterData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
-        //            NewServiceFilterData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
-        //            NewServiceFilterData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
-        //            NewServiceFilterData.Payment = data.TotalCost;
 
-        //            User user = _helperlandContext.Users.Where(x => x.UserId == data.UserId).FirstOrDefault();
-        //            NewServiceFilterData.CustName = user.FirstName + " " + user.LastName;
-
-        //            ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == data.ServiceRequestId).FirstOrDefault();
-        //            NewServiceFilterData.add1 = serviceRequestAddress.AddressLine1;
-        //            NewServiceFilterData.add2 = serviceRequestAddress.AddressLine2;
-        //            NewServiceFilterData.city = serviceRequestAddress.City;
-        //            NewServiceFilterData.pincode = serviceRequestAddress.PostalCode;
-
-
-        //            NewServiceFilter.Add(NewServiceFilterData);
-        //        }
-        //        return new JsonResult(NewServiceFilter);
-        //    }
-        //    return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
-        //}
+        [HttpPost]
+        public IActionResult AcceptServiceRequest(string acceptSerId)
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            ServiceRequest acceptReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(acceptSerId)).FirstOrDefault();
+            acceptReq.ServiceProviderId = logedUserid;
+            acceptReq.ModifiedBy = logedUserid;
+            acceptReq.ModifiedDate = DateTime.Now;
+            _helperlandContext.ServiceRequests.Update(acceptReq);
+            _helperlandContext.SaveChanges();
+            return Json("Successfully");
+        }
 
         public IActionResult UpcomingService()
         {
@@ -350,6 +403,33 @@ namespace Helperland.Controllers
                 return new JsonResult(Upcoming);
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public ActionResult CancleRequest(string InputCancleServiceId, string canclecomments)
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            ServiceRequest cancleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(InputCancleServiceId) && x.ServiceProviderId == logedUserid).FirstOrDefault();
+            cancleReq.Comments = canclecomments;
+            cancleReq.Status = 1;
+            cancleReq.ModifiedBy = logedUserid;
+            cancleReq.ModifiedDate = DateTime.Now;
+            _helperlandContext.ServiceRequests.Update(cancleReq);
+            _helperlandContext.SaveChanges();
+            return Json("Successfully");
+        }
+
+        [HttpPost]
+        public ActionResult CompleteRequest(string CompleteReqServiceId)
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            ServiceRequest completeReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(CompleteReqServiceId) && x.ServiceProviderId == logedUserid).FirstOrDefault();
+            completeReq.Status = 2;
+            completeReq.ModifiedBy = logedUserid;
+            completeReq.ModifiedDate = DateTime.Now;
+            _helperlandContext.ServiceRequests.Update(completeReq);
+            _helperlandContext.SaveChanges();
+            return Json("Successfully");
         }
 
         public IActionResult ServiceHistory()
@@ -516,6 +596,99 @@ namespace Helperland.Controllers
                 User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
                 ViewBag.UserName = loggeduser.FirstName;
                 return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+
+        public ActionResult GetBlockCustData()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+
+                List<BlockCust> blockCust = new List<BlockCust>();
+                
+                    var AllReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status == 2).ToList();
+                if (AllReq.Count() > 0)
+                {
+                    foreach (var req in AllReq)
+                    {
+                        BlockCust blockCustData = new BlockCust();
+                        blockCustData.userId = req.UserId;
+
+                        var userData = _helperlandContext.Users.Where(x => x.UserId == req.UserId).FirstOrDefault();
+                        blockCustData.Name = userData.FirstName + " " + userData.LastName;
+
+                        var isBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == req.UserId).FirstOrDefault();
+
+                        if (isBlocked != null)
+                        {
+                            if (isBlocked.IsBlocked == true)
+                            {
+                                blockCustData.IsBlocked = true;
+                            }
+                            else
+                            {
+                                blockCustData.IsBlocked = false;
+                            }
+                        }
+                        else
+                        {
+                            blockCustData.IsBlocked = false;
+                        }
+                        blockCust.Add(blockCustData);
+                    }
+                    return new JsonResult(blockCust);
+                }
+            }
+        
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+
+        [HttpPost]
+        public IActionResult PostBlockCustomer(int CustId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                if (_helperlandContext.FavoriteAndBlockeds.Any(x => x.UserId == logedUserid && x.TargetUserId == CustId))
+                {
+                    FavoriteAndBlocked req = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == CustId).FirstOrDefault();
+                    req.IsBlocked = true;
+
+                    _helperlandContext.FavoriteAndBlockeds.Update(req);
+                    _helperlandContext.SaveChanges();
+                }
+                else
+                {
+                    FavoriteAndBlocked req = new FavoriteAndBlocked();
+                    req.UserId = Convert.ToInt32(logedUserid);
+                    req.TargetUserId = CustId;
+                    req.IsFavorite = false;
+                    req.IsBlocked = true;
+
+                    _helperlandContext.FavoriteAndBlockeds.Add(req);
+                    _helperlandContext.SaveChanges();
+                }
+                return Json("success");
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public IActionResult UnBlockCustomer(int CustId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                FavoriteAndBlocked req = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == CustId).FirstOrDefault();
+                req.IsBlocked = false;
+                _helperlandContext.FavoriteAndBlockeds.Update(req);
+                _helperlandContext.SaveChanges();
+                return Json("success");
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }

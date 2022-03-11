@@ -38,16 +38,16 @@ $('input[type=radio][name=sortOption]').change(function () {
     else if (this.value == 'ServiceId:Latest') {
         sort(0, "desc");
     }
-    else if (this.value == 'Customer:AtoZ') {
+    else if (this.value == 'CustomerDetail:AtoZ') {
         sort(2, "asc");
     }
-    else if (this.value == 'Customer:ZtoA') {
+    else if (this.value == 'CustomerDetail:ZtoA') {
         sort(2, "desc");
     }
-    else if (this.value == 'DistanceLowtoHigh') {
+    else if (this.value == 'PaymentLowtoHigh') {
         sort(3, "asc");
     }
-    else if (this.value == 'DistanceHightoLow') {
+    else if (this.value == 'PaymentHightoLow') {
         sort(3, "desc");
     }
 });
@@ -66,8 +66,19 @@ function getData() {
                 setTimeout(function () {
                     var UpcomingServiceTblData = $('#UpcomingServiceTblData');
                     UpcomingServiceTblData.empty();
+
                     for (var i = 0; i < response.length; i++) {
-                        UpcomingServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input class="cancelbtn" type="button" value="Cancel"></td></tr>')
+                        var ServiceDateTime = response[i].serviceDate + " " + response[i].serviceEndTime + ":00";
+                        var DateTimeArr = ServiceDateTime.split("-");
+                        var CompleteSrDateTime = DateTimeArr[1] + "-" + DateTimeArr[0] + "-" + DateTimeArr[2];
+                        var SRDatetime = new Date(CompleteSrDateTime);
+
+                        var todayDateTime = new Date();
+                        if (todayDateTime > SRDatetime) {
+                            UpcomingServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input class="completebtn" type="button" value="Complete"><input class="cancelbtn" type="button" value="Cancel"></td></tr>');
+                        } else {
+                            UpcomingServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input class="cancelbtn" type="button" value="Cancel"></td></tr>');
+                        }
                     }
 
                     console.log(response);
@@ -97,6 +108,21 @@ function getData() {
                         }
                     });
 
+                    $('#upcomingService tbody').on('click', '.cancelbtn', function () {
+                        $("#canclecomments").val('');
+                        $('#cancleServiceMdodelBtn').prop('disabled', true);
+                        $('#cancleServiceMdodelBtn').css('cursor', 'not-allowed');
+                        $("#cancleModalBtn").click();
+                        var ClickserviceId = $(this).parent().parent().children(':first-child').text();
+                        $("#cancleReqServiceId").val(ClickserviceId);
+                    });
+
+                    $('#upcomingService tbody').on('click', '.completebtn', function () {
+                        $('#CompleteService').modal('show');
+                        var ClickCompleteId = $(this).parent().parent().children(':first-child').text();
+                        $("#CompleteReqServiceId").val(ClickCompleteId);
+                    });
+
                     $('#upcomingService tbody').on('click', '.SerSummary', function () {
                         var clickedRow = $(this).parent().children(':first-child').text();
                         GetServiceSummary(clickedRow);
@@ -117,6 +143,51 @@ function getData() {
         }
     });
 }
+
+$("#cancleServiceMdodelBtn").click(function () {
+    var InputCancleServiceId = $("#cancleReqServiceId").val();
+    var canclecomments = $('#canclecomments').val();
+    $.ajax({
+        type: "POST",
+        url: '/Provider/CancleRequest',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        data: { 'InputCancleServiceId': InputCancleServiceId, 'canclecomments': canclecomments },
+        cache: false,
+        success:
+            function (response) {
+                if (response == "Successfully") {
+                    $("#cancleModal").modal('hide');
+                    $("#CancleReferenceId").text(InputCancleServiceId);
+                    $("#CancleSuccessfulyDoneBtn").click();
+                }
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
+});
+
+$("#CompleteServiceBtn").click(function () {
+    var CompleteReqServiceId = $("#CompleteReqServiceId").val();
+    $.ajax({
+        type: "POST",
+        url: '/Provider/CompleteRequest',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        data: { 'CompleteReqServiceId': CompleteReqServiceId },
+        cache: false,
+        success:
+            function (response) {
+                if (response == "Successfully") {
+                    window.location.reload();
+                }
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
+});
 
 function GetServiceSummary(x) {
     $.ajax({
@@ -159,7 +230,7 @@ function GetServiceSummary(x) {
                 } else {
                     $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
                 }
-
+                GetMap(response.postalCode + " " + response.city);
                 $("#displaydataModal").modal('show');
 
             },
@@ -169,6 +240,51 @@ function GetServiceSummary(x) {
             }
     });
 }
+
+var map = L.map('CustMap');
+function GetMap(x) {
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        "url": "https://trueway-geocoding.p.rapidapi.com/Geocode?address=" + x,
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
+            "x-rapidapi-key": "af7a97fb09msh8757aecf65ca54dp1d68e3jsn9b9058109b2e"
+        },
+        success: (response) => {
+            map.setView([response.results[0].location.lat, response.results[0].location.lng], 14);
+
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([response.results[0].location.lat, response.results[0].location.lng]).addTo(map);
+
+        },
+        error: (err) => {
+            console.log(err);
+
+        }
+    });
+}
+
+$("#canclecomments").keyup(function () {
+    if ($("#canclecomments").val() == '') {
+        $('#cancleServiceMdodelBtn').prop('disabled', true);
+        $('#cancleServiceMdodelBtn').css('cursor', 'not-allowed');
+    } else {
+        $('#cancleServiceMdodelBtn').prop('disabled', false);
+        $('#cancleServiceMdodelBtn').css('cursor', 'pointer');
+    }
+});
+
+$('#CancleSuccessfulyDoneBtn').click(function () {
+    $('#CancleSuccessfulyDone').modal({
+        backdrop: 'static', // to prevent closing with click
+        keyboard: false  // to prevent closing with 
+    });
+});
 
 
 $(document).ready(function () {

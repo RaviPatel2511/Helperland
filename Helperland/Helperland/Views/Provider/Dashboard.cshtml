@@ -2,15 +2,23 @@
     Layout = "~/Views/Shared/_ProDashLayout.cshtml";
 }
 
-
-
-
-
-
-
-
-
-
+<div id="Dashboard">
+        <div class="NewServiceTab">
+            <span id="NewServiceCount"></span>
+            <span class="TabTitle">New Service Requests</span>
+            <a class="btn ViewAllBtn" asp-controller="Provider" asp-action="NewService">View All</a>
+        </div>
+        <div class="UpcomingServiceTab">
+            <span id="UpcomingServiceCount"></span>
+            <span class="TabTitle">Upcoming Services</span>
+            <a class="btn ViewAllBtn" asp-controller="Provider" asp-action="UpcomingService">View All</a>
+        </div>
+        <div class="CompleteServiceTab">
+            <span id="CompleteServiceCount"></span>
+            <span class="TabTitle">Completed Services</span>
+            <a class="btn ViewAllBtn" asp-controller="Provider" asp-action="ServiceHistory">View All</a>
+        </div>
+</div>
 
 @section script{
     <script src="~/js/PDashboard.js"></script>

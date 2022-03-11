@@ -18,37 +18,31 @@ $("#ServiceHistoryTbl").on('click', 'th', function () {
 $("#ServiceHistoryTbl th").first().click().click();
 
 
-//function sort(col, order) {
-//    table.order([col, order]).draw();
-//}
+function sort(col, order) {
+    table.order([col, order]).draw();
+}
 
 
-//$('input[type=radio][name=sortOption]').change(function () {
-//    if (this.value == 'ServiceDate:Oldest') {
-//        sort(1, "asc");
-//    }
-//    else if (this.value == 'ServiceDate:Latest') {
-//        sort(1, "desc");
-//    }
-//    else if (this.value == 'ServiceId:Oldest') {
-//        sort(0, "asc");
-//    }
-//    else if (this.value == 'ServiceId:Latest') {
-//        sort(0, "desc");
-//    }
-//    else if (this.value == 'Customer:AtoZ') {
-//        sort(2, "asc");
-//    }
-//    else if (this.value == 'Customer:ZtoA') {
-//        sort(2, "desc");
-//    }
-//    else if (this.value == 'DistanceLowtoHigh') {
-//        sort(3, "asc");
-//    }
-//    else if (this.value == 'DistanceHightoLow') {
-//        sort(3, "desc");
-//    }
-//});
+$('input[type=radio][name=sortOption]').change(function () {
+    if (this.value == 'ServiceDate:Oldest') {
+        sort(1, "asc");
+    }
+    else if (this.value == 'ServiceDate:Latest') {
+        sort(1, "desc");
+    }
+    else if (this.value == 'ServiceId:Oldest') {
+        sort(0, "asc");
+    }
+    else if (this.value == 'ServiceId:Latest') {
+        sort(0, "desc");
+    }
+    else if (this.value == 'CustomerDetails:AtoZ') {
+        sort(2, "asc");
+    }
+    else if (this.value == 'CustomerDetails:ZtoA') {
+        sort(2, "desc");
+    }
+});
 
 function getData() {
     $.ajax({
@@ -156,7 +150,7 @@ function GetServiceSummary(x) {
                 } else {
                     $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
                 }
-                
+                GetMap(response.postalCode + " " + response.city);
                 $("#displaydataModal").modal('show');
 
             },
@@ -164,6 +158,34 @@ function GetServiceSummary(x) {
             function (err) {
                 console.error(err);
             }
+    });
+}
+
+var map = L.map('CustMap');
+function GetMap(x) {
+    $.ajax({
+        "async": true,
+        "crossDomain": true,
+        "url": "https://trueway-geocoding.p.rapidapi.com/Geocode?address=" + x,
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
+            "x-rapidapi-key": "af7a97fb09msh8757aecf65ca54dp1d68e3jsn9b9058109b2e"
+        },
+        success: (response) => {
+            map.setView([response.results[0].location.lat, response.results[0].location.lng], 14);
+
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([response.results[0].location.lat, response.results[0].location.lng]).addTo(map);
+
+        },
+        error: (err) => {
+            console.log(err);
+
+        }
     });
 }
 
