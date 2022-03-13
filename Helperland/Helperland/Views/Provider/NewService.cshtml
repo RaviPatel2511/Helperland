@@ -15,6 +15,16 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="AcceptServiceError" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h3 class="text-danger">Sorry! Another provider already booked this service ..</h3>
+                    <input type="button" class="btn" value="Ok" id="AcceptServiceErrorBtn" />
+                </div>
+            </div>
+        </div>
+    </div>
     <div>
         <div class="modal fade" id="displaydataModal" role="dialog">
             <div class="modal-dialog">
@@ -52,7 +62,7 @@
     </div>
     <div class="d-flex datatable_heading">
         <div class="py-2">New Service Request</div>
-        <div class="py-2 text-center" id="havePetFilterDiv"><input type="checkbox" id="havePetFilter" /> &nbsp;Include pet at home</div>
+        <div class="py-2 text-center" id="havePetFilterDiv"><input class="mr-2" type="checkbox" id="havePetFilter" /> <label class="mb-0" for="havePetFilter">Include pet at home</label></div>
         <div class="py-2 ml-auto mobile_sorting">
             <a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal"><img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a>
 

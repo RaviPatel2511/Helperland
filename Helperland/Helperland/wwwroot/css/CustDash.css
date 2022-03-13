@@ -373,7 +373,10 @@ margin-left:10px;
 .dashboard .table td,.dashboard .table th{
   margin: 0.3rem 30px !important;
  
-} 
+}
+.table thead th {
+    border-top: unset !important;
+}
 table.dataTable thead th{
   border-bottom: unset;
   vertical-align: middle;

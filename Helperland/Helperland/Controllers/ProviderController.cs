@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Helperland.Controllers
@@ -347,12 +348,67 @@ namespace Helperland.Controllers
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
             ServiceRequest acceptReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(acceptSerId)).FirstOrDefault();
+            if(acceptReq.ServiceProviderId == null)
+            {
             acceptReq.ServiceProviderId = logedUserid;
             acceptReq.ModifiedBy = logedUserid;
             acceptReq.ModifiedDate = DateTime.Now;
             _helperlandContext.ServiceRequests.Update(acceptReq);
             _helperlandContext.SaveChanges();
-            return Json("Successfully");
+
+
+                string subject = "A new service booking request has arrived in your area .";
+                string mailTitle = "Helperland Service";
+                string fromEmail = "ravipatelphoto@gmail.com";
+                string fromEmailPassword = "Mravi5523@.@";
+
+                var AvailableProvider = _helperlandContext.Users.Where(x => x.ZipCode == acceptReq.ZipCode && x.UserId!=logedUserid).ToList();
+                if (AvailableProvider != null)
+                {
+                    foreach (var availPro in AvailableProvider)
+                    {
+                        string MailBody = "<!DOCTYPE html>" +
+                                 "<html> " +
+                                 "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                  "<p>Dear " + availPro.FirstName + " " + availPro.LastName + " ,</p>" +
+                                  "<p>Service request with reference id " + acceptReq.ServiceRequestId + " is no more available now.</p>" +
+                                  "<p>For more information please Login to your account</p>" +
+                                  "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                 "</body> " +
+                             "</html>";
+                        MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(availPro.Email));
+                        message.Subject = subject;
+                        message.Body = MailBody;
+                        message.IsBodyHtml = true;
+
+                        //Server Details
+                        SmtpClient smtp = new SmtpClient();
+                        //Outlook ports - 465 (SSL) or 587 (TLS)
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                        //Credentials
+                        System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                        credential.UserName = fromEmail;
+                        credential.Password = fromEmailPassword;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = credential;
+
+                        smtp.Send(message);
+                    }
+                
+                }
+
+
+                return Json("Successfully");
+            }
+            else
+            {
+                return Json("alreadyBooked");
+            }
         }
 
         public IActionResult UpcomingService()
@@ -410,8 +466,16 @@ namespace Helperland.Controllers
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
             ServiceRequest cancleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(InputCancleServiceId) && x.ServiceProviderId == logedUserid).FirstOrDefault();
+            if (cancleReq.ServiceStartDate <= DateTime.Now)
+            {
+                cancleReq.Status = 1;
+            }
+            else
+            {
+                cancleReq.Status = null;
+                cancleReq.ServiceProviderId = null;
+            }
             cancleReq.Comments = canclecomments;
-            cancleReq.Status = 1;
             cancleReq.ModifiedBy = logedUserid;
             cancleReq.ModifiedDate = DateTime.Now;
             _helperlandContext.ServiceRequests.Update(cancleReq);
@@ -567,8 +631,14 @@ namespace Helperland.Controllers
                     ratingTbldata.ServiceDate = serviceRequest.ServiceStartDate.ToString("dd/MM/yyyy");
                     ratingTbldata.ServiceStartTime = serviceRequest.ServiceStartDate.ToString("HH:mm");
                     ratingTbldata.ServiceEndTime = serviceRequest.ServiceStartDate.AddHours((double)serviceRequest.SubTotal).ToString("HH:mm");
-                    ratingTbldata.comment = serviceRequest.Comments;
-
+                    if (data.Comments != null)
+                    {
+                    ratingTbldata.comment = data.Comments;
+                    }
+                    else
+                    {
+                        ratingTbldata.comment = "";
+                    }
 
                     User user = _helperlandContext.Users.Where(x => x.UserId == data.RatingFrom).FirstOrDefault();
                     ratingTbldata.CustName = user.FirstName + " " + user.LastName;
@@ -610,18 +680,18 @@ namespace Helperland.Controllers
 
                 List<BlockCust> blockCust = new List<BlockCust>();
                 
-                    var AllReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status == 2).ToList();
+                 List<int> AllReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status == 2).Select(x => x.UserId).Distinct().ToList();
                 if (AllReq.Count() > 0)
                 {
                     foreach (var req in AllReq)
                     {
                         BlockCust blockCustData = new BlockCust();
-                        blockCustData.userId = req.UserId;
+                        blockCustData.userId = req;
 
-                        var userData = _helperlandContext.Users.Where(x => x.UserId == req.UserId).FirstOrDefault();
+                        var userData = _helperlandContext.Users.Where(x => x.UserId == req).FirstOrDefault();
                         blockCustData.Name = userData.FirstName + " " + userData.LastName;
 
-                        var isBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == req.UserId).FirstOrDefault();
+                        var isBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == req).FirstOrDefault();
 
                         if (isBlocked != null)
                         {
@@ -641,6 +711,10 @@ namespace Helperland.Controllers
                         blockCust.Add(blockCustData);
                     }
                     return new JsonResult(blockCust);
+                }
+                else
+                {
+                    return Json("noData");
                 }
             }
         

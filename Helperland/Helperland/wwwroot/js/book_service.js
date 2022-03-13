@@ -323,23 +323,19 @@ function CompleteBooking() {
         },
         success:
             function (response) {
-                setTimeout(function () {
                     if (response == "false") {
                         alert("booking not done Please try again !");
                     } else {
                         $('#CoonfirmBookReferenceId').text(response);
                         $('#bookingSuccessfulyDoneBtn').click();
                     }
-                }, 1000);
             },
         error:
             function (err) {
                 console.error(err);
             },
         complete: function () {
-            setTimeout(function () {
                 $(".loader-div").addClass('d-none');
-            }, 1000);
         }
     });
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Helperland.Controllers
@@ -227,7 +228,53 @@ namespace Helperland.Controllers
                     _helperlandContext.SaveChanges();
                 }
 
+
+                string subject = "A new service booking request has arrived in your area .";
+                string mailTitle = "Helperland Service";
+                string fromEmail = "ravipatelphoto@gmail.com";
+                string fromEmailPassword = "Mravi5523@.@";
+
+                var AvailableProvider = _helperlandContext.Users.Where(x => x.ZipCode == data.ServiceZipCode).ToList();
+
+                foreach (var availPro in AvailableProvider)
+                {
+                    string MailBody = "<!DOCTYPE html>" +
+                             "<html> " +
+                                 "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                 "<p>Dear " + availPro.FirstName + " " + availPro.LastName + " ,</p>" +
+                                  "<p>A new service has been booked in your area with reference id " + saveBooking.Entity.ServiceRequestId + " , </p>"+
+                                  "<p>For more information of service or to accept the service please Login to your account</p>" +
+                                  "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new {}, "http") + "'>Login Now</a>" +
+                                 "</body> " +
+                             "</html>";
+                    MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(availPro.Email));
+                    message.Subject = subject;
+                    message.Body = MailBody;
+                    message.IsBodyHtml = true;
+
+                    //Server Details
+                    SmtpClient smtp = new SmtpClient();
+                    //Outlook ports - 465 (SSL) or 587 (TLS)
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                    //Credentials
+                    System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                    credential.UserName = fromEmail;
+                    credential.Password = fromEmailPassword;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = credential;
+
+                    smtp.Send(message);
+                }
+
+
                 return Json(saveBooking.Entity.ServiceRequestId);
+
+
             }
             return Json("false");
         }

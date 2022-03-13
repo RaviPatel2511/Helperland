@@ -12,14 +12,16 @@ function GetBlockCust() {
                 setTimeout(function () {
                         var BlockCustTblData = $("#BlockCustTblData");
                         BlockCustTblData.empty();
-
-                        for (var i = 0; i < response.length; i++) {
-                            if (response[i].isBlocked == true) {
-                                BlockCustTblData.append('<tr><td><input type="hidden" value="' + response[i].userId + '"/><img src="../image/upcoming_service/cap.png" /></td><td><span class="BlockCustName">' + response[i].name + '</span></td><td><button class="btn UnblockBtn">Unblock</button></td></tr>');
-                            } else {
-                                BlockCustTblData.append('<tr><td><input type="hidden" value="' + response[i].userId + '"/><img src="../image/upcoming_service/cap.png" /></td><td><span class="BlockCustName">' + response[i].name + '</span></td><td><button class="btn BlockBtn">Block</button></td></tr>');
+                        if (response != "noData") {
+                            for (var i = 0; i < response.length; i++) {
+                                if (response[i].isBlocked == true) {
+                                    BlockCustTblData.append('<tr><td><input type="hidden" value="' + response[i].userId + '"/><img src="../image/upcoming_service/cap.png" /></td><td><span class="BlockCustName">' + response[i].name + '</span></td><td><button class="btn UnblockBtn">Unblock</button></td></tr>');
+                                } else {
+                                    BlockCustTblData.append('<tr><td><input type="hidden" value="' + response[i].userId + '"/><img src="../image/upcoming_service/cap.png" /></td><td><span class="BlockCustName">' + response[i].name + '</span></td><td><button class="btn BlockBtn">Block</button></td></tr>');
+                                }
                             }
                         }
+                        
                     table = $('#BlockCustTbl').DataTable({
                         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
                         "pagingType": "full_numbers",

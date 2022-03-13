@@ -721,6 +721,9 @@ span.arrow-hack {
     font-weight: bold;
 
 }
+.table thead th{
+    border-top:unset!important;
+}
 #ServiceHistoryTblData td:hover, #NewServiceTblData td:nth-child(1):hover, #NewServiceTblData td:nth-child(2):hover, #NewServiceTblData td:nth-child(3):hover,
 #UpcomingSer tbody tr td:not(:last-child):hover
 {
@@ -995,6 +998,10 @@ position:relative;
 #NewServiceTblData span, #UpcomingServiceTblData span {
     display: block;
 }
+#NewService .form-check-input:checked {
+    background-color: #1d7a8c;
+    border-color: #1d7a8c;
+}
 #NewServiceTblData .custDetails, #ServiceHistoryTblData .custDetails, #UpcomingServiceTblData .custDetails {
     display: flex;
     justify-content: center;
@@ -1044,7 +1051,7 @@ position:relative;
 #AcceptService h3, #CompleteService h3, #SuccessModal h3{
     color: darkslategrey;
 }
-#AcceptService .btn, #CompleteService .btn, .CancleOkBtn, #SuccessModal a{
+#AcceptService .btn, #CompleteService .btn, .CancleOkBtn, #SuccessModal a,#AcceptServiceError .btn{
     width: auto;
     padding: 11px 34px;
     background: #1d7a8c;

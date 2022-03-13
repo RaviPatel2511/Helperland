@@ -89,7 +89,7 @@ function getData() {
                         "searching": true,
                         retrieve: true,
                         "autoWidth": false,
-                        "order": [],
+                        "order": [[0, "desc"]],
                         'columnDefs': [{
                             'orderable': false,
                             'target':5,
@@ -155,19 +155,37 @@ function AcceptService() {
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         data: { 'acceptSerId': acceptSerId },
         cache: false,
+        beforeSend: function () {
+            $(".loader-div").removeClass('d-none');
+        },
         success:
             function (response) {
-                if (response == "Successfully") {
+                if (response == "alreadyBooked") {
+                    $('#AcceptServiceError').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    $("#AcceptService").modal('hide');
+                    $("#AcceptServiceError").modal("show");
+                } else {
                     window.location.reload();
                 }
             },
         error:
             function (err) {
                 console.error(err);
-            }
+            },
+        complete: function () {
+                $(".loader-div").addClass('d-none');
+        }
     });
 
 }
+
+
+$("#AcceptServiceErrorBtn").click(function () {
+    window.location.reload();
+});
 
 function GetServiceSummary(x) {
     $.ajax({

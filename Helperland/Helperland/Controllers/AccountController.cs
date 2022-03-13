@@ -90,6 +90,7 @@ namespace Helperland.Controllers
                     user.CreatedDate = DateTime.Now;
                     user.ModifiedDate = DateTime.Now;
                     user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                    user.IsActive = true;
                     _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
                     return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
@@ -125,6 +126,10 @@ namespace Helperland.Controllers
                     else if (credentials.UserTypeId == 2)
                     {
                         return RedirectToAction("Dashboard", "Provider");
+                    }
+                    else if (credentials.UserTypeId == 3)
+                    {
+                        return RedirectToAction("ServiceRequest", "Admin");
                     }
                 }
                 }
