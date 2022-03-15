@@ -19,7 +19,6 @@ namespace Helperland.Controllers
             _helperlandContext = helperlandContext;
         }
 
-        
 
         public IActionResult BookService()
         {
@@ -229,15 +228,17 @@ namespace Helperland.Controllers
                 }
 
 
-                string subject = "A new service booking request has arrived in your area .";
-                string mailTitle = "Helperland Service";
-                string fromEmail = "ravipatelphoto@gmail.com";
-                string fromEmailPassword = "Mravi5523@.@";
-
                 var AvailableProvider = _helperlandContext.Users.Where(x => x.ZipCode == data.ServiceZipCode).ToList();
 
                 foreach (var availPro in AvailableProvider)
                 {
+
+                    string subject = "A new service booking request has arrived in your area .";
+                    string mailTitle = "Helperland Service";
+                    string fromEmail = "";
+                    string fromEmailPassword = "";
+
+
                     string MailBody = "<!DOCTYPE html>" +
                              "<html> " +
                                  "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
@@ -412,6 +413,49 @@ namespace Helperland.Controllers
             rescheduleReq.ModifiedDate = DateTime.Now;
             _helperlandContext.ServiceRequests.Update(rescheduleReq);
             _helperlandContext.SaveChanges();
+
+            User AssignProvider = _helperlandContext.Users.Where(x => x.UserId == rescheduleReq.ServiceProviderId).FirstOrDefault();
+
+
+            string subject = "Customer Has Changed service date or time.";
+            string mailTitle = "Helperland Service";
+            string fromEmail = "";
+            string fromEmailPassword = "";
+
+            if (AssignProvider != null)
+            {
+                string MailBody = "<!DOCTYPE html>" +
+                             "<html> " +
+                                 "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                 "<p>Dear " + AssignProvider.FirstName + " " + AssignProvider.LastName + " ,</p>" +
+                                  "<p>Service Request " + rescheduleReq.ServiceRequestId + " has been rescheduled by customer. New date and time are " + DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null) + ",</p>" +
+                                  "<p>For more information of service please Login to your account</p>" +
+                                  "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                 "</body> " +
+                             "</html>";
+                MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(AssignProvider.Email));
+                message.Subject = subject;
+                message.Body = MailBody;
+                message.IsBodyHtml = true;
+                //Server Details
+                SmtpClient smtp = new SmtpClient();
+                //Outlook ports - 465 (SSL) or 587 (TLS)
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                //Credentials
+                System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                credential.UserName = fromEmail;
+                credential.Password = fromEmailPassword;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = credential;
+
+                smtp.Send(message);
+            }
+           
             return Json("ok");
         }
 
@@ -424,6 +468,50 @@ namespace Helperland.Controllers
             cancleReq.Status = 1;
             _helperlandContext.ServiceRequests.Update(cancleReq);
             _helperlandContext.SaveChanges();
+
+            User AssignProvider = _helperlandContext.Users.Where(x => x.UserId == cancleReq.ServiceProviderId).FirstOrDefault();
+
+
+            string subject = "Customer Has Cancelled Service.";
+            string mailTitle = "Helperland Service";
+            string fromEmail = "";
+            string fromEmailPassword = "";
+
+            if (AssignProvider != null)
+            {
+                string MailBody = "<!DOCTYPE html>" +
+                             "<html> " +
+                                 "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                 "<p>Dear " + AssignProvider.FirstName + " " + AssignProvider.LastName + " ,</p>" +
+                                  "<p>Service Request " + cancleReq.ServiceRequestId + " has been cancelled by customer ,</p>" +
+                                  "<p>For more information of service please Login to your account</p>" +
+                                  "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                 "</body> " +
+                             "</html>";
+                MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(AssignProvider.Email));
+                message.Subject = subject;
+                message.Body = MailBody;
+                message.IsBodyHtml = true;
+                //Server Details
+                SmtpClient smtp = new SmtpClient();
+                //Outlook ports - 465 (SSL) or 587 (TLS)
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                //Credentials
+                System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                credential.UserName = fromEmail;
+                credential.Password = fromEmailPassword;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = credential;
+
+                smtp.Send(message);
+            }
+
+
             return Json("Successfully");
         }
 

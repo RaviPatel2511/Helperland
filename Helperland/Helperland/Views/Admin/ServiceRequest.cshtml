@@ -31,7 +31,7 @@
                     </div>
                     <h1 class="text-white">helperland</h1>
                 </div>
-                <div class="d-flex align-items-center admin-detail"> <img class="mx-1" src="image/upcoming_service/user.svg" alt="userIcon" /> <span class="text-white mx-1">@ViewBag.UserName</span> <img class="mx-1" src="image/admin_UserManagement/logout.png" /> </div>
+                <div class="d-flex align-items-center admin-detail"> <img class="mx-1" src="~/image/upcoming_service/user.svg" alt="userIcon" /> <span class="text-white mx-1">@ViewBag.UserName</span> <img class="mx-1" src="~/image/admin_UserManagement/logout.png" /> </div>
             </div>
         </nav>
     </header>
@@ -41,13 +41,13 @@
                 <!-- Sidebar -->
                 <div id="sidebar-wrapper">
                     <div class="closebtn d-none">
-                        <img src="image/home/times-solid.svg" alt="close">
+                        <img src="~/image/home/times-solid.svg" alt="close">
                         <br>
                         <hr>
                     </div>
                     <ul>
-                        <li><a href="" asp-controller="Admin" asp-action="ServiceRequest" class="active">Service Requests</a></li>
-                        <li><a href="" asp-controller="Admin" asp-action="UserManagement">User Management</a></li>
+                        <li><a asp-controller="Admin" asp-action="ServiceRequest" class="active">Service Requests</a></li>
+                        <li><a asp-controller="Admin" asp-action="UserManagement">User Management</a></li>
                     </ul>
                 </div>
                 <!-- /#sidebar-wrapper -->
@@ -61,6 +61,12 @@
                             <div class="filter row">
                                 <div class="col-xl-1 col-md-4 col-6">
                                     <input type="text" id="serviceID" name="serviceID" placeholder="Service ID">
+                                </div>
+                                <div class="col-xl-1 col-md-4 col-6">
+                                    <input type="text" id="postalCode" name="postalCOde" placeholder="Postal Code">
+                                </div>
+                                <div class="col-xl-1 col-md-4 col-6">
+                                    <input type="text" id="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
                                     <select name="Customer" id="Customer">
@@ -104,14 +110,14 @@
                             </div>
                         </form>
                     </div>
-                    <div class="py-2 mt-3 mobile_sorting text-center"><a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal">Sort Data : <img src="image/upcoming_service/arrow.svg" alt="sorting-arrow"></a></div>
+                    <div class="py-2 mt-3 mobile_sorting text-center"><a href="#" data-toggle="modal" data-target="#mobileSorting" data-dismiss="modal">Sort Data : <img src="~/image/upcoming_service/arrow.svg" alt="sorting-arrow"></a></div>
                     <div class="modal fade" id="mobileSorting" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Choose Option</h4>
-                                    <a class="close" data-dismiss="modal"><img src="image/home/window-close-regular.svg" alt="closebtn"></a>
+                                    <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
                                 </div>
                                 <div class="modal-body forgot-password">
                                     <form>
@@ -148,18 +154,18 @@
                                     <tr>
                                         <td>323436</td>
                                         <td>
-                                            <p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                            <p><img src="image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+                                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
                                         </td>
                                         <td>
                                             <p>David Bough</p>
-                                            <p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
                                         </td>
                                         <td>
                                             <div class="row">
                                                 <div class="col sp_icon">
                                                     <Span class="img_circle">
-                                                        <img src="image/service_history/cap.png" alt="cap">
+                                                        <img src="~/image/service_history/cap.png" alt="cap">
                                                     </Span>
                                                 </div>
                                                 <div class="col">
@@ -187,18 +193,18 @@
                                     <tr>
                                         <td>323436</td>
                                         <td>
-                                            <p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                            <p><img src="image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+                                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
                                         </td>
                                         <td>
                                             <p>David Bough</p>
-                                            <p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
                                         </td>
                                         <td>
                                             <div class="row">
                                                 <div class="col sp_icon">
                                                     <Span class="img_circle">
-                                                        <img src="image/service_history/cap.png" alt="cap">
+                                                        <img src="~/image/service_history/cap.png" alt="cap">
                                                     </Span>
                                                 </div>
                                                 <div class="col">
@@ -229,18 +235,18 @@
                                     <tr>
                                         <td>323436</td>
                                         <td>
-                                            <p class="date"><img src="image/upcoming_service/calendar.webp"> 09/04/2018</p>
-                                            <p><img src="image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+                                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 09/04/2018</p>
+                                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
                                         </td>
                                         <td>
                                             <p>David Bough</p>
-                                            <p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
                                         </td>
                                         <td>
                                             <div class="row">
                                                 <div class="col sp_icon">
                                                     <Span class="img_circle">
-                                                        <img src="image/service_history/cap.png" alt="cap">
+                                                        <img src="~/image/service_history/cap.png" alt="cap">
                                                     </Span>
                                                 </div>
                                                 <div class="col">
@@ -268,18 +274,18 @@
                                     <tr>
                                         <td>323436</td>
                                         <td>
-                                            <p class="date"><img src="image/upcoming_service/calendar.webp"> 18/04/2018</p>
-                                            <p><img src="image/upcoming_service/layer-14.png"> 12:00-18:00</p>
+                                            <p class="date"><img src="~/image/upcoming_service/calendar.webp"> 18/04/2018</p>
+                                            <p><img src="~/image/upcoming_service/layer-14.png"> 12:00-18:00</p>
                                         </td>
                                         <td>
                                             <p>David Bough</p>
-                                            <p><img src="image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
+                                            <p><img src="~/image/upcoming_service/home.png"> Musterstrabe 5,12345 Bonn</p>
                                         </td>
                                         <td>
                                             <div class="row">
                                                 <div class="col sp_icon">
                                                     <Span class="img_circle">
-                                                        <img src="image/service_history/cap.png" alt="cap">
+                                                        <img src="~/image/service_history/cap.png" alt="cap">
                                                     </Span>
                                                 </div>
                                                 <div class="col">
@@ -312,7 +318,6 @@
                 </div>
             </div>
         </div>
-        </div>
         <!-- /#page-content-wrapper -->
     </section>
     <script src="~/lib/jquery/jquery.min.js"></script>
@@ -320,7 +325,7 @@
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="js/admin_ServiceRequest.js"></script>
+    <script src="~/js/admin_ServiceRequest.js"></script>
 </body>
 
 </html>

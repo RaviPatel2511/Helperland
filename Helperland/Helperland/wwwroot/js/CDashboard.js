@@ -252,6 +252,9 @@ $("#rescheduleServiceUpdateBtn").click(function () {
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         data: { 'InputserviceIdVal': InputserviceIdVal, 'rescheduleServiceTime': rescheduleServiceTime },
         cache: false,
+        beforeSend: function () {
+            $(".loader-div").removeClass('d-none');
+        },
         success:
             function (response) {
                 if (response == "ok") {
@@ -261,7 +264,12 @@ $("#rescheduleServiceUpdateBtn").click(function () {
         error:
             function (err) {
                 console.error(err);
-            }
+            },
+        complete: function () {
+            setTimeout(function () {
+                $(".loader-div").addClass('d-none');
+            }, 500);
+        }
     });
 });
 
@@ -274,6 +282,9 @@ $("#cancleServiceMdodelBtn").click(function () {
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         data: { 'InputCancleServiceId': InputCancleServiceId, 'canclecomments': canclecomments },
         cache: false,
+        beforeSend: function () {
+            $(".loader-div").removeClass('d-none');
+        },
         success:
             function (response) {
                 if (response == "Successfully") {
@@ -285,7 +296,12 @@ $("#cancleServiceMdodelBtn").click(function () {
         error:
             function (err) {
                 console.error(err);
-            }
+            },
+        complete: function () {
+            setTimeout(function () {
+                $(".loader-div").addClass('d-none');
+            }, 500);
+        }
     });
 });
 

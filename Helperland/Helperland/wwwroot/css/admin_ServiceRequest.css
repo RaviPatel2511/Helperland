@@ -14,6 +14,10 @@
   /*///////////////////// Navbar start///////////////// */
   nav{
       background-color: #1FB6FF;
+      position:fixed!important;
+      top:0;
+      width:100%;
+      z-index:999;
   }
   .navbar{
     padding: 0;
@@ -46,7 +50,9 @@
 }
 
  /*///////////////////// NAvbar End///////////////// */
-
+ .main{
+     margin-top:56px;
+ }
   /*/////////////////////Side menu start///////////////// */
   
     #sidebar-wrapper.open,#sidebar-wrapper{
@@ -128,17 +134,18 @@
         right:15px;
         top:86px;
     }
-      
   }
  
-  #from-date,#to-date,  #to-date { 
-    background-image: url(../image/admin_ServiceRequest/calendar.svg);
-    background-repeat: no-repeat;
-    text-indent: 25px;
-    background-position-y:center ;
-    background-position-x:5px ;
+#from-date,#to-date,  #to-date { 
+background-image: url(../image/admin_ServiceRequest/calendar.svg);
+background-repeat: no-repeat;
+text-indent: 25px;
+background-position-y:center ;
+background-position-x:5px ;
 }
-
+.datepicker-dropdown {
+    margin-top: 60px;
+}
   /*///////////////////// right side///////////////// */
 .dt-buttons{
     display: none;
@@ -222,14 +229,16 @@ table.dataTable thead .sorting_asc {
     background-color: #1FB6FF;
     border:none;
     border-radius: 5px;
+    margin-top:10px;
 }
-#clear{
+#clear {
     padding: 12px 20px;
     color: #646464;
     font-size: 16px;
-    border:1px solid #DEDDDD;
+    border: 1px solid #DEDDDD;
     border-radius: 5px;
     background-color: white;
+    margin-top: 10px;
 }
 .img_circle img{
     border: 1px solid #646464;
@@ -468,14 +477,16 @@ table tbody tr td p {
         top: 75px;
     }
 }
-    @media screen and (max-width:650px) {
+    @media screen and (max-width:468px) {
         td .threeDotsubMenu{
             right: 44%;
         }
         .admin-detail{
             margin-left: 80px;
         }
-        
+        .main{
+            margin-top:92px;
+        }
     }
       
   

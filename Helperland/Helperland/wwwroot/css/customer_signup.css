@@ -212,7 +212,9 @@ nav {
 .star {
     margin: 15px 0px 38px 0px;
 }
-
+#main{
+    margin-top:100px;
+}
     .star img {
         margin: 0px 9px;
     }

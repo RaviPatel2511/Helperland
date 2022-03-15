@@ -51,6 +51,7 @@ namespace Helperland.Controllers
                     user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
                     user.CreatedDate = DateTime.Now;
                     user.ModifiedDate = DateTime.Now;
+                    user.IsActive = true;
                     _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
                     return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
@@ -90,7 +91,7 @@ namespace Helperland.Controllers
                     user.CreatedDate = DateTime.Now;
                     user.ModifiedDate = DateTime.Now;
                     user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                    user.IsActive = true;
+                    user.IsActive = false;
                     _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
                     return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
@@ -111,7 +112,7 @@ namespace Helperland.Controllers
             if(user.Email !=null && user.Password != null)
             {
 
-                User credentials = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
+                User credentials = _helperlandContext.Users.Where(x => x.Email == user.Email && x.IsActive == true).FirstOrDefault();
                 if(credentials != null)
                 {
                 bool isvalidpass = BCrypt.Net.BCrypt.Verify(user.Password, credentials.Password);

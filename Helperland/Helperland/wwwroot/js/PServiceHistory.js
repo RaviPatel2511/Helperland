@@ -150,7 +150,7 @@ function GetServiceSummary(x) {
                 } else {
                     $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
                 }
-                GetMap(response.postalCode + " " + response.city);
+                GetMap(response.postalCode);
                 $("#displaydataModal").modal('show');
 
             },
@@ -161,33 +161,49 @@ function GetServiceSummary(x) {
     });
 }
 
-var map = L.map('CustMap');
-function GetMap(x) {
-    $.ajax({
-        "async": true,
-        "crossDomain": true,
-        "url": "https://trueway-geocoding.p.rapidapi.com/Geocode?address=" + x,
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
-            "x-rapidapi-key": "af7a97fb09msh8757aecf65ca54dp1d68e3jsn9b9058109b2e"
-        },
-        success: (response) => {
-            map.setView([response.results[0].location.lat, response.results[0].location.lng], 14);
+var count = 0;
+var map = L.map("CustMap");
 
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            L.marker([response.results[0].location.lat, response.results[0].location.lng]).addTo(map);
-
-        },
-        error: (err) => {
-            console.log(err);
-
-        }
-    });
+async function GetMap(zipcode) {
+    map.setView([0, 0], 1);
+    const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+    const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const tiles = L.tileLayer(tileUrl, { attribution });
+    tiles.addTo(map);
+    const response = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=india,' + zipcode);
+    const data = await response.json();
+    const { lat, lon } = data[0];
+    map.flyTo([lat, lon], 15);
+    L.marker([lat, lon]).addTo(map);
 }
+
+//var map = L.map('CustMap');
+//function GetMap(x) {
+//    $.ajax({
+//        "async": true,
+//        "crossDomain": true,
+//        "url": "https://trueway-geocoding.p.rapidapi.com/Geocode?address=" + x,
+//        "method": "GET",
+//        "headers": {
+//            "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
+//            "x-rapidapi-key": "af7a97fb09msh8757aecf65ca54dp1d68e3jsn9b9058109b2e"
+//        },
+//        success: (response) => {
+//            map.setView([response.results[0].location.lat, response.results[0].location.lng], 14);
+
+//            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//            }).addTo(map);
+
+//            L.marker([response.results[0].location.lat, response.results[0].location.lng]).addTo(map);
+
+//        },
+//        error: (err) => {
+//            console.log(err);
+
+//        }
+//    });
+//}
 
 function ExcelSheetDown() {
     var data = document.getElementById("ServiceHistoryTbl");

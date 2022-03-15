@@ -995,6 +995,19 @@ position:relative;
 }
 
 /*/////////////New Service Request///////////////*/
+#displaydataModal #AcceptServiceModalBtn {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 8px 10px 6px;
+    margin: 2px 0;
+    background: #64cb42;
+    border: none !important;
+    color: #fff !important;
+    border-radius: 50px;
+}
+#displaydataModal .action-btn img {
+    margin-right: 4px;
+}
 #NewServiceTblData span, #UpcomingServiceTblData span {
     display: block;
 }
