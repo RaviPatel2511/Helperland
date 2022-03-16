@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/admin_UserManagement.css" />
     <link rel="shortcut icon" href="~/image/home/favicon.ico" type="image/x-icon" />
     <title>Admin User Management</title>
@@ -21,7 +22,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar">
             <div class="container-fluid ">
                 <div class="d-flex align-items-center">
                     <div class="mobileNavIcon">
@@ -127,7 +128,7 @@
                             <div class="filter row">
                                 <div class="col-xl-2 col-md-4 col-6">
                                     <select name="userName" id="userName">
-                                        <option value="" disabled selected>User Name</option>
+                                        <option value="" disabled selected hidden>User Name</option>
 
                                     </select>
                                 </div>
@@ -210,6 +211,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="~/js/admin_UserManagement.js"></script>
 </body>
 

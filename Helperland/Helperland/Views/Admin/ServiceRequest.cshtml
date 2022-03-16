@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/admin_ServiceRequest.css" />
     <link rel="shortcut icon" href="~/image/home/favicon.ico" type="image/x-icon" />
     <title>Admin Service Request</title>
@@ -92,6 +93,118 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="EditRescheduleModel" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Service Request</h4>
+                                <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <input type="text" class="d-none" id="serviceIdForReschedule" />
+                                    <div id="RescheduleErrAlert"></div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="field-heading">Date</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" id="RescheduleDate" name="date" placeholder="From Date" type="text" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="field-heading">Time</label>
+                                                <select class="form-control" id="rescheduleTime">
+                                                    <option value="08:00">08:00 AM</option>
+                                                    <option value="08:30">08:30 AM</option>
+                                                    <option value="09:00">09:00 AM</option>
+                                                    <option value="09:30">09:30 AM</option>
+                                                    <option value="10:00">10:00 AM</option>
+                                                    <option value="10:30">10:30 AM</option>
+                                                    <option value="11:00">11:00 AM</option>
+                                                    <option value="11:30">11:30 AM</option>
+                                                    <option value="12:00">12:00 PM</option>
+                                                    <option value="12:30">12:30 PM</option>
+                                                    <option value="13:00">01:00 PM</option>
+                                                    <option value="13:30">01:30 PM</option>
+                                                    <option value="14:00">02:00 PM</option>
+                                                    <option value="14:30">02:30 PM</option>
+                                                    <option value="15:00">03:00 PM</option>
+                                                    <option value="15:30">03:30 PM</option>
+                                                    <option value="16:00">04:00 PM</option>
+                                                    <option value="16:30">04:30 PM</option>
+                                                    <option value="17:00">05:00 PM</option>
+                                                    <option value="17:30">05:30 PM</option>
+                                                    <option value="18:00">06:00 PM</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <label class='field-heading'>Service Address</label>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="field-title">Street name</label>
+                                                    <input class="form-control" id="EditStreetName" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="field-title">House number</label>
+                                                    <input class="form-control" id="EditHouseNumber" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="field-title">Pin Code</label>
+                                                    <input class="form-control" id="EditPincode" type="number" />
+                                                    <span id="pinErr" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="field-title">City</label>
+                                                    <input class="form-control" id="EditCity" type="text" />
+                                                    <input class="form-control d-none" id="EditState" type="text" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <label class='field-heading'>Service Address</label>
+                                        <label class="field-title">Same as Service Address</label>
+                                        <div class="form-group">
+                                            <label class="field-heading">Why do you want to reschedule service request?</label>
+                                            <textarea class="form-control" maxlength="500" rows="3" placeholder="Why do you want to reschedule service request?" id="RescheduleReason"></textarea>
+                                        </div>
+                                        <button class="btn" type="button" id="EditAndRescheduleBtn" disabled="disabled">Update</button>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="CancleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <input type="text" class="d-none" id="CancleClickedId" />
+                                <h3>Are you sure you want to Cancle Service ?</h3>
+                                <input type="button" class="btn" value="Yes" onclick="CancleService()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="SuccessActionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <h3>Service Updated Successfully  !</h3>
+                                <input type="button" id="SuccessActionModalBtn" class="btn" value="Yes" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal fade" id="mobileSorting" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
@@ -138,12 +251,12 @@
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
                                     <select name="Customer" id="Customer">
-                                        <option value="" disabled selected>Customer</option>
+                                        <option value="" disabled selected hidden>Customer</option>
                                     </select>
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
                                     <select name="ServiceProvider" id="ServiceProvider">
-                                        <option value="" disabled selected>Service Provider</option>
+                                        <option value="" disabled selected hidden>Service Provider</option>
                                     </select>
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
@@ -207,6 +320,7 @@
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="~/js/admin_ServiceRequest.js"></script>
 </body>
 

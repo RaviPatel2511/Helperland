@@ -64,12 +64,12 @@ background: none !important;
     border: 1px solid white;
     border-radius: 45px;
     cursor: pointer;
-    transition: all .5s;
 }
     .nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
         color: #006072 !important;
         background-color: white;
-        border-color: #006072
+        border-color: #006072;
+        transition: all .5s;
     }
   .nav-item:nth-child(6) .menu{
     padding:5px 20px !important;

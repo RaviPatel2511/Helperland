@@ -350,17 +350,18 @@ namespace Helperland.Controllers
             ServiceRequest acceptReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(acceptSerId)).FirstOrDefault();
             if(acceptReq.ServiceProviderId == null)
             {
-            acceptReq.ServiceProviderId = logedUserid;
-            acceptReq.ModifiedBy = logedUserid;
-            acceptReq.ModifiedDate = DateTime.Now;
-            _helperlandContext.ServiceRequests.Update(acceptReq);
-            _helperlandContext.SaveChanges();
+                acceptReq.ServiceProviderId = logedUserid;
+                acceptReq.SpacceptedDate = DateTime.Now;
+                acceptReq.ModifiedBy = logedUserid;
+                acceptReq.ModifiedDate = DateTime.Now;
+                _helperlandContext.ServiceRequests.Update(acceptReq);
+                _helperlandContext.SaveChanges();
 
 
                 string subject = "A new service booking request has arrived in your area .";
                 string mailTitle = "Helperland Service";
-                string fromEmail = "";
-                string fromEmailPassword = "";
+                string fromEmail = "codewithravi2511@gmail.com";
+                string fromEmailPassword = "dyto qxph hvgv oslf";
 
                 var AvailableProvider = _helperlandContext.Users.Where(x => x.ZipCode == acceptReq.ZipCode && x.UserId!=logedUserid).ToList();
                 if (AvailableProvider != null)

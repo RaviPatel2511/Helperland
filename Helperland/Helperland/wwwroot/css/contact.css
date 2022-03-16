@@ -31,12 +31,12 @@ nav{
     border: 1px solid white;
     border-radius: 25px;
     cursor: pointer;
-    transition: all .5s;
 }
     .nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
         color: #006072 !important;
         background-color: white;
-        border-color: #006072
+        border-color: #006072;
+        transition: all .5s;
     }
 
 .menu {

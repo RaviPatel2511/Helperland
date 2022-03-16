@@ -235,8 +235,8 @@ namespace Helperland.Controllers
 
                     string subject = "A new service booking request has arrived in your area .";
                     string mailTitle = "Helperland Service";
-                    string fromEmail = "";
-                    string fromEmailPassword = "";
+                    string fromEmail = "codewithravi2511@gmail.com";
+                    string fromEmailPassword = "dyto qxph hvgv oslf";
 
 
                     string MailBody = "<!DOCTYPE html>" +
@@ -341,7 +341,7 @@ namespace Helperland.Controllers
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
             ServiceRequest rescheduleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(ReqServiceId) && x.UserId == logedUserid).FirstOrDefault();
-            var ServiceDate = rescheduleReq.ServiceStartDate.ToString("dd/MM/yyyy"); ;
+            var ServiceDate = rescheduleReq.ServiceStartDate.ToString("dd/MM/yyyy");
             var ServiceStartTime = rescheduleReq.ServiceStartDate.ToString("HH:mm");
             var obj = new
             {
@@ -408,7 +408,7 @@ namespace Helperland.Controllers
         public ActionResult RescheduleService(string InputserviceIdVal, string rescheduleServiceTime)
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
-            ServiceRequest rescheduleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(InputserviceIdVal) && x.UserId == logedUserid).FirstOrDefault();
+            ServiceRequest rescheduleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(InputserviceIdVal)).FirstOrDefault();
             rescheduleReq.ServiceStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null);
             rescheduleReq.ModifiedDate = DateTime.Now;
             _helperlandContext.ServiceRequests.Update(rescheduleReq);
@@ -419,8 +419,8 @@ namespace Helperland.Controllers
 
             string subject = "Customer Has Changed service date or time.";
             string mailTitle = "Helperland Service";
-            string fromEmail = "";
-            string fromEmailPassword = "";
+            string fromEmail = "codewithravi2511@gmail.com";
+            string fromEmailPassword = "dyto qxph hvgv oslf";
 
             if (AssignProvider != null)
             {
@@ -466,6 +466,8 @@ namespace Helperland.Controllers
             ServiceRequest cancleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(InputCancleServiceId) && x.UserId == logedUserid).FirstOrDefault();
             cancleReq.Comments = canclecomments;
             cancleReq.Status = 1;
+            cancleReq.ModifiedBy = logedUserid;
+            cancleReq.ModifiedDate = DateTime.Now;
             _helperlandContext.ServiceRequests.Update(cancleReq);
             _helperlandContext.SaveChanges();
 
@@ -474,8 +476,8 @@ namespace Helperland.Controllers
 
             string subject = "Customer Has Cancelled Service.";
             string mailTitle = "Helperland Service";
-            string fromEmail = "";
-            string fromEmailPassword = "";
+            string fromEmail = "codewithravi2511@gmail.com";
+            string fromEmailPassword = "dyto qxph hvgv oslf";
 
             if (AssignProvider != null)
             {

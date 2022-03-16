@@ -290,6 +290,8 @@ $(document).ready(function () {
 
     getData();
 
+    $('#userName').select2();
+
     var date_input = $('input[name="date"]');
     date_input.datepicker({
         format: 'mm/dd/yyyy',

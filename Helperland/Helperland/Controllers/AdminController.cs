@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Helperland.Controllers
@@ -29,6 +30,8 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
+
+        
 
         [HttpGet]
         public IActionResult GetServiceRequestData()
@@ -103,6 +106,180 @@ namespace Helperland.Controllers
                 }
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+        public ActionResult GetRescheduleRequestData(int RescheduleServiceId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ServiceRequest reqService = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == RescheduleServiceId).FirstOrDefault();
+                ServiceRequestAddress reqAdd = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == RescheduleServiceId).FirstOrDefault();
+                var obj = new 
+                {
+                    ServiceDate = reqService.ServiceStartDate.ToString("dd/MM/yyyy"),
+                    ServiceStartTime = reqService.ServiceStartDate.ToString("HH:mm"),
+                    AddLine1 = reqAdd.AddressLine1,
+                    AddLine2 = reqAdd.AddressLine2,
+                    City = reqAdd.City,
+                    State = reqAdd.State,
+                    PostalCode = reqAdd.PostalCode,
+                    SpId = reqService.ServiceProviderId
+                };
+
+                return Json(obj);
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public ActionResult PostRescheduleRequestData(AdminReschedule adminReschedule)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                ServiceRequest serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == adminReschedule.Id).FirstOrDefault();
+                if (serviceRequest != null)
+                {
+                    serviceRequest.ServiceStartDate = DateTime.ParseExact(adminReschedule.ServiceTime, "dd/MM/yyyy HH:mm", null);
+                    serviceRequest.ZipCode = adminReschedule.PostalCode;
+                    serviceRequest.Comments = adminReschedule.Comments;
+                    serviceRequest.ModifiedBy = logedUserid;
+                    serviceRequest.ModifiedDate = DateTime.Now;
+                    _helperlandContext.ServiceRequests.Update(serviceRequest);
+                    _helperlandContext.SaveChanges();
+
+                    ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == adminReschedule.Id).FirstOrDefault();
+                    serviceRequestAddress.AddressLine1 = adminReschedule.AddressLine1;
+                    serviceRequestAddress.AddressLine2 = adminReschedule.AddressLine2;
+                    serviceRequestAddress.City = adminReschedule.City;
+                    serviceRequestAddress.PostalCode = adminReschedule.PostalCode;
+                    serviceRequestAddress.State = adminReschedule.State;
+                    _helperlandContext.ServiceRequestAddresses.Update(serviceRequestAddress);
+                    _helperlandContext.SaveChanges();
+
+                    string subject = "Service modified by admin.";
+                    string mailTitle = "Helperland Service";
+                    string fromEmail = "codewithravi2511@gmail.com";
+                    string fromEmailPassword = "dyto qxph hvgv oslf";
+
+                    var AvailableProvider = serviceRequest.ServiceProviderId;
+                    if (AvailableProvider != null)
+                    {
+                        User user = _helperlandContext.Users.Where(x => x.UserId == AvailableProvider).FirstOrDefault();
+                        string MailBody = "<!DOCTYPE html>" +
+                                     "<html> " +
+                                     "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                     "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                      "<p>Dear " + user.FirstName + " " + user.LastName + " ,</p>" +
+                                      "<p>Service request with reference id " + serviceRequest.ServiceRequestId + " has been modified by admin.</p>" +
+                                      "<p>For more information please Login to your account</p>" +
+                                      "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                     "</body> " +
+                                 "</html>";
+                        MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(user.Email));
+                        message.Subject = subject;
+                        message.Body = MailBody;
+                        message.IsBodyHtml = true;
+
+                        //Server Details
+                        SmtpClient smtp = new SmtpClient();
+                        //Outlook ports - 465 (SSL) or 587 (TLS)
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                        //Credentials
+                        System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                        credential.UserName = fromEmail;
+                        credential.Password = fromEmailPassword;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = credential;
+
+                        smtp.Send(message);
+                    }
+                    User cust = _helperlandContext.Users.Where(x => x.UserId == serviceRequest.UserId).FirstOrDefault();
+                    string MailBody1 = "<!DOCTYPE html>" +
+                                     "<html> " +
+                                     "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                     "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                      "<p>Dear " + cust.FirstName + " " + cust.LastName + " ,</p>" +
+                                      "<p>Service request with reference id " + serviceRequest.ServiceRequestId + " has been modified by admin.</p>" +
+                                      "<p>For more information please Login to your account</p>" +
+                                      "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                     "</body> " +
+                                 "</html>";
+                    MailMessage message1 = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(cust.Email));
+                    message1.Subject = subject;
+                    message1.Body = MailBody1;
+                    message1.IsBodyHtml = true;
+
+                    //Server Details
+                    SmtpClient smtp1 = new SmtpClient();
+                    //Outlook ports - 465 (SSL) or 587 (TLS)
+                    smtp1.Host = "smtp.gmail.com";
+                    smtp1.Port = 587;
+                    smtp1.EnableSsl = true;
+                    smtp1.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                    //Credentials
+                    System.Net.NetworkCredential credential1 = new System.Net.NetworkCredential();
+                    credential1.UserName = fromEmail;
+                    credential1.Password = fromEmailPassword;
+                    smtp1.UseDefaultCredentials = false;
+                    smtp1.Credentials = credential1;
+
+                    smtp1.Send(message1);
+
+                    return Json("UpdateSuccessfully");
+                }
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+        public ActionResult CheckAvailableZip(string pinVal)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                var zip = _helperlandContext.Zipcodes.Where(x => x.ZipcodeValue == pinVal).FirstOrDefault();
+                if (zip!=null)
+                {
+                    City city = _helperlandContext.Cities.Where(x => x.Id == zip.CityId).FirstOrDefault();
+                    State state = _helperlandContext.States.Where(x => x.Id == city.StateId).FirstOrDefault();
+                    var obj = new 
+                    {
+                     City = city.CityName,
+                     State = state.StateName
+                    };
+
+                    return Json(obj);
+                }
+                else
+                {
+                    return Json("NotAvailable");
+                }
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public IActionResult CancleService(int CancleClickedId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                ServiceRequest cancleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(CancleClickedId)).FirstOrDefault();
+                cancleReq.Status = 1;
+                cancleReq.ModifiedBy = logedUserid;
+                cancleReq.ModifiedDate = DateTime.Now;
+                _helperlandContext.ServiceRequests.Update(cancleReq);
+                _helperlandContext.SaveChanges();
+                return Json("Sucessfully");
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+
         }
 
         [HttpGet]
