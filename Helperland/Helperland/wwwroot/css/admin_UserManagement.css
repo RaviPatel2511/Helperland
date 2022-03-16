@@ -190,6 +190,9 @@ background-color: white;
     font-size: 16px;
     color: #646464;
 }
+#sidebar-wrapper ul li a:hover {
+    color: #1FB6FF;
+}
 #sidebar-wrapper ul li a.active{
     color: #1FB6FF;
 }
@@ -198,7 +201,6 @@ background-color: white;
 }
 .mobileNavIcon{
     display: none;
-    margin-left: 20px;
 }
 .submenu.close{
     height: 0;
@@ -341,12 +343,25 @@ table.dataTable thead .sorting_asc {
     border: none;
     border-radius: 5px;
     margin-top: 10px;
-    cursor:pointer;
+    cursor: pointer;
+    
+}
+#search:hover, .addBtn button {
+    background: #1f9edb !important;
+    transition: all 0.3s;
 }
 #clear {
     color: #646464;
     border: 1px solid #DEDDDD;
     background-color: white;
+}
+#clear:hover{
+    color: #1fb6ff!important;
+    border-color: #1fb6ff!important;
+    box-shadow: none!important;
+    background: #fff!important;
+    outline: 0!important;
+    opacity: 1;
 }
 table{
     border: 1px solid #E1E1E1;

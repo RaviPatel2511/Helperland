@@ -96,27 +96,27 @@ function getData() {
                     var Searchphone = $("#phone").val();
                     var Searchzip = $("#zipcode").val();
                     var Searchemail = $("#email").val();
-                    var Searchemail = $("#email").val();
-                    var Searchemail = $("#email").val();
+                    //var Searchemail = $("#email").val();
+                    //var Searchemail = $("#email").val();
                     if (SearchByName != null) {
                         tbl.columns(0).search(SearchByName);
                         //console.log("name");
                     }
                     if (SearchuserRole != null) {
                         tbl.columns(3).search(SearchuserRole);
-                        console.log("role");
+                        //console.log("role");
                     }
                     if (Searchphone != '') {
                         tbl.columns(4).search(Searchphone);
-                        console.log("phone");
+                        //console.log("phone");
                     }
                     if (Searchzip != '') {
                         tbl.columns(5).search(Searchzip);
-                        console.log("zip");
+                        //console.log("zip");
                     }
                     if (Searchemail != '') {
                         tbl.columns(8).search(Searchemail);
-                        console.log("email");
+                        //console.log("email");
                     }
                     tbl.draw();
                 });

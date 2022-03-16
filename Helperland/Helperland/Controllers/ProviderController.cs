@@ -359,8 +359,8 @@ namespace Helperland.Controllers
 
                 string subject = "A new service booking request has arrived in your area .";
                 string mailTitle = "Helperland Service";
-                string fromEmail = "ravipatelphoto@gmail.com";
-                string fromEmailPassword = "Mravi5523@.@";
+                string fromEmail = "";
+                string fromEmailPassword = "";
 
                 var AvailableProvider = _helperlandContext.Users.Where(x => x.ZipCode == acceptReq.ZipCode && x.UserId!=logedUserid).ToList();
                 if (AvailableProvider != null)

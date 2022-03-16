@@ -289,7 +289,7 @@ async function getlon_len(zipcode) {
     const response = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=india,' + zipcode);
     const data = await response.json();
     const { lat, lon } = data[0];
-    map.flyTo([lat, lon], 15);
+    map.setView([lat, lon], 15);
     L.marker([lat, lon]).addTo(map);
 }
 

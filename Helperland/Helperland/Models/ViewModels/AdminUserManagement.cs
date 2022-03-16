@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Helperland.Models.ViewModels
 {
-    public class AdminDashboard
+    public class AdminUserManagement
     {
         public int UserId { get; set; }
 
