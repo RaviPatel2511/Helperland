@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="modal fade" id="displaydataModal" role="dialog">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Service Details</h4>
@@ -142,44 +142,111 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <label class='field-heading'>Service Address</label>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="field-title">Street name</label>
-                                                    <input class="form-control" id="EditStreetName" type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="field-title">House number</label>
-                                                    <input class="form-control" id="EditHouseNumber" type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="field-title">Pin Code</label>
-                                                    <input class="form-control" id="EditPincode" type="number" />
-                                                    <span id="pinErr" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="field-title">City</label>
-                                                    <input class="form-control" id="EditCity" type="text" />
-                                                    <input class="form-control d-none" id="EditState" type="text" />
-                                                </div>
+                                    <label class='field-heading'>Service Address</label>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="field-title">Street name</label>
+                                                <input class="form-control" id="EditStreetName" type="text" />
                                             </div>
                                         </div>
-                                        <label class='field-heading'>Service Address</label>
-                                        <label class="field-title">Same as Service Address</label>
-                                        <div class="form-group">
-                                            <label class="field-heading">Why do you want to reschedule service request?</label>
-                                            <textarea class="form-control" maxlength="500" rows="3" placeholder="Why do you want to reschedule service request?" id="RescheduleReason"></textarea>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="field-title">House number</label>
+                                                <input class="form-control" id="EditHouseNumber" type="text" />
+                                            </div>
                                         </div>
-                                        <button class="btn" type="button" id="EditAndRescheduleBtn" disabled="disabled">Update</button>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="field-title">Pin Code</label>
+                                                <input class="form-control" id="EditPincode" type="number" />
+                                                <span id="pinErr" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="field-title">City</label>
+                                                <input class="form-control" id="EditCity" type="text" />
+                                                <input class="form-control d-none" id="EditState" type="text" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label class='field-heading'>Service Address</label>
+                                    <label class="field-title">Same as Service Address</label>
+                                    <div class="form-group">
+                                        <label class="field-heading">Why do you want to reschedule service request?</label>
+                                        <textarea class="form-control" maxlength="500" rows="3" placeholder="Why do you want to reschedule service request?" id="RescheduleReason"></textarea>
+                                    </div>
+                                    <button class="btn" type="button" id="EditAndRescheduleBtn" disabled="disabled">Update</button>
                                 </form>
-                                
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="RefundModal" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Refund Amount</h4>
+                                <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+                            </div>
+                            <div class="modal-body">
+                                <div id="RefundErrAlert"></div>
+                               <div class="form-group">
+                                   <table>
+                                       <thead>
+                                           <tr>
+                                               <th>Paid Amount</th>
+                                               <th>Refund Amount</th>
+                                               <th>In Balance Amount</th>
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                           <tr>
+                                               <td id="TotalAmount"></td>
+                                               <td id="RefundAmount"></td>
+                                               <td id="BalanceAmount"></td>
+                                           </tr>
+                                       </tbody>
+                                   </table>
+                               </div>
+                               <form>
+                                   <div class="row">
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label class="field-heading">
+                                                   Amount
+                                               </label>
+                                               <div class="input-group">
+                                                   <input class="form-control" type="number" id="AmountInput" />
+                                                   <select class="form-control" id="RefundMode">
+                                                       <option value="Percentage">Percentage</option>
+                                                       <option value="Fixed">Fixed</option>
+                                                   </select>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <div class="form-group">
+                                               <label class="field-heading">
+                                                   Calculate
+                                               </label>
+                                               <div class="input-group">
+                                                   <button type="button" class="btn" id="RefundCalculater">Calculate</button>
+                                                   <input type="text" class="form-control" id="RefundCalculaterAns" readonly />
+                                               </div>
+                                               <span class="text-danger d-none" id="refundError">Refund should not be greater than actual Amount.</span>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="field-heading">Why you want to refund amount ?</label>
+                                       <textarea id="RefundReason" class="form-control" rows="3" placeholder="Why you want to refund amount ?"></textarea>
+                                   </div>
+                                   <button class="btn" type="button" id="RefundBtn" disabled="disabled">Refund</button>
+                                   <input type="text" class="d-none" id="RefundClickId" />
+                               </form>
                             </div>
                         </div>
                     </div>
@@ -217,8 +284,6 @@
                                 <form>
                                     <input type="radio" name="sortOption" id="ServiceIdAscending" value="ServiceId:Ascending">&nbsp;Service Id : Ascending<br>
                                     <input type="radio" name="sortOption" id="ServiceIdDescending" value="ServiceId:Descending">&nbsp;Service Id : Descending<br>
-                                    <input type="radio" name="sortOption" id="ServiceDateOldest" value="ServiceDate:Oldest">&nbsp;Service Date : Oldest<br>
-                                    <input type="radio" name="sortOption" id="ServiceDateLatest" value="ServiceDate:Latest">&nbsp;Service Date : Latest<br>
                                     <input type="radio" name="sortOption" id="Customer:AtoZ" value="Customer:AtoZ">&nbsp;Customer : A to Z<br>
                                     <input type="radio" name="sortOption" id="Customer:ZtoA" value="Customer:ZtoA">&nbsp;Customer : Z to A<br>
                                     <input type="radio" name="sortOption" id="ServiceProviderAtoZ" value="ServiceProvider:AtoZ">&nbsp;Service Provider : A to Z<br>
@@ -250,13 +315,15 @@
                                     <input class="form-control" type="text" id="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
-                                    <select name="Customer" id="Customer">
-                                        <option value="" disabled selected hidden>Customer</option>
-                                    </select>
+                                    <div>
+                                        <select name="Customer" id="Customer">
+                                            <option value="" hidden disabled selected>Customer</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
                                     <select name="ServiceProvider" id="ServiceProvider">
-                                        <option value="" disabled selected hidden>Service Provider</option>
+                                        <option value="" hidden disabled selected>Service Provider</option>
                                     </select>
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
@@ -269,9 +336,12 @@
                                     </select>
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
-                                    <div class="input-group">
-                                        <input class="form-control" id="from-date" name="date" placeholder="From Date" type="text" />
+                                    <div>
+                                        <div class="input-group">
+                                            <input class="form-control" id="from-date" name="date" placeholder="From Date" type="text" />
+                                        </div>
                                     </div>
+                                    
                                 </div>
                                 <div class="col-xl-2 col-md-4 col-6">
                                     <div class="input-group">
@@ -302,6 +372,7 @@
                                         <th>Status</th>
                                         <th>Actions</th>
                                         <th class="d-none">Email</th>
+                                        <th class="d-none">Pincode</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ServiceRequestTblData">
@@ -315,12 +386,13 @@
         </div>
         <!-- /#page-content-wrapper -->
     </section>
-    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
     <script src="~/js/admin_ServiceRequest.js"></script>
 </body>
 

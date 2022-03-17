@@ -335,6 +335,54 @@ namespace Helperland.Controllers
             return Json(custDashServiceSummary);
         }
 
+        [HttpGet]
+        public ActionResult GetRefundData(int RefundServiceId, AdminRefund adminRefund)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ServiceRequest serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == RefundServiceId).FirstOrDefault();
+                adminRefund.TotalAmount = serviceRequest.TotalCost;
+                if (serviceRequest.RefundedAmount == null)
+                {
+                    adminRefund.RefundAmount = 0;
+                }
+                else
+                {
+                    adminRefund.RefundAmount = serviceRequest.RefundedAmount;
+                }
+                adminRefund.BalanceAmount = adminRefund.TotalAmount - adminRefund.RefundAmount;
+                return Json(adminRefund);
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public IActionResult RefundPayment(AdminRefund adminRefund)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                ServiceRequest serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == adminRefund.Id).FirstOrDefault();
+                if(adminRefund.RefundAmount > serviceRequest.TotalCost)
+                {
+                    return Json("Refund is Greater than Actual Ammount");
+                }
+                else if(serviceRequest.RefundedAmount != null)
+                {
+                    return Json("Already Refunded");
+                }
+                {
+                    serviceRequest.RefundedAmount = adminRefund.RefundAmount;
+                    serviceRequest.Comments = adminRefund.Comment;
+                    serviceRequest.ModifiedBy = logedUserid;
+                    serviceRequest.ModifiedDate = DateTime.Now;
+                    _helperlandContext.ServiceRequests.Update(serviceRequest);
+                    _helperlandContext.SaveChanges();
+                }
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
         public IActionResult UserManagement()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)

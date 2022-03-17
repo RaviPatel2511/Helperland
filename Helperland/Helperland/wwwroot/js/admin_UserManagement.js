@@ -1,6 +1,3 @@
-
-
-
 const mobileNavIcon = document.querySelector('.mobileNavIcon');
 const sidebar_wrapper = document.querySelector('#sidebar-wrapper');
 const closebtn = document.querySelector('.closebtn');
@@ -19,9 +16,6 @@ window.onclick = function(event) {
         closebtn.classList.remove('show');
   }
 }
-
-
-
 
 var spanSorting = '<span class="arrow-hack sort">&nbsp;&nbsp;&nbsp;</span>',
     spanAsc = '<span class="arrow-hack asc">&nbsp;&nbsp;&nbsp;</span>',
@@ -96,27 +90,52 @@ function getData() {
                     var Searchphone = $("#phone").val();
                     var Searchzip = $("#zipcode").val();
                     var Searchemail = $("#email").val();
-                    //var Searchemail = $("#email").val();
-                    //var Searchemail = $("#email").val();
+                    var fromDate = $("#from-date").val();
+                    var toDate = $("#to-date").val();
                     if (SearchByName != null) {
                         tbl.columns(0).search(SearchByName);
-                        //console.log("name");
+                    } else {
+                        tbl.columns(0).search("");
                     }
                     if (SearchuserRole != null) {
                         tbl.columns(3).search(SearchuserRole);
-                        //console.log("role");
+                    } else {
+                        tbl.columns(3).search("");
                     }
                     if (Searchphone != '') {
                         tbl.columns(4).search(Searchphone);
-                        //console.log("phone");
+                    } else {
+                        tbl.columns(4).search("");
                     }
                     if (Searchzip != '') {
                         tbl.columns(5).search(Searchzip);
-                        //console.log("zip");
+                    } else {
+                        tbl.columns(5).search("");
                     }
                     if (Searchemail != '') {
                         tbl.columns(8).search(Searchemail);
-                        //console.log("email");
+                    } else {
+                        tbl.columns(8).search("");
+                    }
+                    if (fromDate != '' && toDate != '') {
+                        $.fn.dataTable.ext.search.push(
+                            function (settings, data, dataIndex) {
+                                var min = new Date($("#from-date").val().split("-")[1] + "-" + $("#from-date").val().split("-")[0] + "-" + $("#from-date").val().split("-")[2]);
+                                var max = new Date($("#to-date").val().split("-")[1] + "-" + $("#to-date").val().split("-")[0] + "-" + $("#to-date").val().split("-")[2]);
+                                var date = new Date(data[2].split("-")[1] + "-" + data[2].split("-")[0] + "-" + data[2].split("-")[2]);
+                                if (
+                                    (min === null && max === null) ||
+                                    (min === null && date <= max) ||
+                                    (min <= date && max === null) ||
+                                    (min <= date && date <= max)
+                                ) {
+                                    return true;
+                                }
+                                return false;
+                            }
+                        );
+                    } else {
+                        tbl.columns(2).search("");
                     }
                     tbl.draw();
                 });
@@ -125,7 +144,8 @@ function getData() {
                         window.location.reload();
                 });
 
-                $('#userManagementTable tbody').on('click', '.action', function () {
+                    $('#userManagementTable tbody').on('click', '.action', function () {
+                        $(".threeDotsubMenu").hide();
                     $(this).closest('.actionbutton').children('.threeDotsubMenu').toggle();
                 });
 
@@ -235,48 +255,32 @@ function ExcelSheetDown() {
     XLSX.writeFile(file, "UserManagement." + 'xlsx');
 }
 
-//$("td").each(function() {
-//    var tddata = $(this).html();
-//    if(tddata == ""){
-//        $(this).html("No Data");
-//    }
-//    else{
 
-//    }
-//});
+function sort(col, order) {
+	table.order([col, order]).draw();
+}
 
 
-//function sort(col, order) {
-//	table.order([col, order]).draw();
-//}
-
-
-//  $('input[type=radio][name=sortOption]').change(function() {
-//    if (this.value == 'UserNameAtoZ') {
-//        sort(0,"asc");
-//    }
-//    else if (this.value == 'UserNameZtoA') {
-//        sort(0,"desc");
-//    }
-//    else if (this.value == 'PostalCode:Ascending') {
-//        sort(3,"asc");
-//    }
-//    else if (this.value == 'PostalCode:Descending') {
-//        sort(3,"desc");
-//    }
-//    else if (this.value == 'DistanceLowtoHigh') {
-//        sort(5,"asc");
-//    }
-//    else if (this.value == 'DistanceHightoLow') {
-//        sort(5,"desc");
-//    }
-//    else if (this.value == 'UserStatus:Ascending') {
-//        sort(6,"asc");
-//    }
-//    else if (this.value == 'UserStatus:Descending') {
-//        sort(6,"desc");
-//    }
-//  });
+  $('input[type=radio][name=sortOption]').change(function() {
+    if (this.value == 'UserNameAtoZ') {
+        sort(0,"asc");
+    }
+    else if (this.value == 'UserNameZtoA') {
+        sort(0,"desc");
+    }
+    else if (this.value == 'PostalCode:Ascending') {
+        sort(5,"asc");
+    }
+    else if (this.value == 'PostalCode:Descending') {
+        sort(5,"desc");
+    }
+    else if (this.value == 'UserStatus:Ascending') {
+        sort(6,"asc");
+    }
+    else if (this.value == 'UserStatus:Descending') {
+        sort(6,"desc");
+    }
+  });
 
 //// PREVENT FFROM BACK BUTTON AFTER LOGOUT
 //window.history.forward();
@@ -294,7 +298,7 @@ $(document).ready(function () {
 
     var date_input = $('input[name="date"]');
     date_input.datepicker({
-        format: 'mm/dd/yyyy',
+        format: 'dd-mm-yyyy',
         todayHighlight: true,
         autoclose: true,
     });

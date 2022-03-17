@@ -42,60 +42,37 @@ var spanSorting = '<span class="arrow-hack sort">&nbsp;&nbsp;&nbsp;</span>',
 
 $("#serviceRequesttable th").first().click().click();
 
-//$("td").each(function() {
-//    var tddata = $(this).html();
-//    if(tddata == ""){
-//        $(this).html("No Data");
-//    }
-//    else{
-
-//    }
-//});
-
-//function sort(col, order) {
-//	table.order([col, order]).draw();
-//}
+function sort(col, order) {
+	table.order([col, order]).draw();
+}
 
 
-//  $('input[type=radio][name=sortOption]').change(function() {
-//    if (this.value == 'ServiceId:Ascending') {
-//        sort(0,"asc");
-//    }
-//    else if (this.value == 'ServiceId:Descending') {
-//        sort(0,"desc");
-//    }
-//    else if (this.value == 'ServiceDate:Oldest') {
-//        sort(1,"asc");
-//    }
-//    else if (this.value == 'ServiceDate:Latest') {
-//        sort(1,"desc");
-//    }
-//    else if (this.value == 'Customer:AtoZ') {
-//        sort(2,"asc");
-//    }
-//    else if (this.value == 'Customer:ZtoA') {
-//        sort(2,"desc");
-//    }
-//    else if (this.value == 'ServiceProvider:AtoZ') {
-//        sort(3,"asc");
-//    }
-//    else if (this.value == 'ServiceProvider:ZtoA') {
-//        sort(3,"desc");
-//    }
-//    else if (this.value == 'Status:Ascending') {
-//        sort(4,"asc");
-//    }
-//    else if (this.value == 'Status:Descending') {
-//        sort(4,"desc");
-//    }
-//  });
-
-////// PREVENT FFROM BACK BUTTON AFTER LOGOUT
-////window.history.forward();
-////function noBack() {
-////    window.history.forward();
-////}
-
+  $('input[type=radio][name=sortOption]').change(function() {
+    if (this.value == 'ServiceId:Ascending') {
+        sort(0,"asc");
+    }
+    else if (this.value == 'ServiceId:Descending') {
+        sort(0,"desc");
+    }
+    else if (this.value == 'Customer:AtoZ') {
+        sort(2,"asc");
+    }
+    else if (this.value == 'Customer:ZtoA') {
+        sort(2,"desc");
+    }
+    else if (this.value == 'ServiceProvider:AtoZ') {
+        sort(3,"asc");
+    }
+    else if (this.value == 'ServiceProvider:ZtoA') {
+        sort(3,"desc");
+    }
+    else if (this.value == 'Status:Ascending') {
+        sort(5,"asc");
+    }
+    else if (this.value == 'Status:Descending') {
+        sort(5,"desc");
+    }
+  });
 
 
 function getData() {
@@ -111,37 +88,50 @@ function getData() {
             function (response) {
                 setTimeout(function () {
                     var serviceRequesttable = $('#ServiceRequestTblData');
-                    var ServiceProvider = $("#ServiceProvider");
-                    var Customer = $("#Customer");
+                    var CustArr = [];
+                    var ProArr = [];
                     serviceRequesttable.empty();
                     for (var i = 0; i < response.length; i++) {
-                        ServiceProvider.append('<option value="' + response[i].spname + '">' + response[i].spname + '</option>');
-                        Customer.append('<option value="' + response[i].custName + '">' + response[i].custName + '</option>');
                         if (response[i].status == 1)
                         {
-                            serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="new"><span>New</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li><a class="EditAndReschedule">Edit & Reschedule</a></li><li class="mb-0"><a class="cancleBtn">Cancle</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail +'</span></td></tr>');
+                            serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="new"><span>New</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li><a class="EditAndReschedule">Edit & Reschedule</a></li><li class="mb-0"><a class="cancleBtn">Cancle</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail + '</span></td><td class="d-none">' + response[i].pincode + '</td></tr>');
                         }
                         else if (response[i].status == 2)
                         {
-                            serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"><div class="row"><div class="col sp_icon"><Span class="img_circle"><img src="../image/upcoming_service/' + response[i].avtar + '.png" alt="cap"></Span></div><div class="col"><p class="mb-0">' + response[i].spname + '</p><p><div class="Stars" id="rate1" style="--rating: ' + response[i].spRatings + ';"></div>&nbsp;' + response[i].spRatings + '</p></div></div></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="pending"><span>Pending</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li><a class="EditAndReschedule">Edit & Reschedule</a></li><li class="mb-0"><a class="cancleBtn">Cancle</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail +'</span></td></tr>');
+                            serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"><div class="row"><div class="col sp_icon"><Span class="img_circle"><img src="../image/upcoming_service/' + response[i].avtar + '.png" alt="cap"></Span></div><div class="col"><p class="mb-0">' + response[i].spname + '</p><p><div class="Stars" id="rate1" style="--rating: ' + response[i].spRatings + ';"></div>&nbsp;' + response[i].spRatings + '</p></div></div></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="pending"><span>Pending</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li><a class="EditAndReschedule">Edit & Reschedule</a></li><li class="mb-0"><a class="cancleBtn">Cancle</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail + '</span></td><td class="d-none">' + response[i].pincode + '</td></tr>');
                         }
                         else if (response[i].status == 3)
                         {
                             if (response[i].providerId == null)
                             {
-                                serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="Cancel"><span>Cancelled</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li class="mb-0"><a>Refund</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail +'</span></td></tr>');
+                                serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="Cancel"><span>Cancelled</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li class="mb-0"><a class="refundbtn">Refund</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail + '</span></td><td class="d-none">' + response[i].pincode + '</td></tr>');
                             }
                             else
                             {
-                                serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"><div class="row"><div class="col sp_icon"><Span class="img_circle"><img src="../image/upcoming_service/' + response[i].avtar + '.png" alt="cap"></Span></div><div class="col"><p class="mb-0">' + response[i].spname + '</p><p><div class="Stars" id="rate1" style="--rating: ' + response[i].spRatings + ';"></div>&nbsp;' + response[i].spRatings + '</p></div></div></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="Cancel"><span>Cancelled</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li class="mb-0"><a>Refund</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail +'</span></td></tr>');
+                                serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"><div class="row"><div class="col sp_icon"><Span class="img_circle"><img src="../image/upcoming_service/' + response[i].avtar + '.png" alt="cap"></Span></div><div class="col"><p class="mb-0">' + response[i].spname + '</p><p><div class="Stars" id="rate1" style="--rating: ' + response[i].spRatings + ';"></div>&nbsp;' + response[i].spRatings + '</p></div></div></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="Cancel"><span>Cancelled</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li class="mb-0"><a class="refundbtn">Refund</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail + '</span></td><td class="d-none">' + response[i].pincode + '</td></tr>');
                             }
                         }
                         else if (response[i].status == 4)
                         {
-                            serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"><div class="row"><div class="col sp_icon"><Span class="img_circle"><img src="../image/upcoming_service/' + response[i].avtar + '.png" alt="cap"></Span></div><div class="col"><p class="mb-0">' + response[i].spname + '</p><p><div class="Stars" id="rate1" style="--rating: ' + response[i].spRatings + ';"></div>&nbsp;' + response[i].spRatings + '</p></div></div></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="Completed"><span>Completed</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li class="mb-0"><a>Refund</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail +'</span></td></tr>');
+                            serviceRequesttable.append('<tr><td class="serviceSummary">' + response[i].serviceId + '</td><td class="serviceSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + '-' + response[i].serviceEndTime + '</span></td><td class="serviceSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ',' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="serviceSummary"><div class="row"><div class="col sp_icon"><Span class="img_circle"><img src="../image/upcoming_service/' + response[i].avtar + '.png" alt="cap"></Span></div><div class="col"><p class="mb-0">' + response[i].spname + '</p><p><div class="Stars" id="rate1" style="--rating: ' + response[i].spRatings + ';"></div>&nbsp;' + response[i].spRatings + '</p></div></div></td><td class="serviceSummary">' + response[i].payment + ' Rs.</td><td class="Completed"><span>Completed</span></td><td class="actionbutton"><div class="action"> <span></span> <span></span> <span></span> </div><div class="threeDotsubMenu"><ul><li class="mb-0"><a class="refundbtn">Refund</a></li></ul></div></td><td><span class="d-none">' + response[i].custEmail + ',' + response[i].proEmail + '</span></td><td class="d-none">' + response[i].pincode + '</td></tr>');
                         }
+
+                        if (response[i].spname != null) {
+                            ProArr.push(response[i].spname);
+                        }
+                        CustArr.push(response[i].custName);
                     }
-                    console.log(response);     
+
+                    var DistinctCust = [...new Set(CustArr)];
+                    var DistinctPro = [...new Set(ProArr)];
+
+                    for (var i in DistinctCust) {
+                        $("#Customer").append('<option value="' + DistinctCust[i] + '">' + DistinctCust[i]+'</option>');
+                    }
+                    for (var i in DistinctPro) {
+                        $("#ServiceProvider").append('<option value="' + DistinctPro[i] + '">' + DistinctPro[i] + '</option>');
+                    }
+
                     table = $('#serviceRequesttable').DataTable({
                         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
 
@@ -169,6 +159,7 @@ function getData() {
 
                     
                     $('#serviceRequesttable tbody').on('click', '.action', function () {
+                            $(".threeDotsubMenu").hide();
                             $(this).closest('.actionbutton').children('.threeDotsubMenu').toggle();
                     });
 
@@ -192,6 +183,19 @@ function getData() {
                         $("#serviceIdForReschedule").val(ClickedserviceId);
                         GetRescheduleRequest(ClickedserviceId);
                     });
+
+                    $('#serviceRequesttable tbody').on('click', '.refundbtn', function () {
+                        $('#RefundBtn').prop('disabled', true);
+                        $('#RefundBtn').css('cursor', 'not-allowed');
+                        $("#RefundErrAlert").empty();
+                        $("#AmountInput").val('');
+                        $("#RefundCalculaterAns").val('');
+                        $("#RefundReason").val('');
+                        $("#RefundModal").modal('show');
+                        var ClickedRefundId = $(this).closest('tr').children(':first-child').text();
+                        $("#RefundClickId").val(ClickedRefundId);
+                        GetRefundData(ClickedRefundId);
+                    });
                    
 
                     var tbl = $('#serviceRequesttable').DataTable();
@@ -206,25 +210,58 @@ function getData() {
                         var toDate = $("#to-date").val();
                         if (Customer != null) {
                             tbl.columns(2).search(Customer);
-                            console.log(Customer);
+                        } else {
+                            tbl.columns(2).search("");
                         }
                         if (ServiceProvider != null) {
                             tbl.columns(3).search(ServiceProvider);
+                        } else {
+                            tbl.columns(3).search("");
                         }
                         if (status != null) {
                             tbl.columns(5).search(status);
+                        } else {
+                            tbl.columns(5).search("");
                         }
                         if (serviceID != '') {
                             tbl.columns(0).search(serviceID);
+                        } else {
+                            tbl.columns(0).search("");
                         }
                         if (postalCode != '') {
-                            tbl.columns(2).search(postalCode);
+                            tbl.columns(8).search(postalCode);
+                        } else {
+                            tbl.columns(8).search("");
                         }
                         if (email != '') {
                             tbl.columns(7).search(email);
+                        } else {
+                            tbl.columns(7).search("");
                         }
                         if (fromDate != '' && toDate != '') {
-                            tbl.columns(1).search();
+                            $.fn.dataTable.ext.search.push(
+                                function (settings, data, dataIndex) {
+                                    var min = new Date($("#from-date").val().split("-")[1] + "-" + $("#from-date").val().split("-")[0] + "-" + $("#from-date").val().split("-")[2]);
+                                    var max = new Date($("#to-date").val().split("-")[1] + "-" + $("#to-date").val().split("-")[0] + "-" + $("#to-date").val().split("-")[2]);
+                                    var date = new Date(data[1].split("-")[1] + "-" + data[1].split("-")[0] + "-" + data[1].split("-")[2]);
+                                    console.log(min);
+                                    console.log(max);
+                                    console.log(date);
+                                    if (
+                                        (min === null && max === null) ||
+                                        (min === null && date <= max) ||
+                                        (min <= date && max === null) ||
+                                        (min <= date && date <= max)
+                                    ) {
+                                        return true;
+                                        console.log("ok");
+                                    }
+                                    return false;
+                                        console.log("no");
+                                }
+                            );
+                        } else {
+                            tbl.columns(1).search("");
                         }
                         tbl.draw();
                     });
@@ -280,6 +317,99 @@ function GetRescheduleRequest(x) {
             }
     });
 }
+
+
+function GetRefundData(x) {
+    $.ajax({
+        type: 'GET',
+        cache: false,
+        data: { 'RefundServiceId': x },
+        url: '/Admin/GetRefundData',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success:
+            function (response) {
+
+                $("#TotalAmount").text(response.totalAmount + " Rs.");
+                $("#RefundAmount").text(response.refundAmount + " Rs.");
+                $("#BalanceAmount").text(response.balanceAmount + " Rs.");
+                if (response.refundAmount == 0) {
+                    $('#RefundBtn').removeClass('d-none');
+                } else {
+                    $("#RefundErrAlert").empty();
+                    $("#RefundErrAlert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">User has been already Refunded !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    $('#RefundBtn').addClass('d-none');
+                }
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
+}
+
+$("#RefundCalculater").on('click', () => {
+    if ($("#RefundMode").val() == "Percentage") {
+        var RefundAmount = ($("#AmountInput").val() * $("#TotalAmount").text().split(' ')[0]) / 100;
+        $("#RefundCalculaterAns").val(RefundAmount);
+    } else {
+        $("#RefundCalculaterAns").val($("#AmountInput").val());
+    }
+});
+
+
+$("#RefundReason").keyup(() => {
+    if ($("#RefundReason").val() == '' || !$("#refundError").hasClass('d-none')) {
+        $('#RefundBtn').prop('disabled', true);
+        $('#RefundBtn').css('cursor', 'not-allowed');
+    } else {
+        $('#RefundBtn').prop('disabled', false);
+        $('#RefundBtn').css('cursor', 'pointer');
+    }
+});
+
+$("#RefundBtn").on('click', () => {
+    if ($("#RefundReason").val() == '' || !$("#refundError").hasClass('d-none')) {
+        $("#RefundErrAlert").empty();
+        $("#RefundErrAlert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please Fill All Detail Properly !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+    } else {
+        var obj = {};
+        obj.id = $("#RefundClickId").val();
+        obj.refundAmount = $("#RefundCalculaterAns").val();
+        obj.comment = $("#RefundReason").val();
+        $.ajax({
+            type: 'Post',
+            cache: false,
+            data: obj,
+            url: '/Admin/RefundPayment',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success:
+                function (response) {
+                    if (response == "Refund is Greater than Actual Ammount") {
+                        $("#RefundErrAlert").empty();
+                        $("#RefundErrAlert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">Refund Amount must be less than paid amount !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    }
+                    else if (response == "Already Refunded")
+                    {
+                        $("#RefundErrAlert").empty();
+                        $("#RefundErrAlert").append('<div class="alert alert-danger alert-dismissible fade show" role="alert">User has been already Refunded !<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    }
+                    else {
+                        $("#RefundModal").modal("hide");
+                        $('#SuccessActionModal').modal({
+                            backdrop: 'static', // to prevent closing with click
+                            keyboard: false  // to prevent closing with 
+                        });
+                        $("#SuccessActionModal").modal("show");
+                    }
+                },
+            error:
+                function (err) {
+                    console.error(err);
+                }
+        });
+
+    }
+});
 
 $("#EditAndRescheduleBtn").on('click', () => {
     var obj = {};
