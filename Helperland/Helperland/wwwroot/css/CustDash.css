@@ -392,9 +392,16 @@ table tr td:nth-child(5){text-align: center;}
   color: #646464;
   height: 40px;
 }
-.dashboard table{
-  border: 1px solid #e1e1e1;
-  margin-bottom: 0px !important;
+
+#ServiceSchedule table tr td:nth-child(5){
+    text-align: left;
+}
+.fc-day-number{
+    text-align:right!important;
+}
+.dashboard table {
+    border: 1px solid #e1e1e1;
+    margin-bottom: 0px !important;
 }
 .dashboard table tr td {
   /* text-align: left; */
@@ -523,9 +530,13 @@ border: none;
 border-radius: 30px;
 cursor: pointer;
 }
-.rate.disable{
-    opacity:0.6;
-    cursor:not-allowed;
+.rate:hover {
+    color: white;
+    background-color: #096172;
+}
+.rate.disable {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 thead tr {
   text-align: center;
@@ -643,6 +654,10 @@ span.arrow-hack {
     color: #fff !important;
     border-radius: 50px;
 }
+#Dashboard_table tbody tr td .rescheduleBtn:hover, #displaydataModal .rescheduleBtn:hover, #newAddressSection .AddnewBtn:hover {
+    color: white;
+    background-color: #096172;
+}
 #AddNewServiceBtn a {
     color: white;
     padding: 10px 10px;
@@ -661,6 +676,9 @@ span.arrow-hack {
     color: #fff !important;
     border: none !important;
     border-radius: 50px;
+}
+#Dashboard_table .cancelbtn:hover, #displaydataModal .cancelbtn:hover {
+    background-color: #cc5656;
 }
 #Dashboard_table thead tr th:nth-child(3){
     text-align:initial;
@@ -840,6 +858,113 @@ text-align: center;
     max-width: 400px;
 }
 
+/*//////////////////block customer///////////*/
+#FavProTbl {
+    border: none !important;
+}
+
+#FavProTbl tbody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#FavProTbl tbody tr {
+    margin: 15px;
+    border: 1px solid #E1E1E1;
+}
+
+#FavProTbl tbody td {
+    display: flex;
+    justify-content: center;
+    min-width: 275px;
+}
+
+.BlockBtn, .UnBlockBtn {
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 50px;
+    padding: 5px 10px;
+    margin: 5px 10px;
+}
+
+.BlockBtn:hover, .UnBlockBtn:hover {
+    background-color: #cc5656;
+}
+
+.FavBtn, .UnFavBtn {
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 50px;
+    padding: 5px 10px;
+    margin: 5px 10px;
+}
+
+.FavBtn:hover, .UnFavBtn:hover {
+    color: white;
+    background-color: #096172;
+}
+
+#FavProTbl tbody td img {
+    border: 1px solid #c8c8c8;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    height:80px;
+}
+
+.ProName {
+    font-size: 18px;
+    color: #646464;
+    font-weight: bold;
+}
+#SuccessModal h3 {
+    color: darkslategrey;
+}
+
+#SuccessModal a{
+    width: auto;
+    padding: 11px 34px;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    margin: 10px 0;
+    border-radius: 50px;
+}
+
+.serviceSummary:hover,.serDetails:hover {
+    color: black;
+    cursor: pointer;
+    font-weight: 500;
+}
+/*//////////////  Service Schedule//////////////////*/
+#ServiceSchedule #calendar {
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 0 10px;
+}
+
+.fc-title {
+    color: white;
+}
+
+.fc-content {
+    cursor: pointer;
+}
+
+#calendar .fc-toolbar h2 {
+    color: #646464;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.fc-content-skeleton table thead tr td.fc-day-number {
+    text-align: right;
+}
+
 /*//////////////  MY SETTING  TABLE//////////////////*/
 
 /*MySetting CSS*/
@@ -891,7 +1016,6 @@ text-align: center;
     padding: 15px 0;
     margin-bottom: 0;
     white-space: nowrap;
-    transition:all 0.3s;
 }
 #MySetting .nav-pills li a:hover {
     color: #1d7a8c;
@@ -1022,237 +1146,236 @@ footer {
     color: white;
     /* height: 195px; */
 }
-  footer .container a {
-    text-decoration: none;
-    color: #F1F1F1;
-    font-size: 14px;
-  }
-  .fmenu{
-    padding-top: 20px;
-    max-width: 1350px;
-  }
-  .hr-line{
-    max-width: 1320px;
-    margin: 0 auto;
-    margin-top: 10px;
-  }
-  .hr-line hr{
-    border-bottom: 1px solid grey; 
-    width: 100%;
-  }
-  .fimg1 {
-    width: 9px;
-    height: 18px;
-    margin-right: 20px;
-  }
-  .fimg2 {
-    width: 20px;
-    height: 20px;
-  }
+footer .container a {
+text-decoration: none;
+color: #F1F1F1;
+font-size: 14px;
+}
+.fmenu{
+padding-top: 20px;
+max-width: 1350px;
+}
+.hr-line{
+max-width: 1320px;
+margin: 0 auto;
+margin-top: 10px;
+}
+.hr-line hr{
+border-bottom: 1px solid grey; 
+width: 100%;
+}
+.fimg1 {
+width: 9px;
+height: 18px;
+margin-right: 20px;
+}
+.fimg2 {
+width: 20px;
+height: 20px;
+}
 
-  footer p{
-    margin-bottom: 0px !important;
-  }
+footer p{
+margin-bottom: 0px !important;
+}
   
-  .right{
-    color: #737381;
-    font-size: 14px;
-    padding-top: 15px;
-    padding-bottom: 20px !important;
-  }
+.right{
+color: #737381;
+font-size: 14px;
+padding-top: 15px;
+padding-bottom: 20px !important;
+}
 
 .fmenulink a:hover {
     color: tomato;
     transition: all .5s;
 }
 
-  @media screen and (max-width: 996px) {
-    .fmenu{
-      height: auto;
-    }
-  }
-  @media screen and (max-width: 346px) {
-    .fmenu{
-      height: auto;
-    }
-  }
-    @media screen and (max-width: 1415px) {
-    .fimage {
-        margin-top: 61px;
-        float: none;
-        text-align: center;
-        padding-bottom: 20px;
-    }
-   }
+@media screen and (max-width: 996px) {
+.fmenu{
+    height: auto;
+}
+}
+@media screen and (max-width: 346px) {
+.fmenu{
+    height: auto;
+}
+}
+@media screen and (max-width: 1415px) {
+.fimage {
+    margin-top: 61px;
+    float: none;
+    text-align: center;
+    padding-bottom: 20px;
+}
+}
     
-    @media screen and (max-width: 907px) {
+@media screen and (max-width: 907px) {
      
-      .fmenulink{
-        flex-direction: column;
-      }
+    .fmenulink{
+    flex-direction: column;
     }
-    @media screen and (max-width: 460px) {
-      .fmenu{
-        flex-direction: column;
-
-      }
-      .fmenulink{
-        margin: 13px 0px;
-      }
-      .fmenulink a{
-        margin: 3px 0px;
-      }
-      .flogo{
-        margin:10px 0px 0px 0px;
-      }
-    }
-    @media screen and (max-width: 344px) {
-      .submitbtn {
-        margin-top: 10px;
-      }
-    }
-    @media screen and (max-width: 523px) {
-      footer{
-        height: auto;
-        /* width: fit-content; */
-      }
-    #displaydataModal .modal-body {
-        flex-direction:column-reverse;
-    }
+}
+@media screen and (max-width: 460px) {
+    .fmenu{
+    flex-direction: column;
 
     }
-    @media screen and (max-width: 576px) {
-      .iconcolumn{
-          margin-top:30px ;
-      }
-      #rescheduleModal .modal-dialog, #cancleModal .modal-dialog{
-          margin:1.75rem auto;
-      }
-      #pills-tab-setting .tab-img{
-          display:block;
-      }
-      #pills-tab-setting .tab-title{
-            display:none;
-      }
+    .fmenulink{
+    margin: 13px 0px;
     }
-    @media screen and (max-width: 1087px) {
-      .navbar{
-        display: none;
-      }
-        .notification_item {
-            display: block;
-        }
+    .fmenulink a{
+    margin: 3px 0px;
+    }
+    .flogo{
+    margin:10px 0px 0px 0px;
+    }
+}
+@media screen and (max-width: 344px) {
+    .submitbtn {
+    margin-top: 10px;
+    }
+}
+@media screen and (max-width: 523px) {
+    footer{
+    height: auto;
+    /* width: fit-content; */
+    }
+#displaydataModal .modal-body {
+    flex-direction:column-reverse;
+}
 
-        .mobileNotification, .mobileNotification .notification_item {
-            display: block;
-        }
-    
-        #sidebar-wrapper {
-            display: none;
-        }
-        
-      .mobileNav{
+}
+@media screen and (max-width: 576px) {
+    .iconcolumn{
+        margin-top:30px ;
+    }
+    #rescheduleModal .modal-dialog, #cancleModal .modal-dialog{
+        margin:1.75rem auto;
+    }
+    #pills-tab-setting .tab-img{
+        display:block;
+    }
+    #pills-tab-setting .tab-title{
+        display:none;
+    }
+}
+@media screen and (max-width: 1087px) {
+    .navbar{
+    display: none;
+    }
+    .notification_item {
         display: block;
-      }
+    }
+
+    .mobileNotification, .mobileNotification .notification_item {
+        display: block;
+    }
+    
+    #sidebar-wrapper {
+        display: none;
+    }
+        
+    .mobileNav{
+    display: block;
+    }
 
       
+}
+@media screen and (max-width:508px){
+    #AddNewServiceBtn a{
+        font-size: 22px;
+        color: #646464;
+        font-weight: bold;
+        background:unset;
+        text-align:right;
     }
-    @media screen and (max-width:508px){
-        #AddNewServiceBtn a{
-            font-size: 22px;
-            color: #646464;
-            font-weight: bold;
-            background:unset;
-            text-align:right;
-        }
-        #AddNewServiceBtn{
-            text-align:right;
-        }
+    #AddNewServiceBtn{
+        text-align:right;
     }
-    @media screen and (max-width:700px){
-        #page-content-wrapper {
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-        #ServiceHistoryTblData tr td:nth-child(3) {
+}
+@media screen and (max-width:700px){
+    #page-content-wrapper {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    #ServiceHistoryTblData tr td:nth-child(3) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .table-bottom {
+        flex-wrap: wrap;
+    }
+
+    #page-content-wrapper .table-bottom-inner {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    #page-content-wrapper .dataTables_paginate {
+        width: 100%;
+    }
+    .mobile_sorting {
+        display: block;
+    }
+
+    .date {
+        margin: 0px 5px;
+    }
+    .dataTable {
+        border: unset;
+    }
+
+        .dataTable tr {
             display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .table-bottom {
             flex-wrap: wrap;
+            border: 1px solid #e1e1e1;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+            -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+            -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
         }
 
-        #page-content-wrapper .table-bottom-inner {
-            justify-content: space-between;
-            width: 100%;
-        }
+    table.dataTable.no-footer {
+        width: 100% !important;
+    }
 
-        #page-content-wrapper .dataTables_paginate {
-            width: 100%;
-        }
-        .mobile_sorting {
-            display: block;
-        }
+    .dataTable tr td {
+        width: 100%;
+        background: unset !important;
+        margin-top: 0px !important;
+        height: unset;
+    }
 
-        .date {
-            margin: 0px 5px;
-        }
-        .dataTable {
-            border: unset;
-        }
+    #service_history_table tr td:nth-child(1) {
+        text-align: center;
+    }
 
-            .dataTable tr {
-                display: flex;
-                flex-wrap: wrap;
-                border: 1px solid #e1e1e1;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                background: #f9f9f9;
-                box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-                -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-                -moz-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-            }
+    #service_history_table tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(3) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        table.dataTable.no-footer {
-            width: 100% !important;
-        }
+    .dataTable tr th {
+        display: none;
+    }
+    /*dashboard css*/
+    #Dashboard_table thead, #ServiceHistory thead {
+        display: none;
+        background: unset;
+    }
 
-        .dataTable tr td {
-            width: 100%;
-            background: unset !important;
-            margin-top: 0px !important;
-            height: unset;
-        }
+    #Dashboard_table, #service_history_table {
+        border: none;
+    }
 
-        #service_history_table tr td:nth-child(1) {
+        #Dashboard_table tbody tr td {
             text-align: center;
-        }
-
-        #service_history_table tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(2), #Dashboard_table tbody tr td:nth-child(3) {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dataTable tr th {
-            display: none;
-        }
-        /*dashboard css*/
-        #Dashboard_table thead, #ServiceHistory thead {
-            display: none;
             background: unset;
         }
-
-        #Dashboard_table, #service_history_table {
-            border: none;
-        }
-
-            #Dashboard_table tbody tr td {
-                text-align: center;
-                background: unset;
-            }
-    }
-    
 }
+    
 

@@ -27,6 +27,7 @@ namespace Helperland.Models.ViewModels
         [Required]
         [StringLength(500, MinimumLength = 10,ErrorMessage ="Message should contain have 10 to 500 character")]
         public string Message { get; set; }
+        [Required(ErrorMessage = "Upload Image")]
         public IFormFile UploadFileName { get; set; }
         public string UploadFilePath{ get; set; }
         public DateTime? CreatedOn { get; set; }

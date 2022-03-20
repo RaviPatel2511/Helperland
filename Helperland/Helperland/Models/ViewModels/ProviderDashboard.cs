@@ -22,5 +22,9 @@ namespace Helperland.Models.ViewModels
         public string comment { get; set; }
         public bool? hasPet { get; set; }
         public int? ConflictServiceId { get; set; }
+
+        public string Color { get; set; }
+
+        public int? Status { get; set; }
     }
 }

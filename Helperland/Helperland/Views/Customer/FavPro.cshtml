@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_CustDashLayout.cshtml";
+}
+
+<div id="FavPro">
+    <div class="modal fade" id="SuccessModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h3 id="successText" class="mb-4"></h3>
+                    <a asp-controller="Customer" asp-action="FavPro">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table id="FavProTbl">
+                <thead class="d-none">
+                    <tr>
+                        <th class="d-none">id</th>
+                        <th class="d-none">icon</th>
+                        <th class="d-none">name</th>
+                        <th class="d-none">rating</th>
+                        <th class="d-none">cleaning</th>
+                        <th class="d-none">button</th>
+                    </tr>
+                </thead>
+                <tbody id="FavProTblData">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script src="~/js/CFavouritePro.js"></script>
+}

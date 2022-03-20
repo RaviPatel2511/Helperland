@@ -165,6 +165,7 @@ function ScheduleService() {
                 setTimeout(function () {
                     if (response.value == "true") {
                         getAddressOfUser();
+                        getFavPro();
                         thirdTab();
                         if (!$('#DateErrorAllert').hasClass('d-none')) {
                             $('#DateErrorAllert').addClass('d-none');
@@ -206,6 +207,35 @@ function getAddressOfUser() {
                     }
                 }
 
+            },
+        error:
+            function (err) {
+                console.error(err);
+            }
+    });
+}
+
+function getFavPro() {
+    console.log("ok");
+    $.ajax({
+        type: 'GET',
+        cache: false,
+        url: '/Customer/GetFavPro',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success:
+            function (response) {
+                var favProvider = $('.favProvider');
+                favProvider.empty();
+                console.log(response);
+                if (response.length > 0) {
+                    $("#ChooseFavProvider").removeClass('d-none');
+                    for (var i = 0; i < response.length; i++) {
+                            favProvider.append('<div><label><input class="d-none" type="radio" name="FavProRadio" value="' + response[i].proId + '"/><img src="../image/Upcoming_Service/' + response[i].avtar + '.png" /><p class="mb-2">' + response[i].name + '</p><span class="btn btn-outline-dark" type="button">Select</span></label></div>')
+                            console.log("v");
+                    }
+                } else {
+                    $("#ChooseFavProvider").addClass('d-none');
+                }
             },
         error:
             function (err) {
@@ -297,6 +327,7 @@ function CompleteBooking() {
     NewBookingRequest.laundary = $('#laundary').is(":checked");
     NewBookingRequest.window = $('#window').is(":checked");
     NewBookingRequest.SelectedAddressId = $(".address-picker input[name='addressRadio']:checked").val();
+    NewBookingRequest.FavProId = $(".favProvider input[name='FavProRadio']:checked").val();
 
     if (NewBookingRequest.cabinet) {
         NewBookingRequest.ExtraServiceHours += 0.5;

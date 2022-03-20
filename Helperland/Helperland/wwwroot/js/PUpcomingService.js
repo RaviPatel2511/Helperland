@@ -222,6 +222,7 @@ function GetServiceSummary(x) {
                 $("#SerPayment").html(response.payment + " Rs.");
                 $("#SerAddress").html(response.addressLine1 + " " + response.addressLine2 + " , " + response.city + " " + response.postalCode);
                 $("#SerMobile").text(response.mobile);
+                $("#SerCustName").text(response.customerName);
                 $("#SerEmail").text(response.email);
                 $("#SerComment").text(response.comments);
                 $("#SerPets").empty();

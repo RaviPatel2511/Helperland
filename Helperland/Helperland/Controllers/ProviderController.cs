@@ -278,7 +278,7 @@ namespace Helperland.Controllers
                 var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ZipCode == user1.ZipCode && x.Status == null && x.ServiceProviderId  == null).ToList();
                 foreach (var data in Alldata)
                 {
-                    var isBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == data.UserId && x.IsBlocked == true).FirstOrDefault();
+                    var isBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == data.UserId && x.IsBlocked == true || x.UserId == data.UserId && x.TargetUserId == logedUserid && x.IsBlocked == true).FirstOrDefault();
                     if (isBlocked == null)
                     {
                         ProviderDashboard NewServiceData = new ProviderDashboard();
@@ -497,6 +497,55 @@ namespace Helperland.Controllers
             return Json("Successfully");
         }
 
+        public IActionResult ServiceSchedule()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Service Schedule";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 2;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+        public ActionResult GetServiceScheduleData()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                List<ProviderDashboard> ServiceSchedule = new List<ProviderDashboard>();
+                var Alldata = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == logedUserid && x.Status != 1).ToList();
+                if (Alldata != null)
+                {
+                    foreach (var data in Alldata)
+                    {
+                        ProviderDashboard ServiceScheduleData = new ProviderDashboard();
+                        ServiceScheduleData.ServiceId = data.ServiceRequestId;
+                        ServiceScheduleData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
+                        ServiceScheduleData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
+                        ServiceScheduleData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
+                        if(data.Status == null)
+                        {
+                            ServiceScheduleData.Color = "#1d7a8c";
+                        }
+                        else
+                        {
+                            ServiceScheduleData.Color = "#86858b";
+                        }
+                        ServiceSchedule.Add(ServiceScheduleData);
+                    }
+                    return new JsonResult(ServiceSchedule);
+                }
+                
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
         public IActionResult ServiceHistory()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -560,6 +609,9 @@ namespace Helperland.Controllers
                 custDashServiceSummary.Payment = reqService.TotalCost;
                 custDashServiceSummary.Comments = reqService.Comments;
                 custDashServiceSummary.HavePets = reqService.HasPets;
+
+                User user = _helperlandContext.Users.Where(x => x.UserId == reqService.UserId).FirstOrDefault();
+                custDashServiceSummary.CustomerName = user.FirstName + " " + user.LastName;
 
                 ServiceRequestAddress serviceRequestAddress = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == ReqServiceId).FirstOrDefault();
                 custDashServiceSummary.AddressLine1 = serviceRequestAddress.AddressLine1;

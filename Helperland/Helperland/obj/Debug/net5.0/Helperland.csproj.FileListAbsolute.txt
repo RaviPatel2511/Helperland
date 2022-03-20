@@ -97,3 +97,6 @@ C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Vi
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\ServiceHistory.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Admin\ServiceRequest.cshtml.g.cs
 C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Admin\UserManagement.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Provider\ServiceSchedule.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\DashServiceSchedule.cshtml.g.cs
+C:\Users\RAVI\Desktop\Helperland\Helperland\Helperland\obj\Debug\net5.0\Razor\Views\Customer\FavPro.cshtml.g.cs

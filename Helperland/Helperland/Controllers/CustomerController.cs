@@ -108,7 +108,39 @@ namespace Helperland.Controllers
 
                 userAddressDetails.Add(RequestAddress);
             }
+            TempData.Keep("EnteredZip");
             return new JsonResult(userAddressDetails);
+        }
+
+        [HttpGet]
+
+        public ActionResult GetFavPro()
+        {
+            int? logedUserid = HttpContext.Session.GetInt32("userid");
+            List<FavPro> FavProList = new List<FavPro>();
+            var EnteredzipCode = Convert.ToString(TempData["EnteredZip"]);
+            var FavProData = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.IsFavorite == true && x.IsBlocked == false).ToList();
+            foreach(var data in FavProData)
+            {
+                FavPro favPro = new FavPro();
+                User user = _helperlandContext.Users.Where(x => x.UserId == data.TargetUserId && x.ZipCode == EnteredzipCode).FirstOrDefault();
+                if (user != null)
+                {
+                        favPro.ProId = user.UserId;
+                        favPro.Name = user.FirstName + " " + user.LastName;
+                        if (user.UserProfilePicture != null)
+                        {
+                            favPro.Avtar = user.UserProfilePicture;
+                        }
+                        else
+                        {
+                            favPro.Avtar = "cap";
+                        }
+                    FavProList.Add(favPro);
+                }
+                
+            }
+            return new JsonResult(FavProList);
         }
 
         [HttpPost]
@@ -150,7 +182,7 @@ namespace Helperland.Controllers
                 newRequest.UserId = Convert.ToInt32(logedUserid);
                 newRequest.ServiceId = Convert.ToInt32(logedUserid);
                 newRequest.ServiceStartDate = DateTime.ParseExact(data.ServiceDateTime, "dd/MM/yyyy hh:mm tt", System.Globalization.CultureInfo.InvariantCulture);
-
+                
                 newRequest.ServiceHours = data.ServiceHours;
                 newRequest.ExtraHours = data.ExtraServiceHours;
                 newRequest.ServiceHourlyRate = 10;
@@ -165,6 +197,11 @@ namespace Helperland.Controllers
                 newRequest.PaymentDone = true;
                 newRequest.HasIssue = false;
                 newRequest.ModifiedBy = logedUserid;
+                if (data.FavProId != null)
+                {
+                    newRequest.ServiceProviderId = data.FavProId;
+                    newRequest.SpacceptedDate = DateTime.Now;
+                }
                 var saveBooking = _helperlandContext.ServiceRequests.Add(newRequest);
                 _helperlandContext.SaveChanges();
 
@@ -227,54 +264,99 @@ namespace Helperland.Controllers
                     _helperlandContext.SaveChanges();
                 }
 
-
-                var AvailableProvider = _helperlandContext.Users.Where(x => x.ZipCode == data.ServiceZipCode).ToList();
-
-                foreach (var availPro in AvailableProvider)
+                if (data.FavProId != null)
                 {
+                    var PerticularProvider = _helperlandContext.Users.Where(x => x.UserId == data.FavProId).FirstOrDefault();
 
-                    string subject = "A new service booking request has arrived in your area .";
-                    string mailTitle = "Helperland Service";
-                    string fromEmail = "codewithravi2511@gmail.com";
-                    string fromEmailPassword = "dyto qxph hvgv oslf";
+                        string subject = "A new service booking request has arrived in your area .";
+                        string mailTitle = "Helperland Service";
+                        string fromEmail = "codewithravi2511@gmail.com";
+                        string fromEmailPassword = "dyto qxph hvgv oslf";
 
 
-                    string MailBody = "<!DOCTYPE html>" +
-                             "<html> " +
-                                 "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
-                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
-                                 "<p>Dear " + availPro.FirstName + " " + availPro.LastName + " ,</p>" +
-                                  "<p>A new service has been booked in your area with reference id " + saveBooking.Entity.ServiceRequestId + " , </p>"+
-                                  "<p>For more information of service or to accept the service please Login to your account</p>" +
-                                  "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new {}, "http") + "'>Login Now</a>" +
-                                 "</body> " +
-                             "</html>";
-                    MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(availPro.Email));
-                    message.Subject = subject;
-                    message.Body = MailBody;
-                    message.IsBodyHtml = true;
+                        string MailBody = "<!DOCTYPE html>" +
+                                 "<html> " +
+                                     "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                     "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                     "<p>Dear " + PerticularProvider.FirstName + " " + PerticularProvider.LastName + " ,</p>" +
+                                      "<p>A new service has been booked in your area with reference id " + saveBooking.Entity.ServiceRequestId + " , </p>" +
+                                      "<p>For more information of service or to accept the service please Login to your account</p>" +
+                                      "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                     "</body> " +
+                                 "</html>";
+                        MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(PerticularProvider.Email));
+                        message.Subject = subject;
+                        message.Body = MailBody;
+                        message.IsBodyHtml = true;
 
-                    //Server Details
-                    SmtpClient smtp = new SmtpClient();
-                    //Outlook ports - 465 (SSL) or 587 (TLS)
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        //Server Details
+                        SmtpClient smtp = new SmtpClient();
+                        //Outlook ports - 465 (SSL) or 587 (TLS)
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-                    //Credentials
-                    System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
-                    credential.UserName = fromEmail;
-                    credential.Password = fromEmailPassword;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = credential;
+                        //Credentials
+                        System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                        credential.UserName = fromEmail;
+                        credential.Password = fromEmailPassword;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = credential;
 
                     smtp.Send(message);
                 }
+                else
+                {
+                    var AvailableProvider = _helperlandContext.Users.Where(x => x.ZipCode == data.ServiceZipCode).ToList();
+
+                    foreach (var availPro in AvailableProvider)
+                    {
+                        FavoriteAndBlocked blockPro = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == availPro.UserId && x.IsBlocked == true).FirstOrDefault();
+                        if (blockPro == null)
+                        {
+                            string subject = "A new service booking request has arrived in your area .";
+                            string mailTitle = "Helperland Service";
+                            string fromEmail = "codewithravi2511@gmail.com";
+                            string fromEmailPassword = "dyto qxph hvgv oslf";
 
 
+                            string MailBody = "<!DOCTYPE html>" +
+                                     "<html> " +
+                                         "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                         "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                         "<p>Dear " + availPro.FirstName + " " + availPro.LastName + " ,</p>" +
+                                          "<p>A new service has been booked in your area with reference id " + saveBooking.Entity.ServiceRequestId + " , </p>" +
+                                          "<p>For more information of service or to accept the service please Login to your account</p>" +
+                                          "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                         "</body> " +
+                                     "</html>";
+                            MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(availPro.Email));
+                            message.Subject = subject;
+                            message.Body = MailBody;
+                            message.IsBodyHtml = true;
+
+                            //Server Details
+                            SmtpClient smtp = new SmtpClient();
+                            //Outlook ports - 465 (SSL) or 587 (TLS)
+                            smtp.Host = "smtp.gmail.com";
+                            smtp.Port = 587;
+                            smtp.EnableSsl = true;
+                            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                            //Credentials
+                            System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                            credential.UserName = fromEmail;
+                            credential.Password = fromEmailPassword;
+                            smtp.UseDefaultCredentials = false;
+                            smtp.Credentials = credential;
+
+                            smtp.Send(message);
+                        }
+                        
+                    }
+                }
                 return Json(saveBooking.Entity.ServiceRequestId);
-
 
             }
             return Json("false");
@@ -319,7 +401,7 @@ namespace Helperland.Controllers
                 RequestData.Spname = user.FirstName + " " + user.LastName;
                     if (user.UserProfilePicture != null)
                     {
-                RequestData.Avtar = user.UserProfilePicture;
+                        RequestData.Avtar = user.UserProfilePicture;
                     }
                 var rating = _helperlandContext.Ratings.Where(x => x.RatingTo == Service.ServiceProviderId);
                 if (rating.Count() > 0)
@@ -517,7 +599,236 @@ namespace Helperland.Controllers
             return Json("Successfully");
         }
 
+        public IActionResult DashServiceSchedule()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Service Schedule";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 1;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
 
+        [HttpGet]
+        public ActionResult GetServiceScheduleData()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                List<CustDashboard> ServiceSchedule = new List<CustDashboard>();
+                var Alldata = _helperlandContext.ServiceRequests.Where(x => x.UserId == logedUserid && x.Status != 1).ToList();
+                if (Alldata != null)
+                {
+                    foreach (var data in Alldata)
+                    {
+                        CustDashboard ServiceScheduleData = new CustDashboard();
+                        ServiceScheduleData.ServiceId = data.ServiceRequestId;
+                        ServiceScheduleData.ServiceDate = data.ServiceStartDate.ToString("dd/MM/yyyy");
+                        ServiceScheduleData.ServiceStartTime = data.ServiceStartDate.ToString("HH:mm");
+                        ServiceScheduleData.ServiceEndTime = data.ServiceStartDate.AddHours((double)data.SubTotal).ToString("HH:mm");
+                        if (data.Status == null)
+                        {
+                            ServiceScheduleData.Color = "#1d7a8c";
+                        }
+                        else
+                        {
+                            ServiceScheduleData.Color = "#86858b";
+                        }
+                        ServiceSchedule.Add(ServiceScheduleData);
+                    }
+                    return new JsonResult(ServiceSchedule);
+                }
+
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        public IActionResult FavPro()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                ViewBag.Title = "Favourite Provider";
+                ViewBag.IsloggedIn = "success";
+                ViewBag.UType = 1;
+                var userid = HttpContext.Session.GetInt32("userid");
+                User loggeduser = _helperlandContext.Users.Where(x => x.UserId == userid).FirstOrDefault();
+                ViewBag.UserName = loggeduser.FirstName;
+                return View();
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpGet]
+
+        public ActionResult GetFavouritePro()
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+
+                List<FavPro> FavouritePro = new List<FavPro>();
+
+                List<int?> AllReq = _helperlandContext.ServiceRequests.Where(x => x.UserId == logedUserid && x.Status == 2).Select(x => x.ServiceProviderId).Distinct().ToList();
+                if (AllReq.Count() > 0)
+                {
+                    foreach (var req in AllReq)
+                    {
+                        FavPro FavProData = new FavPro();
+                        FavProData.ProId = req;
+
+                        var ProviderData = _helperlandContext.Users.Where(x => x.UserId == req).FirstOrDefault();
+                        FavProData.Name = ProviderData.FirstName + " " + ProviderData.LastName;
+                        if (ProviderData.UserProfilePicture != null)
+                        {
+                            FavProData.Avtar = ProviderData.UserProfilePicture;
+                        }
+                        else
+                        {
+                            FavProData.Avtar = "cap";
+                        }
+                        var rating = _helperlandContext.Ratings.Where(x => x.RatingTo == ProviderData.UserId);
+                        if (rating.Count() > 0)
+                        {
+                            FavProData.SpRating = Math.Round(rating.Average(x => x.Ratings), 1);
+                        }
+                        else
+                        {
+                            FavProData.SpRating = 0;
+                        }
+
+                        var isBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == req).FirstOrDefault();
+
+                        if (isBlocked != null)
+                        {
+                            if (isBlocked.IsBlocked == true)
+                            {
+                                FavProData.IsBlocked = true;
+                            }
+                            else
+                            {
+                                FavProData.IsBlocked = false;
+                            }
+
+                            if(isBlocked.IsFavorite == true)
+                            {
+                                FavProData.IsFavourite = true;
+                            }
+                            else
+                            {
+                                FavProData.IsFavourite = false;
+                            }
+                        }
+                        else
+                        {
+                            FavProData.IsBlocked = false;
+                            FavProData.IsFavourite = false;
+                        }
+                        FavouritePro.Add(FavProData);
+                    }
+                    return new JsonResult(FavouritePro);
+                }
+                else
+                {
+                    return Json("noData");
+                }
+            }
+
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public IActionResult PostBlockProvider(int ProId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                if (_helperlandContext.FavoriteAndBlockeds.Any(x => x.UserId == logedUserid && x.TargetUserId == ProId))
+                {
+                    FavoriteAndBlocked req = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == ProId).FirstOrDefault();
+                    req.IsBlocked = true;
+
+                    _helperlandContext.FavoriteAndBlockeds.Update(req);
+                    _helperlandContext.SaveChanges();
+                }
+                else
+                {
+                    FavoriteAndBlocked req = new FavoriteAndBlocked();
+                    req.UserId = Convert.ToInt32(logedUserid);
+                    req.TargetUserId = ProId;
+                    req.IsFavorite = false;
+                    req.IsBlocked = true;
+
+                    _helperlandContext.FavoriteAndBlockeds.Add(req);
+                    _helperlandContext.SaveChanges();
+                }
+                return Json("success");
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public IActionResult UnBlockProvider(int ProId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                FavoriteAndBlocked req = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == ProId).FirstOrDefault();
+                req.IsBlocked = false;
+                _helperlandContext.FavoriteAndBlockeds.Update(req);
+                _helperlandContext.SaveChanges();
+                return Json("success");
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+        [HttpPost]
+        public IActionResult FavProvider(int ProId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                if (_helperlandContext.FavoriteAndBlockeds.Any(x => x.UserId == logedUserid && x.TargetUserId == ProId))
+                {
+                    FavoriteAndBlocked req = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == ProId).FirstOrDefault();
+                    req.IsFavorite = true;
+
+                    _helperlandContext.FavoriteAndBlockeds.Update(req);
+                    _helperlandContext.SaveChanges();
+                }
+                else
+                {
+                    FavoriteAndBlocked req = new FavoriteAndBlocked();
+                    req.UserId = Convert.ToInt32(logedUserid);
+                    req.TargetUserId = ProId;
+                    req.IsFavorite = true;
+                    req.IsBlocked = false;
+
+                    _helperlandContext.FavoriteAndBlockeds.Add(req);
+                    _helperlandContext.SaveChanges();
+                }
+                return Json("success");
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
+
+        [HttpPost]
+        public IActionResult UnfavProvider(int ProId)
+        {
+            if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
+            {
+                int? logedUserid = HttpContext.Session.GetInt32("userid");
+                FavoriteAndBlocked req = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == logedUserid && x.TargetUserId == ProId).FirstOrDefault();
+                req.IsFavorite = false;
+                _helperlandContext.FavoriteAndBlockeds.Update(req);
+                _helperlandContext.SaveChanges();
+                return Json("success");
+            }
+            return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
+        }
 
         public IActionResult ServiceHistory()
         {

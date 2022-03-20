@@ -82,8 +82,6 @@ namespace Helperland.Controllers
         {
             if (ModelState.IsValid)
             {
-                          
-           
                 var userExists = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
                 if (userExists == null)
                 {
@@ -92,6 +90,7 @@ namespace Helperland.Controllers
                     user.ModifiedDate = DateTime.Now;
                     user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
                     user.IsActive = false;
+                    user.UserProfilePicture = "cap";
                     _helperlandContext.Users.Add(user);
                     _helperlandContext.SaveChanges();
                     return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
@@ -112,27 +111,35 @@ namespace Helperland.Controllers
             if(user.Email !=null && user.Password != null)
             {
 
-                User credentials = _helperlandContext.Users.Where(x => x.Email == user.Email && x.IsActive == true).FirstOrDefault();
+                User credentials = _helperlandContext.Users.Where(x => x.Email == user.Email).FirstOrDefault();
                 if(credentials != null)
                 {
-                bool isvalidpass = BCrypt.Net.BCrypt.Verify(user.Password, credentials.Password);
-                if (isvalidpass)
-                {
-                    HttpContext.Session.SetInt32("userid", credentials.UserId);
-                    HttpContext.Session.SetInt32("usertypeid", credentials.UserTypeId);
-                    if (credentials.UserTypeId == 1)
+                    if(credentials.IsActive == true)
                     {
-                        return RedirectToAction("Dashboard", "Customer");
-                    }   
-                    else if (credentials.UserTypeId == 2)
-                    {
-                        return RedirectToAction("Dashboard", "Provider");
+                        bool isvalidpass = BCrypt.Net.BCrypt.Verify(user.Password, credentials.Password);
+                        if (isvalidpass)
+                        {
+                            HttpContext.Session.SetInt32("userid", credentials.UserId);
+                            HttpContext.Session.SetInt32("usertypeid", credentials.UserTypeId);
+                            if (credentials.UserTypeId == 1)
+                            {
+                                return RedirectToAction("Dashboard", "Customer");
+                            }
+                            else if (credentials.UserTypeId == 2)
+                            {
+                                return RedirectToAction("Dashboard", "Provider");
+                            }
+                            else if (credentials.UserTypeId == 3)
+                            {
+                                return RedirectToAction("ServiceRequest", "Admin");
+                            }
+                        }
                     }
-                    else if (credentials.UserTypeId == 3)
+                    else
                     {
-                        return RedirectToAction("ServiceRequest", "Admin");
+                        TempData["NotActive"] = "NotActive";
                     }
-                }
+                
                 }
                 
   

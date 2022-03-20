@@ -498,10 +498,6 @@ table.dataTable thead th, table.dataTable thead td{
 .completebtn{
     background:#1d7a8c;
 }
-.cancelbtn:hover, .completebtn:hover {
-    color: black;
-    transition: all .5s;
-}
 .dashboard{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -739,6 +735,9 @@ span.arrow-hack {
     padding: 10px 15px 10px 15px;
     cursor: pointer;
 }
+#ServiceHistory .datatable_heading button:hover {
+    background-color: #096172;
+}
 #displaydataModal .title-text {
     display: block;
     font-size: 16px;
@@ -836,7 +835,6 @@ position:relative;
     padding: 15px 0;
     margin-bottom: 0;
     white-space: nowrap;
-    transition:all 0.3s;
 }
 #MySetting .nav-pills li a:hover {
     color: #1d7a8c;
@@ -982,6 +980,9 @@ position:relative;
     padding: 11px 25px;
     border-radius:50px;
 }
+#MySetting .btn-primary:hover,#pills-password #updatePassBtn:hover{
+    background-color: #096172;
+}
 #pills-password #updatePassBtn {
     background: #1d7a8c;
     border: none;
@@ -1061,7 +1062,14 @@ position:relative;
     padding: 10px 15px 10px 15px;
     cursor: pointer;
 }
-#AcceptService h3, #CompleteService h3, #SuccessModal h3{
+.ConfllictBtn:hover, .cancelbtn:hover {
+    background-color: #cc5656;
+}
+
+#NewServiceTblData .AcceptBtn:hover {
+    background-color: #096172;
+}
+#AcceptService h3, #CompleteService h3, #SuccessModal h3 {
     color: darkslategrey;
 }
 #AcceptService .btn, #CompleteService .btn, .CancleOkBtn, #SuccessModal a,#AcceptServiceError .btn{
@@ -1097,15 +1105,36 @@ position:relative;
 }
 #displaydataModal .modal-body{
     display:flex;
+    justify-content:space-between;
 }
 #displaydataModal .modal-dialog{
     min-width:750px;
 }
 /*Map Part*/
-
+/*/////////////SERVICE SCHEDULE///////////////*/
+#ServiceSchedule #calendar {
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 0 10px;
+    margin-top: 0px;
+}
+.fc-title {
+    color: white;
+}
+.fc-content{
+    cursor:pointer;
+}
+#calendar .fc-toolbar h2{
+    color:#646464;
+    font-weight:400;
+    font-size:25px;
+}
+.fc-content-skeleton table thead tr td.fc-day-number{
+    text-align:right;
+}
 /*//////////////////block customer///////////*/
-#BlockCustTbl{
-    border:none!important;
+#BlockCustTbl {
+    border: none !important;
 }
 #BlockCustTbl tbody {
     display: flex;
@@ -1199,14 +1228,14 @@ footer {
     width: 20px;
     height: 20px;
   }
- 
-  
-  .right{
+
+
+.right {
     color: #737381;
     font-size: 14px;
     padding-top: 15px;
     padding-bottom: 20px !important;
-  }
+}
   footer p{
     margin-bottom: 0px !important;
   }

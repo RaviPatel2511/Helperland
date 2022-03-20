@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    @RenderSection("css", required: false)
     <link rel="stylesheet" href="~/css/CustDash.css" />
     <link rel="shortcut icon" href="~/image/home/favicon.ico" type="image/x-icon" />
     <title>@ViewBag.Title | Helperland</title>
@@ -92,9 +93,9 @@
                         <hr>
                         <li><a asp-controller="Customer" asp-action="ServiceHistory" class="mobileNavMenu">Service History</a></li>
                         <hr>
-                        <li><a class="mobileNavMenu">Service Schedule</a></li>
+                        <li><a asp-controller="Customer" asp-action="DashServiceSchedule" class="mobileNavMenu">Service Schedule</a></li>
                         <hr>
-                        <li><a class="mobileNavMenu">Favourite Pros</a></li>
+                        <li><a asp-controller="Customer" asp-action="FavPro" class="mobileNavMenu">Favourite Pros</a></li>
                         <hr>
                         <li><a class="mobileNavMenu">Invoices</a></li>
                         <hr>
@@ -150,8 +151,8 @@
                 <div id="sidebar-wrapper">
                     <a asp-controller="Customer" asp-action="Dashboard" class="list-group-item list-group-item-action text-white">Dashboard</a>
                     <a asp-controller="Customer" asp-action="ServiceHistory" class="list-group-item list-group-item-action text-white">Service History</a>
-                    <a class="list-group-item list-group-item-action text-white">Service Schedule</a>
-                    <a class="list-group-item list-group-item-action text-white">Favourite Pros</a>
+                    <a asp-controller="Customer" asp-action="DashServiceSchedule" class="list-group-item list-group-item-action text-white">Service Schedule</a>
+                    <a asp-controller="Customer" asp-action="FavPro" class="list-group-item list-group-item-action text-white">Favourite Pros</a>
                     <a class="list-group-item list-group-item-action text-white">Invoices</a>
                     <a class="list-group-item list-group-item-action text-white">Notification</a>
                 </div>

@@ -141,6 +141,7 @@ function GetServiceSummary(x) {
                 $("#SerId").text(response.id);
                 $("#SerPayment").html(response.payment + " Rs.");
                 $("#SerAddress").html(response.addressLine1 + " " + response.addressLine2 + " , " + response.city + " " + response.postalCode);
+                $("#SerCustName").text(response.customerName);
                 $("#SerMobile").text(response.mobile);
                 $("#SerEmail").text(response.email);
                 $("#SerComment").text(response.comments);

@@ -26,5 +26,7 @@ namespace Helperland.Models.ViewModels
         public string Email { get; set; }
         public string Comments { get; set; }
         public bool HavePets { get; set; }
+
+        public string CustomerName { get; set; }
     }
 }

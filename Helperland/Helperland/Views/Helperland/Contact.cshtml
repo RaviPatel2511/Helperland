@@ -73,7 +73,7 @@
             <div class="form-row form-group mb-2">
                 <div class="col-12 col-sm-6">
                     <div class="input-group mx-0 row">
-                        <span class="input-group-text col-2" id="countryCode">+49</span>
+                        <span class="input-group-text col-2" id="countryCode">+91</span>
                         <input asp-for="PhoneNumber" class="form-control col-10" placeholder="Mobile Number" />
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
@@ -107,9 +107,8 @@
                         <label id="uploadFileBtn" for="upload-file">Upload</label>
                         <input asp-for="UploadFileName" id="upload-file" />
                         <span id="uploadFilePath"></span>
-
-
                     </div>
+                    <span asp-validation-for="UploadFileName" class="text-danger"></span>
                 </div>
             </div>
 

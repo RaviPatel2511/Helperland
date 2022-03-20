@@ -22,13 +22,19 @@
                 </div>
                 <div class="modal-body user-login-detail">
                     <form asp-controller="Account" asp-action="login">
-                        @if (TempData["notfound"] != null)
+                        @if (TempData["notfound"] != null && TempData["NotActive"] == null)
                         {
 
                             <strong class="text-danger">
                                 Please Enter Valid Email and Password.
                             </strong>
 
+                        }
+                        @if (TempData["NotActive"]!=null && TempData["notfound"] != null)
+                        {
+                            <strong class="text-danger">
+                                Please Contact admin to activate your account.
+                            </strong>
                         }
                         <div class="input-group">
                             <input asp-for="Email" class="form-control loginfield" id="user-email" placeholder="E-Mail"> <img src="~/image/home/login_user.png">

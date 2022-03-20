@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_CustDashLayout.cshtml";
+}
+
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-KXkS7cFeWpYwcoXxyfOumLyRGXMp7BTMTjwrgjMg0+hls4thG2JGzRgQtRfnAuKTn2KWTDZX4UdPg+xTs8k80Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+
+<button type="button" class="btn btn-primary d-none" id="ModalOpenBtn" data-toggle="modal" data-target="#displaydataModal">
+    Launch demo modal
+</button>
+
+<div class="modal fade" id="displaydataModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Service Details</h4>
+                <a class="close" data-dismiss="modal"><img src="~/image/home/window-close-regular.svg" alt="closebtn"></a>
+            </div>
+            <div class="modal-body">
+                <div id="SerDetail">
+                    <p class="date-time"><span id="SerDate"></span> <span id="SerStartTime"></span>-<span id="SerEndTime"></span></p>
+                    <span class="title-text"><b>Duration : </b><span id="SerDuration"></span> Hrs</span>
+                    <hr />
+                    <span class="title-text"><b>Service Id : </b><span id="SerId"></span></span>
+                    <span class="title-text"><b>Extras :  </b><span id="SerExtra"></span></span>
+                    <span class="title-text"><b>Net Amout : </b><span id="SerPayment" class="NetAmount"></span></span>
+                    <hr />
+                    <span class="title-text"><b>Service Address : </b><span id="SerAddress"></span></span>
+                    <span class="title-text"><b>Billing Address : </b>Same as cleaning Address</span>
+                    <span class="title-text"><b>Phone : </b><span id="SerMobile"></span></span>
+                    <span class="title-text"><b>Email : </b><span id="SerEmail"></span></span>
+                    <hr />
+                    <span class="title-text"><b>Comments : </b><span id="SerComment"></span></span>
+                    <span class="title-text"><span id="SerPets"></span></span>
+                    <hr />
+                </div>
+                <div>
+                    <div id='CustMap'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ServiceSchedule">
+    <div id="calendar"></div>
+</div>
+
+
+@section script{
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+
+    <script src="~/js/CServiceSchedule.js"></script>
+}

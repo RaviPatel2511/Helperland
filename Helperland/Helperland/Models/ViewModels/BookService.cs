@@ -20,6 +20,7 @@ namespace Helperland.Models.ViewModels
         public bool window { get; set; }
 
         public int SelectedAddressId { get; set; }
+        public int? FavProId { get; set; }
 
     }
 }

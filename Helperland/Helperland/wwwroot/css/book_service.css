@@ -536,6 +536,11 @@ select.form-control {
     padding: 11px 25px;
     border-radius: 50px;
 }
+.custombtn:hover{
+    color: white;
+    background-color: #096172;
+    /*transition:all 0.3s;*/
+}
 .ui.calendar img {
     filter: invert(35%) sepia(63%) saturate(546%) hue-rotate(142deg) brightness(98%) contrast(88%);
     height:20px;
@@ -770,9 +775,7 @@ textarea.form-control {
 
 .favProvider img {
     border: solid 1px #c8c8c8;
-    border-radius: 60px;
-    padding: 20px;
-    width: 80px;
+    border-radius: 50%;
     height: 80px;
     background-color: #f1f1f1;
 }
@@ -780,7 +783,20 @@ textarea.form-control {
     border-color: #dcdcdc;
     margin: 10px 0;
 }
-
+.favProvider label{
+    text-align:center;
+}
+.favProvider div label input:checked ~ .btn-outline-dark {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+.favProvider div label input:checked ~ img {
+    border: 3px solid #1d7a8c;
+}
+.favProvider div{
+    margin:0px 25px;
+}
 .Paycard {
     float: right;
     font-size: 15px;
@@ -829,14 +845,14 @@ border-bottom: 1px solid #c8c8c8;
     width: 100%;
 }
 
-    .payment-summary .content table th {
-        font-size: 18px;
-        line-height: 26px;
-    }
+.payment-summary .content table th {
+    font-size: 18px;
+    line-height: 26px;
+}
 
-    .payment-summary .content table td:last-child {
-        text-align: right;
-    }
+.payment-summary .content table td:last-child {
+    text-align: right;
+}
 
 .payment-summary .content .payment-summary-hr {
     border-color: #e1e1e1;

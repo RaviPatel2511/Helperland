@@ -17,5 +17,6 @@ namespace Helperland.Models.ViewModels
         public string Spname { get; set; }
         public string Avtar { get; set; }
         public decimal SpRatings { get; set; }
+        public string Color { get; set; }
     }
 }

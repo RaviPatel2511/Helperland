@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Helperland.Controllers
@@ -120,10 +121,53 @@ namespace Helperland.Controllers
                     CreatedOn = DateTime.UtcNow,
                     UploadFileName = contactform.UploadFilePath,
                     FileName = contactform.UploadFileName.FileName,
-            };
+                };
             _helperlandContext.ContactUs.Add(request);
             _helperlandContext.SaveChanges();
-            return RedirectToAction(nameof(Contact), new {isSuccess = true});
+
+                string subject = "Customer Wants some help from you !";
+                string mailTitle = "Helperland Service";
+                string fromEmail = "codewithravi2511@gmail.com";
+                string fromEmailPassword = "dyto qxph hvgv oslf";
+
+
+                string MailBody = "<!DOCTYPE html>" +
+                         "<html> " +
+                             "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                             "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                             "<p>Dear Admin,</p>" +
+                              "<p>Customer wants some help from your side Here is the Info of request from customer, </p>" +
+                              "<p>Name : "+ request.Name + "</p>" +
+                              "<p>Email : " + request.Email + "</p>" +
+                              "<p>Subject : " + request.Subject + "</p>" +
+                              "<p>PhoneNumber : " + request.PhoneNumber + "</p>" +
+                              "<p>Message : " + request.Message + "</p>" +
+                              "<p>upload FileName : " + request.FileName + "</p>" +
+                             "</body> " +
+                         "</html>";
+                MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress("admin001@yopmail.com"));
+                message.Subject = subject;
+                message.Body = MailBody;
+                message.IsBodyHtml = true;
+
+                //Server Details
+                SmtpClient smtp = new SmtpClient();
+                //Outlook ports - 465 (SSL) or 587 (TLS)
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                //Credentials
+                System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                credential.UserName = fromEmail;
+                credential.Password = fromEmailPassword;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = credential;
+
+                smtp.Send(message);
+
+                return RedirectToAction(nameof(Contact), new {isSuccess = true});
 
             }
             return View();

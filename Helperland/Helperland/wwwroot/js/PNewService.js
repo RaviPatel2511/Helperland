@@ -18,37 +18,37 @@ $("#NewServiceTbl").on('click', 'th', function () {
 $("#NewServiceTbl th").first().click().click();
 
 
-function sort(col, order) {
-    table.order([col, order]).draw();
-}
+//function sort(col, order) {
+//    table.order([col, order]).draw();
+//}
 
 
-$('input[type=radio][name=sortOption]').change(function () {
-    if (this.value == 'ServiceDate:Oldest') {
-        sort(1, "asc");
-    }
-    else if (this.value == 'ServiceDate:Latest') {
-        sort(1, "desc");
-    }
-    else if (this.value == 'ServiceId:Oldest') {
-        sort(0, "asc");
-    }
-    else if (this.value == 'ServiceId:Latest') {
-        sort(0, "desc");
-    }
-    else if (this.value == 'CustomerDetails:AtoZ') {
-        sort(2, "asc");
-    }
-    else if (this.value == 'CustomerDetails:AtoZ') {
-        sort(2, "desc");
-    }
-    else if (this.value == 'PaymentLowtoHigh') {
-        sort(3, "asc");
-    }
-    else if (this.value == 'PaymentHightoLow') {
-        sort(3, "desc");
-    }
-});
+//$('input[type=radio][name=sortOption]').change(function () {
+//    if (this.value == 'ServiceDate:Oldest') {
+//        sort(1, "asc");
+//    }
+//    else if (this.value == 'ServiceDate:Latest') {
+//        sort(1, "desc");
+//    }
+//    else if (this.value == 'ServiceId:Oldest') {
+//        sort(0, "asc");
+//    }
+//    else if (this.value == 'ServiceId:Latest') {
+//        sort(0, "desc");
+//    }
+//    else if (this.value == 'CustomerDetails:AtoZ') {
+//        sort(2, "asc");
+//    }
+//    else if (this.value == 'CustomerDetails:AtoZ') {
+//        sort(2, "desc");
+//    }
+//    else if (this.value == 'PaymentLowtoHigh') {
+//        sort(3, "asc");
+//    }
+//    else if (this.value == 'PaymentHightoLow') {
+//        sort(3, "desc");
+//    }
+//});
 
 function getData() {
     $.ajax({
@@ -87,7 +87,7 @@ function getData() {
                         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
                         "pagingType": "full_numbers",
                         "searching": true,
-                        retrieve: true,
+                        //retrieve: true,
                         "autoWidth": false,
                         "order": [[0, "desc"]],
                         'columnDefs': [{
@@ -107,6 +107,7 @@ function getData() {
                     });
 
                     $("#havePetFilter").change(() => {
+                        //console.log("ok");
                         var petCheck = $("#havePetFilter").is(':checked');
                         if (!petCheck) {
                             table.search("withoutpet").draw();
@@ -229,6 +230,7 @@ function GetServiceSummary(x) {
                 $("#SerId").text(response.id);
                 $("#SerPayment").html(response.payment + " Rs.");
                 $("#SerAddress").html(response.addressLine1 + " " + response.addressLine2 + " , " + response.city + " " + response.postalCode);
+                $("#SerCustName").text(response.customerName);
                 $("#SerMobile").text(response.mobile);
                 $("#SerEmail").text(response.email);
                 $("#SerComment").text(response.comments);
