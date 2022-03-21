@@ -78,12 +78,12 @@
     height: 40px;
 }
 
-    .nvbarbtn:hover {
-        background: #296256;
-        color: white;
-        border: 1px solid white;
-        transition: all .5s;
-    }
+.nvbarbtn:hover {
+    background: #296256;
+    color: white;
+    border: 1px solid white;
+    transition: all .5s;
+}
 
 .navbar-nav a {
     padding: 7px 14px !important;
@@ -106,18 +106,18 @@
     border-radius: 45px;
     cursor: pointer;
 }
-    .nav-item:nth-child(1) .menu:hover,.nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover{
+.nav-item:nth-child(1) .menu:hover,.nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover{
 
-    color: #006072 !important; 
-    background-color: white;
-    border-color: #006072;
-    transition: all .5s;
+color: #006072 !important; 
+background-color: white;
+border-color: #006072;
+transition: all .5s;
 
 
-    }
-    .nav-item:nth-child(6) .menu {
-        padding: 7px 20px !important;
-    }
+}
+.nav-item:nth-child(6) .menu {
+    padding: 7px 20px !important;
+}
 
 .menu:hover {
     border-radius: 25px;
@@ -145,19 +145,19 @@
     margin-left: 10px;
 }
 
-    .home_caption > div {
-        max-width: 400px;
-    }
+.home_caption > div {
+    max-width: 400px;
+}
 
-    .home_caption p {
-        font-size: 17px;
-    }
+.home_caption p {
+    font-size: 17px;
+}
 
-    .home_caption h2 {
-        font-weight: 400;
-        font-size: 50px;
-        margin-bottom: 10px;
-    }
+.home_caption h2 {
+    font-weight: 400;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
 
 .book_btn a {
     text-decoration: none;
@@ -172,11 +172,11 @@
     cursor: pointer;
     transition: all .5s;
 }
-    .book_btn a:hover {
-        color: #006072;
-        background-color: white;
-        border-color: #006072;
-    }
+.book_btn a:hover {
+    color: #006072;
+    background-color: white;
+    border-color: #006072;
+}
 
 .process {
     display: flex;
@@ -271,17 +271,17 @@
     justify-content: end;
 }
 
-    .sideNav.open {
-        left: 0;
-        background-color: rgba(95, 95, 95,0.6);
-    }
+.sideNav.open {
+    left: 0;
+    background-color: rgba(95, 95, 95,0.6);
+}
 
-    .sideNav.toggle {
-        height: 350px;
-        border: 1px solid #ffffff;
-        /* width:50% */
-        float: right;
-    }
+.sideNav.toggle {
+    height: 350px;
+    border: 1px solid #ffffff;
+    /* width:50% */
+    float: right;
+}
 
 .menubtn {
     margin-right: 15px;
@@ -311,15 +311,15 @@
     border-radius: 5px;
 }
 
-    .navbar-toggler span {
-        display: block;
-        height: 3px;
-        background-color: white;
-    }
+.navbar-toggler span {
+    display: block;
+    height: 3px;
+    background-color: white;
+}
 
-        .navbar-toggler span:nth-child(2) {
-            margin: 6px 0;
-        }
+.navbar-toggler span:nth-child(2) {
+    margin: 6px 0;
+}
 
 .closebtn img {
     height: 50px;
@@ -377,25 +377,25 @@
     position: relative;
 }
 
-    .notification_item::after {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        right: 0px;
-        top: 0;
-    }
+.notification_item::after {
+    content: '';
+    position: absolute;
+    background: white;
+    width: 1px;
+    height: 100%;
+    right: 0px;
+    top: 0;
+}
 
-    .notification_item::before {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        left: 0px;
-        top: 0;
-    }
+.notification_item::before {
+    content: '';
+    position: absolute;
+    background: white;
+    width: 1px;
+    height: 100%;
+    left: 0px;
+    top: 0;
+}
 .user_setting button {
     background: none;
 }
@@ -436,14 +436,14 @@
     border-radius: 40px;
     transition: all .5s;
 }
-    #logoutSuccessfully button:hover{
-        color:#1d718c;
-        background:white;
-        border-color:#1d7a8c;
-    }
-    #logoutSuccessfully .modal-dialog {
-        max-width: 400px;
-    }
+#logoutSuccessfully button:hover{
+    color:#1d718c;
+    background:white;
+    border-color:#1d7a8c;
+}
+#logoutSuccessfully .modal-dialog {
+    max-width: 400px;
+}
 
 .modal.fade.in {
     opacity: 1;
@@ -454,11 +454,11 @@
     position: relative;
 }
 
-    .user-login-detail .input-group img {
-        position: absolute;
-        right: 11px;
-        top: 20px;
-    }
+.user-login-detail .input-group img {
+    position: absolute;
+    right: 11px;
+    top: 20px;
+}
 
 .user-login-detail input {
     border: 2px solid #aaa;
@@ -486,23 +486,23 @@
     padding: 10px 20px;
     border-radius: 30px;
     font-size: 25px;
-    margin: 10px 0;
+    margin: 25px 0;
     cursor: not-allowed;
     transition: all .5s;
     line-height:22px;
 }
-    .user-login-detail button :hover {
-        background: white;
-        color: #1d7a8c;
-        border: 1px solid #1d7a8c;
-        cursor: not-allowed;
-    }
+.user-login-detail button :hover {
+    background: white;
+    color: #1d7a8c;
+    border: 1px solid #1d7a8c;
+    cursor: not-allowed;
+}
 
-    #userloginModal .modal-content .other-link a:nth-child(1), #userloginModal .modal-content .other-link a:nth-child(3) {
-        color: #1d7a8c;
-        text-decoration: none;
-        display: block;
-    }
+#userloginModal .modal-content .other-link a:nth-child(1), #userloginModal .modal-content .other-link a:nth-child(3) {
+    color: #1d7a8c;
+    text-decoration: none;
+    display: block;
+}
 
 #userloginModal .modal-content .other-link a:nth-child(2) {
     color: #646464;
@@ -689,10 +689,10 @@ body.modal-open {
     font-size: 16px;
 }
 
-    .about .card-text small {
-        font-size: 13px;
-        color: #a3a3a3;
-    }
+.about .card-text small {
+    font-size: 13px;
+    color: #a3a3a3;
+}
 
 .about i {
     color: black;
@@ -707,37 +707,37 @@ body.modal-open {
     position: absolute;
 }
 
-    .acontainer > svg:nth-child(odd) {
-        left: -230px;
-    }
+.acontainer > svg:nth-child(odd) {
+    left: -230px;
+}
 
-    .acontainer > svg:nth-child(even) {
-        right: -177px;
-    }
+.acontainer > svg:nth-child(even) {
+    right: -177px;
+}
 
-    .acontainer > svg:nth-child(1) {
-        top: -27px;
-    }
+.acontainer > svg:nth-child(1) {
+    top: -27px;
+}
 
-    .acontainer > svg:nth-child(2) {
-        top: -27px;
-    }
+.acontainer > svg:nth-child(2) {
+    top: -27px;
+}
 
-    .acontainer > svg:nth-child(3) {
-        top: 280px;
-    }
+.acontainer > svg:nth-child(3) {
+    top: 280px;
+}
 
-    .acontainer > svg:nth-child(4) {
-        top: 315px;
-    }
+.acontainer > svg:nth-child(4) {
+    top: 315px;
+}
 
-    .acontainer > svg:nth-child(5) {
-        top: 665px;
-    }
+.acontainer > svg:nth-child(5) {
+    top: 665px;
+}
 
-    .acontainer > svg:nth-child(6) {
-        top: 760px;
-    }
+.acontainer > svg:nth-child(6) {
+    top: 760px;
+}
 
 /* 4th part */
 
@@ -763,14 +763,14 @@ body.modal-open {
     margin-top: 59px;
 }
 
-    .review .rowmrgn .card-body {
-        margin-left: 22px;
-    }
+.review .rowmrgn .card-body {
+    margin-left: 22px;
+}
 
-    .review .rowmrgn .card {
-        border-left: 4px solid #1d7a8c;
-        min-height: 370px;
-    }
+.review .rowmrgn .card {
+    border-left: 4px solid #1d7a8c;
+    min-height: 370px;
+}
 
 .review a {
     text-decoration: none;
@@ -929,11 +929,11 @@ footer {
     min-height: 64px;
 }
 
-    .frow2 h5 {
-        font-size: 14px;
-        display: inline-block;
-        margin-top: 1.469rem;
-    }
+.frow2 h5 {
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 1.469rem;
+}
 
 #okbtn {
     background-color: #eed507;
@@ -963,10 +963,10 @@ footer {
     margin: 0 auto;
 }
 
-    .hr-line hr {
-        border-bottom: 1px solid grey;
-        width: 100%;
-    }
+.hr-line hr {
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
 
 .hidden {
     display: none !important;
@@ -1063,11 +1063,11 @@ footer {
         margin: 0 auto;
     }
 
-        .step-img .arrow img {
-            width: 60px;
-            height: 33px;
-            margin-right: 40px;
-        }
+    .step-img .arrow img {
+        width: 60px;
+        height: 33px;
+        margin-right: 40px;
+    }
 
     .step-img {
         margin-top: 40px;
@@ -1130,9 +1130,9 @@ footer {
         margin: 13px 0px;
     }
 
-        .fmenulink a {
-            margin: 3px 0px;
-        }
+    .fmenulink a {
+        margin: 3px 0px;
+    }
 
     .flogo {
         margin: 10px 0px 0px 0px;
@@ -1175,6 +1175,10 @@ footer {
 @media screen and (max-width:576px){
     #userloginModal .modal-dialog{
         margin:1.75rem auto;
+    }
+    .aboutmrgn2 img{
+        height:auto;
+        width:100%;
     }
 }
 

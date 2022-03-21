@@ -242,11 +242,11 @@ nav {
     transition: all .5s;
 }
 
-    #register:hover {
-        color: #1d78ac;
-        background-color: white;
-        border: 1px solid #29626D;
-    }
+#register:hover {
+    color: #1d78ac;
+    background-color: white;
+    border: 1px solid #29626D;
+}
 
 .signupform h1 {
     color: #646464;
@@ -259,11 +259,11 @@ footer {
     height: auto;
 }
 
-    footer .container a {
-        text-decoration: none;
-        color: #F1F1F1;
-        font-size: 14px;
-    }
+footer .container a {
+    text-decoration: none;
+    color: #F1F1F1;
+    font-size: 14px;
+}
 
 .fmenu {
     padding-top: 20px;

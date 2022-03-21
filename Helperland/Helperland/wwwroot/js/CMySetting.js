@@ -17,6 +17,7 @@ function getUserDetails() {
                 $(".date-dropdowns .day").val(dobdatearr[2]);
                 $(".date-dropdowns .month").val(dobdatearr[1]);
                 $(".date-dropdowns .year").val(dobdatearr[0]);
+                    $("#userDob").val(dobfulldatearr[0]);
                 }
                     console.log(response);
             },

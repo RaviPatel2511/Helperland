@@ -36,9 +36,3 @@ function changeImage(x) {
 $(document).ready(function () {
     $('[data-toggle="popover"]').popover();
 });
-
-// PREVENT FFROM BACK BUTTON AFTER LOGOUT
-//window.history.forward();
-//function noBack() {
-//    window.history.forward();
-//}

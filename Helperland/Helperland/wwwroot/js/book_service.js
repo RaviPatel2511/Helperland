@@ -354,9 +354,20 @@ function CompleteBooking() {
         },
         success:
             function (response) {
-                    if (response == "false") {
-                        alert("booking not done Please try again !");
-                    } else {
+                if (response == "false")
+                {
+                    alert("booking not done Please try again !");
+                }
+                else if (response == "AnotherServiceBooked")
+                {
+                    $('#RescheduleError').modal({
+                        backdrop: 'static', // to prevent closing with click
+                        keyboard: false  // to prevent closing with 
+                    });
+                    $("#RescheduleError").modal('show');
+                }
+                else
+                {
                         $('#CoonfirmBookReferenceId').text(response);
                         $('#bookingSuccessfulyDoneBtn').click();
                     }

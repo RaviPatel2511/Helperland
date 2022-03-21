@@ -30,6 +30,7 @@ namespace Helperland
             services.AddDbContext<HelperlandContext>(options => options.UseSqlServer(connection));
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

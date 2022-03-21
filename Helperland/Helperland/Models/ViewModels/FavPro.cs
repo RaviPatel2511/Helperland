@@ -14,5 +14,6 @@ namespace Helperland.Models.ViewModels
         public bool IsFavourite { get; set; }
         public int MyProperty { get; set; }
         public decimal SpRating { get; set; }
+        public int TotalCleaning { get; set; }
     }
 }

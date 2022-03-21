@@ -81,7 +81,7 @@ function getData() {
                         }
                     }
 
-                    console.log(response);
+                    //console.log(response);
                     table = $('#upcomingService').DataTable({
                         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
                         "pagingType": "full_numbers",
@@ -123,9 +123,27 @@ function getData() {
                         $("#CompleteReqServiceId").val(ClickCompleteId);
                     });
 
+                    $('#displaydataModal').on('click', '.cancelbtn', function () {
+                        $("#displaydataModal").modal('hide');
+                        $("#canclecomments").val('');
+                        $('#cancleServiceMdodelBtn').prop('disabled', true);
+                        $('#cancleServiceMdodelBtn').css('cursor', 'not-allowed');
+                        $("#cancleModalBtn").click();
+                        var ClickModalId = $("#SerId").text();
+                        $("#cancleReqServiceId").val(ClickModalId);
+                    });
+
+                    $('#displaydataModal').on('click', '.completebtn', function () {
+                        $("#displaydataModal").modal('hide');
+                        $('#CompleteService').modal('show');
+                        var ClickModalCompleteId = $("#SerId").text();
+                        $("#CompleteReqServiceId").val(ClickModalCompleteId);
+                    });
+
                     $('#upcomingService tbody').on('click', '.SerSummary', function () {
                         var clickedRow = $(this).parent().children(':first-child').text();
-                        GetServiceSummary(clickedRow);
+                        var btnHtml = $(this).parent().children(':last-child').html();
+                        GetServiceSummary(clickedRow, btnHtml);
                     });
 
 
@@ -189,7 +207,7 @@ $("#CompleteServiceBtn").click(function () {
     });
 });
 
-function GetServiceSummary(x) {
+function GetServiceSummary(x,y) {
     $.ajax({
         type: 'GET',
         cache: false,
@@ -231,6 +249,8 @@ function GetServiceSummary(x) {
                 } else {
                     $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
                 }
+                $(".action-btn").empty();
+                $(".action-btn").append(y);
                 GetMap(response.postalCode + " " + response.city);
                 $("#displaydataModal").modal('show');
 

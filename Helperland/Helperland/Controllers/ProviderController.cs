@@ -18,7 +18,7 @@ namespace Helperland.Controllers
         {
             _helperlandContext = helperlandContext;
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Dashboard()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -65,6 +65,7 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult MySetting()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -251,6 +252,7 @@ namespace Helperland.Controllers
                 return Json("wrongPassword");
             }
         }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult NewService()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -411,7 +413,7 @@ namespace Helperland.Controllers
                 return Json("alreadyBooked");
             }
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult UpcomingService()
         {
             
@@ -496,7 +498,7 @@ namespace Helperland.Controllers
             _helperlandContext.SaveChanges();
             return Json("Successfully");
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult ServiceSchedule()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -545,7 +547,7 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult ServiceHistory()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -652,6 +654,7 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult MyRating()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)
@@ -707,7 +710,7 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult BlockCustomer()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 2 && HttpContext.Session.GetInt32("userid") != null)

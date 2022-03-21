@@ -18,37 +18,37 @@ $("#NewServiceTbl").on('click', 'th', function () {
 $("#NewServiceTbl th").first().click().click();
 
 
-//function sort(col, order) {
-//    table.order([col, order]).draw();
-//}
+function sort(col, order) {
+    table.order([col, order]).draw();
+}
 
 
-//$('input[type=radio][name=sortOption]').change(function () {
-//    if (this.value == 'ServiceDate:Oldest') {
-//        sort(1, "asc");
-//    }
-//    else if (this.value == 'ServiceDate:Latest') {
-//        sort(1, "desc");
-//    }
-//    else if (this.value == 'ServiceId:Oldest') {
-//        sort(0, "asc");
-//    }
-//    else if (this.value == 'ServiceId:Latest') {
-//        sort(0, "desc");
-//    }
-//    else if (this.value == 'CustomerDetails:AtoZ') {
-//        sort(2, "asc");
-//    }
-//    else if (this.value == 'CustomerDetails:AtoZ') {
-//        sort(2, "desc");
-//    }
-//    else if (this.value == 'PaymentLowtoHigh') {
-//        sort(3, "asc");
-//    }
-//    else if (this.value == 'PaymentHightoLow') {
-//        sort(3, "desc");
-//    }
-//});
+$('input[type=radio][name=sortOption]').change(function () {
+    if (this.value == 'ServiceDate:Oldest') {
+        sort(1, "asc");
+    }
+    else if (this.value == 'ServiceDate:Latest') {
+        sort(1, "desc");
+    }
+    else if (this.value == 'ServiceId:Oldest') {
+        sort(0, "asc");
+    }
+    else if (this.value == 'ServiceId:Latest') {
+        sort(0, "desc");
+    }
+    else if (this.value == 'CustomerDetails:AtoZ') {
+        sort(2, "asc");
+    }
+    else if (this.value == 'CustomerDetails:AtoZ') {
+        sort(2, "desc");
+    }
+    else if (this.value == 'PaymentLowtoHigh') {
+        sort(3, "asc");
+    }
+    else if (this.value == 'PaymentHightoLow') {
+        sort(3, "desc");
+    }
+});
 
 function getData() {
     $.ajax({
@@ -67,22 +67,22 @@ function getData() {
                     for (var i = 0; i < response.length; i++) {
                         if (response[i].hasPet == true) {
                             if (response[i].conflictServiceId == null) {
-                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td></tr>');
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td><td></td></tr>');
                             } else {
-                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td class="text-center"><span class="d-none">' + response[i].conflictServiceId + '</span><input type="button" class="ConfllictBtn" value="Conflict" /></td><td class="text-center"><input type="button" class="AcceptBtn disabled" value="Accept" disabled="disabled"/></td></tr>');
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td class="text-center"><span class="d-none">' + response[i].conflictServiceId + '</span><input type="button" class="ConfllictBtn" value="Conflict" /></td><td class="text-center"><input type="button" class="AcceptBtn disabled" value="Accept" disabled="disabled"/></td><td></td></tr>');
                             }
                         } else {
                             if (response[i].conflictServiceId == null) {
-                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /><span class="d-none">withoutpet<span></td></tr>');
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td></td><td class="text-center"><input type="button" class="AcceptBtn" value="Accept" /></td><td><div class="d-none">withoutpet</div></td></tr>');
                             } else {
-                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td class="text-center"><span class="d-none">' + response[i].conflictServiceId + '</span><input type="button" class="ConfllictBtn" value="Conflict" /></td><td class="text-center"><input type="button" class="AcceptBtn disabled" value="Accept" disabled="disabled"/><span class="d-none">withoutpet<span></td></tr>');
+                                NewServiceTblData.append('<tr><td class="SerSummary">' + response[i].serviceId + '</td><td class="SerSummary"><span class="date"><img src="../image/upcoming_service/calendar.webp"> ' + response[i].serviceDate + '</span><span><img src="../image/upcoming_service/layer-14.png"> ' + response[i].serviceStartTime + "-" + response[i].serviceEndTime + '</span></td><td class="SerSummary"><div class="custDetails"><div><img src="../image/upcoming_service/home.png" /></div><div class="custInfo"><span>' + response[i].custName + '</span><span>' + response[i].add1 + ' ' + response[i].add2 + ' ,' + '</span><span>' + response[i].city + ' ' + response[i].pincode + '</span></div></div></td><td class="text-center SerSummary">' + response[i].payment + ' Rs.</td><td class="text-center"><span class="d-none">' + response[i].conflictServiceId + '</span><input type="button" class="ConfllictBtn" value="Conflict" /></td><td class="text-center"><input type="button" class="AcceptBtn disabled" value="Accept" disabled="disabled"/></td><td><div class="d-none">withoutpet</div></td></tr>');
                             }
                         }
                         
                     }
                     
 
-                    console.log(response);
+                    //console.log(response);
                     table = $('#NewServiceTbl').DataTable({
                         "dom": 'Bt<"table-bottom d-flex justify-content-between"<"table-bottom-inner d-flex"li>p>',
                         "pagingType": "full_numbers",
@@ -107,18 +107,20 @@ function getData() {
                     });
 
                     $("#havePetFilter").change(() => {
-                        //console.log("ok");
+                        console.log("ok");
                         var petCheck = $("#havePetFilter").is(':checked');
                         if (!petCheck) {
-                            table.search("withoutpet").draw();
+                            table.column(6).search('withoutpet').draw();
                         } else {
-                            table.search("").draw();
+                            console.log("okkk");
+                            table.search('').columns().search('').draw();
                         }
                     });
 
                     $('#NewServiceTbl tbody').on('click', '.SerSummary', function () {
                         var clickedRow = $(this).parent().children(':first-child').text();
-                        GetServiceSummary(clickedRow);
+                        var btnHtml = $(this).parent().children(':nth-child(6)').html();
+                        GetServiceSummary(clickedRow, btnHtml);
                     });
 
                     $('#NewServiceTbl tbody').on('click', '.AcceptBtn', function () {
@@ -130,6 +132,13 @@ function getData() {
                     $('#NewServiceTbl tbody').on('click', '.ConfllictBtn', function () {
                         var clickkedRow = $(this).parent().children(':first-child').text();
                         GetServiceSummary(clickkedRow);
+                    });
+
+                    $('#displaydataModal').on('click', '.AcceptBtn', function () {
+                        $("#displaydataModal").modal('hide');
+                        var clickmodalBtn = $("#SerId").text();
+                        $("#AcceptService").modal('show');
+                        $("#acceptSerId").val(clickmodalBtn);
                     });
 
                     $('#SerRescheduleBtn').click(function () {
@@ -198,7 +207,7 @@ $("#AcceptServiceErrorBtn").click(function () {
     window.location.reload();
 });
 
-function GetServiceSummary(x) {
+function GetServiceSummary(x,y) {
     $.ajax({
         type: 'GET',
         cache: false,
@@ -240,6 +249,8 @@ function GetServiceSummary(x) {
                 } else {
                     $("#SerPets").html('<img src="../image/service_history/notpet.png" /> I do not have pets at home');
                 }
+                $(".action-btn").empty();
+                $(".action-btn").append(y);
                 getlon_len(response.postalCode);
                 $("#displaydataModal").modal('show');
 
@@ -294,9 +305,6 @@ async function getlon_len(zipcode) {
     map.setView([lat, lon], 15);
     L.marker([lat, lon]).addTo(map);
 }
-
-
-
 
 $(document).ready(function () {
     getData();

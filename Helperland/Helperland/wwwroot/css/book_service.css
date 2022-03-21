@@ -89,15 +89,15 @@
     background-color:#1d7a8c;
 }
 
-    .sk-chase-dot:nth-child(2):before {
-        animation-delay: -1.0s;
-        background-color: #1d7a8c;
-    }
+.sk-chase-dot:nth-child(2):before {
+    animation-delay: -1.0s;
+    background-color: #1d7a8c;
+}
 
-    .sk-chase-dot:nth-child(3):before {
-        animation-delay: -0.9s;
-        background-color: #1d7a8c;
-    }
+.sk-chase-dot:nth-child(3):before {
+    animation-delay: -0.9s;
+    background-color: #1d7a8c;
+}
 
 .sk-chase-dot:nth-child(4):before {
     animation-delay: -0.8s;
@@ -165,12 +165,12 @@ nav {
     cursor: pointer;
 }
 
-    .nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
-        color: #006072 !important;
-        background-color: white;
-        border-color: #006072;
-        transition: all .5s;
-    }
+.nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
+    color: #006072 !important;
+    background-color: white;
+    border-color: #006072;
+    transition: all .5s;
+}
 
 .menu {
     text-decoration: none;
@@ -180,12 +180,12 @@ nav {
     margin: 0px 6px;
 }
 
-    .menu:hover {
-        border-radius: 25px;
-        border: 1px solid white;
-        color: white;
-        background-color: #29626d;
-    }
+.menu:hover {
+    border-radius: 25px;
+    border: 1px solid white;
+    color: white;
+    background-color: #29626d;
+}
 
 .fixed-top {
     background-color: rgba(39, 39, 39, 0.7) !important;
@@ -214,9 +214,9 @@ nav {
     margin-bottom: 25px;
 }
 
-    #bookingSuccessfulyDone span img {
-        display: block;
-    }
+#bookingSuccessfulyDone span img {
+    display: block;
+}
 
 #bookingSuccessfulyDone h3 {
     margin: 0 0 20px;
@@ -235,11 +235,11 @@ nav {
     transition: all .5s;
 }
 
-    #bookingSuccessfulyDone button:hover {
-        color: #1d718c;
-        background: white;
-        border-color: #1d7a8c;
-    }
+#bookingSuccessfulyDone button:hover {
+    color: #1d718c;
+    background: white;
+    border-color: #1d7a8c;
+}
 
 #bookingSuccessfulyDone .modal-dialog {
     max-width: 400px;
@@ -280,17 +280,17 @@ nav {
     justify-content: end;
 }
 
-    .sideNav.open {
-        left: 0;
-        background-color: rgba(95, 95, 95, 0.6);
-    }
+.sideNav.open {
+    left: 0;
+    background-color: rgba(95, 95, 95, 0.6);
+}
 
-    .sideNav.toggle {
-        height: 350px;
-        border: 1px solid #ffffff;
-        /* width:50% */
-        float: right;
-    }
+.sideNav.toggle {
+    height: 350px;
+    border: 1px solid #ffffff;
+    /* width:50% */
+    float: right;
+}
 
 .menubtn {
     margin-right: 15px;
@@ -320,15 +320,15 @@ nav {
     border-radius: 5px;
 }
 
-    .navbar-toggler span {
-        display: block;
-        height: 3px;
-        background-color: white;
-    }
+.navbar-toggler span {
+    display: block;
+    height: 3px;
+    background-color: white;
+}
 
-        .navbar-toggler span:nth-child(2) {
-            margin: 6px 0;
-        }
+.navbar-toggler span:nth-child(2) {
+    margin: 6px 0;
+}
 
 .closebtn img {
     height: 50px;
@@ -375,25 +375,25 @@ nav {
     position: relative;
 }
 
-    .notification_item::after {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        right: 0px;
-        top: 0;
-    }
+.notification_item::after {
+    content: '';
+    position: absolute;
+    background: white;
+    width: 1px;
+    height: 100%;
+    right: 0px;
+    top: 0;
+}
 
-    .notification_item::before {
-        content: '';
-        position: absolute;
-        background: white;
-        width: 1px;
-        height: 100%;
-        left: 0px;
-        top: 0;
-    }
+.notification_item::before {
+    content: '';
+    position: absolute;
+    background: white;
+    width: 1px;
+    height: 100%;
+    left: 0px;
+    top: 0;
+}
 
 .user_setting button {
     background: none;
@@ -431,7 +431,7 @@ nav {
     margin-bottom: 30px;
 }
 
- .mainPortation ul > li + li {
+.mainPortation ul > li + li {
             border-left: 1px solid #dcdcdc;
 }
 
@@ -443,9 +443,9 @@ nav {
     margin: 9px 0px 40px 0px;
 }
 
-    .star img {
-        margin: 0px 9px;
-    }
+.star img {
+    margin: 0px 9px;
+}
 
 .side_hr {
     width: 72px;
@@ -1070,6 +1070,30 @@ label.extra-service-icon {
     align-items: center;
     justify-content: center;
 }
+#RescheduleError h3 {
+    margin: 0 0 20px;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 400;
+    color: red;
+}
+
+#RescheduleError a {
+    width: auto;
+    background: #1d7a8c;
+    border-color: white;
+    font-size: 16px;
+    padding: 9px 20px;
+    border-radius: 40px;
+    transition: all .5s;
+    color: white;
+}
+
+#RescheduleError a:hover {
+    color: #1d718c;
+    background: white;
+    border-color: #1d7a8c;
+}
 /*/////////////// FOOTER ////////////// */
 
 footer {
@@ -1079,11 +1103,11 @@ footer {
     height: auto;
 }
 
-    footer .container a {
-        text-decoration: none;
-        color: #f1f1f1;
-        font-size: 14px;
-    }
+footer .container a {
+    text-decoration: none;
+    color: #f1f1f1;
+    font-size: 14px;
+}
 
 .fmenu {
     padding-top: 20px;
@@ -1107,10 +1131,10 @@ footer {
     margin-top: 10px;
 }
 
-    .hr-line hr {
-        border-bottom: 1px solid grey;
-        width: 100%;
-    }
+.hr-line hr {
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
 
 .right {
     color: #737381;

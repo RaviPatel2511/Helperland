@@ -44,10 +44,6 @@
                             <input asp-for="Password" class="form-control loginfield" placeholder="Password" id="user-password"> <img src="~/image/home/login_lock.png">
                             @*<span asp-validation-for="Password" class="text-danger"></span>*@
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="remember" />
-                            <label class="form-check-label" for="remember"> Remember Me</label>
-                        </div>
                         <button type="submit" id="loginbtn" name="loginbtn" disabled="disabled">Log in</button>
                     </form>
                     <div class="text-center other-link"> <a id="forgotPassLink" asp-controller="Helperland" asp-action="Index" asp-route-forgotPass="true">Forgot Password ?</a> <a href="javascript:void(0)">Don't have an account yet ?</a> <a asp-controller="Account" asp-action="CustSignup">Create Account</a> </div>

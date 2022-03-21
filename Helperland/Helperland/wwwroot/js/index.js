@@ -112,10 +112,3 @@ const urlSearchParamsforpass = new URLSearchParams(window.location.search);
 if (urlSearchParamsforpass == "forgotPass=true") {
 	$("#forgotPass").modal('show');
 };
-
-// PREVENT FFROM BACK BUTTON AFTER LOGOUT
-//window.history.forward();
-//function noBack() {
-//	window.history.forward();
-//}
-

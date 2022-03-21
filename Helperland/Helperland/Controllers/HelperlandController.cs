@@ -190,7 +190,7 @@ namespace Helperland.Controllers
             ViewBag.Title = "About";
             return View();
         } 
-        [Route("error")]
+        
         public IActionResult Error()
         {
             return View();

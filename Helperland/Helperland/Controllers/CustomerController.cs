@@ -19,7 +19,7 @@ namespace Helperland.Controllers
             _helperlandContext = helperlandContext;
         }
 
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult BookService()
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
@@ -140,6 +140,7 @@ namespace Helperland.Controllers
                 }
                 
             }
+            TempData.Keep("EnteredZip");
             return new JsonResult(FavProList);
         }
 
@@ -199,8 +200,45 @@ namespace Helperland.Controllers
                 newRequest.ModifiedBy = logedUserid;
                 if (data.FavProId != null)
                 {
-                    newRequest.ServiceProviderId = data.FavProId;
-                    newRequest.SpacceptedDate = DateTime.Now;
+
+                    var ProAllReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == data.FavProId && x.Status == null).ToList();
+                    if (ProAllReq.Count() > 0)
+                    {
+                        var HaveService = false;
+
+
+                        foreach (var i in ProAllReq)
+                        {
+                            var NewStartDate = DateTime.ParseExact(data.ServiceDateTime, "dd/MM/yyyy hh:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+                            var NewEndDate = DateTime.ParseExact(data.ServiceDateTime, "dd/MM/yyyy hh:mm tt", System.Globalization.CultureInfo.InvariantCulture).AddHours((double)(newRequest.ServiceHours + newRequest.ExtraHours));
+                            var HaveStartDate = i.ServiceStartDate;
+                            var HaveEndDate = i.ServiceStartDate.AddHours((double)i.SubTotal + 1);
+
+                            if (NewStartDate >= HaveStartDate && NewStartDate <= HaveEndDate)
+                            {
+                                HaveService = true;
+                                break;
+                            }
+                            else if (NewEndDate >= HaveStartDate && NewEndDate <= HaveEndDate)
+                            {
+                                HaveService = true;
+                                break;
+
+                            }
+                            else if (NewStartDate < HaveStartDate && NewEndDate > HaveEndDate)
+                            {
+                                HaveService = true;
+                                break;
+                            }
+                        }
+                        if (HaveService)
+                        {
+                            return Json("AnotherServiceBooked");
+                        }
+                        newRequest.ServiceProviderId = data.FavProId;
+                        newRequest.SpacceptedDate = DateTime.Now;
+                    }
+                        
                 }
                 var saveBooking = _helperlandContext.ServiceRequests.Add(newRequest);
                 _helperlandContext.SaveChanges();
@@ -362,7 +400,7 @@ namespace Helperland.Controllers
             return Json("false");
         }
 
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Dashboard()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
@@ -491,54 +529,144 @@ namespace Helperland.Controllers
         {
             int? logedUserid = HttpContext.Session.GetInt32("userid");
             ServiceRequest rescheduleReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == Convert.ToInt32(InputserviceIdVal)).FirstOrDefault();
-            rescheduleReq.ServiceStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null);
-            rescheduleReq.ModifiedDate = DateTime.Now;
-            _helperlandContext.ServiceRequests.Update(rescheduleReq);
-            _helperlandContext.SaveChanges();
-
-            User AssignProvider = _helperlandContext.Users.Where(x => x.UserId == rescheduleReq.ServiceProviderId).FirstOrDefault();
-
-
-            string subject = "Customer Has Changed service date or time.";
-            string mailTitle = "Helperland Service";
-            string fromEmail = "codewithravi2511@gmail.com";
-            string fromEmailPassword = "dyto qxph hvgv oslf";
-
-            if (AssignProvider != null)
+            if(rescheduleReq.ServiceProviderId == null)
             {
-                string MailBody = "<!DOCTYPE html>" +
-                             "<html> " +
-                                 "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
-                                 "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
-                                 "<p>Dear " + AssignProvider.FirstName + " " + AssignProvider.LastName + " ,</p>" +
-                                  "<p>Service Request " + rescheduleReq.ServiceRequestId + " has been rescheduled by customer. New date and time are " + DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null) + ",</p>" +
-                                  "<p>For more information of service please Login to your account</p>" +
-                                  "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
-                                 "</body> " +
-                             "</html>";
-                MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(AssignProvider.Email));
-                message.Subject = subject;
-                message.Body = MailBody;
-                message.IsBodyHtml = true;
-                //Server Details
-                SmtpClient smtp = new SmtpClient();
-                //Outlook ports - 465 (SSL) or 587 (TLS)
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-                //Credentials
-                System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
-                credential.UserName = fromEmail;
-                credential.Password = fromEmailPassword;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = credential;
-
-                smtp.Send(message);
+                rescheduleReq.ServiceStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null);
+                rescheduleReq.ModifiedDate = DateTime.Now;
+                _helperlandContext.ServiceRequests.Update(rescheduleReq);
+                _helperlandContext.SaveChanges();
+                return Json("ok");
             }
-           
-            return Json("ok");
+            else
+            {
+                User AssignProvider = _helperlandContext.Users.Where(x => x.UserId == rescheduleReq.ServiceProviderId).FirstOrDefault();
+                var ProAllReq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == rescheduleReq.ServiceProviderId && x.Status == null && x.ServiceRequestId != rescheduleReq.ServiceRequestId).ToList();
+                if (ProAllReq.Count() > 0)
+                {
+                    var HaveService = false;
+                   
+
+                   foreach(var i in ProAllReq)
+                    {
+                        var NewStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null);
+                        var NewEndDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null).AddHours((double)rescheduleReq.SubTotal);
+                        var HaveStartDate = i.ServiceStartDate;
+                        var HaveEndDate = i.ServiceStartDate.AddHours((double)i.SubTotal + 1);
+
+                        if (NewStartDate >= HaveStartDate && NewStartDate <= HaveEndDate)
+                        {
+                            HaveService = true;
+                            break;
+                        }
+                        else if (NewEndDate >= HaveStartDate && NewEndDate <= HaveEndDate)
+                        {
+                            HaveService = true;
+                            break;
+
+                        }
+                        else if (NewStartDate < HaveStartDate && NewEndDate > HaveEndDate)
+                        {
+                            HaveService = true;
+                            break;
+                        }
+                    }
+                    if (HaveService)
+                    {
+                        return Json("AnotherServiceBooked");
+                    }
+                    else
+                    {
+                        rescheduleReq.ServiceStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null);
+                        rescheduleReq.ModifiedDate = DateTime.Now;
+                        _helperlandContext.ServiceRequests.Update(rescheduleReq);
+                        _helperlandContext.SaveChanges();
+
+                        User AssignProvider3 = _helperlandContext.Users.Where(x => x.UserId == rescheduleReq.ServiceProviderId).FirstOrDefault();
+                        string subject = "Customer Has Changed service date or time.";
+                        string mailTitle = "Helperland Service";
+                        string fromEmail = "codewithravi2511@gmail.com";
+                        string fromEmailPassword = "dyto qxph hvgv oslf";
+
+                        string MailBody = "<!DOCTYPE html>" +
+                                     "<html> " +
+                                         "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                         "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                         "<p>Dear " + AssignProvider3.FirstName + " " + AssignProvider3.LastName + " ,</p>" +
+                                          "<p>Service Request " + rescheduleReq.ServiceRequestId + " has been rescheduled by customer. New date and time are " + DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null) + ",</p>" +
+                                          "<p>For more information of service please Login to your account</p>" +
+                                          "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                         "</body> " +
+                                     "</html>";
+                        MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(AssignProvider3.Email));
+                        message.Subject = subject;
+                        message.Body = MailBody;
+                        message.IsBodyHtml = true;
+                        //Server Details
+                        SmtpClient smtp = new SmtpClient();
+                        //Outlook ports - 465 (SSL) or 587 (TLS)
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                        //Credentials
+                        System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                        credential.UserName = fromEmail;
+                        credential.Password = fromEmailPassword;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = credential;
+
+                        smtp.Send(message);
+                        return Json("ok");
+                    }
+                }
+                else
+                {
+                    rescheduleReq.ServiceStartDate = DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null);
+                    rescheduleReq.ModifiedDate = DateTime.Now;
+                    _helperlandContext.ServiceRequests.Update(rescheduleReq);
+                    _helperlandContext.SaveChanges();
+
+                    User AssignProvider2 = _helperlandContext.Users.Where(x => x.UserId == rescheduleReq.ServiceProviderId).FirstOrDefault();
+                    string subject = "Customer Has Changed service date or time.";
+                    string mailTitle = "Helperland Service";
+                    string fromEmail = "codewithravi2511@gmail.com";
+                    string fromEmailPassword = "dyto qxph hvgv oslf";
+
+                        string MailBody = "<!DOCTYPE html>" +
+                                     "<html> " +
+                                         "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                         "<h1 style=\"color:#051a80;\">Welcome to Helperland.</h1> " +
+                                         "<p>Dear " + AssignProvider2.FirstName + " " + AssignProvider2.LastName + " ,</p>" +
+                                          "<p>Service Request " + rescheduleReq.ServiceRequestId + " has been rescheduled by customer. New date and time are " + DateTime.ParseExact(rescheduleServiceTime, "dd/MM/yyyy HH:mm", null) + ",</p>" +
+                                          "<p>For more information of service please Login to your account</p>" +
+                                          "<a style=\"background:#1d7a8c;padding:5px 10px;color:white;text-decoration:none;font-size:25px;\"  href='" + Url.Action("Index", "Helperland", new { }, "http") + "'>Login Now</a>" +
+                                         "</body> " +
+                                     "</html>";
+                        MailMessage message = new MailMessage(new MailAddress(fromEmail, mailTitle), new MailAddress(AssignProvider2.Email));
+                        message.Subject = subject;
+                        message.Body = MailBody;
+                        message.IsBodyHtml = true;
+                        //Server Details
+                        SmtpClient smtp = new SmtpClient();
+                        //Outlook ports - 465 (SSL) or 587 (TLS)
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                        //Credentials
+                        System.Net.NetworkCredential credential = new System.Net.NetworkCredential();
+                        credential.UserName = fromEmail;
+                        credential.Password = fromEmailPassword;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = credential;
+
+                        smtp.Send(message);
+                        return Json("ok");
+
+                }
+            }
         }
 
         [HttpPost]
@@ -553,7 +681,6 @@ namespace Helperland.Controllers
             _helperlandContext.ServiceRequests.Update(cancleReq);
             _helperlandContext.SaveChanges();
 
-            User AssignProvider = _helperlandContext.Users.Where(x => x.UserId == cancleReq.ServiceProviderId).FirstOrDefault();
 
 
             string subject = "Customer Has Cancelled Service.";
@@ -561,8 +688,9 @@ namespace Helperland.Controllers
             string fromEmail = "codewithravi2511@gmail.com";
             string fromEmailPassword = "dyto qxph hvgv oslf";
 
-            if (AssignProvider != null)
+            if (cancleReq.ServiceProviderId != null)
             {
+            User AssignProvider = _helperlandContext.Users.Where(x => x.UserId == cancleReq.ServiceProviderId).FirstOrDefault();
                 string MailBody = "<!DOCTYPE html>" +
                              "<html> " +
                                  "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
@@ -598,7 +726,7 @@ namespace Helperland.Controllers
 
             return Json("Successfully");
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult DashServiceSchedule()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
@@ -647,7 +775,7 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult FavPro()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
@@ -683,6 +811,8 @@ namespace Helperland.Controllers
 
                         var ProviderData = _helperlandContext.Users.Where(x => x.UserId == req).FirstOrDefault();
                         FavProData.Name = ProviderData.FirstName + " " + ProviderData.LastName;
+                        var count = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == req && x.Status == 2).Count();
+                        FavProData.TotalCleaning = count;
                         if (ProviderData.UserProfilePicture != null)
                         {
                             FavProData.Avtar = ProviderData.UserProfilePicture;
@@ -829,7 +959,7 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult ServiceHistory()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)
@@ -927,7 +1057,7 @@ namespace Helperland.Controllers
             _helperlandContext.SaveChanges();
             return Json("Successfully");
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult MySetting()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 1 && HttpContext.Session.GetInt32("userid") != null)

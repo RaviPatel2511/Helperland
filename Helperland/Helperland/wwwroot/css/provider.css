@@ -65,32 +65,32 @@ background: none !important;
     border-radius: 45px;
     cursor: pointer;
 }
-    .nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
-        color: #006072 !important;
-        background-color: white;
-        border-color: #006072;
-        transition: all .5s;
-    }
-  .nav-item:nth-child(6) .menu{
-    padding:5px 20px !important;
-  }
-.menu:hover {
-    border-radius: 20px;
-    border: 1px solid white;
-    color: white;
+.nav-item:nth-child(1) .menu:hover, .nav-item:nth-child(6) .menu:hover, .nav-item:nth-child(7) .menu:hover {
+    color: #006072 !important;
+    background-color: white;
+    border-color: #006072;
+    transition: all .5s;
 }
-  .flag {
-    height: 11px;
-    height: 20px;
-    margin-left: 22px;
-  }
-  .drop_down {
-    width: 12px;
-    height: 7px;
-    margin-left: 7px;
-    cursor: pointer;
+.nav-item:nth-child(6) .menu{
+padding:5px 20px !important;
+}
+.menu:hover {
+border-radius: 20px;
+border: 1px solid white;
+color: white;
+}
+.flag {
+height: 11px;
+height: 20px;
+margin-left: 22px;
+}
+.drop_down {
+width: 12px;
+height: 7px;
+margin-left: 7px;
+cursor: pointer;
   
-  }
+}
   
   .fixed-top {
     background-color: rgba(39,39,39,.7)!important;
@@ -302,56 +302,56 @@ text-decoration: none;
 
    /*/////////////// SUBSCRIBE ////////////// */
 
-   .contact{
-    margin-top: 77px;
-    font-size: 18px;
-  }
-  .subscribeEmail{
-    margin-top: 20px;
-    padding-bottom: 53px;
-  }
-  #email {
-    width: 233px;
-    border-radius: 50px;
-    background-color: #f4f5f8;
-    color: black;
-    border-color: black;
-    display: inline-block;
-  }
-  .submitbtn {
-    background-color: #ff7b6d;
-    color: white;
-    border-radius: 50px;
-    margin-left: 11px;
-    padding: 7px 21px 9px 22px;
-  }
-  .howItWorks > svg{
-    position: absolute;
-  }
-  .howItWorks > svg:nth-child(odd){
-    left: -55px;
-  }
-  .howItWorks > svg:nth-child(even){
-    right: 0;
-  }
-  .howItWorks > svg:nth-child(1){
-    top: 27px;
-  }
-  .howItWorks > svg:nth-child(2){
-    top: 20px;
-  }
-  .howItWorks > svg:nth-child(3){
-    top: 440px;
-  }
-  .howItWorks > svg:nth-child(4){
-    top: 406px;
-  }
-  .howItWorks > svg:nth-child(5){
-    top: 817px;
-  }
-  .howItWorks > svg:nth-child(6){
-    top: 870px;
-  }
+.contact{
+margin-top: 77px;
+font-size: 18px;
+}
+.subscribeEmail{
+margin-top: 20px;
+padding-bottom: 53px;
+}
+#email {
+width: 233px;
+border-radius: 50px;
+background-color: #f4f5f8;
+color: black;
+border-color: black;
+display: inline-block;
+}
+.submitbtn {
+background-color: #ff7b6d;
+color: white;
+border-radius: 50px;
+margin-left: 11px;
+padding: 7px 21px 9px 22px;
+}
+.howItWorks > svg{
+position: absolute;
+}
+.howItWorks > svg:nth-child(odd){
+left: -55px;
+}
+.howItWorks > svg:nth-child(even){
+right: 0;
+}
+.howItWorks > svg:nth-child(1){
+top: 27px;
+}
+.howItWorks > svg:nth-child(2){
+top: 20px;
+}
+.howItWorks > svg:nth-child(3){
+top: 440px;
+}
+.howItWorks > svg:nth-child(4){
+top: 406px;
+}
+.howItWorks > svg:nth-child(5){
+top: 817px;
+}
+.howItWorks > svg:nth-child(6){
+top: 870px;
+}
 /*/////////////// FOOTER ////////////// */
 
 footer{
@@ -360,43 +360,43 @@ footer{
     color: white;
     height: auto;
   }
-  footer .container a {
-    text-decoration: none;
-    color: #F1F1F1;
-    font-size: 14px;
-  }
-  .fmenu{
-    padding-top: 20px;
-    max-width: 1350px;
-  }
-  .fimg1 {
-    width: 9px;
-    height: 18px;
-    margin-right: 20px;
-  }
-  .fimg2 {
-    width: 20px;
-    height: 20px;
-  }
+footer .container a {
+text-decoration: none;
+color: #F1F1F1;
+font-size: 14px;
+}
+.fmenu{
+padding-top: 20px;
+max-width: 1350px;
+}
+.fimg1 {
+width: 9px;
+height: 18px;
+margin-right: 20px;
+}
+.fimg2 {
+width: 20px;
+height: 20px;
+}
  
-  .hr-line{
-    max-width: 1320px;
-    margin: 0 auto;
-    margin-top: 10px;
-  }
-  .hr-line hr{
-    border-bottom: 1px solid grey; 
-    width: 100%;
-  }
-  .right{
-    color: #737381;
-    font-size: 14px;
-    padding-top: 15px;
-    padding-bottom: 20px !important;
-  }
-  footer p{
-    margin-bottom: 0px !important;
-  }
+.hr-line{
+max-width: 1320px;
+margin: 0 auto;
+margin-top: 10px;
+}
+.hr-line hr{
+border-bottom: 1px solid grey; 
+width: 100%;
+}
+.right{
+color: #737381;
+font-size: 14px;
+padding-top: 15px;
+padding-bottom: 20px !important;
+}
+footer p{
+margin-bottom: 0px !important;
+}
 
 .fmenulink a:hover {
     color: tomato;

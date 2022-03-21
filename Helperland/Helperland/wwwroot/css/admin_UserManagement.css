@@ -543,99 +543,99 @@ tbody{
     }
       
   }
-  @media screen and (min-width:837px) and (max-width:859px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:15px;
-        top: 59px;
-    }
-      
-  }
-  @media screen and (min-width:670px) and (max-width:837px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:46%;
-        top:59px;
-    }
+@media screen and (min-width:837px) and (max-width:859px) {
+td .threeDotsubMenu{
+    position: absolute;
+    right:15px;
+    top: 59px;
 }
-  @media screen and  (max-width:670px) {
-    td .threeDotsubMenu{
-        position: absolute;
-        right:44%;
-        top:55px;
+      
+}
+@media screen and (min-width:670px) and (max-width:837px) {
+td .threeDotsubMenu{
+    position: absolute;
+    right:46%;
+    top:59px;
+}
+}
+@media screen and  (max-width:670px) {
+td .threeDotsubMenu{
+    position: absolute;
+    right:44%;
+    top:55px;
+}
+      
+}
+@media screen and (max-width:453px) {
+    .admin-detail{
+        margin-left: 82px;
+    }
+    .main{
+        margin-top:92px;
     }
       
-  }
-  @media screen and (max-width:453px) {
-      .admin-detail{
-          margin-left: 82px;
-      }
-      .main{
-          margin-top:92px;
-      }
-      
-  }
-  @media screen and (max-width:875px) {
-      table{
-          border: none;
-      }
-      .mobile_sorting{
-          display: block;
-      }
-      tbody{
-          background-color: unset;
-      }
-      table tbody tr {
-          display: flex;
-          flex-wrap: wrap;
-          margin: 20px 0;
-          padding: 0 25px;
-          box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
-          -webkit-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
-          -moz-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
-      }
-      table tbody tr td{
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-      }
-      table thead{
-          display: none;
-      }
-      .table-bottom{
-          display: flex;
-          flex-direction: column;
-      }
-      .table-bottom-inner{
-          align-items: center;
-          justify-content: center;
-      }
-      
-
-  }
-  @media screen and (max-width:1089px){
-    .mobileNavIcon{
+}
+@media screen and (max-width:875px) {
+    table{
+        border: none;
+    }
+    .mobile_sorting{
         display: block;
-        display: flex;
     }
-    #sidebar-wrapper{
+    tbody{
+        background-color: unset;
+    }
+    table tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        padding: 0 25px;
+        box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
+        -webkit-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
+        -moz-box-shadow: 0px 0px 27px -2px rgba(107,107,107,0.54);
+    }
+    table tbody tr td{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    table thead{
         display: none;
     }
-    #sidebar-wrapper.open{
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 40%;
-        z-index: 1000;
-        display: block;
-        height: 100vh;
-        overflow:scroll ;
-      }
-      .closebtn,.closebtn.show{
-          display: block!important;
-      }
-  }
+    .table-bottom{
+        display: flex;
+        flex-direction: column;
+    }
+    .table-bottom-inner{
+        align-items: center;
+        justify-content: center;
+    }
+      
+
+}
+@media screen and (max-width:1089px){
+.mobileNavIcon{
+    display: block;
+    display: flex;
+}
+#sidebar-wrapper{
+    display: none;
+}
+#sidebar-wrapper.open{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 40%;
+    z-index: 1000;
+    display: block;
+    height: 100vh;
+    overflow:scroll ;
+    }
+    .closebtn,.closebtn.show{
+        display: block!important;
+    }
+}
 @media screen and (max-width: 1200px) {
     .filter > div {
         margin-bottom: 10px;

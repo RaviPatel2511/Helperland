@@ -11,7 +11,7 @@
 </button>
 
 <div class="modal fade" id="displaydataModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered"">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Service Details</h4>
@@ -46,6 +46,12 @@
 </div>
 
 <div id="ServiceSchedule">
+    <div id="CustomBtn">
+        <ul class="StatusColor">
+            <li class="completed">Completed</li>
+            <li>Upcoming</li>
+        </ul>
+    </div>
     <div id="calendar"></div>
 </div>
 
@@ -55,6 +61,9 @@
     <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
     <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
     <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
-
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"></script>
     <script src="~/js/PServiceSchedule.js"></script>
 }

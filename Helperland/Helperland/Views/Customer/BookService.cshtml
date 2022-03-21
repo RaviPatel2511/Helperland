@@ -28,6 +28,16 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="RescheduleError" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h3>This Provider has already booked another service at this time pleaase try Again !</h3>
+                    <a class="btn CancleOkBtn" asp-controller="Customer" asp-action="BookService">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="loader-div d-none">
         <div class="sk-chase">
             <div class="sk-chase-dot"></div>

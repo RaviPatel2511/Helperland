@@ -257,7 +257,10 @@ $("#rescheduleServiceUpdateBtn").click(function () {
         },
         success:
             function (response) {
-                if (response == "ok") {
+                if (response == "AnotherServiceBooked") {
+                    $("#rescheduleModal").modal('hide');
+                    $("#RescheduleError").modal('show');
+                } else {
                     window.location.reload();
                 }
             },

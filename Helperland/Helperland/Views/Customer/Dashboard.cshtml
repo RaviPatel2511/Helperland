@@ -113,7 +113,7 @@
         </div>
         <!-- Display All data  Modal content-->
         <div class="modal fade" id="displaydataModal" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered"">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Service Details</h4>
@@ -163,6 +163,16 @@
                         </span>
                         <h3>Your service canceled successfully</h3>
                         <h4>Cancle Request Id : <b id="CancleReferenceId"></b></h4>
+                        <a class="btn CancleOkBtn" asp-controller="Customer" asp-action="Dashboard">Ok</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="RescheduleError" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h3>This Provider has already booked another service at this time pleaase try with different time !</h3>
                         <a class="btn CancleOkBtn" asp-controller="Customer" asp-action="Dashboard">Ok</a>
                     </div>
                 </div>

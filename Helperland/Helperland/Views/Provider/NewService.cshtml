@@ -27,7 +27,7 @@
     </div>
     <div>
         <div class="modal fade" id="displaydataModal" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Service Details</h4>
@@ -51,9 +51,8 @@
                             <span class="title-text"><b>Comments : </b><span id="SerComment"></span></span>
                             <span class="title-text"><span id="SerPets"></span></span>
                             <hr />
-                            @*<div class="action-btn">
-                                <a id="AcceptServiceModalBtn" class="btn"><img src="~/image/home/logout.png" />Accept</a>
-                            </div>*@
+                            <div class="action-btn">
+                            </div>
                         </div>
                         <div>
                             <div id='CustMap'>
@@ -107,6 +106,7 @@
                         <th class="text-center">Payment</th>
                         <th class="text-center">Time conflict</th>
                         <th class="text-center">Actions</th>
+                        <th class="d-none"></th>
                     </tr>
                 </thead>
                 <tbody id="NewServiceTblData">

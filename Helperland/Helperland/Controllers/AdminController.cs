@@ -18,7 +18,7 @@ namespace Helperland.Controllers
         {
             _helperlandContext = helperlandContext;
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult ServiceRequest()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
@@ -382,7 +382,7 @@ namespace Helperland.Controllers
             }
             return Redirect((Url.Action("Index", "Helperland") + "?loginModal=true"));
         }
-
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult UserManagement()
         {
             if (HttpContext.Session.GetInt32("usertypeid") == 3 && HttpContext.Session.GetInt32("userid") != null)
